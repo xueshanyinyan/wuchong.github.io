@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/05/22/using-redis-and-sqlalchemy-to-checkd-dup-and-store-scrapy-item/</loc>
+    
+    <lastmod>2016-03-08T12:20:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/12/21/why-do-coderq/</loc>
+    
+    <lastmod>2016-03-08T12:20:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/07/16/use-python-login-borrow-account/</loc>
+    
+    <lastmod>2016-03-08T12:20:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/03/14/use-latex-in-blog/</loc>
+    
+    <lastmod>2016-03-08T12:19:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/</loc>
+    
+    <lastmod>2016-03-08T12:19:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/02/17/trip-of-sanya/</loc>
+    
+    <lastmod>2016-03-08T12:19:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/06/23/the-days-in-the-pit/</loc>
+    
+    <lastmod>2016-03-08T12:19:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/03/12/support-jacman-to-Hexo-3/</loc>
+    
+    <lastmod>2016-03-08T12:18:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/04/04/spark-on-yarn-cluster-deploy/</loc>
+    
+    <lastmod>2016-03-08T12:18:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/04/06/spark-on-hbase-new-api/</loc>
+    
+    <lastmod>2016-03-08T12:18:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/02/02/shadowsocks-install-and-optimize/</loc>
+    
+    <lastmod>2016-03-08T12:17:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/05/22/running-scrapy-programmatically/</loc>
+    
+    <lastmod>2016-03-08T12:17:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/04/19/recsys-cf-study/</loc>
+    
+    <lastmod>2016-03-08T12:17:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/05/15/read-programmer-career-planning/</loc>
+    
+    <lastmod>2016-03-08T12:16:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/07/28/permutation-and-combination-realize/</loc>
+    
+    <lastmod>2016-03-08T12:16:28.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/04/26/odps-sql-introduction/</loc>
+    
+    <lastmod>2016-03-08T12:16:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/04/29/odps-sql-build-offline-evaluation/</loc>
+    
+    <lastmod>2016-03-08T12:15:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/09/30/looking-for-a-job-summary/</loc>
+    
+    <lastmod>2016-03-08T12:15:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/07/24/linux-process-manage/</loc>
+    
+    <lastmod>2016-03-08T12:15:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/07/15/linux-permission-and-file/</loc>
+    
+    <lastmod>2016-03-08T12:15:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/07/19/linux-file-system/</loc>
+    
+    <lastmod>2016-03-08T12:14:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/07/21/linux-file-manage/</loc>
+    
+    <lastmod>2016-03-08T12:14:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/07/14/linux-boot-process/</loc>
+    
+    <lastmod>2016-03-08T12:14:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/07/02/learn-regular-expressions/</loc>
+    
+    <lastmod>2016-03-08T12:14:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/02/25/jquery-datatable-sort-plugin/</loc>
+    
+    <lastmod>2016-03-08T12:13:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/03/25/interview-link-questions/</loc>
+    
+    <lastmod>2016-03-08T12:13:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/11/20/how-to-use-jacman/</loc>
+    
+    <lastmod>2016-03-08T12:13:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/12/21/how-to-find-internet-job/</loc>
+    
+    <lastmod>2016-03-08T12:12:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/08/28/how-to-correctly-write-singleton-pattern/</loc>
+    
+    <lastmod>2016-03-08T12:12:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/12/13/hexo-theme-creating-image-styles/</loc>
+    
+    <lastmod>2016-03-08T12:11:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/12/18/hexo-blog-to-coding/</loc>
+    
+    <lastmod>2016-03-08T12:11:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2013/12/13/hello-%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2/</loc>
+    
+    <lastmod>2016-03-08T12:11:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/04/05/hbase-cluster-deploy/</loc>
+    
+    <lastmod>2016-03-08T12:10:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/03/30/git-useful-skills/</loc>
+    
+    <lastmod>2016-03-08T12:10:38.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/08/01/getting-started-with-metrics/</loc>
+    
+    <lastmod>2016-03-08T12:10:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/04/24/easy-web-scraping-with-python/</loc>
+    
+    <lastmod>2016-03-08T12:09:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/10/17/do-vps-ss/</loc>
+    
+    <lastmod>2016-03-08T12:09:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/08/07/distributed-storage-system-knowledge/</loc>
+    
+    <lastmod>2016-03-08T12:08:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/01/24/change-to-pacman/</loc>
+    
+    <lastmod>2016-03-08T12:08:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/</loc>
+    
+    <lastmod>2016-03-08T12:07:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/12/31/2014-summary/</loc>
+    
+    <lastmod>2016-03-08T12:07:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/01/01/2013_summary/</loc>
+    
+    <lastmod>2016-03-08T12:07:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/about/index.html</loc>
+    
+    <lastmod>2016-03-08T11:51:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2016/02/26/flink-docs-setup-cluster/</loc>
+    
+    <lastmod>2016-03-01T11:27:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2016/02/26/flink-docs-setup-local/</loc>
+    
+    <lastmod>2016-03-01T11:27:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2016/01/10/2015-summary/</loc>
+    
+    <lastmod>2016-01-11T01:47:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/11/21/macbook-productive-tools/</loc>
+    
+    <lastmod>2015-11-22T15:40:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/06/29/the-first-experience-of-mac/</loc>
+    
+    <lastmod>2015-11-21T13:32:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/11/06/learn-clojure-3-concurrent/</loc>
+    
+    <lastmod>2015-11-07T07:29:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/11/06/learn-clojure-2-syntax/</loc>
+    
+    <lastmod>2015-11-07T05:14:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/11/06/learn-clojure-1-datastruct/</loc>
+    
+    <lastmod>2015-11-06T11:08:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/10/07/thrift-practice/</loc>
+    
+    <lastmod>2015-10-08T04:12:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/10/07/thrift-induction/</loc>
+    
+    <lastmod>2015-10-08T01:33:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2015/05/22/running-scrapy-dynamic-and-configurable/</loc>
+    
+    <lastmod>2015-08-02T07:03:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/categories/index.html</loc>
+    
+    <lastmod>2015-08-01T16:52:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/tags/index.html</loc>
+    
+    <lastmod>2015-08-01T16:47:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/01/08/hexo-scrollup/</loc>
+    
+    <lastmod>2015-01-14T15:05:50.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/01/27/python-spider-gif/</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/404.html</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/07/30/ali-bigdata-competition-write-to-the-5-monthes/</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/search/index.html</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+</urlset>
