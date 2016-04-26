@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wuchong.me/copyright/index.html</loc>
+    
+    <lastmod>2016-04-26T12:52:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2016/04/26/flink-internals-how-to-handle-backpressure/</loc>
+    
+    <lastmod>2016-04-26T11:33:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/tags/index.html</loc>
     
     <lastmod>2016-03-08T15:14:23.000Z</lastmod>
@@ -401,13 +415,6 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/07/30/ali-bigdata-competition-write-to-the-5-monthes/</loc>
-    
-    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wuchong.me/404.html</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
@@ -415,14 +422,14 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
+    <loc>http://wuchong.me/blog/2014/07/30/ali-bigdata-competition-write-to-the-5-monthes/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
+    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
@@ -437,6 +444,13 @@
   
   <url>
     <loc>http://wuchong.me/search/index.html</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     

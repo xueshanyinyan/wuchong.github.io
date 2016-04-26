@@ -172,6 +172,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
@@ -257,6 +267,132 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/04/26/flink-internals-how-to-handle-backpressure/" itemprop="url">
+                  Flink 原理与实现：如何处理反压问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-26T19:18:26+08:00" content="2016-04-26">
+              2016-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index">
+                    <span itemprop="name">Flink</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/04/26/flink-internals-how-to-handle-backpressure/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2016/04/26/flink-internals-how-to-handle-backpressure/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+<!--
+    
+      <div class="post-body">
+    
+    -->
+
+
+    <div class="post-body" itemprop="articleBody">
+    
+
+      
+      
+
+      
+        
+          流处理系统需要能优雅地处理反压（backpressure）问题。反压通常产生于这样的场景：短时负载高峰导致系统接收数据的速率远高于它处理数据的速率。许多日常问题都会导致反压，例如，垃圾回收停顿可能会导致流入的数据快速堆积，或者遇到大促或秒杀活动导致流量陡增。反压如果不能得到正确的处理，可能会导致资源耗尽甚至系统崩溃。那么 Flink 是怎么处理反压的呢？
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2016/04/26/flink-internals-how-to-handle-backpressure/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/02/26/flink-docs-setup-cluster/" itemprop="url">
                   Flink官方文档翻译：安装部署（集群模式）
                 </a>
@@ -302,7 +438,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2016/02/26/flink-docs-setup-cluster/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2016/02/26/flink-docs-setup-cluster/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2016/02/26/flink-docs-setup-cluster/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -311,15 +447,6 @@
           
 
           
-          
-             <span id="/blog/2016/02/26/flink-docs-setup-cluster/" class="leancloud_visitors" data-flag-title="Flink官方文档翻译：安装部署（集群模式）">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
         </div>
@@ -437,7 +564,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2016/02/26/flink-docs-setup-local/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2016/02/26/flink-docs-setup-local/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2016/02/26/flink-docs-setup-local/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -446,15 +573,6 @@
           
 
           
-          
-             <span id="/blog/2016/02/26/flink-docs-setup-local/" class="leancloud_visitors" data-flag-title="Flink官方文档翻译：安装部署（本地模式）">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
         </div>
@@ -572,7 +690,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2016/01/10/2015-summary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2016/01/10/2015-summary/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2016/01/10/2015-summary/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -581,15 +699,6 @@
           
 
           
-          
-             <span id="/blog/2016/01/10/2015-summary/" class="leancloud_visitors" data-flag-title="迟到的2015年终总结">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
         </div>
@@ -709,7 +818,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/11/21/macbook-productive-tools/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/11/21/macbook-productive-tools/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/11/21/macbook-productive-tools/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -718,15 +827,6 @@
           
 
           
-          
-             <span id="/blog/2015/11/21/macbook-productive-tools/" class="leancloud_visitors" data-flag-title="高效Macbook开发之道(工具篇)">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
         </div>
@@ -844,7 +944,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/11/06/learn-clojure-3-concurrent/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/11/06/learn-clojure-3-concurrent/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/11/06/learn-clojure-3-concurrent/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -853,15 +953,6 @@
           
 
           
-          
-             <span id="/blog/2015/11/06/learn-clojure-3-concurrent/" class="leancloud_visitors" data-flag-title="Clojure学习笔记（三）：并发与引用">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
         </div>
@@ -985,7 +1076,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/11/06/learn-clojure-2-syntax/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/11/06/learn-clojure-2-syntax/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/11/06/learn-clojure-2-syntax/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -994,15 +1085,6 @@
           
 
           
-          
-             <span id="/blog/2015/11/06/learn-clojure-2-syntax/" class="leancloud_visitors" data-flag-title="Clojure学习笔记（二）：语法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
         </div>
@@ -1132,7 +1214,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/11/06/learn-clojure-1-datastruct/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/11/06/learn-clojure-1-datastruct/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/11/06/learn-clojure-1-datastruct/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1141,15 +1223,6 @@
           
 
           
-          
-             <span id="/blog/2015/11/06/learn-clojure-1-datastruct/" class="leancloud_visitors" data-flag-title="Clojure学习笔记（一）：数据结构">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
         </div>
@@ -1272,7 +1345,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/10/07/thrift-practice/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/10/07/thrift-practice/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/10/07/thrift-practice/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1281,15 +1354,6 @@
           
 
           
-          
-             <span id="/blog/2015/10/07/thrift-practice/" class="leancloud_visitors" data-flag-title="Thrift 实践">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
         </div>
@@ -1409,7 +1473,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/10/07/thrift-induction/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/10/07/thrift-induction/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/10/07/thrift-induction/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1418,15 +1482,6 @@
           
 
           
-          
-             <span id="/blog/2015/10/07/thrift-induction/" class="leancloud_visitors" data-flag-title="Thrift 入门">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
         </div>
@@ -1451,141 +1506,6 @@
           <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Thrift 最初由Facebook开发，而后捐献给Apache，目前已广泛应用于业界。Thrift 正如其<a href="https://thrift.apache.org/">官方主页</a>介绍的，“是一种可扩展、跨语言的服务开发框架”。简而言之，它主要用于各个服务之间的RPC通信，其服务端和客户端可以用不同的语言来开发。只需要依照IDL（Interface Description Language）定义一次接口，Thrift工具就能自动生成 C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml等语言的代码。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2015/10/07/thrift-induction/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2015/08/01/getting-started-with-metrics/" itemprop="url">
-                  Metrics 是个什么鬼 之入门教程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-01T16:51:52+08:00" content="2015-08-01">
-              2015-08-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/程序设计/" itemprop="url" rel="index">
-                    <span itemprop="name">程序设计</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2015/08/01/getting-started-with-metrics/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/08/01/getting-started-with-metrics/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2015/08/01/getting-started-with-metrics/" class="leancloud_visitors" data-flag-title="Metrics 是个什么鬼 之入门教程">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-<!--
-    
-      <div class="post-body">
-    
-    -->
-
-
-    <div class="post-body" itemprop="articleBody">
-    
-
-      
-      
-
-      
-        
-          Metrics，谷歌翻译就是度量的意思。当我们需要为某个系统某个服务做监控、做统计，就需要用到Metrics。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2015/08/01/getting-started-with-metrics/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1659,7 +1579,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1667,7 +1587,7 @@
 <!--
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">分类</span>
             </a>
           </div>
@@ -1678,9 +1598,11 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">10</span>
-                <span class="site-state-item-name">分类</span>
+              <a href="/categories">
               
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
             </div>
           
           
@@ -1688,7 +1610,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">60</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1710,6 +1632,12 @@
         </div>
 
         
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -1809,26 +1737,28 @@
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"wuchong"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
 
+    <script type="text/javascript">
+      var disqus_shortname = 'wuchong';
+      var disqus_identifier = 'index.html';
+      var disqus_title = '';
+      var disqus_url = '';
 
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
 
 
 
@@ -1861,99 +1791,6 @@
 
   
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("ocvRLHmpvbUl4F6DRe6OeISd-gzGzoHsz", "yzA4Ni2tfe2MyaTdi3MFHIuT");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
 
 </body>
