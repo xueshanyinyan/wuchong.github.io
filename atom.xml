@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wuchong.me/"/>
-  <updated>2016-04-29T06:55:15.000Z</updated>
+  <updated>2016-04-29T07:34:03.000Z</updated>
   <id>http://wuchong.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://wuchong.me/blog/2016/04/29/flink-internals-memory-manage/"/>
     <id>http://wuchong.me/blog/2016/04/29/flink-internals-memory-manage/</id>
     <published>2016-04-29T06:44:51.000Z</published>
-    <updated>2016-04-29T06:55:15.000Z</updated>
+    <updated>2016-04-29T07:34:03.000Z</updated>
     
     <content type="html">&lt;p&gt;如今，大数据领域的开源框架（Hadoop，Spark，Storm）都使用的 JVM，当然也包括 Flink。基于 JVM 的数据分析引擎都需要面对将大量数据存到内存中，这就不得不面对 JVM 存在的几个问题：&lt;/p&gt;
 &lt;ol&gt;
@@ -136,6 +136,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h2 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h2&gt;&lt;p&gt;本文主要总结了 Flink 面对 JVM 存在的问题，而在内存管理的道路上越走越深。从自己管理内存，到序列化框架，再到堆外内存。其实纵观大数据生态圈，其实会发现各个开源项目都有同样的趋势。比如最近炒的很火热的 Spark Tungsten 项目，与 Flink 在内存管理上的思想是及其相似的。&lt;/p&gt;
 &lt;h2 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://flink.apache.org/news/2015/09/16/off-heap-memory.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Off-heap Memory in Apache Flink and the curious JIT compiler
 &lt;/a&gt;&lt;/li&gt;
@@ -168,9 +169,9 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
-      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
-    
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
       <category term="内存管理" scheme="http://wuchong.me/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
     
@@ -244,9 +245,9 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
-      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
-    
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
       <category term="反压" scheme="http://wuchong.me/tags/%E5%8F%8D%E5%8E%8B/"/>
     

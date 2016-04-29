@@ -77,7 +77,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1lvdbJFXXXXa9XVXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1_hhgJFXXXXc2XFXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1f6BnJFXXXXbnXFXXXXXXXXXX">
-<meta property="og:updated_time" content="2016-04-29T06:55:15.000Z">
+<meta property="og:updated_time" content="2016-04-29T07:34:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink 原理与实现：内存管理">
 <meta name="twitter:description" content="如今，大数据领域的开源框架（Hadoop，Spark，Storm）都使用的 JVM，当然也包括 Flink。基于 JVM 的数据分析引擎都需要面对将大量数据存到内存中，这就不得不面对 JVM 存在的几个问题：
@@ -456,6 +456,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
 </tr>
 </tbody>
 </table>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要总结了 Flink 面对 JVM 存在的问题，而在内存管理的道路上越走越深。从自己管理内存，到序列化框架，再到堆外内存。其实纵观大数据生态圈，其实会发现各个开源项目都有同样的趋势。比如最近炒的很火热的 Spark Tungsten 项目，与 Flink 在内存管理上的思想是及其相似的。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a href="https://flink.apache.org/news/2015/09/16/off-heap-memory.html" target="_blank" rel="external">Off-heap Memory in Apache Flink and the curious JIT compiler
 </a></li>
@@ -490,9 +491,9 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
       
         <div class="post-tags">
           
-            <a href="/tags/Flink原理与实现/" rel="tag">#Flink原理与实现</a>
-          
             <a href="/tags/Flink/" rel="tag">#Flink</a>
+          
+            <a href="/tags/Flink原理与实现/" rel="tag">#Flink原理与实现</a>
           
             <a href="/tags/内存管理/" rel="tag">#内存管理</a>
           
@@ -684,7 +685,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#积极的内存管理"><span class="nav-number">1.</span> <span class="nav-text">积极的内存管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为-Flink-量身定制的序列化框架"><span class="nav-number">2.</span> <span class="nav-text">为 Flink 量身定制的序列化框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-如何直接操作二进制数据"><span class="nav-number">3.</span> <span class="nav-text">Flink 如何直接操作二进制数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存友好的数据结构和算法"><span class="nav-number">4.</span> <span class="nav-text">缓存友好的数据结构和算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#走向堆外内存"><span class="nav-number">5.</span> <span class="nav-text">走向堆外内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#积极的内存管理"><span class="nav-number">1.</span> <span class="nav-text">积极的内存管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为-Flink-量身定制的序列化框架"><span class="nav-number">2.</span> <span class="nav-text">为 Flink 量身定制的序列化框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-如何直接操作二进制数据"><span class="nav-number">3.</span> <span class="nav-text">Flink 如何直接操作二进制数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存友好的数据结构和算法"><span class="nav-number">4.</span> <span class="nav-text">缓存友好的数据结构和算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#走向堆外内存"><span class="nav-number">5.</span> <span class="nav-text">走向堆外内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
