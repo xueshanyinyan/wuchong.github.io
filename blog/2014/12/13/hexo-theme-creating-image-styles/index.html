@@ -351,14 +351,14 @@
 <p>在博客中，我更希望主题图片居右，并且点进文章正文后该图片不会显示。我们可以使用HTML语法插入图片。</p>
 <figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">&lt;img src=<span class="string">"图片路径"</span> <span class="keyword">class</span>=<span class="string">"img-topic"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p>这儿是一张使用<code>img-topic</code>样式后的效果图。</p>
-<p><img src="http://ww2.sinaimg.cn/large/81b78497jw1en8cj4beb9j20s80b8adb.jpg" alt="img-topic效果图"></p>
+<p><img src="http://ww2.sinaimg.cn/large/81b78497jw1en8cj4beb9j20s80b8adb.jpg" alt="img-topic效果图"><span class="caption">img-topic效果图</span></p>
 <h2 id="Logo-图片"><a href="#Logo-图片" class="headerlink" title="Logo 图片"></a>Logo 图片</h2><p>Logo 图片可以快速定义一篇文章的主题。与主题图片非常类似，只不过 Logo  图片放置的是 Logo ，而且一般比主题图片要小。类似的，Logo 图片也是居右，并且在文章正文中不会显示。</p>
 <p>关于<code>img-logo</code>的样式如下</p>
 <figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/index.styl</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.img-logo</span> </span><br><span class="line">  <span class="selector-tag">max-width</span>: 180<span class="selector-tag">px</span>;</span><br><span class="line">  <span class="selector-tag">max-height</span>: 96<span class="selector-tag">px</span>;</span><br><span class="line">  <span class="selector-tag">display</span>: <span class="selector-tag">block</span>;</span><br><span class="line">  <span class="selector-tag">margin-right</span>: <span class="selector-class">.7em</span>;</span><br><span class="line">  <span class="selector-tag">margin-left</span>: <span class="selector-class">.7em</span>;</span><br><span class="line">  <span class="selector-tag">padding</span>: 0;</span><br><span class="line">  <span class="selector-tag">float</span>: <span class="selector-tag">right</span>;</span><br><span class="line">  <span class="selector-tag">clear</span>: <span class="selector-tag">right</span>;</span><br></pre></td></tr></table></figure>
 <p>使用HTML语法插入图片</p>
 <figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">&lt;img src=<span class="string">"图片路径"</span> <span class="keyword">class</span>=<span class="string">"img-logo"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p>效果如下图：</p>
-<p><img src="http://ww4.sinaimg.cn/large/81b78497jw1en8cj55warj20se0avgoh.jpg" alt="img-logo效果图"></p>
+<p><img src="http://ww4.sinaimg.cn/large/81b78497jw1en8cj55warj20se0avgoh.jpg" alt="img-logo效果图"><span class="caption">img-logo效果图</span></p>
 <h2 id="居中图片"><a href="#居中图片" class="headerlink" title="居中图片"></a>居中图片</h2><p>有网友抱怨 Jacman 的图片只能居左，他喜欢让图片居中却不知道该怎么做。为此，我也创建了一个图片样式叫<code>img-center</code>，所需的代码很短。</p>
 <figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/article.styl</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.img-center</span></span><br><span class="line">  <span class="selector-tag">display</span>: <span class="selector-tag">block</span> ;</span><br><span class="line">  <span class="selector-tag">margin</span>: <span class="selector-tag">auto</span>;</span><br></pre></td></tr></table></figure>
 <h2 id="阴影图片"><a href="#阴影图片" class="headerlink" title="阴影图片"></a>阴影图片</h2><p>有时候添加的图片可能会与文章背景混淆，使得读者看不清到底哪部分是图片哪部分是文章。使用<code>img-shadow</code>为图片添加边角阴影可以更加凸显图片的位置，也能更美观。</p>
@@ -367,11 +367,11 @@
 <figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">&lt;img src=<span class="string">"http://ww1.sinaimg.cn/large/81b78497jw1enhkcat9mqj20go06g0sy.jpg"</span> <span class="keyword">class</span>=<span class="string">"img-shadow"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p><img src="http://ww1.sinaimg.cn/large/81b78497jw1enhkcat9mqj20go06g0sy.jpg" class="img-shadow"></p>
 <h2 id="画廊图片"><a href="#画廊图片" class="headerlink" title="画廊图片"></a>画廊图片</h2><p>Hexo 中提供了一种文章类别叫<code>photo</code>，Jacman 也为这种文章设计了图片浏览方式。具体效果可以看这篇 <a href="http://wuchong.me/jacman/gallery/">Demo</a> 。<code>photo</code>类文章的写法可以看 <a href="https://raw.githubusercontent.com/wuchong/jacman/site/source/_posts/gallery.md" target="_blank" rel="external">Demo Sample</a>。</p>
-<p><img src="http://ww3.sinaimg.cn/large/81b78497jw1en8cj4r4bij20sl0krn4x.jpg" alt="photo文章效果图"></p>
+<p><img src="http://ww3.sinaimg.cn/large/81b78497jw1en8cj4r4bij20sl0krn4x.jpg" alt="photo文章效果图"><span class="caption">photo文章效果图</span></p>
 <h2 id="图片备注"><a href="#图片备注" class="headerlink" title="图片备注"></a>图片备注</h2><p>Jacman 中可以方便地为图片提供备注。</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">添加你的备注</span>](<span class="link">http://ww1.sinaimg.cn/mw690/81b78497jw1emfgts2pt4j21hc0u0k1c.jpg</span>)</span><br></pre></td></tr></table></figure>
 <p>效果就如下图，在图片左下方会显示关于图片的描述。</p>
-<p><img src="http://ww1.sinaimg.cn/mw690/81b78497jw1emfgts2pt4j21hc0u0k1c.jpg" alt="添加你的备注"></p>
+<p><img src="http://ww1.sinaimg.cn/mw690/81b78497jw1emfgts2pt4j21hc0u0k1c.jpg" alt="添加你的备注"><span class="caption">添加你的备注</span></p>
 <p>OK，就这么多了，希望大家喜欢。如果嫌折腾麻烦，欢迎使用最新版的 <a href="https://github.com/wuchong/jacman" target="_blank" rel="external">Jacman</a>，可以直接使用以上定义的样式！</p>
 <p><em>PS:有任何关于 Hexo 的问题，欢迎来 <a href="https://coderq.com/c/tech/hexo" target="_blank" rel="external">Hexo 中文社区</a> 咨询。</em></p>
 
@@ -505,7 +505,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -536,7 +536,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

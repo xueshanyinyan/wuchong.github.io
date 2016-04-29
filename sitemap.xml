@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://wuchong.me/copyright/index.html</loc>
+    <loc>http://wuchong.me/blog/2016/04/29/flink-internals-memory-manage/</loc>
     
-    <lastmod>2016-04-26T12:52:54.000Z</lastmod>
+    <lastmod>2016-04-29T06:55:15.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://wuchong.me/blog/2016/04/26/flink-internals-how-to-handle-backpressure/</loc>
     
-    <lastmod>2016-04-26T11:33:17.000Z</lastmod>
+    <lastmod>2016-04-28T15:12:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/copyright/index.html</loc>
+    
+    <lastmod>2016-04-26T12:52:54.000Z</lastmod>
     
   </url>
   
