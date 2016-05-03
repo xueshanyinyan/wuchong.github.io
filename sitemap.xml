@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://wuchong.me/blog/2016/04/29/flink-internals-memory-manage/</loc>
+    <loc>http://wuchong.me/blog/2016/04/26/flink-internals-how-to-handle-backpressure/</loc>
     
-    <lastmod>2016-04-29T07:34:03.000Z</lastmod>
+    <lastmod>2016-05-03T15:47:52.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2016/04/26/flink-internals-how-to-handle-backpressure/</loc>
+    <loc>http://wuchong.me/blog/2016/05/03/flink-internals-overview/</loc>
     
-    <lastmod>2016-04-28T15:12:16.000Z</lastmod>
+    <lastmod>2016-05-03T15:42:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2016/04/29/flink-internals-memory-manage/</loc>
+    
+    <lastmod>2016-04-29T07:34:03.000Z</lastmod>
     
   </url>
   
@@ -422,13 +429,6 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/07/30/ali-bigdata-competition-write-to-the-5-monthes/</loc>
-    
-    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wuchong.me/404.html</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
@@ -437,6 +437,13 @@
   
   <url>
     <loc>http://wuchong.me/blog/2014/01/27/python-spider-gif/</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
@@ -457,7 +464,7 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
+    <loc>http://wuchong.me/blog/2014/07/30/ali-bigdata-competition-write-to-the-5-monthes/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
