@@ -267,6 +267,153 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2015/11/06/learn-clojure-2-syntax/" itemprop="url">
+                  Clojure学习笔记（二）：语法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-06T14:36:15+08:00" content="2015-11-06">
+              2015-11-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2015/11/06/learn-clojure-2-syntax/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/11/06/learn-clojure-2-syntax/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2015/11/06/learn-clojure-2-syntax/" class="leancloud_visitors" data-flag-title="Clojure学习笔记（二）：语法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+<!--
+    
+      <div class="post-body">
+    
+    -->
+
+
+    <div class="post-body" itemprop="articleBody">
+    
+
+      
+      
+
+      
+        
+          <h2 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h2><ul>
+<li><p><strong>匿名函数</strong><br>匿名函数<code>(fn) (fn [x y] (+ x y))</code> 创建一个匿名函数, fn 和 lambda 类似，fn还有一个简写形式 <code>#(+ %1 %2)</code>。如果只有一个参数,那么可以用 <code>%</code> 代替 <code>%1</code></p>
+</li>
+<li><p><strong>def</strong><br><code>def</code>可以将一个匿名函数绑定到一个name上。</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> my-add (<span class="name"><span class="builtin-name">fn</span></span> [x y] (<span class="name"><span class="builtin-name">+</span></span> x y)))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p><strong>defn</strong></p>
+<p>defn 是 def 与 fn 的简写。一般我们也都是用defn。</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> my-add</span><br><span class="line">  <span class="string">"this is a comment"</span></span><br><span class="line">  [x y]</span><br><span class="line">  (<span class="name"><span class="builtin-name">+</span></span> x y))</span><br><span class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span>)) <span class="comment">; -&gt; 7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; 函数的重载</span></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> my-add</span><br><span class="line">  ([x y]</span><br><span class="line">    (<span class="name"><span class="builtin-name">+</span></span> x y))</span><br><span class="line">  ([x y z]</span><br><span class="line">    (<span class="name"><span class="builtin-name">+</span></span> x y z)))</span><br><span class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span>)) <span class="comment">; -&gt; 7</span></span><br><span class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>)) <span class="comment">; -&gt; 12</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2015/11/06/learn-clojure-2-syntax/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2015/11/06/learn-clojure-1-datastruct/" itemprop="url">
                   Clojure学习笔记（一）：数据结构
                 </a>
@@ -312,7 +459,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/11/06/learn-clojure-1-datastruct/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/11/06/learn-clojure-1-datastruct/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/11/06/learn-clojure-1-datastruct/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -452,7 +599,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/10/07/thrift-practice/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/10/07/thrift-practice/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/10/07/thrift-practice/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -589,7 +736,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/10/07/thrift-induction/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/10/07/thrift-induction/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/10/07/thrift-induction/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -724,7 +871,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/08/01/getting-started-with-metrics/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/08/01/getting-started-with-metrics/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/08/01/getting-started-with-metrics/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -859,7 +1006,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/05/22/using-redis-and-sqlalchemy-to-checkd-dup-and-store-scrapy-item/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/05/22/using-redis-and-sqlalchemy-to-checkd-dup-and-store-scrapy-item/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/05/22/using-redis-and-sqlalchemy-to-checkd-dup-and-store-scrapy-item/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -994,7 +1141,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/05/22/running-scrapy-dynamic-and-configurable/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/05/22/running-scrapy-dynamic-and-configurable/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/05/22/running-scrapy-dynamic-and-configurable/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1129,7 +1276,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/05/22/running-scrapy-programmatically/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/05/22/running-scrapy-programmatically/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/05/22/running-scrapy-programmatically/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1264,7 +1411,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/05/15/read-programmer-career-planning/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/05/15/read-programmer-career-planning/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/05/15/read-programmer-career-planning/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1400,7 +1547,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2015/04/06/spark-on-hbase-new-api/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/04/06/spark-on-hbase-new-api/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/04/06/spark-on-hbase-new-api/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1442,141 +1589,6 @@
           本文将分两部分介绍，第一部分讲解使用 HBase 新版 API 进行 CRUD 基本操作；第二部分讲解如何将 Spark 内的 RDDs 写入 HBase 的表中，反之，HBase 中的表又是如何以 RDDs 形式加载进 Spark 内的。
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2015/04/06/spark-on-hbase-new-api/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2015/04/05/hbase-cluster-deploy/" itemprop="url">
-                  HBase 集群安装部署
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-04-05T23:40:09+08:00" content="2015-04-05">
-              2015-04-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
-                    <span itemprop="name">分布式系统</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2015/04/05/hbase-cluster-deploy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2015/04/05/hbase-cluster-deploy/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2015/04/05/hbase-cluster-deploy/" class="leancloud_visitors" data-flag-title="HBase 集群安装部署">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-<!--
-    
-      <div class="post-body">
-    
-    -->
-
-
-    <div class="post-body" itemprop="articleBody">
-    
-
-      
-      
-
-      
-        
-          HBase 1.0.0 集群安装部署手册指南
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2015/04/05/hbase-cluster-deploy/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1650,7 +1662,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1808,26 +1820,28 @@
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"wuchong"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
 
+    <script type="text/javascript">
+      var disqus_shortname = 'wuchong';
+      var disqus_identifier = 'page/2/index.html';
+      var disqus_title = '';
+      var disqus_url = '';
 
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
 
 
 

@@ -76,8 +76,8 @@
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1ObBnJFXXXXXtXVXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1vB1uJFXXXXbaXpXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1QKR2JFXXXXbyaXXXXXXXXXXX">
-<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1lgmIJFXXXXXZXpXXXXXXXXXX">
-<meta property="og:updated_time" content="2016-05-04T16:06:24.000Z">
+<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1tA_GJFXXXXapXFXXXXXXXXXX">
+<meta property="og:updated_time" content="2016-05-07T07:56:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink 原理与实现：架构和拓扑概览">
 <meta name="twitter:description" content="架构要了解一个系统，一般都是从架构开始。我们关心的问题是：系统部署成功后各个节点都启动了哪些服务，各个服务之间又是怎么交互和协调的。下方是 Flink 集群启动后架构图。
@@ -313,7 +313,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2016/05/03/flink-internals-overview/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2016/05/03/flink-internals-overview/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2016/05/03/flink-internals-overview/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -386,11 +386,11 @@
 <ul>
 <li><strong>StreamGraph：</strong>是根据用户通过 Stream API 编写的代码生成的最初的图。用来表示程序的拓扑结构。</li>
 <li><strong>JobGraph：</strong>StreamGraph经过优化后生成了 JobGraph，提交给 JobManager 的数据结构。主要的优化为，将多个符合条件的节点 chain 在一起作为一个节点，这样可以减少数据在节点之间流动所需要的序列化/反序列化/传输消耗。</li>
-<li><strong>ExecutionGraph：</strong>JobManager 根据 JobGraph 生成的分布式执行图，是调度层最核心的数据结构。</li>
+<li><strong>ExecutionGraph：</strong>JobManager 根据 JobGraph 生成ExecutionGraph。ExecutionGraph是JobGraph的并行化版本，是调度层最核心的数据结构。</li>
 <li><strong>物理执行图：</strong>JobManager 根据 ExecutionGraph 对 Job 进行调度后，在各个TaskManager 上部署 Task 后形成的“图”，并不是一个具体的数据结构。</li>
 </ul>
-<p>例如上文中的 2个并发度的 <code>SocketTextStreamWordCount</code> 四层执行图的演变过程如下图所示（点击查看大图）：</p>
-<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1lgmIJFXXXXXZXpXXXXXXXXXX" alt=""></p>
+<p>例如上文中的2个并发度（Source为1个并发度）的 <code>SocketTextStreamWordCount</code> 四层执行图的演变过程如下图所示（点击查看大图）：</p>
+<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1tA_GJFXXXXapXFXXXXXXXXXX" alt=""></p>
 <p>这里对一些名词进行简单的解释。</p>
 <ul>
 <li><strong>StreamGraph：</strong>根据用户通过 Stream API 编写的代码生成的最初的图。 <ul>
@@ -404,7 +404,7 @@
 <li>JobEdge：代表了job graph中的一条数据传输通道。source 是 IntermediateDataSet，target 是 JobVertex。即数据通过JobEdge由IntermediateDataSet传递给目标JobVertex。</li>
 </ul>
 </li>
-<li><strong>ExecutionGraph：</strong>JobManager 根据 JobGraph 生成的分布式执行图，是调度层最核心的数据结构。<ul>
+<li><strong>ExecutionGraph：</strong>JobManager 根据 JobGraph 生成ExecutionGraph。ExecutionGraph是JobGraph的并行化版本，是调度层最核心的数据结构。<ul>
 <li>ExecutionJobVertex：和JobGraph中的JobVertex一一对应。每一个ExecutionJobVertex都有和并发度一样多的 ExecutionVertex。</li>
 <li>ExecutionVertex：表示ExecutionJobVertex的其中一个并发子任务，输入是ExecutionEdge，输出是IntermediateResultPartition。</li>
 <li>IntermediateResult：和JobGraph中的IntermediateDataSet一一对应。每一个IntermediateResult有与下游ExecutionJobVertex相同并发数的IntermediateResultPartition。</li>
@@ -511,8 +511,11 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="blog/2016/05/03/flink-internals-overview/"
-           data-title="Flink 原理与实现：架构和拓扑概览" data-url="http://wuchong.me/blog/2016/05/03/flink-internals-overview/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -557,7 +560,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -893,26 +896,30 @@
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"wuchong"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
 
+    <script type="text/javascript">
+      var disqus_shortname = 'wuchong';
+      var disqus_identifier = 'blog/2016/05/03/flink-internals-overview/';
+      var disqus_title = 'Flink 原理与实现：架构和拓扑概览';
+      var disqus_url = 'http://wuchong.me/blog/2016/05/03/flink-internals-overview/';
 
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
 
 
 
