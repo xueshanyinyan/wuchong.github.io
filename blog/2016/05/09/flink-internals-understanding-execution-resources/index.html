@@ -75,7 +75,7 @@
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1VTj4JFXXXXX8XFXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1NxjUJFXXXXXoaXXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1TM_3JFXXXXb8XVXXXXXXXXXX">
-<meta property="og:updated_time" content="2016-05-09T09:21:59.000Z">
+<meta property="og:updated_time" content="2016-05-09T11:33:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink 原理与实现：理解 Flink 中的计算资源">
 <meta name="twitter:description" content="本文所讨论的计算资源是指用来执行 Task 的资源，是一个逻辑概念。本文会介绍 Flink 计算资源相关的一些核心概念，如：Slot、SlotSharingGroup、CoLocationGroup、Chain等。并会着重讨论 Flink 如何对计算资源进行管理和隔离，如何将计算资源利用率最大化等等。理解 Flink 中的计算资源对于理解 Job 如何在集群中运行的有很大的帮助，也有利于我们更透彻">
@@ -399,6 +399,10 @@
 </ol>
 <p>最后<code>Source</code>、<code>FlatMap[1]</code>、<code>Key-&gt;Sink[1]</code>这些subtask都会部署到TaskManager1的唯一一个slot中，并启动对应的线程。<code>FlatMap[2]</code>、<code>Key-&gt;Sink[2]</code>这些subtask都会被部署到TaskManager2的唯一一个slot中，并启动对应的线程。从而实现了slot共享。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要介绍了Flink中计算资源的相关概念以及原理实现。最核心的是 Task Slot，每个slot能运行一个或多个task。为了拓扑更高效地运行，Flink提出了Chaining，尽可能地将operators chain在一起作为一个task来处理。为了资源更充分的利用，Flink又提出了SlotSharingGroup，尽可能地让多个task共享一个slot。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://ci.apache.org/projects/flink/flink-docs-master/internals/job_scheduling.html" target="_blank" rel="external">Flink: Jobs and Scheduling</a></li>
+<li><a href="https://ci.apache.org/projects/flink/flink-docs-master/concepts/concepts.html" target="_blank" rel="external">Flink Concepts</a></li>
+</ul>
 
       
     </div>
@@ -611,7 +615,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Operator-Chains"><span class="nav-number">1.</span> <span class="nav-text">Operator Chains</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理与实现"><span class="nav-number">1.1.</span> <span class="nav-text">原理与实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-Slot"><span class="nav-number">2.</span> <span class="nav-text">Task Slot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SlotSharingGroup-与-CoLocationGroup"><span class="nav-number">3.</span> <span class="nav-text">SlotSharingGroup 与 CoLocationGroup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理与实现-1"><span class="nav-number">3.1.</span> <span class="nav-text">原理与实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Operator-Chains"><span class="nav-number">1.</span> <span class="nav-text">Operator Chains</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理与实现"><span class="nav-number">1.1.</span> <span class="nav-text">原理与实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-Slot"><span class="nav-number">2.</span> <span class="nav-text">Task Slot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SlotSharingGroup-与-CoLocationGroup"><span class="nav-number">3.</span> <span class="nav-text">SlotSharingGroup 与 CoLocationGroup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理与实现-1"><span class="nav-number">3.1.</span> <span class="nav-text">原理与实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
