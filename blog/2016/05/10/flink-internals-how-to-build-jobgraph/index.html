@@ -45,7 +45,7 @@
 
 
 
-  <meta name="keywords" content="Linux基础,权限," />
+  <meta name="keywords" content="Flink原理与实现,Flink,源码分析" />
 
 
 
@@ -63,16 +63,24 @@
 
 
 
-<meta name="description" content="Linux 是一个多用户、多任务的系统，多用户之间的权限是通过 user、group、other 三种身份管理的。而权限又与文件密不可分，所以将这两块结合起来阐述了。">
+<meta name="description" content="继前文Flink 原理与实现：架构和拓扑概览中介绍了Flink的四层执行图模型，本文将主要介绍 Flink 是如何将 StreamGraph 转换成 JobGraph 的。根据用户用Stream API编写的程序，构造出一个代表拓扑结构的StreamGraph的。以 WordCount 为例，转换图如下图所示：
+
+StreamGraph 和 JobGraph 都是在 Client 端生成的，也就是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux基础：权限与文件">
-<meta property="og:url" content="http://wuchong.me/blog/2014/07/15/linux-permission-and-file/index.html">
+<meta property="og:title" content="Flink 原理与实现：如何生成 JobGraph">
+<meta property="og:url" content="http://wuchong.me/blog/2016/05/10/flink-internals-how-to-build-jobgraph/index.html">
 <meta property="og:site_name" content="Jark's Blog">
-<meta property="og:description" content="Linux 是一个多用户、多任务的系统，多用户之间的权限是通过 user、group、other 三种身份管理的。而权限又与文件密不可分，所以将这两块结合起来阐述了。">
-<meta property="og:updated_time" content="2016-03-08T12:15:02.000Z">
+<meta property="og:description" content="继前文Flink 原理与实现：架构和拓扑概览中介绍了Flink的四层执行图模型，本文将主要介绍 Flink 是如何将 StreamGraph 转换成 JobGraph 的。根据用户用Stream API编写的程序，构造出一个代表拓扑结构的StreamGraph的。以 WordCount 为例，转换图如下图所示：
+
+StreamGraph 和 JobGraph 都是在 Client 端生成的，也就是">
+<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1DzYXJFXXXXXJXVXXXXXXXXXX">
+<meta property="og:updated_time" content="2016-05-10T05:26:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux基础：权限与文件">
-<meta name="twitter:description" content="Linux 是一个多用户、多任务的系统，多用户之间的权限是通过 user、group、other 三种身份管理的。而权限又与文件密不可分，所以将这两块结合起来阐述了。">
+<meta name="twitter:title" content="Flink 原理与实现：如何生成 JobGraph">
+<meta name="twitter:description" content="继前文Flink 原理与实现：架构和拓扑概览中介绍了Flink的四层执行图模型，本文将主要介绍 Flink 是如何将 StreamGraph 转换成 JobGraph 的。根据用户用Stream API编写的程序，构造出一个代表拓扑结构的StreamGraph的。以 WordCount 为例，转换图如下图所示：
+
+StreamGraph 和 JobGraph 都是在 Client 端生成的，也就是">
+<meta name="twitter:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1DzYXJFXXXXXJXVXXXXXXXXXX">
 
 
 
@@ -90,7 +98,7 @@
   };
 </script>
 
-  <title> Linux基础：权限与文件 | Jark's Blog </title>
+  <title> Flink 原理与实现：如何生成 JobGraph | Jark's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +267,7 @@
             
             
               
-                Linux基础：权限与文件
+                Flink 原理与实现：如何生成 JobGraph
               
             
           </h1>
@@ -271,8 +279,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-07-15T13:15:25+08:00" content="2014-07-15">
-              2014-07-15
+            <time itemprop="dateCreated" datetime="2016-05-10T13:25:53+08:00" content="2016-05-10">
+              2016-05-10
             </time>
           </span>
 
@@ -285,8 +293,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux-Unix/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux/Unix</span>
+                  <a href="/categories/Flink/" itemprop="url" rel="index">
+                    <span itemprop="name">Flink</span>
                   </a>
                 </span>
 
@@ -301,8 +309,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2014/07/15/linux-permission-and-file/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2014/07/15/linux-permission-and-file/" itemprop="commentsCount"></span>
+                <a href="/blog/2016/05/10/flink-internals-how-to-build-jobgraph/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2016/05/10/flink-internals-how-to-build-jobgraph/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -312,7 +320,7 @@
 
           
           
-             <span id="/blog/2014/07/15/linux-permission-and-file/" class="leancloud_visitors" data-flag-title="Linux基础：权限与文件">
+             <span id="/blog/2016/05/10/flink-internals-how-to-build-jobgraph/" class="leancloud_visitors" data-flag-title="Flink 原理与实现：如何生成 JobGraph">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -340,40 +348,18 @@
       
 
       
-        <h2 id="用户与用户组"><a href="#用户与用户组" class="headerlink" title="用户与用户组"></a>用户与用户组</h2><p>Linux 是一个多用户、多任务的系统，常常有多人同时使用一台机工作，为了保护每个人的隐私权，“文件所有者”的角色就显得相当重要了。</p>
-<p>当Linux用户登录系统之后，就会携带一个用户身份（User ID，UID）和一个用户组身份（Group ID，GID），相当于自己的名片。当需要访问文件或程序时，刷一下名片就能知道是否能读、写、执行了。</p>
-<p>一般来说，Linux的用户信息保存在<code>/etc/passwd</code>中，组信息保存在<code>/etc/group</code>中，文件的每一行代表一个用户/组。早期的Linux将密码以明文的形式保存在<code>/etc/passwd</code>中，而现在则多以暗码(也就是加密之后的形式)的形式保存在<code>/etc/shadow</code>中。将密码存储在<code>/etc/shadow</code>中提高了密码的安全性，因为<code>/etc/passwd</code>允许所有人查看，而<code>/etc/shadow</code>只允许root用户查看。</p>
+        <p>继前文<a href="http://wuchong.me/blog/2016/05/03/flink-internals-overview/">Flink 原理与实现：架构和拓扑概览</a>中介绍了Flink的四层执行图模型，本文将主要介绍 Flink 是如何将 StreamGraph 转换成 JobGraph 的。根据用户用Stream API编写的程序，构造出一个代表拓扑结构的StreamGraph的。以 WordCount 为例，转换图如下图所示：</p>
+<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1DzYXJFXXXXXJXVXXXXXXXXXX" alt=""></p>
+<p>StreamGraph 和 JobGraph 都是在 Client 端生成的，也就是说我们可以在 IDE 中通过断点调试观察 StreamGraph 和 JobGraph 的生成过程。</p>
 <a id="more"></a>
-<h2 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h2><p>要了解Linux的权限控制就必须学习Linux的文件权限和属性。可以用ls命令查询文件信息（<code>$ls -l</code>），得到如下结果：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ ls -l  ~/<span class="selector-tag">input</span></span><br><span class="line">总用量 <span class="number">36</span></span><br><span class="line">drwxrwxr-x   <span class="number">2</span>   wuchong wuchong  <span class="number">4096</span> <span class="number">7</span>月 <span class="number">10</span> <span class="number">21</span>:<span class="number">45</span> ./</span><br><span class="line">drwxr-xr-x   <span class="number">30</span>  wuchong wuchong  <span class="number">4096</span> <span class="number">7</span>月 <span class="number">12</span> <span class="number">08</span>:<span class="number">58</span> ../</span><br><span class="line">-rw-rw-r--   <span class="number">1</span>   wuchong wuchong  <span class="number">46</span>   <span class="number">6</span>月 <span class="number">16</span> <span class="number">20</span>:<span class="number">31</span> <span class="selector-tag">a</span><span class="selector-class">.txt</span></span><br><span class="line">lrwxrwxrwx   <span class="number">1</span>   wuchong wuchong  <span class="number">4</span>    <span class="number">6</span>月 <span class="number">16</span> <span class="number">16</span>:<span class="number">03</span> <span class="selector-tag">b</span><span class="selector-class">.txt</span> -&gt; <span class="selector-tag">a</span><span class="selector-class">.txt</span></span><br><span class="line">[  权限  ][连接数][拥有者][用户组][文件容量][ 修改日期 ] [文件名]</span><br></pre></td></tr></table></figure></p>
-<p>我们以 a.txt 文件为例介绍各个部分的含义：</p>
-<ol>
-<li>第一列代表文件权限。它由十个字符组成。首先介绍第一个字符的<code>-</code>，它表示文件类型，说明 a.txt 是常规文件(如果是目录文件则应显示 d，如果是 l 则是软链接文件)。随后有九个字符，为<code>rw-rw-r--</code>，它们用于表示文件权限。这九个字符分为三组，<code>rw-</code>,<code>rw-</code>, <code>r--</code>，分别对应拥有者(owner)，所属用户组(owner group)和所有其他人(other)。回顾  <a href="http://wuchong.me/blog/2014/07/14/linux-boot-process/">Linux 的启动流程</a>，登录后，我们会有一个用户身份和一个组身份, 相当于我的身份证。第一组表示，如果我的身份证上的用户身份证明我是该文件的拥有者，那么我就可以对该文件有读取(r)，写入(w)该文件的权限，但不拥有执行(x)该文件的权限。如果不拥有某项权限，会在对应的位置上出现减号(-)。第二组表示，如果我的名片上的组身份证明我所在的组是该文件的所属用户组的一员，那么我有从该文件读入和写入的权限。第三组表示，如果我的名片显示我既不是拥有者，也不是拥有组的一员，那么我只有读入的权限。当我想要进行一个读取操作时，Linux会先看我是否是拥有者。</li>
-<li>第二列代表有多少文件名连接到此节点（i-node）。每个文件都将它的权限和属性记录到文件系统的 inode 中，不过文件名却是存放在目录文件中的。因此会有多个文件名连接到一个 inode 的情况，这就是硬链接，而该列就是指的硬链接数。</li>
-<li>第三列表示这个文件（或目录）的拥有者。</li>
-<li>第四列表示这个文件（或目录）的所属用户组。</li>
-<li>第五列表示这个文件的大小，单位为字节（byte）。其中软链接文件（上面的 b.txt 文件）的大小正好是目标文件的字符数。至于目录也是一种文件，有趣的是大部分目录所占的大小都是 1K、2K、4K 的倍数。</li>
-<li>第六列表示文件的最近修改时间。其实文件属性中还包括创建时间和最近读取时间，只是并未显示出来。</li>
-<li>第七列为该文件的文件名。</li>
-</ol>
-<h2 id="改变文件属性和权限"><a href="#改变文件属性和权限" class="headerlink" title="改变文件属性和权限"></a>改变文件属性和权限</h2><p>我们已经知道文件权限对于一个系统的重要性了，但如何对文件的属性和权限进行修改呢？这里主要用到三个命令：<code>chgrp</code>、<code>chown</code>、<code>chmod</code>，分别对应修改用户组、拥有者和文件权限。</p>
-<ul>
-<li><p>改变所属用户组：chgrp</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>chgrp 组名  文件或目录</span><br><span class="line"><span class="variable">$ </span>chgrp users a.txt</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>改变文件所有者：chown</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>chown 账号名称 文件或目录</span><br><span class="line"><span class="variable">$ </span>chown 账号名称<span class="symbol">:</span>组名 文件或目录</span><br><span class="line"><span class="variable">$ </span>chown <span class="symbol">root:</span>root a.txt</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>改变文件权限：chmod<br>Linux中的每种身份（own、group、other）拥有一个权限三元组（rwx）。每一个权限组可以用一个三位的二进制来表示，拥有对应权限的则在相应位上置1。例如<code>-rw-rw-r--</code>即代表 664 的意思。如果我们想将该文件改成<code>-rwxrwx---</code>的权限，就将其权限分数改成 770 即可。</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ chmod <span class="number">770</span> <span class="selector-tag">a</span><span class="selector-class">.txt</span></span><br><span class="line">$ ls -l <span class="selector-tag">a</span><span class="selector-class">.txt</span></span><br><span class="line">-rwxrwx---  <span class="number">1</span> root root <span class="number">46</span>  <span class="number">6</span>月 <span class="number">16</span> <span class="number">20</span>:<span class="number">31</span> <span class="selector-tag">a</span>.txt</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="默认权限umask"><a href="#默认权限umask" class="headerlink" title="默认权限umask"></a>默认权限umask</h2><p>当我们创建文件的时候，比如使用<code>touch</code>，它会尝试将新建文件创建为权限666，也就是 rw-rw-rw-。但操作系统要参照权限 mask 来看是否真正将文件创建为666。权限 mask 表示操作系统不允许设置的权限位，比如说037(—-wxrwx)的权限  mask 意味着不允许设置设置 group 的 wx 位和 other 的 rwx 位。如果是这个权限 mask 的话，最终的文件权限是 rw-r—– ( group 的 w 位和 other 的 rw 位被 mask )。</p>
-<p>我们可以通过<br><figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line">$umask <span class="number">022</span></span><br></pre></td></tr></table></figure></p>
-<p>的方式改变权限mask。仅输入<code>umask</code>是查询默认 mask 的意思。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Linux 中的权限管理非常复杂，尤其是涉及进程的时候，有时会有权限的切换。这部分待到以后再说。不过Linux的权限管理都是基于文件的属性和权限的，因此学习了解 Linux 的文件系统非常重要。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="http://book.douban.com/subject/4889838/" target="_blank" rel="external">鸟哥的Linux私房菜.基础学习篇</a></li>
-</ul>
+<p>JobGraph 的相关数据结构主要在 <code>org.apache.flink.runtime.jobgraph</code> 包中。构造 JobGraph 的代码主要集中在 <code>StreamingJobGraphGenerator</code> 类中，入口函数是 <code>StreamingJobGraphGenerator.createJobGraph()</code>。我们首先来看下<code>StreamingJobGraphGenerator</code>的核心源码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StreamingJobGraphGenerator</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> StreamGraph streamGraph;</span><br><span class="line">  <span class="keyword">private</span> JobGraph jobGraph;</span><br><span class="line">  <span class="comment">// id -&gt; JobVertex</span></span><br><span class="line">  <span class="keyword">private</span> Map&lt;Integer, JobVertex&gt; jobVertices;</span><br><span class="line">  <span class="comment">// 已经构建的JobVertex的id集合</span></span><br><span class="line">  <span class="keyword">private</span> Collection&lt;Integer&gt; builtVertices;</span><br><span class="line">  <span class="comment">// 物理边集合（排除了chain内部的边）, 按创建顺序排序</span></span><br><span class="line">  <span class="keyword">private</span> List&lt;StreamEdge&gt; physicalEdgesInOrder;</span><br><span class="line">  <span class="comment">// 保存chain信息，部署时用来构建 OperatorChain，startNodeId -&gt; (currentNodeId -&gt; StreamConfig)</span></span><br><span class="line">  <span class="keyword">private</span> Map&lt;Integer, Map&lt;Integer, StreamConfig&gt;&gt; chainedConfigs;</span><br><span class="line">  <span class="comment">// 所有节点的配置信息，id -&gt; StreamConfig</span></span><br><span class="line">  <span class="keyword">private</span> Map&lt;Integer, StreamConfig&gt; vertexConfigs;</span><br><span class="line">  <span class="comment">// 保存每个节点的名字，id -&gt; chainedName</span></span><br><span class="line">  <span class="keyword">private</span> Map&lt;Integer, String&gt; chainedNames;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 构造函数，入参只有 StreamGraph</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">StreamingJobGraphGenerator</span><span class="params">(StreamGraph streamGraph)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.streamGraph = streamGraph;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 根据 StreamGraph，生成 JobGraph</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> JobGraph <span class="title">createJobGraph</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    jobGraph = <span class="keyword">new</span> JobGraph(streamGraph.getJobName());</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// streaming 模式下，调度模式是所有节点（vertices）一起启动</span></span><br><span class="line">    jobGraph.setScheduleMode(ScheduleMode.ALL);</span><br><span class="line">    <span class="comment">// 初始化成员变量</span></span><br><span class="line">    init();</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 广度优先遍历 StreamGraph 并且为每个SteamNode生成hash id，</span></span><br><span class="line">    <span class="comment">// 保证如果提交的拓扑没有改变，则每次生成的hash都是一样的</span></span><br><span class="line">    Map&lt;Integer, <span class="keyword">byte</span>[]&gt; hashes = traverseStreamGraphAndGenerateHashes();</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 最重要的函数，生成JobVertex，JobEdge等，并尽可能地将多个节点chain在一起</span></span><br><span class="line">    setChaining(hashes);</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 将每个JobVertex的入边集合也序列化到该JobVertex的StreamConfig中</span></span><br><span class="line">    <span class="comment">// (出边集合已经在setChaining的时候写入了)</span></span><br><span class="line">    setPhysicalEdges();</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 根据group name，为每个 JobVertex 指定所属的 SlotSharingGroup </span></span><br><span class="line">    <span class="comment">// 以及针对 Iteration的头尾设置  CoLocationGroup</span></span><br><span class="line">    setSlotSharing();</span><br><span class="line">    <span class="comment">// 配置checkpoint</span></span><br><span class="line">    configureCheckpointing();</span><br><span class="line">    <span class="comment">// 配置重启策略（不重启，还是固定延迟重启）</span></span><br><span class="line">    configureRestartStrategy();</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">// 将 StreamGraph 的 ExecutionConfig 序列化到 JobGraph 的配置中</span></span><br><span class="line">      InstantiationUtil.writeObjectToConfig(<span class="keyword">this</span>.streamGraph.getExecutionConfig(), <span class="keyword">this</span>.jobGraph.getJobConfiguration(), ExecutionConfig.CONFIG_KEY);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Config object could not be written to Job Configuration: "</span>, e);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> jobGraph;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>StreamingJobGraphGenerator</code>的成员变量都是为了辅助生成最终的JobGraph。<code>createJobGraph()</code>函数的逻辑也很清晰，首先为所有节点生成一个唯一的hash id，这个id不会因多次提交而改变，这主要用于故障恢复。这里我们不能用 <code>StreamNode.id</code>来代替，因为这是一个从1开始的静态计数变量，同一个Job的多次提交可能会得到不一样的id。然后就是最关键的chaining处理，和生成JobVetex、JobEdge等。之后就是写入各种配置相关的信息。</p>
+<p>下面具体分析下关键函数 <code>setChaining</code> 的实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从source开始建立 node chains</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setChaining</span><span class="params">(Map&lt;Integer, <span class="keyword">byte</span>[]&gt; hashes)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (Integer sourceNodeId : streamGraph.getSourceIDs()) &#123;</span><br><span class="line">    createChain(sourceNodeId, sourceNodeId, hashes);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构建node chains，返回当前节点的物理出边</span></span><br><span class="line"><span class="comment">// startNodeId != currentNodeId 时,说明currentNode是chain中的子节点</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> List&lt;StreamEdge&gt; <span class="title">createChain</span><span class="params">(</span><br><span class="line">    Integer startNodeId,</span><br><span class="line">    Integer currentNodeId,</span><br><span class="line">    Map&lt;Integer, <span class="keyword">byte</span>[]&gt; hashes)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!builtVertices.contains(startNodeId)) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 过渡用的出边集合, 用来生成最终的 JobEdge, 注意不包括 chain 内部的边</span></span><br><span class="line">    List&lt;StreamEdge&gt; transitiveOutEdges = <span class="keyword">new</span> ArrayList&lt;StreamEdge&gt;();</span><br><span class="line"></span><br><span class="line">    List&lt;StreamEdge&gt; chainableOutputs = <span class="keyword">new</span> ArrayList&lt;StreamEdge&gt;();</span><br><span class="line">    List&lt;StreamEdge&gt; nonChainableOutputs = <span class="keyword">new</span> ArrayList&lt;StreamEdge&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将当前节点的出边分成 chainable 和 nonChainable 两类</span></span><br><span class="line">    <span class="keyword">for</span> (StreamEdge outEdge : streamGraph.getStreamNode(currentNodeId).getOutEdges()) &#123;</span><br><span class="line">      <span class="keyword">if</span> (isChainable(outEdge)) &#123;</span><br><span class="line">        chainableOutputs.add(outEdge);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        nonChainableOutputs.add(outEdge);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//==&gt; 递归调用</span></span><br><span class="line">    <span class="keyword">for</span> (StreamEdge chainable : chainableOutputs) &#123;</span><br><span class="line">      transitiveOutEdges.addAll(createChain(startNodeId, chainable.getTargetId(), hashes));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (StreamEdge nonChainable : nonChainableOutputs) &#123;</span><br><span class="line">      transitiveOutEdges.add(nonChainable);</span><br><span class="line">      createChain(nonChainable.getTargetId(), nonChainable.getTargetId(), hashes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生成当前节点的显示名，如："Keyed Aggregation -&gt; Sink: Unnamed"</span></span><br><span class="line">    chainedNames.put(currentNodeId, createChainedName(currentNodeId, chainableOutputs));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果当前节点是起始节点, 则直接创建 JobVertex 并返回 StreamConfig, 否则先创建一个空的 StreamConfig</span></span><br><span class="line">    <span class="comment">// createJobVertex 函数就是根据 StreamNode 创建对应的 JobVertex, 并返回了空的 StreamConfig</span></span><br><span class="line">    StreamConfig config = currentNodeId.equals(startNodeId)</span><br><span class="line">        ? createJobVertex(startNodeId, hashes)</span><br><span class="line">        : <span class="keyword">new</span> StreamConfig(<span class="keyword">new</span> Configuration());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置 JobVertex 的 StreamConfig, 基本上是序列化 StreamNode 中的配置到 StreamConfig 中.</span></span><br><span class="line">    <span class="comment">// 其中包括 序列化器, StreamOperator, Checkpoint 等相关配置</span></span><br><span class="line">    setVertexConfig(currentNodeId, config, chainableOutputs, nonChainableOutputs);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (currentNodeId.equals(startNodeId)) &#123;</span><br><span class="line">      <span class="comment">// 如果是chain的起始节点。（不是chain中的节点，也会被标记成 chain start）</span></span><br><span class="line">      config.setChainStart();</span><br><span class="line">      <span class="comment">// 我们也会把物理出边写入配置, 部署时会用到</span></span><br><span class="line">      config.setOutEdgesInOrder(transitiveOutEdges);</span><br><span class="line">      config.setOutEdges(streamGraph.getStreamNode(currentNodeId).getOutEdges());</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 将当前节点(headOfChain)与所有出边相连</span></span><br><span class="line">      <span class="keyword">for</span> (StreamEdge edge : transitiveOutEdges) &#123;</span><br><span class="line">        <span class="comment">// 通过StreamEdge构建出JobEdge，创建IntermediateDataSet，用来将JobVertex和JobEdge相连</span></span><br><span class="line">        connect(startNodeId, edge);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 将chain中所有子节点的StreamConfig写入到 headOfChain 节点的 CHAINED_TASK_CONFIG 配置中</span></span><br><span class="line">      config.setTransitiveChainedTaskConfigs(chainedConfigs.get(startNodeId));</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 如果是 chain 中的子节点</span></span><br><span class="line">      </span><br><span class="line">      Map&lt;Integer, StreamConfig&gt; chainedConfs = chainedConfigs.get(startNodeId);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (chainedConfs == <span class="keyword">null</span>) &#123;</span><br><span class="line">        chainedConfigs.put(startNodeId, <span class="keyword">new</span> HashMap&lt;Integer, StreamConfig&gt;());</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 将当前节点的StreamConfig添加到该chain的config集合中</span></span><br><span class="line">      chainedConfigs.get(startNodeId).put(currentNodeId, config);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回连往chain外部的出边集合</span></span><br><span class="line">    <span class="keyword">return</span> transitiveOutEdges;</span><br><span class="line"></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每个 JobVertex 都会对应一个可序列化的 StreamConfig, 用来发送给 JobManager 和 TaskManager。最后在 TaskManager 中起 Task 时,需要从这里面反序列化出所需要的配置信息, 其中就包括了含有用户代码的StreamOperator。</p>
+<p><code>setChaining</code>会对source调用<code>createChain</code>方法，该方法会递归调用下游节点，从而构建出node chains。<code>createChain</code>会分析当前节点的出边，根据<a href="http://wuchong.me/blog/2016/05/09/flink-internals-understanding-execution-resources/#Operator-Chains">Operator Chains</a>中的chainable条件，将出边分成chainalbe和noChainable两类，并分别递归调用自身方法。之后会将StreamNode中的配置信息序列化到StreamConfig中。如果当前不是chain中的子节点，则会构建 JobVertex 和 JobEdge相连。如果是chain中的子节点，则会将StreamConfig添加到该chain的config集合中。一个node chains，除了 headOfChain node会生成对应的 JobVertex，其余的nodes都是以序列化的形式写入到StreamConfig中，并保存到headOfChain的 <code>CHAINED_TASK_CONFIG</code> 配置项中。直到部署时，才会取出并生成对应的ChainOperators，具体过程请见<a href="http://wuchong.me/blog/2016/05/09/flink-internals-understanding-execution-resources/#Operator-Chains">理解 Operator Chains</a>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要对 Flink 中将 StreamGraph 转变成 JobGraph 的核心源码进行了分析。思想还是很简单的，StreamNode 转成 JobVertex，StreamEdge 转成 JobEdge，JobEdge 和 JobVertex 之间创建 IntermediateDataSet 来连接。关键点在于将多个 SteamNode chain 成一个 JobVertex的过程，这部分源码比较绕，有兴趣的同学可以结合源码单步调试分析。下一章将会介绍 JobGraph 提交到 JobManager 后是如何转换成分布式化的 ExecutionGraph 的。</p>
 
       
     </div>
@@ -393,9 +379,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux基础/" rel="tag">#Linux基础</a>
+            <a href="/tags/Flink/" rel="tag">#Flink</a>
           
-            <a href="/tags/权限/" rel="tag">#权限</a>
+            <a href="/tags/Flink原理与实现/" rel="tag">#Flink原理与实现</a>
+          
+            <a href="/tags/源码分析/" rel="tag">#源码分析</a>
           
         </div>
       
@@ -423,17 +411,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2014/07/14/linux-boot-process/" rel="next" title="Linux基础：启动流程">
-                <i class="fa fa-chevron-left"></i> Linux基础：启动流程
+              <a href="/blog/2016/05/09/flink-internals-understanding-execution-resources/" rel="next" title="Flink 原理与实现：理解 Flink 中的计算资源">
+                <i class="fa fa-chevron-left"></i> Flink 原理与实现：理解 Flink 中的计算资源
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2014/07/16/use-python-login-borrow-account/" rel="prev" title="用Python模拟登录“借”上网帐号">
-                用Python模拟登录“借”上网帐号 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -456,8 +440,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="blog/2014/07/15/linux-permission-and-file/"
-           data-title="Linux基础：权限与文件" data-url="http://wuchong.me/blog/2014/07/15/linux-permission-and-file/">
+      <div class="ds-thread" data-thread-key="blog/2016/05/10/flink-internals-how-to-build-jobgraph/"
+           data-title="Flink 原理与实现：如何生成 JobGraph" data-url="http://wuchong.me/blog/2016/05/10/flink-internals-how-to-build-jobgraph/">
       </div>
     
   </div>
@@ -590,7 +574,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户与用户组"><span class="nav-number">1.</span> <span class="nav-text">用户与用户组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件属性"><span class="nav-number">2.</span> <span class="nav-text">文件属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变文件属性和权限"><span class="nav-number">3.</span> <span class="nav-text">改变文件属性和权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#默认权限umask"><span class="nav-number">4.</span> <span class="nav-text">默认权限umask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
