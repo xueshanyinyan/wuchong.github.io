@@ -212,7 +212,7 @@
     <link href="http://wuchong.me/blog/2016/05/03/flink-internals-overview/"/>
     <id>http://wuchong.me/blog/2016/05/03/flink-internals-overview/</id>
     <published>2016-05-03T15:41:40.000Z</published>
-    <updated>2016-05-10T05:27:29.000Z</updated>
+    <updated>2016-05-12T12:17:37.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;架构&quot;&gt;&lt;a href=&quot;#架构&quot; class=&quot;headerlink&quot; title=&quot;架构&quot;&gt;&lt;/a&gt;架构&lt;/h2&gt;&lt;p&gt;要了解一个系统，一般都是从架构开始。我们关心的问题是：系统部署成功后各个节点都启动了哪些服务，各个服务之间又是怎么交互和协调的。下方是 Flink 集群启动后架构图。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://img3.tbcdn.cn/5476e8b07b923/TB1ObBnJFXXXXXtXVXXXXXXXXXX&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -285,7 +285,10 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Flink之所以要设计这么多层的执行图，目的是为了更好地解耦。后续的文章，将会详细介绍 Flink 是如何生成这些执行图的。主要有以下内容：&lt;/p&gt;
+&lt;p&gt;那么 Flink 为什么要设计这4张图呢，其目的是什么呢？Spark 中也有多张图，数据依赖图以及物理执行的DAG。其目的都是一样的，就是解耦，每张图各司其职，每张图对应了 Job 不同的阶段，更方便做该阶段的事情。我们给出更完整的 Flink Graph 的层次图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://img3.tbcdn.cn/5476e8b07b923/TB1qmtpJVXXXXagXXXXXXXXXXXX&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;首先我们看到，JobGraph 之上除了 StreamGraph 还有 OptimizedPlan。OptimizedPlan 是由 Batch API 转换而来的。StreamGraph 是由 Stream API 转换而来的。为什么 API 不直接转换成 JobGraph？因为，Batch 和 Stream 的图结构和优化方法有很大的区别，比如 Batch 有很多执行前的预分析用来优化图的执行，而这种优化并不普适于 Stream，所以通过 OptimizedPlan 来做 Batch 的优化会更方便和清晰，也不会影响 Stream。JobGraph 的责任就是统一 Batch 和 Stream 的图，用来描述清楚一个拓扑图的结构，并且做了 chaining 的优化，chaining 是普适于 Batch 和 Stream 的，所以在这一层做掉。ExecutionGraph 的责任是方便调度和各个 tasks 状态的监控和跟踪，所以 ExecutionGraph 是并行化的 JobGraph。而“物理执行图”就是最终分布式在各个机器上运行着的tasks了。所以可以看到，这种解耦方式极大地方便了我们在各个层所做的工作，各个层之间是相互隔离的。&lt;/p&gt;
+&lt;p&gt;后续的文章，将会详细介绍 Flink 是如何生成这些执行图的。由于我目前关注 Flink 的流处理功能，所以主要有以下内容：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;http://wuchong.me/blog/2016/05/04/flink-internal-how-to-build-streamgraph/&quot;&gt;如何生成 StreamGraph&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://wuchong.me/blog/2016/05/10/flink-internals-how-to-build-jobgraph/&quot;&gt;如何生成 JobGraph&lt;/a&gt;&lt;/li&gt;
@@ -1793,7 +1796,7 @@
     <link href="http://wuchong.me/blog/2015/04/04/spark-on-yarn-cluster-deploy/"/>
     <id>http://wuchong.me/blog/2015/04/04/spark-on-yarn-cluster-deploy/</id>
     <published>2015-04-04T15:45:34.000Z</published>
-    <updated>2016-03-08T12:18:44.000Z</updated>
+    <updated>2016-05-12T11:16:17.000Z</updated>
     
     <content type="html">&lt;p&gt;最近毕设需要用到 Spark 集群，所以就记录下了部署的过程。我们知道 Spark 官方提供了三种集群部署方案： Standalone, Mesos, YARN。其中 Standalone 最为方便，本文主要讲述结合 YARN 的部署方案。&lt;/p&gt;
 &lt;p&gt;软件环境：&lt;/p&gt;
@@ -1809,7 +1812,7 @@
 &lt;p&gt;在所有机器上都生成私钥和公钥&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ssh-keygen -t rsa   &lt;span class=&quot;comment&quot;&gt;#一路回车&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;需要让机器间都能相互访问，就把每个机子上的&lt;code&gt;id_rsa.pub&lt;/code&gt;发给master节点，传输公钥可以用scp来传输。&lt;br&gt;&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;scp ~/.ssh/id_rsa&lt;span class=&quot;selector-class&quot;&gt;.pub&lt;/span&gt; spark@master:~/.ssh/id_rsa&lt;span class=&quot;selector-class&quot;&gt;.pub&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.slave1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;在master上，将所有公钥加到用于认证的公钥文件&lt;code&gt;authorized_keys&lt;/code&gt;中&lt;br&gt;&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cat ~&lt;span class=&quot;regexp&quot;&gt;/.ssh/id&lt;/span&gt;_rsa.pub* &lt;span class=&quot;meta&quot;&gt;&amp;gt;&amp;gt; &lt;/span&gt;~&lt;span class=&quot;regexp&quot;&gt;/.ssh/authorized&lt;/span&gt;_keys&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;将公钥文件&lt;code&gt;authorized_keys&lt;/code&gt;分发给每台slave&lt;br&gt;&lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;scp ~&lt;span class=&quot;regexp&quot;&gt;/.ssh/authorized&lt;/span&gt;_keys spark&lt;span class=&quot;variable&quot;&gt;@master&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:~/&lt;/span&gt;.ssh/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;将公钥文件&lt;code&gt;authorized_keys&lt;/code&gt;分发给每台slave&lt;br&gt;&lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;scp ~&lt;span class=&quot;regexp&quot;&gt;/.ssh/authorized&lt;/span&gt;_keys spark&lt;span class=&quot;variable&quot;&gt;@slave1&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:~/&lt;/span&gt;.ssh/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;在每台机子上验证SSH无密码通信&lt;br&gt;&lt;figure class=&quot;highlight crmsh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ssh &lt;span class=&quot;keyword&quot;&gt;master&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;title&quot;&gt;ssh&lt;/span&gt; slave1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ssh slave2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;如果登陆测试不成功，则可能需要修改文件authorized_keys的权限（权限的设置非常重要，因为不安全的设置安全设置,会让你不能使用RSA功能 ）&lt;br&gt;&lt;figure class=&quot;highlight crystal&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;chmod &lt;span class=&quot;number&quot;&gt;600&lt;/span&gt; ~&lt;span class=&quot;regexp&quot;&gt;/.ssh/authorized&lt;/span&gt;_keys&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h2 id=&quot;安装-Java&quot;&gt;&lt;a href=&quot;#安装-Java&quot; class=&quot;headerlink&quot; title=&quot;安装 Java&quot;&gt;&lt;/a&gt;安装 Java&lt;/h2&gt;&lt;p&gt;从&lt;a href=&quot;http://www.oracle.com/technetwork/java/javase/overview/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;下载最新版 Java 就可以，Spark官方说明 Java 只要是6以上的版本都可以，我下的是 jdk-7u75-linux-x64.gz&lt;br&gt;在&lt;code&gt;~/workspace&lt;/code&gt;目录下直接解压&lt;br&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;selector-tag&quot;&gt;-zxvf&lt;/span&gt; &lt;span class=&quot;selector-tag&quot;&gt;jdk-7u75-linux-x64&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.gz&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
