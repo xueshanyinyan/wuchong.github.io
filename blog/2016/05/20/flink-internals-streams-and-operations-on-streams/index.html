@@ -45,7 +45,7 @@
 
 
 
-  <meta name="keywords" content="Flink原理与实现,Flink" />
+  <meta name="keywords" content="Flink原理与实现,Flink快速入门,Flink" />
 
 
 
@@ -63,28 +63,22 @@
 
 
 
-<meta name="description" content="架构要了解一个系统，一般都是从架构开始。我们关心的问题是：系统部署成功后各个节点都启动了哪些服务，各个服务之间又是怎么交互和协调的。下方是 Flink 集群启动后架构图。
-
-当 Flink 集群启动后，首先会启动一个 JobManger 和一个或多个的 TaskManager。由 Client 提交任务给 JobManager，JobManager 再调度任务到各个 TaskManager 去执行">
+<meta name="description" content="Flink 为流处理和批处理分别提供了 DataStream API 和 DataSet API。正是这种高层的抽象和 flunent API 极大地便利了用户编写大数据应用。不过很多初学者在看到官方 Streaming 文档中那一大坨的转换时，常常会蒙了圈，文档中那些只言片语也很难讲清它们之间的关系。所以本文将介绍几种关键的数据流类型，它们之间是如何通过转换关联起来的。下图展示了 Flink 中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flink 原理与实现：架构和拓扑概览">
-<meta property="og:url" content="http://wuchong.me/blog/2016/05/03/flink-internals-overview/index.html">
+<meta property="og:title" content="Flink 原理与实现：数据流上的类型和操作">
+<meta property="og:url" content="http://wuchong.me/blog/2016/05/20/flink-internals-streams-and-operations-on-streams/index.html">
 <meta property="og:site_name" content="Jark's Blog">
-<meta property="og:description" content="架构要了解一个系统，一般都是从架构开始。我们关心的问题是：系统部署成功后各个节点都启动了哪些服务，各个服务之间又是怎么交互和协调的。下方是 Flink 集群启动后架构图。
-
-当 Flink 集群启动后，首先会启动一个 JobManger 和一个或多个的 TaskManager。由 Client 提交任务给 JobManager，JobManager 再调度任务到各个 TaskManager 去执行">
-<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1ObBnJFXXXXXtXVXXXXXXXXXX">
-<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1vB1uJFXXXXbaXpXXXXXXXXXX">
-<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1QKR2JFXXXXbyaXXXXXXXXXXX">
-<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1tA_GJFXXXXapXFXXXXXXXXXX">
-<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1qmtpJVXXXXagXXXXXXXXXXXX">
-<meta property="og:updated_time" content="2016-05-12T12:17:37.000Z">
+<meta property="og:description" content="Flink 为流处理和批处理分别提供了 DataStream API 和 DataSet API。正是这种高层的抽象和 flunent API 极大地便利了用户编写大数据应用。不过很多初学者在看到官方 Streaming 文档中那一大坨的转换时，常常会蒙了圈，文档中那些只言片语也很难讲清它们之间的关系。所以本文将介绍几种关键的数据流类型，它们之间是如何通过转换关联起来的。下图展示了 Flink 中">
+<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1BWrvJVXXXXXbXVXXXXXXXXXX">
+<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1aqPSJVXXXXbqXXXXXXXXXXXX">
+<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1G2HqJVXXXXb4aXXXXXXXXXXX">
+<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1mW_zJVXXXXcfXVXXXXXXXXXX">
+<meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1WEjuJVXXXXcHXFXXXXXXXXXX">
+<meta property="og:updated_time" content="2016-05-20T15:58:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flink 原理与实现：架构和拓扑概览">
-<meta name="twitter:description" content="架构要了解一个系统，一般都是从架构开始。我们关心的问题是：系统部署成功后各个节点都启动了哪些服务，各个服务之间又是怎么交互和协调的。下方是 Flink 集群启动后架构图。
-
-当 Flink 集群启动后，首先会启动一个 JobManger 和一个或多个的 TaskManager。由 Client 提交任务给 JobManager，JobManager 再调度任务到各个 TaskManager 去执行">
-<meta name="twitter:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1ObBnJFXXXXXtXVXXXXXXXXXX">
+<meta name="twitter:title" content="Flink 原理与实现：数据流上的类型和操作">
+<meta name="twitter:description" content="Flink 为流处理和批处理分别提供了 DataStream API 和 DataSet API。正是这种高层的抽象和 flunent API 极大地便利了用户编写大数据应用。不过很多初学者在看到官方 Streaming 文档中那一大坨的转换时，常常会蒙了圈，文档中那些只言片语也很难讲清它们之间的关系。所以本文将介绍几种关键的数据流类型，它们之间是如何通过转换关联起来的。下图展示了 Flink 中">
+<meta name="twitter:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1BWrvJVXXXXXbXVXXXXXXXXXX">
 
 
 
@@ -102,7 +96,7 @@
   };
 </script>
 
-  <title> Flink 原理与实现：架构和拓扑概览 | Jark's Blog </title>
+  <title> Flink 原理与实现：数据流上的类型和操作 | Jark's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -271,7 +265,7 @@
             
             
               
-                Flink 原理与实现：架构和拓扑概览
+                Flink 原理与实现：数据流上的类型和操作
               
             
           </h1>
@@ -283,8 +277,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-03T23:41:40+08:00" content="2016-05-03">
-              2016-05-03
+            <time itemprop="dateCreated" datetime="2016-05-20T23:56:48+08:00" content="2016-05-20">
+              2016-05-20
             </time>
           </span>
 
@@ -313,8 +307,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2016/05/03/flink-internals-overview/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2016/05/03/flink-internals-overview/" itemprop="commentsCount"></span>
+                <a href="/blog/2016/05/20/flink-internals-streams-and-operations-on-streams/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2016/05/20/flink-internals-streams-and-operations-on-streams/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -324,7 +318,7 @@
 
           
           
-             <span id="/blog/2016/05/03/flink-internals-overview/" class="leancloud_visitors" data-flag-title="Flink 原理与实现：架构和拓扑概览">
+             <span id="/blog/2016/05/20/flink-internals-streams-and-operations-on-streams/" class="leancloud_visitors" data-flag-title="Flink 原理与实现：数据流上的类型和操作">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -352,87 +346,40 @@
       
 
       
-        <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>要了解一个系统，一般都是从架构开始。我们关心的问题是：系统部署成功后各个节点都启动了哪些服务，各个服务之间又是怎么交互和协调的。下方是 Flink 集群启动后架构图。</p>
-<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1ObBnJFXXXXXtXVXXXXXXXXXX" alt=""></p>
-<p>当 Flink 集群启动后，首先会启动一个 JobManger 和一个或多个的 TaskManager。由 Client 提交任务给 JobManager，JobManager 再调度任务到各个 TaskManager 去执行，然后 TaskManager 将心跳和统计信息汇报给 JobManager。TaskManager 之间以流的形式进行数据的传输。上述三者均为独立的 JVM 进程。</p>
+        <p>Flink 为流处理和批处理分别提供了 DataStream API 和 DataSet API。正是这种高层的抽象和 flunent API 极大地便利了用户编写大数据应用。不过很多初学者在看到<a href="">官方 Streaming 文档</a>中那一大坨的转换时，常常会蒙了圈，文档中那些只言片语也很难讲清它们之间的关系。所以本文将介绍几种关键的数据流类型，它们之间是如何通过转换关联起来的。下图展示了 Flink 中目前支持的主要几种流的类型，以及它们之间的转换关系。</p>
+<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1BWrvJVXXXXXbXVXXXXXXXXXX" alt=""></p>
 <a id="more"></a>
-<ul>
-<li><strong>Client</strong> 为提交 Job 的客户端，可以是运行在任何机器上（与 JobManager 环境连通即可）。提交 Job 后，Client 可以结束进程（Streaming的任务），也可以不结束并等待结果返回。</li>
-<li><strong>JobManager</strong> 主要负责调度 Job 并协调 Task 做 checkpoint，职责上很像 Storm 的 Nimbus。从 Client 处接收到 Job 和 JAR 包等资源后，会生成优化后的执行计划，并以 Task 的单元调度到各个 TaskManager 去执行。</li>
-<li><strong>TaskManager</strong> 在启动的时候就设置好了槽位数（Slot），每个 slot 能启动一个 Task，Task 为线程。从 JobManager 处接收需要部署的 Task，部署启动后，与自己的上游建立 Netty 连接，接收数据并处理。</li>
-</ul>
-<p>可以看到 Flink 的任务调度是多线程模型，并且不同Job/Task混合在一个 TaskManager 进程中。虽然这种方式可以有效提高 CPU 利用率，但是个人不太喜欢这种设计，因为不仅缺乏资源隔离机制，同时也不方便调试。类似 Storm 的进程模型，一个JVM 中只跑该 Job 的 Tasks 实际应用中更为合理。</p>
-<h2 id="Job-例子"><a href="#Job-例子" class="headerlink" title="Job 例子"></a>Job 例子</h2><blockquote>
-<p>本文所示例子为 flink-1.0.x 版本</p>
-</blockquote>
-<p>我们使用 Flink 自带的 examples 包中的 <code>SocketTextStreamWordCount</code>，这是一个从 socket 流中统计单词出现次数的例子。</p>
-<ul>
-<li><p>首先，使用 <strong>netcat</strong> 启动本地服务器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ nc <span class="_">-l</span> 9000</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>然后提交 Flink 程序</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ bin/flink run examples/streaming/SocketTextStreamWordCount.jar \</span><br><span class="line">  --hostname 10.218.130.9 \</span><br><span class="line">  --port 9000</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>在netcat端输入单词并监控 taskmanager 的输出可以看到单词统计的结果。</p>
-<p><code>SocketTextStreamWordCount</code> 的具体代码如下： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">  <span class="comment">// 检查输入</span></span><br><span class="line">  <span class="keyword">final</span> ParameterTool params = ParameterTool.fromArgs(args);</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set up the execution environment</span></span><br><span class="line">  <span class="keyword">final</span> StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// get input data</span></span><br><span class="line">  DataStream&lt;String&gt; text =</span><br><span class="line">      env.socketTextStream(params.get(<span class="string">"hostname"</span>), params.getInt(<span class="string">"port"</span>), <span class="string">'\n'</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; counts =</span><br><span class="line">      <span class="comment">// split up the lines in pairs (2-tuples) containing: (word,1)</span></span><br><span class="line">      text.flatMap(<span class="keyword">new</span> Tokenizer())</span><br><span class="line">          <span class="comment">// group by the tuple field "0" and sum up tuple field "1"</span></span><br><span class="line">          .keyBy(<span class="number">0</span>)</span><br><span class="line">          .sum(<span class="number">1</span>);</span><br><span class="line">  counts.print();</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// execute program</span></span><br><span class="line">  env.execute(<span class="string">"WordCount from SocketTextStream Example"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们将最后一行代码 <code>env.execute</code> 替换成 <code>System.out.println(env.getExecutionPlan());</code> 并在本地运行该代码（并发度设为2），可以得到该拓扑的逻辑执行计划图的 JSON 串，将该 JSON 串粘贴到 <a href="http://flink.apache.org/visualizer/" target="_blank" rel="external">http://flink.apache.org/visualizer/</a> 中，能可视化该执行图。</p>
-<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1vB1uJFXXXXbaXpXXXXXXXXXX" alt=""></p>
-<p>但这并不是最终在 Flink 中运行的执行图，只是一个表示拓扑节点关系的计划图，在 Flink 中对应了 SteramGraph。另外，提交拓扑后（并发度设为2）还能在 UI 中看到另一张执行计划图，如下所示，该图对应了 Flink 中的 JobGraph。</p>
-<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1QKR2JFXXXXbyaXXXXXXXXXXX" alt=""></p>
-<h2 id="Graph"><a href="#Graph" class="headerlink" title="Graph"></a>Graph</h2><p>看起来有点乱，怎么有这么多不一样的图。实际上，还有更多的图。Flink 中的执行图可以分成四层：StreamGraph -&gt; JobGraph -&gt; ExecutionGraph -&gt; 物理执行图。</p>
-<ul>
-<li><strong>StreamGraph：</strong>是根据用户通过 Stream API 编写的代码生成的最初的图。用来表示程序的拓扑结构。</li>
-<li><strong>JobGraph：</strong>StreamGraph经过优化后生成了 JobGraph，提交给 JobManager 的数据结构。主要的优化为，将多个符合条件的节点 chain 在一起作为一个节点，这样可以减少数据在节点之间流动所需要的序列化/反序列化/传输消耗。</li>
-<li><strong>ExecutionGraph：</strong>JobManager 根据 JobGraph 生成ExecutionGraph。ExecutionGraph是JobGraph的并行化版本，是调度层最核心的数据结构。</li>
-<li><strong>物理执行图：</strong>JobManager 根据 ExecutionGraph 对 Job 进行调度后，在各个TaskManager 上部署 Task 后形成的“图”，并不是一个具体的数据结构。</li>
-</ul>
-<p>例如上文中的2个并发度（Source为1个并发度）的 <code>SocketTextStreamWordCount</code> 四层执行图的演变过程如下图所示（点击查看大图）：</p>
-<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1tA_GJFXXXXapXFXXXXXXXXXX" alt=""></p>
-<p>这里对一些名词进行简单的解释。</p>
-<ul>
-<li><strong>StreamGraph：</strong>根据用户通过 Stream API 编写的代码生成的最初的图。 <ul>
-<li>StreamNode：用来代表 operator 的类，并具有所有相关的属性，如并发度、入边和出边等。</li>
-<li>StreamEdge：表示连接两个StreamNode的边。</li>
-</ul>
-</li>
-<li><strong>JobGraph：</strong>StreamGraph经过优化后生成了 JobGraph，提交给 JobManager 的数据结构。<ul>
-<li>JobVertex：经过优化后符合条件的多个StreamNode可能会chain在一起生成一个JobVertex，即一个JobVertex包含一个或多个operator，JobVertex的输入是JobEdge，输出是IntermediateDataSet。</li>
-<li>IntermediateDataSet：表示JobVertex的输出，即经过operator处理产生的数据集。producer是JobVertex，consumer是JobEdge。</li>
-<li>JobEdge：代表了job graph中的一条数据传输通道。source 是 IntermediateDataSet，target 是 JobVertex。即数据通过JobEdge由IntermediateDataSet传递给目标JobVertex。</li>
-</ul>
-</li>
-<li><strong>ExecutionGraph：</strong>JobManager 根据 JobGraph 生成ExecutionGraph。ExecutionGraph是JobGraph的并行化版本，是调度层最核心的数据结构。<ul>
-<li>ExecutionJobVertex：和JobGraph中的JobVertex一一对应。每一个ExecutionJobVertex都有和并发度一样多的 ExecutionVertex。</li>
-<li>ExecutionVertex：表示ExecutionJobVertex的其中一个并发子任务，输入是ExecutionEdge，输出是IntermediateResultPartition。</li>
-<li>IntermediateResult：和JobGraph中的IntermediateDataSet一一对应。每一个IntermediateResult有与下游ExecutionJobVertex相同并发数的IntermediateResultPartition。</li>
-<li>IntermediateResultPartition：表示ExecutionVertex的一个输出分区，producer是ExecutionVertex，consumer是若干个ExecutionEdge。</li>
-<li>ExecutionEdge：表示ExecutionVertex的输入，source是IntermediateResultPartition，target是ExecutionVertex。source和target都只能是一个。</li>
-<li>Execution：是执行一个 ExecutionVertex 的一次尝试。当发生故障或者数据需要重算的情况下 ExecutionVertex 可能会有多个 ExecutionAttemptID。一个 Execution 通过 ExecutionAttemptID 来唯一标识。JM和TM之间关于 task 的部署和 task status 的更新都是通过 ExecutionAttemptID 来确定消息接受者。</li>
-</ul>
-</li>
-<li><strong>物理执行图：</strong>JobManager 根据 ExecutionGraph 对 Job 进行调度后，在各个TaskManager 上部署 Task 后形成的“图”，并不是一个具体的数据结构。<ul>
-<li>Task：Execution被调度后在分配的 TaskManager 中启动对应的 Task。Task 包裹了具有用户执行逻辑的 operator。</li>
-<li>ResultPartition：代表由一个Task的生成的数据，和ExecutionGraph中的IntermediateResultPartition一一对应。</li>
-<li>ResultSubpartition：是ResultPartition的一个子分区。每个ResultPartition包含多个ResultSubpartition，其数目要由下游消费 Task 数和 DistributionPattern 来决定。</li>
-<li>InputGate：代表Task的输入封装，和JobGraph中JobEdge一一对应。每个InputGate消费了一个或多个的ResultPartition。</li>
-<li>InputChannel：每个InputGate会包含一个以上的InputChannel，和ExecutionGraph中的ExecutionEdge一一对应，也和ResultSubpartition一对一地相连，即一个InputChannel接收一个ResultSubpartition的输出。</li>
-</ul>
-</li>
-</ul>
-<p>那么 Flink 为什么要设计这4张图呢，其目的是什么呢？Spark 中也有多张图，数据依赖图以及物理执行的DAG。其目的都是一样的，就是解耦，每张图各司其职，每张图对应了 Job 不同的阶段，更方便做该阶段的事情。我们给出更完整的 Flink Graph 的层次图。</p>
-<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1qmtpJVXXXXagXXXXXXXXXXXX" alt=""></p>
-<p>首先我们看到，JobGraph 之上除了 StreamGraph 还有 OptimizedPlan。OptimizedPlan 是由 Batch API 转换而来的。StreamGraph 是由 Stream API 转换而来的。为什么 API 不直接转换成 JobGraph？因为，Batch 和 Stream 的图结构和优化方法有很大的区别，比如 Batch 有很多执行前的预分析用来优化图的执行，而这种优化并不普适于 Stream，所以通过 OptimizedPlan 来做 Batch 的优化会更方便和清晰，也不会影响 Stream。JobGraph 的责任就是统一 Batch 和 Stream 的图，用来描述清楚一个拓扑图的结构，并且做了 chaining 的优化，chaining 是普适于 Batch 和 Stream 的，所以在这一层做掉。ExecutionGraph 的责任是方便调度和各个 tasks 状态的监控和跟踪，所以 ExecutionGraph 是并行化的 JobGraph。而“物理执行图”就是最终分布式在各个机器上运行着的tasks了。所以可以看到，这种解耦方式极大地方便了我们在各个层所做的工作，各个层之间是相互隔离的。</p>
-<p>后续的文章，将会详细介绍 Flink 是如何生成这些执行图的。由于我目前关注 Flink 的流处理功能，所以主要有以下内容：</p>
+<h2 id="DataStream"><a href="#DataStream" class="headerlink" title="DataStream"></a>DataStream</h2><p><code>DataStream</code> 是 Flink 流处理 API 中最核心的数据结构。它代表了一个运行在多个分区上的并行流。一个 <code>DataStream</code> 可以从 <code>StreamExecutionEnvironment</code> 通过<code>env.addSource(SourceFunction)</code> 获得。</p>
+<p>DataStream 上的转换操作都是逐条的，比如 <code>map()</code>，<code>flatMap()</code>，<code>filter()</code>。DataStream 也可以执行 <code>rebalance</code>（再平衡，用来减轻数据倾斜）和 <code>broadcaseted</code>（广播）等分区转换。</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> stream: <span class="type">DataStream</span>[<span class="type">MyType</span>] = env.addSource(<span class="keyword">new</span> <span class="type">FlinkKafkaConsumer08</span>[<span class="type">String</span>](...))</span><br><span class="line"><span class="keyword">val</span> str1: <span class="type">DataStream</span>[(<span class="type">String</span>, <span class="type">MyType</span>)] = stream.flatMap &#123; ... &#125;</span><br><span class="line"><span class="keyword">val</span> str2: <span class="type">DataStream</span>[(<span class="type">String</span>, <span class="type">MyType</span>)] = stream.rebalance()</span><br><span class="line"><span class="keyword">val</span> str3: <span class="type">DataStream</span>[<span class="type">AnotherType</span>] = stream.map &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>上述 DataStream 上的转换在运行时会转换成如下的执行图：</p>
+<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1aqPSJVXXXXbqXXXXXXXXXXXX" width="450px"></p>
+<p>如上图的执行图所示，DataStream 各个算子会并行运行，算子之间是数据流分区。如 Source 的第一个并行实例（S1）和 flatMap() 的第一个并行实例（m1）之间就是一个数据流分区。而在 flatMap() 和 map() 之间由于加了 rebalance()，它们之间的数据流分区就有3个子分区（m1的数据流向3个map()实例）。这与 Apache Kafka 是很类似的，把流想象成 Kafka Topic，而一个流分区就表示一个 Topic Partition，流的目标并行算子实例就是 Kafka Consumers。</p>
+<h2 id="KeyedStream"><a href="#KeyedStream" class="headerlink" title="KeyedStream"></a>KeyedStream</h2><p><code>KeyedStream</code>用来表示根据指定的key进行分组的数据流。一个<code>KeyedStream</code>可以通过调用<code>DataStream.keyBy()</code>来获得。而在<code>KeyedStream</code>上进行任何transformation都将转变回<code>DataStream</code>。在实现中，<code>KeyedStream</code>是把key的信息写入到了transformation中。每条记录只能访问所属key的状态，其上的聚合函数可以方便地操作和保存对应key的状态。</p>
+<h2 id="WindowedStream-amp-AllWindowedStream"><a href="#WindowedStream-amp-AllWindowedStream" class="headerlink" title="WindowedStream &amp; AllWindowedStream"></a>WindowedStream &amp; AllWindowedStream</h2><p><code>WindowedStream</code>代表了根据key分组，并且基于<code>WindowAssigner</code>切分窗口的数据流。所以<code>WindowedStream</code>都是从<code>KeyedStream</code>衍生而来的。而在<code>WindowedStream</code>上进行任何transformation也都将转变回<code>DataStream</code>。</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> stream: <span class="type">DataStream</span>[<span class="type">MyType</span>] = ...</span><br><span class="line"><span class="keyword">val</span> windowed: <span class="type">WindowedDataStream</span>[<span class="type">MyType</span>] = stream</span><br><span class="line">        .keyBy(<span class="string">"userId"</span>)</span><br><span class="line">        .window(<span class="type">TumblingEventTimeWindows</span>.of(<span class="type">Time</span>.seconds(<span class="number">5</span>))) <span class="comment">// Last 5 seconds of data</span></span><br><span class="line"><span class="keyword">val</span> result: <span class="type">DataStream</span>[<span class="type">ResultType</span>] = windowed.reduce(myReducer)</span><br></pre></td></tr></table></figure>
+<p>上述 WindowedStream 的样例代码在运行时会转换成如下的执行图：</p>
+<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1G2HqJVXXXXb4aXXXXXXXXXXX" width="500px"></p>
+<p>Flink 的窗口实现中会将到达的数据缓存在对应的窗口buffer中（一个数据可能会对应多个窗口）。当到达窗口发送的条件时（由Trigger控制），Flink 会对整个窗口中的数据进行处理。Flink 在聚合类窗口有一定的优化，即不会保存窗口中的所有值，而是每到一个元素执行一次聚合函数，最终只保存一份数据即可。</p>
+<p>在key分组的流上进行窗口切分是比较常用的场景，也能够很好地并行化（不同的key上的窗口聚合可以分配到不同的task去处理）。不过有时候我们也需要在普通流上进行窗口的操作，这就是 <code>AllWindowedStream</code>。<code>AllWindowedStream</code>是直接在<code>DataStream</code>上进行<code>windowAll(...)</code>操作。AllWindowedStream 的实现是基于 WindowedStream 的（Flink 1.1.x 开始）。Flink 不推荐使用<code>AllWindowedStream</code>，因为在普通流上进行窗口操作，就势必需要将所有分区的流都汇集到单个的Task中，而这个单个的Task很显然就会成为整个Job的瓶颈。</p>
+<h2 id="JoinedStreams-amp-CoGroupedStreams"><a href="#JoinedStreams-amp-CoGroupedStreams" class="headerlink" title="JoinedStreams &amp; CoGroupedStreams"></a>JoinedStreams &amp; CoGroupedStreams</h2><p>双流 Join 也是一个非常常见的应用场景。深入源码你可以发现，JoinedStreams 和 CoGroupedStreams 的代码实现有80%是一模一样的，JoinedStreams 在底层又调用了 CoGroupedStreams 来实现 Join 功能。除了名字不一样，一开始很难将它们区分开来，而且为什么要提供两个功能类似的接口呢？？</p>
+<p>实际上这两者还是很点区别的。首先 co-group 侧重的是group，是对同一个key上的两组集合进行操作，而 join 侧重的是pair，是对同一个key上的每对元素进行操作。co-group 比 join 更通用一些，因为 join 只是 co-group 的一个特例，所以 join 是可以基于 co-group 来实现的（当然有优化的空间）。而在 co-group 之外又提供了 join 接口是因为用户更熟悉 join（源于数据库吧），而且能够跟 DataSet API 保持一致，降低用户的学习成本。</p>
+<p>JoinedStreams 和 CoGroupedStreams 是基于 Window 上实现的，所以 CoGroupedStreams 最终又调用了 WindowedStream 来实现。</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> firstInput: <span class="type">DataStream</span>[<span class="type">MyType</span>] = ...</span><br><span class="line"><span class="keyword">val</span> secondInput: <span class="type">DataStream</span>[<span class="type">AnotherType</span>] = ...</span><br><span class="line"> </span><br><span class="line"><span class="keyword">val</span> result: <span class="type">DataStream</span>[(<span class="type">MyType</span>, <span class="type">AnotherType</span>)] = firstInput.join(secondInput)</span><br><span class="line">    .where(<span class="string">"userId"</span>).equalTo(<span class="string">"id"</span>)</span><br><span class="line">    .window(<span class="type">TumblingEventTimeWindows</span>.of(<span class="type">Time</span>.seconds(<span class="number">3</span>)))</span><br><span class="line">    .apply (<span class="keyword">new</span> <span class="type">JoinFunction</span> () &#123;...&#125;)</span><br></pre></td></tr></table></figure>
+<p>上述 JoinedStreams 的样例代码在运行时会转换成如下的执行图：</p>
+<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1mW_zJVXXXXcfXVXXXXXXXXXX" width="500px"></p>
+<p>双流上的数据在同一个key的会被分别分配到同一个window窗口的左右两个篮子里，当window结束的时候，会对左右篮子进行笛卡尔积从而得到每一对pair，对每一对pair应用 JoinFunction。</p>
+<h2 id="ConnectedStreams"><a href="#ConnectedStreams" class="headerlink" title="ConnectedStreams"></a>ConnectedStreams</h2><p>在 DataStream 上有一个 union 的转换 <code>dataStream.union(otherStream1, otherStream2, ...)</code>，用来合并多个流，新的流会包含所有流中的数据。union 有一个限制，就是所有合并的流的类型必须是一致的。<code>ConnectedStreams</code> 提供了和 union 类似的功能，用来连接<strong>两个</strong>流，但是与 union 转换有以下几个区别：</p>
 <ol>
-<li><a href="http://wuchong.me/blog/2016/05/04/flink-internal-how-to-build-streamgraph/">如何生成 StreamGraph</a></li>
-<li><a href="http://wuchong.me/blog/2016/05/10/flink-internals-how-to-build-jobgraph/">如何生成 JobGraph</a></li>
-<li>如何生成 ExecutionGraph</li>
-<li>如何进行调度（如何生成物理执行图）</li>
+<li>ConnectedStreams 只能连接两个流，而 union 可以连接多于两个流。</li>
+<li>ConnectedStreams 连接的两个流类型可以不一致，而 union 连接的流的类型必须一致。</li>
+<li>ConnectedStreams 会对两个流的数据应用不同的处理方法，并且双流之间可以共享状态。这在第一个流的输入会影响第二个流时, 会非常有用。</li>
 </ol>
+<p>如下 ConnectedStreams 的样例，连接 <code>input</code> 和 <code>other</code> 流，并在<code>input</code>流上应用<code>map1</code>方法，在<code>other</code>上应用<code>map2</code>方法，双流可以共享状态（比如计数）。</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> input: <span class="type">DataStream</span>[<span class="type">MyType</span>] = ...</span><br><span class="line"><span class="keyword">val</span> other: <span class="type">DataStream</span>[<span class="type">AnotherType</span>] = ...</span><br><span class="line"> </span><br><span class="line"><span class="keyword">val</span> connected: <span class="type">ConnectedStreams</span>[<span class="type">MyType</span>, <span class="type">AnotherType</span>] = input.connect(other)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">val</span> result: <span class="type">DataStream</span>[<span class="type">ResultType</span>] = </span><br><span class="line">        connected.map(<span class="keyword">new</span> <span class="type">CoMapFunction</span>[<span class="type">MyType</span>, <span class="type">AnotherType</span>, <span class="type">ResultType</span>]() &#123;</span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">map1</span></span>(value: <span class="type">MyType</span>): <span class="type">ResultType</span> = &#123; ... &#125;</span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">map2</span></span>(value: <span class="type">AnotherType</span>): <span class="type">ResultType</span> = &#123; ... &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+<p>当并行度为2时，其执行图如下所示：</p>
+<p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1WEjuJVXXXXcHXFXXXXXXXXXX" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文介绍通过不同数据流类型的转换图来解释每一种数据流的含义、转换关系。后面的文章会深入讲解 Window 机制的实现，双流 Join 的实现等。 </p>
 
       
     </div>
@@ -482,17 +429,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016/04/29/flink-internals-memory-manage/" rel="next" title="Flink 原理与实现：内存管理">
-                <i class="fa fa-chevron-left"></i> Flink 原理与实现：内存管理
+              <a href="/blog/2016/05/10/flink-internals-how-to-build-jobgraph/" rel="next" title="Flink 原理与实现：如何生成 JobGraph">
+                <i class="fa fa-chevron-left"></i> Flink 原理与实现：如何生成 JobGraph
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016/05/04/flink-internal-how-to-build-streamgraph/" rel="prev" title="Flink 原理与实现：如何生成 StreamGraph">
-                Flink 原理与实现：如何生成 StreamGraph <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -515,8 +458,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="blog/2016/05/03/flink-internals-overview/"
-           data-title="Flink 原理与实现：架构和拓扑概览" data-url="http://wuchong.me/blog/2016/05/03/flink-internals-overview/">
+      <div class="ds-thread" data-thread-key="blog/2016/05/20/flink-internals-streams-and-operations-on-streams/"
+           data-title="Flink 原理与实现：数据流上的类型和操作" data-url="http://wuchong.me/blog/2016/05/20/flink-internals-streams-and-operations-on-streams/">
       </div>
     
   </div>
@@ -649,7 +592,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#架构"><span class="nav-number">1.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Job-例子"><span class="nav-number">2.</span> <span class="nav-text">Job 例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph"><span class="nav-number">3.</span> <span class="nav-text">Graph</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataStream"><span class="nav-number">1.</span> <span class="nav-text">DataStream</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KeyedStream"><span class="nav-number">2.</span> <span class="nav-text">KeyedStream</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WindowedStream-amp-AllWindowedStream"><span class="nav-number">3.</span> <span class="nav-text">WindowedStream & AllWindowedStream</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JoinedStreams-amp-CoGroupedStreams"><span class="nav-number">4.</span> <span class="nav-text">JoinedStreams & CoGroupedStreams</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConnectedStreams"><span class="nav-number">5.</span> <span class="nav-text">ConnectedStreams</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
