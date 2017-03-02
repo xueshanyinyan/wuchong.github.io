@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wuchong.me/about/index.html</loc>
+    
+    <lastmod>2017-03-02T08:29:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/blog/2015/03/30/git-useful-skills/</loc>
     
     <lastmod>2016-08-03T03:22:17.000Z</lastmod>
@@ -373,13 +380,6 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/about/index.html</loc>
-    
-    <lastmod>2016-03-08T11:51:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wuchong.me/blog/2016/02/26/flink-docs-setup-cluster/</loc>
     
     <lastmod>2016-03-01T11:27:51.000Z</lastmod>
@@ -471,21 +471,14 @@
   </url>
   
   <url>
+    <loc>http://wuchong.me/blog/2014/01/27/python-spider-gif/</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/404.html</loc>
-    
-    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
-    
-    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
@@ -499,7 +492,7 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/01/27/python-spider-gif/</loc>
+    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
@@ -507,6 +500,13 @@
   
   <url>
     <loc>http://wuchong.me/search/index.html</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     

@@ -45,7 +45,7 @@
 
 
 
-  <meta name="keywords" content="Java,面试,源码," />
+  <meta name="keywords" content="面试,Java,源码," />
 
 
 
@@ -302,7 +302,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/blog/2014/03/17/string-to-int/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2014/03/17/string-to-int/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2014/03/17/string-to-int/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -391,9 +391,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag">#Java</a>
-          
             <a href="/tags/面试/" rel="tag">#面试</a>
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
           
             <a href="/tags/源码/" rel="tag">#源码</a>
           
@@ -456,8 +456,11 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="blog/2014/03/17/string-to-int/"
-           data-title="字符串转换成整数——从源码学习" data-url="http://wuchong.me/blog/2014/03/17/string-to-int/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -571,10 +574,6 @@
                 <a href="http://jm.taobao.org" target="_blank">阿里中间件博客</a>
               </span>
             
-              <span class="links-of-author-item">
-                <a href="http://blog.flink-china.org" target="_blank">Flink China</a>
-              </span>
-            
           
         </div>
 
@@ -612,7 +611,7 @@
         <div class="copyright" >
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -842,26 +841,30 @@
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"wuchong"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
 
+    <script type="text/javascript">
+      var disqus_shortname = 'wuchong';
+      var disqus_identifier = 'blog/2014/03/17/string-to-int/';
+      var disqus_title = '字符串转换成整数——从源码学习';
+      var disqus_url = 'http://wuchong.me/blog/2014/03/17/string-to-int/';
 
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
 
 
 
