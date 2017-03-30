@@ -346,14 +346,14 @@
         <p>Hexo 的发展很迅速，也很快吸引了一大批忠实用户，随着Hexo 3.0 的推出相信会加速这个进程。Hexo 3.0 是个大更新，更强大的性能，更好用的API，模块化了大部分组件等等。但是对于很多主题来说，出现了不兼容的情况，最常见的是 <code>style.css</code> 生成错误，比如 Pacman 系列主题。</p>
 <p>随着很多用户在 Github 上、邮件上、论坛上问我有关主题不能用的问题，我都回复降级至 2.8.3。 但这毕竟不是一个解决办法，于是挤出点时间，将 Jacman 支持到 Hexo 3.0。</p>
 <a id="more"></a>
-<p>主要原因出在 <code>source/css/_base/variable.styl</code>中有两行代码：<br><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">root = hexo-<span class="built_in">config</span>(<span class="string">"root"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//highlight</span></span><br><span class="line">highlight = hexo-<span class="built_in">config</span>(<span class="string">"highlight.enable"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>主要原因出在 <code>source/css/_base/variable.styl</code>中有两行代码：<br><figure class="highlight arduino"><table><tr><td class="code"><pre><div class="line">root = hexo-<span class="built_in">config</span>(<span class="string">"root"</span>)</div><div class="line"></div><div class="line"><span class="comment">//highlight</span></div><div class="line">highlight = hexo-<span class="built_in">config</span>(<span class="string">"highlight.enable"</span>)</div></pre></td></tr></table></figure></p>
 <p>关键是<code>highlight = hexo-config(&quot;highlight.enable&quot;)</code>，hexo-config 方法会去 theme 主题下的 <code>_config.yml</code> 中查找参数中的配置项。当 stylus 找不到二级属性时会报错，导致<code>style.css</code>生成失败（我在windows下会出现这个问题，mac下未重现）。因此两种办法都可以：1. 删除该行 2. 在 theme 主题下的<code>_config.yml</code>中添加<code>highlight</code>。</p>
 <p>同理，root 属性是在博客根目录配置文件下设置的，在主题配置文件中未配置，所以<code>root = hexo-config(&quot;root&quot;)</code>获取到的值会是空。这会导致用户头像等url路径的错误。最简单的修改方法是 <code>root = &quot;../&quot;</code>，其他地方均不用修改。</p>
 <p><strong>至此，Jacman 已支持 Hexo 3.0 。Have a nice day !</strong></p>
 <h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><p>感谢 <a href="http://smvirus.com/" target="_blank" rel="external">@狸狸园上草</a> 的反馈，tags 和 categories 在分类或标签数为0时也会显示出来。已修复此 BUG。</p>
-<p>另外 Hexo 3.0 目前默认并未安装 deployer 和 feed 插件。如果你使用 GitHub 或者 GitCafe ，使用如下命令安装部署插件：<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">$ npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure></p>
-<p>如果你发现 RSS 不可用，说明 feed 插件也没安装，使用如下命令 ：<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">$ npm <span class="keyword">install</span> hexo-generator-feed <span class="comment">--save</span></span><br></pre></td></tr></table></figure></p>
-<p>并在 <code>_config.yml</code> 中配置：<br><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">feed:</span></span><br><span class="line"><span class="symbol">  type:</span> atom       <span class="meta">#feed 类型 (atom/rss2)</span></span><br><span class="line"><span class="symbol">  path:</span> atom.xml   <span class="meta">#rss 路径</span></span><br><span class="line"><span class="symbol">  limit:</span> <span class="number">20</span>        <span class="meta">#在 rss 中最多生成的文章数(0显示所有)</span></span><br></pre></td></tr></table></figure></p>
+<p>另外 Hexo 3.0 目前默认并未安装 deployer 和 feed 插件。如果你使用 GitHub 或者 GitCafe ，使用如下命令安装部署插件：<br><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">$ npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></div></pre></td></tr></table></figure></p>
+<p>如果你发现 RSS 不可用，说明 feed 插件也没安装，使用如下命令 ：<br><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">$ npm <span class="keyword">install</span> hexo-generator-feed <span class="comment">--save</span></div></pre></td></tr></table></figure></p>
+<p>并在 <code>_config.yml</code> 中配置：<br><figure class="highlight dts"><table><tr><td class="code"><pre><div class="line"><span class="symbol">feed:</span></div><div class="line"><span class="symbol">  type:</span> atom       <span class="meta">#feed 类型 (atom/rss2)</span></div><div class="line"><span class="symbol">  path:</span> atom.xml   <span class="meta">#rss 路径</span></div><div class="line"><span class="symbol">  limit:</span> <span class="number">20</span>        <span class="meta">#在 rss 中最多生成的文章数(0显示所有)</span></div></pre></td></tr></table></figure></p>
 <p><em>PS:有任何关于 Hexo 的问题，欢迎来 <a href="https://coderq.com/c/tech/hexo" target="_blank" rel="external">Hexo 中文社区</a> 咨询。</em></p>
 
       
@@ -484,7 +484,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -515,7 +515,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

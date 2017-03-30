@@ -368,17 +368,17 @@
 <p>我们使用 Flink 自带的 examples 包中的 <code>SocketTextStreamWordCount</code>，这是一个从 socket 流中统计单词出现次数的例子。</p>
 <ul>
 <li><p>首先，使用 <strong>netcat</strong> 启动本地服务器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ nc <span class="_">-l</span> 9000</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ nc <span class="_">-l</span> 9000</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
 <li><p>然后提交 Flink 程序</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ bin/flink run examples/streaming/SocketTextStreamWordCount.jar \</span><br><span class="line">  --hostname 10.218.130.9 \</span><br><span class="line">  --port 9000</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ bin/flink run examples/streaming/SocketTextStreamWordCount.jar \</div><div class="line">  --hostname 10.218.130.9 \</div><div class="line">  --port 9000</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>在netcat端输入单词并监控 taskmanager 的输出可以看到单词统计的结果。</p>
 <p><code>SocketTextStreamWordCount</code> 的具体代码如下： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">  <span class="comment">// 检查输入</span></span><br><span class="line">  <span class="keyword">final</span> ParameterTool params = ParameterTool.fromArgs(args);</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set up the execution environment</span></span><br><span class="line">  <span class="keyword">final</span> StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// get input data</span></span><br><span class="line">  DataStream&lt;String&gt; text =</span><br><span class="line">      env.socketTextStream(params.get(<span class="string">"hostname"</span>), params.getInt(<span class="string">"port"</span>), <span class="string">'\n'</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; counts =</span><br><span class="line">      <span class="comment">// split up the lines in pairs (2-tuples) containing: (word,1)</span></span><br><span class="line">      text.flatMap(<span class="keyword">new</span> Tokenizer())</span><br><span class="line">          <span class="comment">// group by the tuple field "0" and sum up tuple field "1"</span></span><br><span class="line">          .keyBy(<span class="number">0</span>)</span><br><span class="line">          .sum(<span class="number">1</span>);</span><br><span class="line">  counts.print();</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// execute program</span></span><br><span class="line">  env.execute(<span class="string">"WordCount from SocketTextStream Example"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">  <span class="comment">// 检查输入</span></div><div class="line">  <span class="keyword">final</span> ParameterTool params = ParameterTool.fromArgs(args);</div><div class="line">  ...</div><div class="line"></div><div class="line">  <span class="comment">// set up the execution environment</span></div><div class="line">  <span class="keyword">final</span> StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</div><div class="line"></div><div class="line">  <span class="comment">// get input data</span></div><div class="line">  DataStream&lt;String&gt; text =</div><div class="line">      env.socketTextStream(params.get(<span class="string">"hostname"</span>), params.getInt(<span class="string">"port"</span>), <span class="string">'\n'</span>, <span class="number">0</span>);</div><div class="line"></div><div class="line">  DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; counts =</div><div class="line">      <span class="comment">// split up the lines in pairs (2-tuples) containing: (word,1)</span></div><div class="line">      text.flatMap(<span class="keyword">new</span> Tokenizer())</div><div class="line">          <span class="comment">// group by the tuple field "0" and sum up tuple field "1"</span></div><div class="line">          .keyBy(<span class="number">0</span>)</div><div class="line">          .sum(<span class="number">1</span>);</div><div class="line">  counts.print();</div><div class="line">  </div><div class="line">  <span class="comment">// execute program</span></div><div class="line">  env.execute(<span class="string">"WordCount from SocketTextStream Example"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>我们将最后一行代码 <code>env.execute</code> 替换成 <code>System.out.println(env.getExecutionPlan());</code> 并在本地运行该代码（并发度设为2），可以得到该拓扑的逻辑执行计划图的 JSON 串，将该 JSON 串粘贴到 <a href="http://flink.apache.org/visualizer/" target="_blank" rel="external">http://flink.apache.org/visualizer/</a> 中，能可视化该执行图。</p>
 <p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1vB1uJFXXXXbaXpXXXXXXXXXX" alt=""></p>
 <p>但这并不是最终在 Flink 中运行的执行图，只是一个表示拓扑节点关系的计划图，在 Flink 中对应了 SteramGraph。另外，提交拓扑后（并发度设为2）还能在 UI 中看到另一张执行计划图，如下所示，该图对应了 Flink 中的 JobGraph。</p>
@@ -564,7 +564,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -595,7 +595,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

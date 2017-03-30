@@ -359,7 +359,7 @@
 <h2 id="迁移到-Coding"><a href="#迁移到-Coding" class="headerlink" title="迁移到 Coding"></a>迁移到 Coding</h2><p>“Coding 是一个面向开发者的云端开发平台，目前提供代码托管，运行空间，质量控制，项目管理等功能。”好吧，我们只想用托管功能和最近新出的<a href="https://coding.net/u/panpan/p/Coding-PaaS/topic/10263" target="_blank" rel="external">自定义域名·免备案</a>。</p>
 <h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>创建一个博客项目，名称无所谓，然后在项目页面获取 SSH 或 HTTPS 地址。</p>
 <p><img src="http://ww2.sinaimg.cn/large/81b78497jw1ene5wf0vh8j20yz0doq5w.jpg" alt=""></p>
-<h3 id="推送代码"><a href="#推送代码" class="headerlink" title="推送代码"></a>推送代码</h3><p>修改 Hexo 根目录下的配置文件<code>_config.yml</code>，修改最后的 deploy 参数。<br><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: github</span><br><span class="line">  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//coding.net/jark/blog.git  #改成你的项目地址</span></span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure></p>
+<h3 id="推送代码"><a href="#推送代码" class="headerlink" title="推送代码"></a>推送代码</h3><p>修改 Hexo 根目录下的配置文件<code>_config.yml</code>，修改最后的 deploy 参数。<br><figure class="highlight less"><table><tr><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">  <span class="attribute">type</span>: github</div><div class="line">  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//coding.net/jark/blog.git  #改成你的项目地址</span></div><div class="line">  <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure></p>
 <p><em>如果你使用的是 SSH 地址，还需要设置<a href="https://coding.net/user/setting/keys" target="_blank" rel="external">SSH公钥</a>。</em></p>
 <p>然后运行<code>hexo d</code>就会推送代码到 Coding 项目上。（最好先<code>hexo clean</code>并删除目录下的<code>.deploy</code>文件夹）</p>
 <h3 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h3><p>在「演示」标签页下，点击“开始检测”（不管提示，强制开启）。</p>
@@ -509,7 +509,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -540,7 +540,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

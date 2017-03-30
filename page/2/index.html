@@ -267,6 +267,141 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/02/26/flink-docs-setup-cluster/" itemprop="url">
+                  Flink官方文档翻译：安装部署（集群模式）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-26T16:03:35+08:00" content="2016-02-26">
+              2016-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式系统</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/02/26/flink-docs-setup-cluster/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2016/02/26/flink-docs-setup-cluster/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/02/26/flink-docs-setup-cluster/" class="leancloud_visitors" data-flag-title="Flink官方文档翻译：安装部署（集群模式）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+<!--
+    
+      <div class="post-body">
+    
+    -->
+
+
+    <div class="post-body" itemprop="articleBody">
+    
+
+      
+      
+
+      
+        
+          本文主要介绍如何将Flink以分布式模式运行在集群上（可能是异构的）。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2016/02/26/flink-docs-setup-cluster/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/02/26/flink-docs-setup-local/" itemprop="url">
                   Flink官方文档翻译：安装部署（本地模式）
                 </a>
@@ -903,13 +1038,13 @@
 <li><p><strong>匿名函数</strong><br>匿名函数<code>(fn) (fn [x y] (+ x y))</code> 创建一个匿名函数, fn 和 lambda 类似，fn还有一个简写形式 <code>#(+ %1 %2)</code>。如果只有一个参数,那么可以用 <code>%</code> 代替 <code>%1</code></p>
 </li>
 <li><p><strong>def</strong><br><code>def</code>可以将一个匿名函数绑定到一个name上。</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">def</span></span> my-add (<span class="name"><span class="builtin-name">fn</span></span> [x y] (<span class="name"><span class="builtin-name">+</span></span> x y)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><div class="line">(<span class="name"><span class="builtin-name">def</span></span> my-add (<span class="name"><span class="builtin-name">fn</span></span> [x y] (<span class="name"><span class="builtin-name">+</span></span> x y)))</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
 <li><p><strong>defn</strong></p>
 <p>defn 是 def 与 fn 的简写。一般我们也都是用defn。</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> my-add</span><br><span class="line">  <span class="string">"this is a comment"</span></span><br><span class="line">  [x y]</span><br><span class="line">  (<span class="name"><span class="builtin-name">+</span></span> x y))</span><br><span class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span>)) <span class="comment">; -&gt; 7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; 函数的重载</span></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> my-add</span><br><span class="line">  ([x y]</span><br><span class="line">    (<span class="name"><span class="builtin-name">+</span></span> x y))</span><br><span class="line">  ([x y z]</span><br><span class="line">    (<span class="name"><span class="builtin-name">+</span></span> x y z)))</span><br><span class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span>)) <span class="comment">; -&gt; 7</span></span><br><span class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>)) <span class="comment">; -&gt; 12</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><div class="line">(<span class="name"><span class="builtin-name">defn</span></span> my-add</div><div class="line">  <span class="string">"this is a comment"</span></div><div class="line">  [x y]</div><div class="line">  (<span class="name"><span class="builtin-name">+</span></span> x y))</div><div class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span>)) <span class="comment">; -&gt; 7</span></div><div class="line"></div><div class="line"><span class="comment">; 函数的重载</span></div><div class="line">(<span class="name"><span class="builtin-name">defn</span></span> my-add</div><div class="line">  ([x y]</div><div class="line">    (<span class="name"><span class="builtin-name">+</span></span> x y))</div><div class="line">  ([x y z]</div><div class="line">    (<span class="name"><span class="builtin-name">+</span></span> x y z)))</div><div class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span>)) <span class="comment">; -&gt; 7</span></div><div class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>)) <span class="comment">; -&gt; 12</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
           <div class="post-more-link text-center">
@@ -1188,7 +1323,7 @@
         
           <p><a href="/blog/2015/10/07/thrift-induction">上一篇文章</a>我们了解了thrift的概念以及类型系统，本文我们通过一个简单的实例来更深入地了解thrift的使用。我们的实例非常简单，就是实现一个登录注册功能，其用户名密码缓存在内存中。</p>
 <h2 id="编写thrift文件"><a href="#编写thrift文件" class="headerlink" title="编写thrift文件"></a>编写thrift文件</h2><p>我们编写一个<code>account.thrift</code>的文件。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> java me.wuchong.thrift.generated</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> Operation&#123;</span><br><span class="line">  LOGIN = <span class="number">1</span>,</span><br><span class="line">  REGISTER = <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Request&#123;</span><br><span class="line">  <span class="number">1</span>: <span class="built_in">string</span> name,</span><br><span class="line">  <span class="number">2</span>: <span class="built_in">string</span> password,</span><br><span class="line">  <span class="number">3</span>: Operation op</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exception InvalidOperation&#123;</span><br><span class="line">  <span class="number">1</span>: i32 code,</span><br><span class="line">  <span class="number">2</span>: <span class="built_in">string</span> reason</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">service Account&#123;</span><br><span class="line">  <span class="function"><span class="built_in">string</span> <span class="title">doAction</span><span class="params">(<span class="number">1</span>: Request request)</span> <span class="title">throws</span> <span class="params">(<span class="number">1</span>: InvalidOperation e)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="keyword">namespace</span> java me.wuchong.thrift.generated</div><div class="line"></div><div class="line"><span class="keyword">enum</span> Operation&#123;</div><div class="line">  LOGIN = <span class="number">1</span>,</div><div class="line">  REGISTER = <span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> Request&#123;</div><div class="line">  <span class="number">1</span>: <span class="built_in">string</span> name,</div><div class="line">  <span class="number">2</span>: <span class="built_in">string</span> password,</div><div class="line">  <span class="number">3</span>: Operation op</div><div class="line">&#125;</div><div class="line"></div><div class="line">exception InvalidOperation&#123;</div><div class="line">  <span class="number">1</span>: i32 code,</div><div class="line">  <span class="number">2</span>: <span class="built_in">string</span> reason</div><div class="line">&#125;</div><div class="line"></div><div class="line">service Account&#123;</div><div class="line">  <span class="built_in">string</span> doAction(<span class="number">1</span>: Request request) throws (<span class="number">1</span>: InvalidOperation e);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2015/10/07/thrift-practice/#more" rel="contents">
               阅读全文 &raquo;
@@ -1488,141 +1623,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2015/05/22/using-redis-and-sqlalchemy-to-checkd-dup-and-store-scrapy-item/" itemprop="url">
-                  使用Redis和SQLAlchemy对Scrapy Item去重并存储
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-22T23:08:53+08:00" content="2015-05-22">
-              2015-05-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/程序设计/" itemprop="url" rel="index">
-                    <span itemprop="name">程序设计</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2015/05/22/using-redis-and-sqlalchemy-to-checkd-dup-and-store-scrapy-item/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/05/22/using-redis-and-sqlalchemy-to-checkd-dup-and-store-scrapy-item/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2015/05/22/using-redis-and-sqlalchemy-to-checkd-dup-and-store-scrapy-item/" class="leancloud_visitors" data-flag-title="使用Redis和SQLAlchemy对Scrapy Item去重并存储">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-<!--
-    
-      <div class="post-body">
-    
-    -->
-
-
-    <div class="post-body" itemprop="articleBody">
-    
-
-      
-      
-
-      
-        
-          本文将简要地谈谈如何使用Scrapy的Item Pipline，基于Redis和SQLALchemy将爬取的数据去重并存储到数据库中。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2015/05/22/using-redis-and-sqlalchemy-to-checkd-dup-and-store-scrapy-item/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1669,7 +1669,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1700,7 +1700,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

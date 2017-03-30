@@ -344,36 +344,36 @@
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>进入<a href="http://flink.apache.org/downloads.html" target="_blank" rel="external">下载页面</a>。如果你想让Flink与Hadoop进行交互（如HDFS或者HBase），请选择一个与你的Hadoop版本相匹配的Flink包。当你不确定或者只是想运行在本地文件系统上，请选择Hadoop 1.2.x对应的包。</p>
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>Flink 可以运行在 Linux、Mac OS X 和 Windows 上。本地模式的安装唯一需要的只是 Java 1.7.x或更高版本。接下来的指南假定是类Unix环境，Windows用户请参考 <a href="#flink-on-windows">Flink on Windows</a>。</p>
 <p>你可以执行下面的命令来查看是否已经正确安装了Java了。</p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">java -<span class="built_in">version</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><div class="line">java -<span class="built_in">version</span></div></pre></td></tr></table></figure>
 <p>这条命令会输出类似于下面的信息：</p>
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line">java version <span class="string">"1.8.0_51"</span></span><br><span class="line">Java(<span class="name">TM</span>) SE Runtime Environment (<span class="name">build</span> <span class="number">1.8</span>.<span class="number">0</span>_51-b16)</span><br><span class="line">Java HotSpot(<span class="name">TM</span>) <span class="number">64</span>-Bit Server VM (<span class="name">build</span> <span class="number">25.51</span>-b03, mixed mode)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><div class="line">java version <span class="string">"1.8.0_51"</span></div><div class="line">Java(<span class="name">TM</span>) SE Runtime Environment (<span class="name">build</span> <span class="number">1.8</span>.<span class="number">0</span>_51-b16)</div><div class="line">Java HotSpot(<span class="name">TM</span>) <span class="number">64</span>-Bit Server VM (<span class="name">build</span> <span class="number">25.51</span>-b03, mixed mode)</div></pre></td></tr></table></figure>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><strong>对于本地模式，Flink是可以开箱即用的，你不用去更改任何的默认配置。</strong></p>
 <p>开箱即用的配置会使用默认的Java环境。如果你想更改Java的运行环境，你可以手动地设置环境变量<code>JAVA_HOME</code>或者<code>conf/flink-conf.yaml</code>中的配置项<code>env.java.home</code>。你可以查阅<a href="https://ci.apache.org/projects/flink/flink-docs-master/setup/config.html" target="_blank" rel="external">配置页面</a>了解更多关于Flink的配置。</p>
 <h2 id="启动Flink"><a href="#启动Flink" class="headerlink" title="启动Flink"></a>启动Flink</h2><p>你现在就可以开始运行Flink了。解压已经下载的压缩包，然后进入新创建的flink目录。在那里，你就可以本地模式运行Flink了：</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>tar xzf flink-*.tgz</span><br><span class="line"><span class="variable">$ </span>cd flink-*</span><br><span class="line"><span class="variable">$ </span>bin/start-local.sh</span><br><span class="line">Starting job manager</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line"><span class="variable">$ </span>tar xzf flink-*.tgz</div><div class="line"><span class="variable">$ </span>cd flink-*</div><div class="line"><span class="variable">$ </span>bin/start-local.sh</div><div class="line">Starting job manager</div></pre></td></tr></table></figure>
 <p>你可以通过观察logs目录下的日志文件来检查系统是否正在运行了：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">$ tail <span class="built_in">log</span>/flink-*-jobmanager-*.<span class="built_in">log</span></span><br><span class="line">INFO ... - Initializing memory manager <span class="keyword">with</span> <span class="number">409</span> megabytes <span class="keyword">of</span> memory</span><br><span class="line">INFO ... - Trying <span class="built_in">to</span> <span class="built_in">load</span> org.apache.flinknephele.jobmanager.scheduler.<span class="built_in">local</span>.LocalScheduler <span class="keyword">as</span> scheduler</span><br><span class="line">INFO ... - Setting up web info server, <span class="keyword">using</span> web-root <span class="built_in">directory</span> ...</span><br><span class="line">INFO ... - Web info server will display information about nephele job-manager <span class="keyword">on</span> <span class="title">localhost</span>, <span class="title">port</span> <span class="title">8081</span>.</span><br><span class="line">INFO ... - Starting web info server <span class="keyword">for</span> JobManager <span class="keyword">on</span> <span class="title">port</span> <span class="title">8081</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tr><td class="code"><pre><div class="line"><span class="symbol">$</span> tail <span class="built-in">log</span>/flink-*-jobmanager-*.<span class="built-in">log</span></div><div class="line"><span class="function"><span class="title">INFO</span></span> ... - Initializing memory manager with <span class="number">409</span> megabytes of memory</div><div class="line"><span class="function"><span class="title">INFO</span></span> ... - Trying to load org.apache.flinknephele.jobmanager.scheduler.local.LocalScheduler as scheduler</div><div class="line"><span class="function"><span class="title">INFO</span></span> ... - Setting up web info server, <span class="keyword">using</span> web-root directory ...</div><div class="line"><span class="function"><span class="title">INFO</span></span> ... - Web info server will <span class="keyword">display</span> information about nephele job-manager on localhost, port <span class="number">8081.</span></div><div class="line"><span class="function"><span class="title">INFO</span></span> ... - Starting web info server <span class="keyword">for</span> JobManager on port <span class="number">8081</span></div></pre></td></tr></table></figure>
 <p>JobManager 同时会在8081端口上启动一个web前端，你可以通过 <a href="http://localhost:8081" target="_blank" rel="external">http://localhost:8081</a> 来访问。</p>
 <h2 id="Flink-on-Windows"><a href="#Flink-on-Windows" class="headerlink" title="Flink on Windows"></a>Flink on Windows</h2><p>如果你想要在 Windows 上运行 Flink，你需要如上文所述地下载、解压、配置 Flink 压缩包。之后，你可以使用使用 Windows 批处理文件（.bat文件）或者使用 <strong>Cygwin</strong> 运行 Flink 的 JobMnager。</p>
 <h3 id="使用-Windows-批处理文件启动"><a href="#使用-Windows-批处理文件启动" class="headerlink" title="使用 Windows 批处理文件启动"></a>使用 Windows 批处理文件启动</h3><p>使用 Windows 批处理文件本地模式启动Flink，首先打开命令行窗口，进入 Flink 的 bin/ 目录，然后运行 start-local.bat 。</p>
 <p>注意：Java运行环境必须已经加到了 Windows 的<code>%PATH%</code>环境变量中。按照<a href="http://www.java.com/en/download/help/path.xml" target="_blank" rel="external">本指南</a>添加 Java 到<code>%PATH%</code>环境变量中。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">$ cd flink</span><br><span class="line">$ cd bin</span><br><span class="line">$ <span class="keyword">start</span>-<span class="keyword">local</span>.bat</span><br><span class="line"><span class="keyword">Starting</span> Flink job manager. Webinterface <span class="keyword">by</span> <span class="keyword">default</span> <span class="keyword">on</span> <span class="keyword">http</span>://localhost:<span class="number">8081</span>/.</span><br><span class="line"><span class="keyword">Do</span> <span class="keyword">not</span> <span class="keyword">close</span> this batch window. <span class="keyword">Stop</span> job manager <span class="keyword">by</span> pressing Ctrl+C.</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">$ cd flink</div><div class="line">$ cd bin</div><div class="line">$ <span class="keyword">start</span>-local.bat</div><div class="line"><span class="keyword">Starting</span> Flink job manager. Webinterface <span class="keyword">by</span> <span class="keyword">default</span> <span class="keyword">on</span> <span class="keyword">http</span>://localhost:<span class="number">8081</span>/.</div><div class="line"><span class="keyword">Do</span> <span class="keyword">not</span> <span class="keyword">close</span> this batch window. <span class="keyword">Stop</span> job manager <span class="keyword">by</span> pressing Ctrl+C.</div></pre></td></tr></table></figure>
 <p>之后，你需要打开新的命令行窗口，并运行<code>flink.bat</code>。</p>
 <h3 id="使用-Cygwin-和-Unix-脚本启动"><a href="#使用-Cygwin-和-Unix-脚本启动" class="headerlink" title="使用 Cygwin 和 Unix 脚本启动"></a>使用 Cygwin 和 Unix 脚本启动</h3><p>使用 Cygwin 你需要打开 Cygwin 的命令行，进入 Flink 目录，然后运行<code>start-local.sh</code>脚本：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">$ cd flink</span><br><span class="line">$ bin/<span class="keyword">start</span>-<span class="keyword">local</span>.sh</span><br><span class="line"><span class="keyword">Starting</span> Nephele job manager</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="code"><pre><div class="line">$ <span class="keyword">cd</span> flink</div><div class="line">$ bin/start-<span class="keyword">local</span>.<span class="keyword">sh</span></div><div class="line">Starting Nephele job manager</div></pre></td></tr></table></figure>
 <h3 id="从-Git-安装-Flink"><a href="#从-Git-安装-Flink" class="headerlink" title="从 Git 安装 Flink"></a>从 Git 安装 Flink</h3><p>如果你是从 git 安装的 Flink，而且使用的 Windows git shell，Cygwin会产生一个类似于下面的错误：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">c:/flink/bin/<span class="built_in">start</span>-<span class="built_in">local</span>.sh: <span class="built_in">line</span> <span class="number">30</span>: $<span class="string">'\r'</span>: <span class="keyword">command</span> <span class="title">not</span> <span class="title">found</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><div class="line">c:/flink/bin/<span class="built_in">start</span>-<span class="built_in">local</span>.sh: <span class="built_in">line</span> <span class="number">30</span>: $<span class="string">'\r'</span>: <span class="keyword">command</span> <span class="title">not</span> <span class="title">found</span></div></pre></td></tr></table></figure>
 <p>这个错误的产生是因为 git 运行在 Windows 上时，会自动地将 UNIX 换行转换成 Windows 换行。问题是，Cygwin 只认 Unix 换行。解决方案是调整 Cygwin 配置来正确处理换行。步骤如下：</p>
 <ol>
 <li>打开 Cygwin 命令行</li>
 <li><p>确定 home 目录，通过输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>;<span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">cd</span>;<span class="built_in">pwd</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>  它会返回 Cygwin 根目录下的一个路径。</p>
 <ol>
 <li><p>在home目录下，使用 NotePad, WordPad 或者其他编辑器打开<code>.bash_profile</code>文件，然后添加如下内容到文件末尾：（如果文件不存在，你需要创建它）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> SHELLOPTS</span><br><span class="line"><span class="built_in">set</span> -o igncr</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> SHELLOPTS</div><div class="line"><span class="built_in">set</span> -o igncr</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>  保存文件，然后打开一个新的bash窗口。</p>
@@ -510,7 +510,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -541,7 +541,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

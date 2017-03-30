@@ -343,7 +343,7 @@
 
       
         <p>进程是操作系统上非常重要的概念，所有系统上面跑的数据都会以进程的类型存在。在 Linux 系统当中：触发任何一个事件时，系统都会将它定义成为一个进程，并且给予这个进程一个 ID，称为 PID，同时根据触发这个进程的用户，给予这个 PID 一组有效的权限设置。</p>
-<h2 id="进程是什么样的"><a href="#进程是什么样的" class="headerlink" title="进程是什么样的"></a>进程是什么样的</h2><p>程序运行起来后，我们看不到也摸不着。因此 Linux 为我们提供了一系列方便的命名来查看正在运行的进程。首先是 ps 命令，比如 <code>ps -l</code>命令能查看当前 bash 下的相关进程全部信息。如下：<br><figure class="highlight cos"><table><tr><td class="code"><pre><span class="line">$ ps -<span class="keyword">l</span></span><br><span class="line">F <span class="keyword">S</span>   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</span><br><span class="line"><span class="number">0</span> <span class="keyword">S</span>  <span class="number">1000</span>  <span class="number">2552</span>  <span class="number">2538</span>  <span class="number">0</span>  <span class="number">80</span>   <span class="number">0</span> -  <span class="number">1945</span> wait   pts/<span class="number">0</span>    <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> bash</span><br><span class="line"><span class="number">0</span> <span class="keyword">S</span>  <span class="number">1000</span>  <span class="number">9352</span>  <span class="number">2552</span>  <span class="number">0</span>  <span class="number">80</span>   <span class="number">0</span> -  <span class="number">1926</span> wait   pts/<span class="number">0</span>    <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> bash</span><br><span class="line"><span class="number">0</span> <span class="keyword">R</span>  <span class="number">1000</span>  <span class="number">9478</span>  <span class="number">9352</span>  <span class="number">0</span>  <span class="number">80</span>   <span class="number">0</span> -  <span class="number">1598</span> -      pts/<span class="number">0</span>    <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> ps</span><br></pre></td></tr></table></figure></p>
+<h2 id="进程是什么样的"><a href="#进程是什么样的" class="headerlink" title="进程是什么样的"></a>进程是什么样的</h2><p>程序运行起来后，我们看不到也摸不着。因此 Linux 为我们提供了一系列方便的命名来查看正在运行的进程。首先是 ps 命令，比如 <code>ps -l</code>命令能查看当前 bash 下的相关进程全部信息。如下：<br><figure class="highlight tap"><table><tr><td class="code"><pre><div class="line">$ ps -l</div><div class="line">F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</div><div class="line">0 S <span class="number"> 1000 </span><span class="number"> 2552 </span><span class="number"> 2538 </span><span class="number"> 0 </span><span class="number"> 80 </span> <span class="number"> 0 </span>- <span class="number"> 1945 </span>wait   pts/0    00:00:00 bash</div><div class="line">0 S <span class="number"> 1000 </span><span class="number"> 9352 </span><span class="number"> 2552 </span><span class="number"> 0 </span><span class="number"> 80 </span> <span class="number"> 0 </span>- <span class="number"> 1926 </span>wait   pts/0    00:00:00 bash</div><div class="line">0 R <span class="number"> 1000 </span><span class="number"> 9478 </span><span class="number"> 9352 </span><span class="number"> 0 </span><span class="number"> 80 </span> <span class="number"> 0 </span>- <span class="number"> 1598 </span>-      pts/0    00:00:00 ps</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>另外，我们还可以用 <code>pstree</code> 命令来显示整棵进程树。</p>
 <p><img src="http://ww3.sinaimg.cn/large/81b78497jw1einn18zdbaj20k50bign9.jpg" alt=""></p>
@@ -351,7 +351,7 @@
 <h2 id="父进程-amp-子进程"><a href="#父进程-amp-子进程" class="headerlink" title="父进程 &amp; 子进程"></a>父进程 &amp; 子进程</h2><p>上面提到所谓的“衍生出来的进程”正是 Linux 的父子进程的概念。当我们登录系统后，会取得一个 bash shell，然后我们利用这个 bash 提供的接口去执行另一个命令，例如 <code>bash</code> 或者 <code>ps</code> 等。那些另外执行的命令也会被触发成为 PID，那个后来执行的命令产生的 PID 就是“子进程”，而原本的 bash 环境下，就称为“父进程”了。</p>
 <p>老进程成为新进程的父进程（parent process），而相应的，新进程就是老的进程的子进程（child process）。一个进程除了有一个PID之外，还会有一个PPID（parent PID）来存储的父进程 PID。如果我们循着 PPID 不断向上追溯的话，总会发现其源头是 init 进程。所以说，所有的进程也构成一个以 init 为根的树状结构。</p>
 <p>我们使用 <code>ps -o</code> 命令来看一看现有的进程。</p>
-<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">$ ps -o pid,ppid,comm</span><br><span class="line"> PID  PPID COMMAND</span><br><span class="line"><span class="number">2552</span>  <span class="number">2538</span> <span class="keyword">bash</span><br><span class="line"></span><span class="number">9352</span>  <span class="number">2552</span> <span class="keyword">bash</span><br><span class="line"></span><span class="number">9625</span>  <span class="number">9352</span> ps</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">$ ps -o pid,ppid,comm</div><div class="line"> PID  PPID COMMAND</div><div class="line"><span class="number">2552</span>  <span class="number">2538</span> bash</div><div class="line"><span class="number">9352</span>  <span class="number">2552</span> bash</div><div class="line"><span class="number">9625</span>  <span class="number">9352</span> ps</div></pre></td></tr></table></figure>
 <p>我所做的操作是在原来的 bash shell 中执行了 bash 命令，然后又执行了 ps 命令。我们可以看到，第二个进程 bash 是第一个进程 bash 的子进程，而第三个进程ps是第二个进程的子进程。</p>
 <h2 id="fork-amp-exec"><a href="#fork-amp-exec" class="headerlink" title="fork &amp; exec"></a>fork &amp; exec</h2><p>当计算机开机的时候，内核（kernel）只建立了一个 init 进程。Linux kernel 并不提供直接建立新进程的系统调用。剩下的所有进程都是 init 进程通过 fork 机制建立的。新的进程要通过老的进程复制自身得到，这就是 fork。fork 是一个系统调用。进程存活于内存中。每个进程都在内存中分配有属于自己的一片空间 (内存空间，包含栈、堆、全局静态区、文本常量区、程序代码区)。当一个程序调用 fork 的时候，实际上就是将上面的内存空间，又复制出来一个，构成一个新的进程，并在内核中为该进程创建新的附加信息 (比如新的 PID，而 PPID 为原进程的 PID)。此后，两个进程分别地继续运行下去。新的进程和原有进程有相同的运行状态(相同的变量值，相同的指令…)。我们只能通过进程的附加信息来区分两者。<br>程序调用 exec 的时候，进程清空自身的内存空间，并根据新的程序文件重建程序代码、文本常量、全局静态、堆和栈(此时堆和栈大小都为 0)，并开始运行。</p>
 <h2 id="工作管理"><a href="#工作管理" class="headerlink" title="工作管理"></a>工作管理</h2><p>这个工作管理（job control）是用在 bash 环境下的，也就是说，当我们登录系统取得 bash shell 之后，在单一终端机下可以同时进行多个工作的行为管理。</p>
@@ -359,32 +359,32 @@
 <p>工作管理的意义在于将多个工作囊括在一个终端，并取其中的一个工作作为前台，来直接接收该终端的输入输出以及终端信号。 其他工作在后台运行。</p>
 <ul>
 <li><p>直接将命令丢到后台执行：<code>&amp;</code></p>
-  <figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line">$ping localhost &gt; log &amp;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line">$ping localhost &gt; <span class="built_in">log</span> &amp;</div></pre></td></tr></table></figure>
 <p>  此时终端显示:</p>
-  <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">[<span class="number">1</span>] <span class="number">9800</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight json"><table><tr><td class="code"><pre><div class="line">[<span class="number">1</span>] <span class="number">9800</span></div></pre></td></tr></table></figure>
 <p>  括号中的 1 表示工作号，而 9800 为 PID</p>
 </li>
 <li><p>将目前的工作丢到后台中“暂停”： <code>[ctrl]+z</code></p>
-  <figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line">$vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+  <figure class="highlight gams"><table><tr><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">$vim</span> ~/.bashrc</span></div></pre></td></tr></table></figure>
 <p>  在vim的普通模式下，按下<code>[ctrl]+z</code>的组合键</p>
-  <figure class="highlight accesslog"><table><tr><td class="code"><pre><span class="line"><span class="string">[2]</span>+  已停止               vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+  <figure class="highlight accesslog"><table><tr><td class="code"><pre><div class="line"><span class="string">[2]</span>+  已停止               vim ~/.bashrc</div></pre></td></tr></table></figure>
 </li>
 <li><p>查看目前的后台工作状态：<code>jobs</code><br>  其各个参数的含义如下<br>  -l ：同时列出PID的号码<br>  -r：仅列出正在后台run的工作<br>  -s：仅列出在后台stop的工作</p>
 <p>  例如我们执行</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">jobs</span> <span class="_">-l</span></span><br><span class="line">[1]-  9800 运行中               ping localhost &gt; <span class="built_in">log</span> &amp;</span><br><span class="line">[2]+  9905 停止                  vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+  <figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">$ jobs -l</div><div class="line">[<span class="number">1</span>]-  <span class="number">9800</span> 运行中               ping localhost &gt; log &amp;</div><div class="line">[<span class="number">2</span>]+  <span class="number">9905</span> 停止                  vim ~/.bashrc</div></pre></td></tr></table></figure>
 <p>  能看到目前有多少个工作在后台中，并且能看到这些工作的 PID。紧跟在 job number 后面的 <code>+</code> 代表最近放到后台的工作，<code>-</code> 代表最近最后第二个放到后台的工作，直接执行<code>fg</code>的话会先取<code>+</code>的</p>
 </li>
 <li><p>将后台工作拿到前台来处理：<code>fg %jobnumber</code></p>
-  <figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line">$cat &gt; log &amp;</span><br><span class="line">$fg <span class="meta">%1</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight gams"><table><tr><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">$cat</span> &gt; log &amp;</span></div><div class="line"><span class="meta"><span class="meta-keyword">$fg</span> %1</span></div></pre></td></tr></table></figure>
 <p>  当我们运行第一个命令后，由于工作在后台，我们无法对命令进行输入，直到我们将工作带入前台，才能向 cat 命令输入。在输入完成后，按下 CTRL+D 来通知 shell 输入结束。</p>
 </li>
 <li><p>让工作在后台下的状态变成运行中：<code>bg %jobnumber</code></p>
 </li>
 <li><p>管理后台工作中的工作：<code>kill</code><br>  信号可以通过 kill 传递给进程，信号值以下三个比较重要。<br>  -1  重新加载 （SIGHUP）<br>  -9  立刻删除 （SIGKILL）<br>  -15  正常终止（SIGTERM）</p>
 <p>  可以使用 </p>
-  <figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line">$kill -SIGTERM <span class="number">9800</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight gams"><table><tr><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">$kill</span> -SIGTERM 9800</span></div></pre></td></tr></table></figure>
 <p>  或者</p>
-  <figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line">$kill -<span class="number">15</span>  <span class="meta">%1</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight gams"><table><tr><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">$kill</span> -15  %1</span></div></pre></td></tr></table></figure>
 <p>  的方式来发送给工作。上面的两个命令，一个是发送给信号给 PID 9800 ，一个是发送信号值给工作号1，两者等价。</p>
 </li>
 <li><p>监控进程的变化：<code>top</code><br>  top 是一个很不错的程序查看工具，但不同于 ps 的静态结果输出，top 可以持续监测整个系统的进程工作状态，而且功能非常丰富，可以在 top 中输入<code>?</code>查看更多功能按键。常用的有 <code>P</code> 以CPU使用资源排序，<code>M</code>以物理内存使用排序。</p>
@@ -526,7 +526,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -557,7 +557,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

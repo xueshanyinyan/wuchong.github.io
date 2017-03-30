@@ -358,7 +358,7 @@
 <p>那么如何使用呢？<br>可以在<a href="http://www.mathjax.org/download/" target="_blank" rel="external">官网</a>上下载所需的 js 库，大约17M，解压后大约有130M（我了个去！）。我整个博客也就1M，这显然不太适用。</p>
 <p>所以，MathJax 提供了另一种方式，直接使用他们的 CDN，这样就不用上传下载了。</p>
 <p>对于 hexo 用户，可以修改<code>themes/jacman/layout/_partial/after_footer.ejs</code>文件（<em>不同主题的用户，文件位置可能不一样</em>），在文件末尾添加下面的代码：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/x-mathjax-config"</span>&gt;</span><span class="actionscript"> </span><br><span class="line">MathJax.Hub.Config(&#123; </span><br><span class="line">  tex2jax: &#123;inlineMath: [[<span class="string">'$'</span>,<span class="string">'$'</span>], [<span class="string">'\\('</span>,<span class="string">'\\)'</span>]]&#125; </span><br><span class="line">&#125;); </span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span></span><br><span class="line">   <span class="attr">src</span>=<span class="string">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</span><span class="undefined"></span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/x-mathjax-config"</span>&gt;</span><span class="actionscript"> </span></div><div class="line">MathJax.Hub.Config(&#123; </div><div class="line">  tex2jax: &#123;inlineMath: [[<span class="string">'$'</span>,<span class="string">'$'</span>], [<span class="string">'\\('</span>,<span class="string">'\\)'</span>]]&#125; </div><div class="line">&#125;); </div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span></span></div><div class="line">   <span class="attr">src</span>=<span class="string">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;<span class="undefined"></span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>现在，就可以在 markdown 中随意调用 LaTex 公式了。</p>
 <p>$ 表示行内公式： </p>
 <p>质能守恒方程可以用一个很简洁的方程式 <code>$E=mc^2$</code> 来表达：$E=mc^2$ 。</p>
@@ -508,7 +508,7 @@ $$\sum^{j-1}_{k=0}{\widehat{\gamma}_{kj} z_k}$$
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -539,7 +539,7 @@ $$\sum^{j-1}_{k=0}{\widehat{\gamma}_{kj} z_k}$$
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
