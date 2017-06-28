@@ -78,7 +78,7 @@
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1QKR2JFXXXXbyaXXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1tA_GJFXXXXapXFXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1qmtpJVXXXXagXXXXXXXXXXXX">
-<meta property="og:updated_time" content="2016-05-12T12:17:37.000Z">
+<meta property="og:updated_time" content="2017-06-28T02:12:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink 原理与实现：架构和拓扑概览">
 <meta name="twitter:description" content="架构要了解一个系统，一般都是从架构开始。我们关心的问题是：系统部署成功后各个节点都启动了哪些服务，各个服务之间又是怎么交互和协调的。下方是 Flink 集群启动后架构图。
@@ -408,7 +408,7 @@
 <li><strong>ExecutionGraph：</strong>JobManager 根据 JobGraph 生成ExecutionGraph。ExecutionGraph是JobGraph的并行化版本，是调度层最核心的数据结构。<ul>
 <li>ExecutionJobVertex：和JobGraph中的JobVertex一一对应。每一个ExecutionJobVertex都有和并发度一样多的 ExecutionVertex。</li>
 <li>ExecutionVertex：表示ExecutionJobVertex的其中一个并发子任务，输入是ExecutionEdge，输出是IntermediateResultPartition。</li>
-<li>IntermediateResult：和JobGraph中的IntermediateDataSet一一对应。每一个IntermediateResult有与下游ExecutionJobVertex相同并发数的IntermediateResultPartition。</li>
+<li>IntermediateResult：和JobGraph中的IntermediateDataSet一一对应。一个IntermediateResult包含多个IntermediateResultPartition，其个数等于该operator的并发度。</li>
 <li>IntermediateResultPartition：表示ExecutionVertex的一个输出分区，producer是ExecutionVertex，consumer是若干个ExecutionEdge。</li>
 <li>ExecutionEdge：表示ExecutionVertex的输入，source是IntermediateResultPartition，target是ExecutionVertex。source和target都只能是一个。</li>
 <li>Execution：是执行一个 ExecutionVertex 的一次尝试。当发生故障或者数据需要重算的情况下 ExecutionVertex 可能会有多个 ExecutionAttemptID。一个 Execution 通过 ExecutionAttemptID 来唯一标识。JM和TM之间关于 task 的部署和 task status 的更新都是通过 ExecutionAttemptID 来确定消息接受者。</li>
@@ -452,9 +452,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Flink原理与实现/" rel="tag">#Flink原理与实现</a>
-          
             <a href="/tags/Flink/" rel="tag">#Flink</a>
+          
+            <a href="/tags/Flink原理与实现/" rel="tag">#Flink原理与实现</a>
           
         </div>
       

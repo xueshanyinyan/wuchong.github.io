@@ -71,9 +71,9 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
-      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
-    
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
   </entry>
   
@@ -209,9 +209,9 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
-      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
-    
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
   </entry>
   
@@ -312,9 +312,9 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
-      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
-    
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
   </entry>
   
@@ -371,9 +371,9 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
-      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
-    
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
   </entry>
   
@@ -410,11 +410,11 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
+      <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
       <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
       <category term="源码分析" scheme="http://wuchong.me/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
     
   </entry>
   
@@ -493,9 +493,9 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
-      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
-    
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
   </entry>
   
@@ -562,11 +562,11 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
+      <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
       <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
       <category term="源码分析" scheme="http://wuchong.me/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
     
   </entry>
   
@@ -575,7 +575,7 @@
     <link href="http://wuchong.me/blog/2016/05/03/flink-internals-overview/"/>
     <id>http://wuchong.me/blog/2016/05/03/flink-internals-overview/</id>
     <published>2016-05-03T15:41:40.000Z</published>
-    <updated>2016-05-12T12:17:37.000Z</updated>
+    <updated>2017-06-28T02:12:05.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>要了解一个系统，一般都是从架构开始。我们关心的问题是：系统部署成功后各个节点都启动了哪些服务，各个服务之间又是怎么交互和协调的。下方是 Flink 集群启动后架构图。</p>
 <p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1ObBnJFXXXXXtXVXXXXXXXXXX" alt=""></p>
@@ -633,7 +633,7 @@
 <li><strong>ExecutionGraph：</strong>JobManager 根据 JobGraph 生成ExecutionGraph。ExecutionGraph是JobGraph的并行化版本，是调度层最核心的数据结构。<ul>
 <li>ExecutionJobVertex：和JobGraph中的JobVertex一一对应。每一个ExecutionJobVertex都有和并发度一样多的 ExecutionVertex。</li>
 <li>ExecutionVertex：表示ExecutionJobVertex的其中一个并发子任务，输入是ExecutionEdge，输出是IntermediateResultPartition。</li>
-<li>IntermediateResult：和JobGraph中的IntermediateDataSet一一对应。每一个IntermediateResult有与下游ExecutionJobVertex相同并发数的IntermediateResultPartition。</li>
+<li>IntermediateResult：和JobGraph中的IntermediateDataSet一一对应。一个IntermediateResult包含多个IntermediateResultPartition，其个数等于该operator的并发度。</li>
 <li>IntermediateResultPartition：表示ExecutionVertex的一个输出分区，producer是ExecutionVertex，consumer是若干个ExecutionEdge。</li>
 <li>ExecutionEdge：表示ExecutionVertex的输入，source是IntermediateResultPartition，target是ExecutionVertex。source和target都只能是一个。</li>
 <li>Execution：是执行一个 ExecutionVertex 的一次尝试。当发生故障或者数据需要重算的情况下 ExecutionVertex 可能会有多个 ExecutionAttemptID。一个 Execution 通过 ExecutionAttemptID 来唯一标识。JM和TM之间关于 task 的部署和 task status 的更新都是通过 ExecutionAttemptID 来确定消息接受者。</li>
@@ -671,9 +671,9 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
-      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
-    
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
   </entry>
   
@@ -831,9 +831,9 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
-      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
-    
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
       <category term="内存管理" scheme="http://wuchong.me/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
     
@@ -907,9 +907,9 @@
       <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
-      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
-    
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink原理与实现" scheme="http://wuchong.me/tags/Flink%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
     
       <category term="反压" scheme="http://wuchong.me/tags/%E5%8F%8D%E5%8E%8B/"/>
     
@@ -2172,7 +2172,7 @@
 <h3 id="配置hosts"><a href="#配置hosts" class="headerlink" title="配置hosts"></a>配置hosts</h3><p>在每台主机上修改host文件<br><figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">vi /etc/hosts</div><div class="line"></div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.107</span>      master</div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.108</span>      slave1</div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.109</span>      slave2</div></pre></td></tr></table></figure></p>
 <p>配置之后ping一下用户名看是否生效<br><figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="built_in">ping</span> slave1</div><div class="line"><span class="built_in">ping</span> slave2</div></pre></td></tr></table></figure></p>
 <h3 id="SSH-免密码登录"><a href="#SSH-免密码登录" class="headerlink" title="SSH 免密码登录"></a>SSH 免密码登录</h3><p>安装Openssh server<br><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">sudo apt-get <span class="keyword">install</span> openssh-<span class="keyword">server</span></div></pre></td></tr></table></figure></p>
-<p>在所有机器上都生成私钥和公钥<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">ssh-keygen -t rsa   <span class="comment">#一路回车</span></div></pre></td></tr></table></figure></p>
+<p>在所有机器上都生成私钥和公钥<br><figure class="highlight 1c"><table><tr><td class="code"><pre><div class="line">ssh-keygen -t rsa   <span class="meta">#一路回车</span></div></pre></td></tr></table></figure></p>
 <p>需要让机器间都能相互访问，就把每个机子上的<code>id_rsa.pub</code>发给master节点，传输公钥可以用scp来传输。<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">scp ~/.ssh/id_rsa<span class="selector-class">.pub</span> spark@master:~/.ssh/id_rsa<span class="selector-class">.pub</span><span class="selector-class">.slave1</span></div></pre></td></tr></table></figure></p>
 <p>在master上，将所有公钥加到用于认证的公钥文件<code>authorized_keys</code>中<br><figure class="highlight ruby"><table><tr><td class="code"><pre><div class="line">cat ~<span class="regexp">/.ssh/id</span>_rsa.pub* <span class="meta">&gt;&gt; </span>~<span class="regexp">/.ssh/authorized</span>_keys</div></pre></td></tr></table></figure></p>
 <p>将公钥文件<code>authorized_keys</code>分发给每台slave<br><figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line">scp ~<span class="regexp">/.ssh/authorized</span>_keys spark<span class="variable">@slave1</span><span class="symbol">:~/</span>.ssh/</div></pre></td></tr></table></figure></p>
@@ -2429,7 +2429,7 @@
 <p><strong>(2) Centos 下安装依赖包</strong><br>需要配置 epel 第三方源。下载 epel ：<a href="http://dl.fedoraproject.org/pub/epel/" target="_blank" rel="external">http://dl.fedoraproject.org/pub/epel/</a> 。例如，Centos 7 x64：<br><figure class="highlight awk"><table><tr><td class="code"><pre><div class="line">wget http:<span class="regexp">//</span>dl.fedoraproject.org<span class="regexp">/pub/</span>epel<span class="regexp">/7/</span>x86_64<span class="regexp">/e/</span>epel-release-<span class="number">7</span>-<span class="number">5</span>.noarch.rpm</div><div class="line">rpm -ivh epel-release-<span class="number">7</span>-<span class="number">5</span>.noarch.rpm</div><div class="line">yum repolist</div></pre></td></tr></table></figure></p>
 <p>然后安装依赖包：<br><figure class="highlight cmake"><table><tr><td class="code"><pre><div class="line">yum <span class="keyword">install</span> libnet libpcap libnet-devel libpcap-devel</div></pre></td></tr></table></figure></p>
 <p><strong>(3) 下载官方的 tar.gz 压缩包。解压安装运行：</strong><br><figure class="highlight vim"><table><tr><td class="code"><pre><div class="line">wget http://net-speeder.googlecode.<span class="keyword">com</span>/<span class="keyword">files</span>/net_speeder-v0.<span class="number">1</span>.tar.gz </div><div class="line">tar zxvf net_speeder-v0.<span class="number">1</span>.tar.gz</div><div class="line"><span class="keyword">cd</span> net_speeder</div><div class="line">chmod <span class="number">777</span> *</div><div class="line"><span class="keyword">sh</span> build.<span class="keyword">sh</span> -DCOOKED</div></pre></td></tr></table></figure></p>
-<p>首先你需要知道你的网卡设备名，可以使用 ifconfig 查看。假设是eth0，那么运行方法是:<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">./net_speeder eth0 <span class="string">"ip"</span></div></pre></td></tr></table></figure></p>
+<p>首先你需要知道你的网卡设备名，可以使用 ifconfig 查看。假设是eth0，那么运行方法是:<br><figure class="highlight 1c"><table><tr><td class="code"><pre><div class="line">./net_speeder eth0 <span class="string">"ip"</span></div></pre></td></tr></table></figure></p>
 <p>关闭 net-speeder<br><figure class="highlight nginx"><table><tr><td class="code"><pre><div class="line"><span class="attribute">killall</span> net_speeder</div></pre></td></tr></table></figure></p>
 <p>哦，对了，作者已经将 net-speeder 迁移到 <a href="https://github.com/snooda/net-speeder" target="_blank" rel="external">GitHub</a> 了，感兴趣的可以关注、贡献。</p>
 <p>以上几种方法是我用过的几种比较有效的加速方法。有任何错误之处还请在下面留言指出。</p>
