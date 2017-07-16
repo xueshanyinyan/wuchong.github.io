@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wuchong.me/"/>
-  <updated>2017-07-16T12:44:43.000Z</updated>
+  <updated>2017-07-16T12:49:00.000Z</updated>
   <id>http://wuchong.me/</id>
   
   <author>
@@ -20,10 +20,11 @@
     <link href="http://wuchong.me/blog/2017/07/16/two-years-in-alibaba/"/>
     <id>http://wuchong.me/blog/2017/07/16/two-years-in-alibaba/</id>
     <published>2017-07-16T12:43:38.000Z</published>
-    <updated>2017-07-16T12:44:43.000Z</updated>
+    <updated>2017-07-16T12:49:00.000Z</updated>
     
     <content type="html"><![CDATA[<p>这两天，团队来了不少新人，有实习生也有刚毕业的大学生。看着他们稚气的面庞，文静而腼腆的样子，跟我两年前刚进公司的时候好像。今天内网提示我这是我在阿里的第732天，两周年快乐。突然觉得，我应该写点什么东西，一方面给自己一个总结，分享一下自己成长的故事。另一方面，希望能帮助刚毕业的大学生们消除一些成长路上的疑惑。</p>
 <p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fhljtdhofaj21ue0s6x6q.jpg" alt=""></p>
+<a id="more"></a>
 <h2 id="JStorm"><a href="#JStorm" class="headerlink" title="JStorm"></a>JStorm</h2><p>我是2015年7月毕业后加入的公司，当时进入的是中间件-实时计算 JStorm 团队。JStorm 是用 Java 语言代替 Clojure 语言重写了 Apache Storm，并在原有的基础上做了诸多性能和功能优化。JStorm 是阿里巴巴开源的几个明星产品之一，在国内的用户非常多。很多国内做流计算，实时计算的应该都知道 JStorm。</p>
 <p>但是我当时并不知道 JStorm 或是 Storm，我当时只知道 Spark，也不懂什么是实时计算，流计算。所以<br>都是入职之后现学，看文档，看源码，学习 Clojure。差不多11月份的时候，阿里正式向 Apache 基金会捐赠了 JStorm。这是阿里捐赠给 Apache 的第一个项目，后面还有 <a href="https://rocketmq.incubator.apache.org/" target="_blank" rel="external">Apache RocketMQ</a>, <a href="https://weex.incubator.apache.org/cn/" target="_blank" rel="external">Apache Weex</a>。JStorm 火了一把，当时有很多报道转载这件事情，还放了一张我们团队油头垢面、屌丝气十足的合照。</p>
 <p>在第一个半年里，我重写了 JStorm 的开源 UI，参与了管控平台的开发，做了 JStorm 的一些开发工作。到了半年 Review 的时候，我觉得我做的并不好（虽然老板一直鼓励我做的挺好…）。其实作为一个新人，半年时间是很难做出成绩的。但是从一开始我对自己的期望就比较高，所以失望也比较大。而且看到同期的应届生半年就有非常出色的成果，相比之下就相形见绌了。那段时间，自己的心情也比较低落，比较迷茫。我觉得我脑子不笨，学习能力也不差，工作也很努力，为什么就做不出什么“成果”呢？</p>
@@ -39,7 +40,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;这两天，团队来了不少新人，有实习生也有刚毕业的大学生。看着他们稚气的面庞，文静而腼腆的样子，跟我两年前刚进公司的时候好像。今天内网提示我这是我在阿里的第732天，两周年快乐。突然觉得，我应该写点什么东西，一方面给自己一个总结，分享一下自己成长的故事。另一方面，希望能帮助刚毕
+      &lt;p&gt;这两天，团队来了不少新人，有实习生也有刚毕业的大学生。看着他们稚气的面庞，文静而腼腆的样子，跟我两年前刚进公司的时候好像。今天内网提示我这是我在阿里的第732天，两周年快乐。突然觉得，我应该写点什么东西，一方面给自己一个总结，分享一下自己成长的故事。另一方面，希望能帮助刚毕业的大学生们消除一些成长路上的疑惑。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/81b78497gy1fhljtdhofaj21ue0s6x6q.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -2207,7 +2209,7 @@
 <h3 id="配置hosts"><a href="#配置hosts" class="headerlink" title="配置hosts"></a>配置hosts</h3><p>在每台主机上修改host文件<br><figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">vi /etc/hosts</div><div class="line"></div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.107</span>      master</div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.108</span>      slave1</div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.109</span>      slave2</div></pre></td></tr></table></figure></p>
 <p>配置之后ping一下用户名看是否生效<br><figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="built_in">ping</span> slave1</div><div class="line"><span class="built_in">ping</span> slave2</div></pre></td></tr></table></figure></p>
 <h3 id="SSH-免密码登录"><a href="#SSH-免密码登录" class="headerlink" title="SSH 免密码登录"></a>SSH 免密码登录</h3><p>安装Openssh server<br><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">sudo apt-get <span class="keyword">install</span> openssh-<span class="keyword">server</span></div></pre></td></tr></table></figure></p>
-<p>在所有机器上都生成私钥和公钥<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">ssh-keygen -t rsa   <span class="comment">#一路回车</span></div></pre></td></tr></table></figure></p>
+<p>在所有机器上都生成私钥和公钥<br><figure class="highlight 1c"><table><tr><td class="code"><pre><div class="line">ssh-keygen -t rsa   <span class="meta">#一路回车</span></div></pre></td></tr></table></figure></p>
 <p>需要让机器间都能相互访问，就把每个机子上的<code>id_rsa.pub</code>发给master节点，传输公钥可以用scp来传输。<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">scp ~/.ssh/id_rsa<span class="selector-class">.pub</span> spark@master:~/.ssh/id_rsa<span class="selector-class">.pub</span><span class="selector-class">.slave1</span></div></pre></td></tr></table></figure></p>
 <p>在master上，将所有公钥加到用于认证的公钥文件<code>authorized_keys</code>中<br><figure class="highlight ruby"><table><tr><td class="code"><pre><div class="line">cat ~<span class="regexp">/.ssh/id</span>_rsa.pub* <span class="meta">&gt;&gt; </span>~<span class="regexp">/.ssh/authorized</span>_keys</div></pre></td></tr></table></figure></p>
 <p>将公钥文件<code>authorized_keys</code>分发给每台slave<br><figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line">scp ~<span class="regexp">/.ssh/authorized</span>_keys spark<span class="variable">@slave1</span><span class="symbol">:~/</span>.ssh/</div></pre></td></tr></table></figure></p>
@@ -2464,7 +2466,7 @@
 <p><strong>(2) Centos 下安装依赖包</strong><br>需要配置 epel 第三方源。下载 epel ：<a href="http://dl.fedoraproject.org/pub/epel/" target="_blank" rel="external">http://dl.fedoraproject.org/pub/epel/</a> 。例如，Centos 7 x64：<br><figure class="highlight awk"><table><tr><td class="code"><pre><div class="line">wget http:<span class="regexp">//</span>dl.fedoraproject.org<span class="regexp">/pub/</span>epel<span class="regexp">/7/</span>x86_64<span class="regexp">/e/</span>epel-release-<span class="number">7</span>-<span class="number">5</span>.noarch.rpm</div><div class="line">rpm -ivh epel-release-<span class="number">7</span>-<span class="number">5</span>.noarch.rpm</div><div class="line">yum repolist</div></pre></td></tr></table></figure></p>
 <p>然后安装依赖包：<br><figure class="highlight cmake"><table><tr><td class="code"><pre><div class="line">yum <span class="keyword">install</span> libnet libpcap libnet-devel libpcap-devel</div></pre></td></tr></table></figure></p>
 <p><strong>(3) 下载官方的 tar.gz 压缩包。解压安装运行：</strong><br><figure class="highlight vim"><table><tr><td class="code"><pre><div class="line">wget http://net-speeder.googlecode.<span class="keyword">com</span>/<span class="keyword">files</span>/net_speeder-v0.<span class="number">1</span>.tar.gz </div><div class="line">tar zxvf net_speeder-v0.<span class="number">1</span>.tar.gz</div><div class="line"><span class="keyword">cd</span> net_speeder</div><div class="line">chmod <span class="number">777</span> *</div><div class="line"><span class="keyword">sh</span> build.<span class="keyword">sh</span> -DCOOKED</div></pre></td></tr></table></figure></p>
-<p>首先你需要知道你的网卡设备名，可以使用 ifconfig 查看。假设是eth0，那么运行方法是:<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">./net_speeder eth0 <span class="string">"ip"</span></div></pre></td></tr></table></figure></p>
+<p>首先你需要知道你的网卡设备名，可以使用 ifconfig 查看。假设是eth0，那么运行方法是:<br><figure class="highlight 1c"><table><tr><td class="code"><pre><div class="line">./net_speeder eth0 <span class="string">"ip"</span></div></pre></td></tr></table></figure></p>
 <p>关闭 net-speeder<br><figure class="highlight nginx"><table><tr><td class="code"><pre><div class="line"><span class="attribute">killall</span> net_speeder</div></pre></td></tr></table></figure></p>
 <p>哦，对了，作者已经将 net-speeder 迁移到 <a href="https://github.com/snooda/net-speeder" target="_blank" rel="external">GitHub</a> 了，感兴趣的可以关注、贡献。</p>
 <p>以上几种方法是我用过的几种比较有效的加速方法。有任何错误之处还请在下面留言指出。</p>
