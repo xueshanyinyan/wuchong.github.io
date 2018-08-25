@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wuchong.me/blog/2018/08/25/flink-in-meituan-practice/</loc>
+    
+    <lastmod>2018-08-25T04:41:55.922Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/blog/2017/07/16/two-years-in-alibaba/</loc>
     
     <lastmod>2017-07-16T12:49:00.000Z</lastmod>
@@ -506,14 +513,14 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/404.html</loc>
+    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
+    <loc>http://wuchong.me/404.html</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     

