@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wuchong.me/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/</loc>
+    
+    <lastmod>2018-11-04T13:47:31.161Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/blog/2018/10/30/6-things-to-consider-when-defining-your-apache-flink-cluster-size/</loc>
     
-    <lastmod>2018-10-30T02:46:55.147Z</lastmod>
+    <lastmod>2018-11-04T13:38:53.244Z</lastmod>
     
   </url>
   
@@ -506,13 +513,6 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/07/30/ali-bigdata-competition-write-to-the-5-monthes/</loc>
-    
-    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wuchong.me/blog/2014/01/27/python-spider-gif/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
@@ -528,6 +528,13 @@
   
   <url>
     <loc>http://wuchong.me/404.html</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/07/30/ali-bigdata-competition-write-to-the-5-monthes/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     

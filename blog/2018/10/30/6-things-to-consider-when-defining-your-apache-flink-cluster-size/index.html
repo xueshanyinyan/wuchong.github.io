@@ -32,6 +32,8 @@
 
 
 
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
 
 
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
@@ -68,7 +70,7 @@
 <meta property="og:site_name" content="Jark's Blog">
 <meta property="og:description" content="在 Apache Flink 社区中我们被经常问及的一件事是：如何规划和计算一个 Flink 集群的大小（或者说如何确定一个 Flink 作业所需的资源）。确定集群的大小很显然是决定于多种因素的，例如应用场景，应用的规模，以及特定的服务等级协议（SLA）。另外应用程序中的 checkpoint 类型（增量 vs 全量）和 Flink 作业处理是连续还是突发的也都会影响到 Flink 集群的大小。主">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1mCHflNnaK1RjSZFBXXcW7VXa-1064-1064.png">
-<meta property="og:updated_time" content="2018-10-30T02:46:55.147Z">
+<meta property="og:updated_time" content="2018-11-04T13:38:53.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink小贴士 (1)：确定Flink作业所需资源大小时要考虑的6件事">
 <meta name="twitter:description" content="在 Apache Flink 社区中我们被经常问及的一件事是：如何规划和计算一个 Flink 集群的大小（或者说如何确定一个 Flink 作业所需的资源）。确定集群的大小很显然是决定于多种因素的，例如应用场景，应用的规模，以及特定的服务等级协议（SLA）。另外应用程序中的 checkpoint 类型（增量 vs 全量）和 Flink 作业处理是连续还是突发的也都会影响到 Flink 集群的大小。主">
@@ -341,7 +343,7 @@
 
       
         <blockquote>
-<p>本文译自 dataArtisans 官方博文：<a href="https://data-artisans.com/blog/6-things-to-consider-when-defining-your-apache-flink-cluster-size" target="_blank" rel="external">https://data-artisans.com/blog/6-things-to-consider-when-defining-your-apache-flink-cluster-size</a><br>译者：云邪（Jark）<br>译注：原文标题是“6 things to consider when defining your Apache Flink cluster size”，其实在确定作业所需资源时要考虑的事情是一样的，而作业所需资源的问题是用户更经常遇到的问题，所以这里将标题修改了下。</p>
+<p>原文：<a href="https://data-artisans.com/blog/6-things-to-consider-when-defining-your-apache-flink-cluster-size" target="_blank" rel="external">https://data-artisans.com/blog/6-things-to-consider-when-defining-your-apache-flink-cluster-size</a><br>作者：Fabian Hueske<br>译者：云邪（Jark）<br>译注：原文标题是“6 things to consider when defining your Apache Flink cluster size”，其实在确定作业所需资源时要考虑的事情是一样的，而作业所需资源的问题是用户更经常遇到的问题，所以这里将标题修改了下。</p>
 </blockquote>
 <p>本文是我们博客新开系列《Flink Friday Tip》的首篇文章。该系列主要涵盖了易理解的最佳实践、如何提高Flink 性能的建议、以及如何最佳地使用 Flink 的各种功能。</p>
 <blockquote>
@@ -418,6 +420,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/" rel="prev" title="Flink 小贴士 (2)：Flink 如何管理 Kafka 消费位点">
+                Flink 小贴士 (2)：Flink 如何管理 Kafka 消费位点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -488,7 +494,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">72</span>
+              <span class="site-state-item-count">73</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -519,7 +525,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

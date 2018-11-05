@@ -32,6 +32,8 @@
 
 
 
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
 
 
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
@@ -242,6 +244,142 @@
 
     
     
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2016/05/09/flink-internals-understanding-execution-resources/" itemprop="url">
+                  Flink 原理与实现：理解 Flink 中的计算资源
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-09T17:19:31+08:00" content="2016-05-09">
+              2016-05-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index">
+                    <span itemprop="name">Flink</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/05/09/flink-internals-understanding-execution-resources/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2016/05/09/flink-internals-understanding-execution-resources/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/05/09/flink-internals-understanding-execution-resources/" class="leancloud_visitors" data-flag-title="Flink 原理与实现：理解 Flink 中的计算资源">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+<!--
+    
+      <div class="post-body">
+    
+    -->
+
+
+    <div class="post-body" itemprop="articleBody">
+    
+
+      
+      
+
+      
+        
+          <p>本文所讨论的计算资源是指用来执行 Task 的资源，是一个逻辑概念。本文会介绍 Flink 计算资源相关的一些核心概念，如：Slot、SlotSharingGroup、CoLocationGroup、Chain等。并会着重讨论 Flink 如何对计算资源进行管理和隔离，如何将计算资源利用率最大化等等。理解 Flink 中的计算资源对于理解 Job 如何在集群中运行的有很大的帮助，也有利于我们更透彻地理解 Flink 原理，更快速地定位问题。</p>
+<h2 id="Operator-Chains"><a href="#Operator-Chains" class="headerlink" title="Operator Chains"></a>Operator Chains</h2><p>为了更高效地分布式执行，Flink会尽可能地将operator的subtask链接（chain）在一起形成task。每个task在一个线程中执行。将operators链接成task是非常有效的优化：它能减少线程之间的切换，减少消息的序列化/反序列化，减少数据在缓冲区的交换，减少了延迟的同时提高整体的吞吐量。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2016/05/09/flink-internals-understanding-execution-resources/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1477,153 +1615,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2015/11/06/learn-clojure-2-syntax/" itemprop="url">
-                  Clojure学习笔记（二）：语法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-06T14:36:15+08:00" content="2015-11-06">
-              2015-11-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/编程语言/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2015/11/06/learn-clojure-2-syntax/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/11/06/learn-clojure-2-syntax/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2015/11/06/learn-clojure-2-syntax/" class="leancloud_visitors" data-flag-title="Clojure学习笔记（二）：语法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-<!--
-    
-      <div class="post-body">
-    
-    -->
-
-
-    <div class="post-body" itemprop="articleBody">
-    
-
-      
-      
-
-      
-        
-          <h2 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h2><ul>
-<li><p><strong>匿名函数</strong><br>匿名函数<code>(fn) (fn [x y] (+ x y))</code> 创建一个匿名函数, fn 和 lambda 类似，fn还有一个简写形式 <code>#(+ %1 %2)</code>。如果只有一个参数,那么可以用 <code>%</code> 代替 <code>%1</code></p>
-</li>
-<li><p><strong>def</strong><br><code>def</code>可以将一个匿名函数绑定到一个name上。</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><div class="line">(<span class="name"><span class="builtin-name">def</span></span> my-add (<span class="name"><span class="builtin-name">fn</span></span> [x y] (<span class="name"><span class="builtin-name">+</span></span> x y)))</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p><strong>defn</strong></p>
-<p>defn 是 def 与 fn 的简写。一般我们也都是用defn。</p>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><div class="line">(<span class="name"><span class="builtin-name">defn</span></span> my-add</div><div class="line">  <span class="string">"this is a comment"</span></div><div class="line">  [x y]</div><div class="line">  (<span class="name"><span class="builtin-name">+</span></span> x y))</div><div class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span>)) <span class="comment">; -&gt; 7</span></div><div class="line"></div><div class="line"><span class="comment">; 函数的重载</span></div><div class="line">(<span class="name"><span class="builtin-name">defn</span></span> my-add</div><div class="line">  ([x y]</div><div class="line">    (<span class="name"><span class="builtin-name">+</span></span> x y))</div><div class="line">  ([x y z]</div><div class="line">    (<span class="name"><span class="builtin-name">+</span></span> x y z)))</div><div class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span>)) <span class="comment">; -&gt; 7</span></div><div class="line">(<span class="name">println</span> (<span class="name">my-add</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>)) <span class="comment">; -&gt; 12</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2015/11/06/learn-clojure-2-syntax/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1670,7 +1661,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">72</span>
+              <span class="site-state-item-count">73</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1701,7 +1692,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
