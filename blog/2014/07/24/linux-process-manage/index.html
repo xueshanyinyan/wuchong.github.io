@@ -359,7 +359,7 @@
 <p>工作管理的意义在于将多个工作囊括在一个终端，并取其中的一个工作作为前台，来直接接收该终端的输入输出以及终端信号。 其他工作在后台运行。</p>
 <ul>
 <li><p>直接将命令丢到后台执行：<code>&amp;</code></p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="variable">$ping</span> localhost &gt; <span class="built_in">log</span> &amp;</div></pre></td></tr></table></figure>
+  <figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line">$ping localhost &gt; <span class="built_in">log</span> &amp;</div></pre></td></tr></table></figure>
 <p>  此时终端显示:</p>
   <figure class="highlight json"><table><tr><td class="code"><pre><div class="line">[<span class="number">1</span>] <span class="number">9800</span></div></pre></td></tr></table></figure>
 <p>  括号中的 1 表示工作号，而 9800 为 PID</p>
