@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wuchong.me/blog/2018/11/07/use-flink-calculate-hot-items/</loc>
+    
+    <lastmod>2018-11-07T15:30:33.046Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/blog/2018/11/07/5-minutes-build-first-flink-application/</loc>
     
     <lastmod>2018-11-07T02:11:11.878Z</lastmod>
@@ -520,21 +527,7 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
-    
-    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wuchong.me/blog/2014/01/27/python-spider-gif/</loc>
-    
-    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
+    <loc>http://wuchong.me/404.html</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
@@ -548,6 +541,20 @@
   </url>
   
   <url>
+    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/search/index.html</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
@@ -555,7 +562,7 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/404.html</loc>
+    <loc>http://wuchong.me/blog/2014/01/27/python-spider-gif/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
