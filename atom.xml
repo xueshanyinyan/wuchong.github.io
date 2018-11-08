@@ -214,7 +214,7 @@
     <link href="http://wuchong.me/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/"/>
     <id>http://wuchong.me/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/</id>
     <published>2018-11-04T13:34:38.000Z</published>
-    <updated>2018-11-04T13:47:31.161Z</updated>
+    <updated>2018-11-08T11:26:28.336Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文：<a href="https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets" target="_blank" rel="external">https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets</a><br>作者：Fabian Hueske, Markos Sfikas<br>译者：云邪（Jark）</p>
@@ -259,7 +259,7 @@
     
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
     
-      <category term="小贴士" scheme="http://wuchong.me/tags/%E5%B0%8F%E8%B4%B4%E5%A3%AB/"/>
+      <category term="Flink小贴士" scheme="http://wuchong.me/tags/Flink%E5%B0%8F%E8%B4%B4%E5%A3%AB/"/>
     
       <category term="Kafka" scheme="http://wuchong.me/tags/Kafka/"/>
     
@@ -270,7 +270,7 @@
     <link href="http://wuchong.me/blog/2018/10/30/6-things-to-consider-when-defining-your-apache-flink-cluster-size/"/>
     <id>http://wuchong.me/blog/2018/10/30/6-things-to-consider-when-defining-your-apache-flink-cluster-size/</id>
     <published>2018-10-30T02:33:46.000Z</published>
-    <updated>2018-11-04T13:38:53.244Z</updated>
+    <updated>2018-11-08T11:26:12.817Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文：<a href="https://data-artisans.com/blog/6-things-to-consider-when-defining-your-apache-flink-cluster-size" target="_blank" rel="external">https://data-artisans.com/blog/6-things-to-consider-when-defining-your-apache-flink-cluster-size</a><br>作者：Fabian Hueske<br>译者：云邪（Jark）<br>译注：原文标题是“6 things to consider when defining your Apache Flink cluster size”，其实在确定作业所需资源时要考虑的事情是一样的，而作业所需资源的问题是用户更经常遇到的问题，所以这里将标题修改了下。</p>
@@ -310,7 +310,7 @@
     
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
     
-      <category term="小贴士" scheme="http://wuchong.me/tags/%E5%B0%8F%E8%B4%B4%E5%A3%AB/"/>
+      <category term="Flink小贴士" scheme="http://wuchong.me/tags/Flink%E5%B0%8F%E8%B4%B4%E5%A3%AB/"/>
     
   </entry>
   
