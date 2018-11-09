@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wuchong.me/"/>
-  <updated>2018-11-09T12:46:01.612Z</updated>
+  <updated>2018-11-09T12:47:01.157Z</updated>
   <id>http://wuchong.me/</id>
   
   <author>
@@ -20,9 +20,12 @@
     <link href="http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/"/>
     <id>http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/</id>
     <published>2018-11-09T07:41:49.000Z</published>
-    <updated>2018-11-09T12:46:01.612Z</updated>
+    <updated>2018-11-09T12:47:01.157Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Apache-Flink-介绍"><a href="#Apache-Flink-介绍" class="headerlink" title="Apache Flink 介绍"></a>Apache Flink 介绍</h2><p>Apache Flink 是近年来越来越流行的一款开源大数据计算引擎，它同时支持了批处理和流处理，也能用来做一些基于事件的应用。使用官网的一句话来介绍 Flink 就是 <strong>“Stateful Computations Over Streams”</strong>。</p>
+    <content type="html"><![CDATA[<blockquote>
+<p>作者：云邪（Jark）<br>原文链接：<a href="http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/">http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/</a></p>
+</blockquote>
+<h2 id="Apache-Flink-介绍"><a href="#Apache-Flink-介绍" class="headerlink" title="Apache Flink 介绍"></a>Apache Flink 介绍</h2><p>Apache Flink 是近年来越来越流行的一款开源大数据计算引擎，它同时支持了批处理和流处理，也能用来做一些基于事件的应用。使用官网的一句话来介绍 Flink 就是 <strong>“Stateful Computations Over Streams”</strong>。</p>
 <p><strong>首先</strong> Flink 是一个<strong>纯流式的计算引擎</strong>，它的基本数据模型是数据流。流可以是无边界的无限流，即一般意义上的流处理。也可以是有边界的有限流，这样就是批处理。因此 Flink 用一套架构同时支持了流处理和批处理。<strong>其次</strong>，Flink 的一个优势是支持<strong>有状态的计算</strong>。如果处理一个事件（或一条数据）的结果只跟事件本身的内容有关，称为无状态处理；反之结果还和之前处理过的事件有关，称为有状态处理。稍微复杂一点的数据处理，比如说基本的聚合，数据流之间的关联都是有状态处理。</p>
 <p><img src="https://img.alicdn.com/tfs/TB1Ta88oyLaK1RjSZFxXXamPFXa-1627-845.png" alt=""></p>
 <a id="more"></a>
@@ -58,7 +61,10 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Apache-Flink-介绍&quot;&gt;&lt;a href=&quot;#Apache-Flink-介绍&quot; class=&quot;headerlink&quot; title=&quot;Apache Flink 介绍&quot;&gt;&lt;/a&gt;Apache Flink 介绍&lt;/h2&gt;&lt;p&gt;Apache Flink 是近年来越来越流行的一款开源大数据计算引擎，它同时支持了批处理和流处理，也能用来做一些基于事件的应用。使用官网的一句话来介绍 Flink 就是 &lt;strong&gt;“Stateful Computations Over Streams”&lt;/strong&gt;。&lt;/p&gt;
+      &lt;blockquote&gt;
+&lt;p&gt;作者：云邪（Jark）&lt;br&gt;原文链接：&lt;a href=&quot;http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/&quot;&gt;http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Apache-Flink-介绍&quot;&gt;&lt;a href=&quot;#Apache-Flink-介绍&quot; class=&quot;headerlink&quot; title=&quot;Apache Flink 介绍&quot;&gt;&lt;/a&gt;Apache Flink 介绍&lt;/h2&gt;&lt;p&gt;Apache Flink 是近年来越来越流行的一款开源大数据计算引擎，它同时支持了批处理和流处理，也能用来做一些基于事件的应用。使用官网的一句话来介绍 Flink 就是 &lt;strong&gt;“Stateful Computations Over Streams”&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;首先&lt;/strong&gt; Flink 是一个&lt;strong&gt;纯流式的计算引擎&lt;/strong&gt;，它的基本数据模型是数据流。流可以是无边界的无限流，即一般意义上的流处理。也可以是有边界的有限流，这样就是批处理。因此 Flink 用一套架构同时支持了流处理和批处理。&lt;strong&gt;其次&lt;/strong&gt;，Flink 的一个优势是支持&lt;strong&gt;有状态的计算&lt;/strong&gt;。如果处理一个事件（或一条数据）的结果只跟事件本身的内容有关，称为无状态处理；反之结果还和之前处理过的事件有关，称为有状态处理。稍微复杂一点的数据处理，比如说基本的聚合，数据流之间的关联都是有状态处理。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://img.alicdn.com/tfs/TB1Ta88oyLaK1RjSZFxXXamPFXa-1627-845.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
     
