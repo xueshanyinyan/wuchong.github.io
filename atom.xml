@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wuchong.me/"/>
-  <updated>2018-11-18T13:08:35.766Z</updated>
+  <updated>2018-11-19T15:13:30.646Z</updated>
   <id>http://wuchong.me/</id>
   
   <author>
@@ -16,33 +16,72 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>超燃！Apache Flink 全球顶级盛会强势来袭</title>
+    <link href="http://wuchong.me/blog/2018/11/19/flink-forward-china-2018/"/>
+    <id>http://wuchong.me/blog/2018/11/19/flink-forward-china-2018/</id>
+    <published>2018-11-19T15:03:09.000Z</published>
+    <updated>2018-11-19T15:13:30.646Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://img.alicdn.com/tfs/TB1Eg.aqpzqK1RjSZFoXXbfcXXa-1080-640.jpg" alt=""></p>
+<a id="more"></a>
+<p>十五年前，Google的“三驾马车”初登舞台，一时间风头无两，随后出现的Hadoop拉开了开源大数据发展的序幕，如今伴随着数据时效性越来越高，以及人工智能的兴起， Apache Flink（以下简称Flink），这款被普遍认为最有可能成为下一代大数据计算引擎的开源软件，正闪耀着新星的光芒。</p>
+<p>Flink具备惊人的潜力，能够帮助企业和开发者在以流为基础的各种计算中获益。它不仅可以真正实现实时数据分析，还可以分析海量历史数据，并且极大地简化数据处理流程。最让人惊喜的是，Flink用同一种底层技术来实现流处理和批处理。它拥有完备的语义和强大的性能，这使得应用程序的开发变得简单，其架构也使得应用程序的维护变得容易。</p>
+<p>时至今日，<br>Flink的卓越性能发展几何？<br>又多了哪些黑科技？<br>在海内外分别有哪些生产级别的实践？<br>下一步有何规划？</p>
+<p>一张Flink Forward China的门票带你一探究竟。</p>
+<h2 id="随智者，见未来"><a href="#随智者，见未来" class="headerlink" title="随智者，见未来"></a>随智者，见未来</h2><p>本届大会筹委会成员由11位在Flink社区极富声望的专家组成，分别是：</p>
+<p><img src="https://img.alicdn.com/tfs/TB1C2.aqrPpK1RjSZFFXXa5PpXa-1129-683.png" alt=""></p>
+<p>12月20日到北京·国家会议中心，聆听海内外Flink 专家的真知灼见</p>
+<p><img src="https://img.alicdn.com/tfs/TB1D_kbqpzqK1RjSZFvXXcB7VXa-2251-8195.jpg" alt=""></p>
+<p>值得一提的是，本次活动为希望可以深度学习、使用Flink的嘉宾精心准备了培训课程 </p>
+<p><img src="https://img.alicdn.com/tfs/TB1Vmb_qxTpK1RjSZFGXXcHqFXa-667-729.png" alt=""></p>
+<p>数字化正成为这个时代的引擎，驱动我们向未来疾速而行。你希望驻足观望？还是身在其中？</p>
+<p>点击<a href="http://www.huodongxing.com/event/3459735708100?utm_source=%E6%90%9C%E7%B4%A2%E6%B4%BB%E5%8A%A8%E5%88%97%E8%A1%A8%E9%A1%B5&amp;utm_medium=&amp;utm_campaign=searchpage" target="_blank" rel="external">阅读原文</a> 即刻启程～！</p>
+<h2 id="Flink-Forward简介"><a href="#Flink-Forward简介" class="headerlink" title="Flink Forward简介"></a>Flink Forward简介</h2><p>Flink Forward是由Apache官方授权，Apache Flink China社区支持，有来自阿里巴巴，dataArtisans（Apache Flink 商业母公司），华为、腾讯、滴滴、美团以及字节跳动等公司参加的国际型会议。旨在汇集大数据领域一流人才共同探讨新一代大数据计算引擎技术。通过参会不仅可以了解到Flink社区的最新动态和发展计划，还可以了解到国内外一线大厂围绕Flink生态的生产实践经验，是Flink开发者和使用者不可错过的盛会。</p>
+<p>Flink Forward过去只在德国柏林、美国旧金山举办。今年将由阿里巴巴作为独家承办方将这一盛会引入中国，共建生态。</p>
+<h2 id="Apache-Flink-China（http-flink-china-org-）"><a href="#Apache-Flink-China（http-flink-china-org-）" class="headerlink" title="Apache Flink China（http://flink-china.org/）"></a>Apache Flink China（<a href="http://flink-china.org/）" target="_blank" rel="external">http://flink-china.org/）</a></h2><p>经过Apache Flink官方授权的中文社区，旨在联合国内的Flink大 V，向国内宣传和普及Flink相关技术，输出技术博文、译作、资讯等内容，推动国内大数据技术发展的开源社区。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://img.alicdn.com/tfs/TB1Eg.aqpzqK1RjSZFoXXbfcXXa-1080-640.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
+    
+    
+      <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Flink 小贴士 (3): 轻松理解 Watermark</title>
     <link href="http://wuchong.me/blog/2018/11/18/flink-tips-watermarks-in-apache-flink-made-easy/"/>
     <id>http://wuchong.me/blog/2018/11/18/flink-tips-watermarks-in-apache-flink-made-easy/</id>
     <published>2018-11-18T13:03:49.000Z</published>
-    <updated>2018-11-18T13:08:35.766Z</updated>
+    <updated>2018-11-19T01:58:33.457Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文：<a href="https://data-artisans.com/blog/watermarks-in-apache-flink-made-easy" target="_blank" rel="external">https://data-artisans.com/blog/watermarks-in-apache-flink-made-easy</a><br>作者：David Anderson<br>译者：云邪（Jark）</p>
 </blockquote>
 <p>当人们第一次使用 Flink 时，经常会对 watermark 感到困惑。但其实 watermark 并不复杂。让我们通过一个简单的例子来说明为什么我们需要 watermark，以及它的工作机制是什么样的。</p>
-<h2 id="在-Apache-Flink-中使用-watermark-的-4-个观察结果"><a href="#在-Apache-Flink-中使用-watermark-的-4-个观察结果" class="headerlink" title="在 Apache Flink 中使用 watermark 的 4 个观察结果"></a>在 Apache Flink 中使用 watermark 的 4 个观察结果</h2><p>在下文中的例子中，我们有一个带有时间戳的事件流，但是由于某种原因它们并不是按顺序到达的。图中的数字代表事件发生的时间戳。第一个到达的事件发生在时间 4，然后它后面跟着的是发生在更早时间（时间 2）的事件，以此类推：</p>
+<h2 id="在-Apache-Flink-中使用-watermark-的-4-个理解"><a href="#在-Apache-Flink-中使用-watermark-的-4-个理解" class="headerlink" title="在 Apache Flink 中使用 watermark 的 4 个理解"></a>在 Apache Flink 中使用 watermark 的 4 个理解</h2><p>在下文中的例子中，我们有一个带有时间戳的事件流，但是由于某种原因它们并不是按顺序到达的。图中的数字代表事件发生的时间戳。第一个到达的事件发生在时间 4，然后它后面跟着的是发生在更早时间（时间 2）的事件，以此类推：</p>
 <p><img src="https://img.alicdn.com/tfs/TB1W0UdqcfpK1RjSZFOXXa6nFXa-684-133.png" alt=""></p>
 <p>注意这是一个按照事件时间处理的例子，这意味着时间戳反映的是事件发生的时间，而不是处理事件的时间。事件时间（Event-Time）处理的强大之处在于，无论是在处理实时的数据还是重新处理历史的数据，基于事件时间创建的流计算应用都能保证结果是一样的。</p>
 <p><em>注：可以访问<a href="https://ci.apache.org/projects/flink/flink-docs-stable/dev/event_time.html" target="_blank" rel="external"> Apache Flink 文档</a>，了解更多有关时间的概念，如 event-time, processing-time, ingestion-time。</em></p>
 <p>现在假设我们正在尝试创建一个流计算排序算子。也就是处理一个乱序到达的事件流，并按照事件时间的顺序输出事件。</p>
-<h2 id="观察-1"><a href="#观察-1" class="headerlink" title="观察 #1:"></a>观察 #1:</h2><p>数据流中的第一个元素的时间是 4，但是我们不能直接将它作为排序后数据流的第一个元素并输出它。因为数据是乱序到达的，也许有一个更早发生的数据还没有到达。事实上，我们能预见一些这个流的未来，也就是我们的排序算子至少要等到 2 这条数据的到达再输出结果。</p>
+<h2 id="理解-1"><a href="#理解-1" class="headerlink" title="理解 #1:"></a>理解 #1:</h2><p>数据流中的第一个元素的时间是 4，但是我们不能直接将它作为排序后数据流的第一个元素并输出它。因为数据是乱序到达的，也许有一个更早发生的数据还没有到达。事实上，我们能预见一些这个流的未来，也就是我们的排序算子至少要等到 2 这条数据的到达再输出结果。</p>
 <p><strong><em>有缓存，就必然有延迟。</em></strong></p>
-<h2 id="观察-2"><a href="#观察-2" class="headerlink" title="观察 #2:"></a>观察 #2:</h2><p>如果我们做错了，我们可能会永远等待下去。首先，我们的应用程序从看到时间 4 的数据，然后看到时间 2 的数据。是否会有一个比时间 2 更早的数据到达呢？也许会，也许不会。我们可以一直等下去，但可能永远看不到 1 。</p>
+<h2 id="理解-2"><a href="#理解-2" class="headerlink" title="理解 #2:"></a>理解 #2:</h2><p>如果我们做错了，我们可能会永远等待下去。首先，我们的应用程序从看到时间 4 的数据，然后看到时间 2 的数据。是否会有一个比时间 2 更早的数据到达呢？也许会，也许不会。我们可以一直等下去，但可能永远看不到 1 。</p>
 <p><strong><em>最终，我们必须勇敢地输出 2 作为排序流的第一个结果。</em></strong></p>
-<h2 id="观察-3"><a href="#观察-3" class="headerlink" title="观察 #3:"></a>观察 #3:</h2><p>我们需要的是某种策略，它定义了对于任何带时间戳的事件流，何时停止等待更早数据的到来。</p>
+<h2 id="理解-3"><a href="#理解-3" class="headerlink" title="理解 #3:"></a>理解 #3:</h2><p>我们需要的是某种策略，它定义了对于任何带时间戳的事件流，何时停止等待更早数据的到来。</p>
 <p><strong><em>这正是 watermark 的作用，他们定义了何时不再等待更早的数据。</em></strong></p>
 <p>Flink 中的事件时间处理依赖于一种特殊的带时间戳的元素，成为 watermark，它们会由数据源或是 watermark 生成器插入数据流中。具有时间戳 <code>t</code> 的 watermark 可以被理解为断言了所有时间戳<strong>小于或等于</strong> <code>t</code> 的事件都（在某种合理的概率上）已经到达了。</p>
 <blockquote>
 <p>译注：此处原文是“小于”，译者认为应该是 “小于或等于”，因为 Flink 源码中采用的是 “小于或等于” 的机制。</p>
 </blockquote>
 <p>何时我们的排序算子应该停止等待，然后将事件 2 作为首个元素输出？答案是当收到时间戳为 2（或更大）的 watermark 时。</p>
-<h2 id="观察-4"><a href="#观察-4" class="headerlink" title="观察 #4:"></a>观察 #4:</h2><p><strong><em>我们可以设想不同的策略来生成 watermark。</em></strong></p>
+<h2 id="理解-4"><a href="#理解-4" class="headerlink" title="理解 #4:"></a>理解 #4:</h2><p><strong><em>我们可以设想不同的策略来生成 watermark。</em></strong></p>
 <p>我们知道每个事件都会延迟一段时间才到达，而这些延迟差异会比较大，所以有些事件会比其他事件延迟更多。一种简单的方法是假设这些延迟不会超过某个最大值。Flink 把这种策略称作 “有界无序生成策略”（bounded-out-of-orderness）。当然也有很多更复杂的方式去生成 watermark，但是对于大多数应用来说，固定延迟的方式已经足够了。</p>
 <p>如果想要构建一个类似排序的流应用，可以使用 Flink 的 <code>ProcessFunction</code>。它提供了对事件时间计时器（基于 watermark 触发回调）的访问，还提供了可以用来缓存数据的托管状态接口。</p>
 <p>如果想要了解更多有关 Apache Flink 的 <code>ProcessFunction</code> 的实践案例，可以访问我的上一篇文章<a href="http://wuchong.me/blog/2018/11/07/use-flink-calculate-hot-items/">《Flink 零基础实战教程：如何计算实时热门商品》</a> 了解如何使用 <code>ProcessFunction</code> 实现 TopN 功能。</p>
@@ -53,6 +92,8 @@
       当人们第一次使用 Flink 时，经常会对 watermark 感到困惑。但其实 watermark 并不复杂。让我们通过一个简单的例子来说明为什么我们需要 watermark，以及它的工作机制是什么样的。
     
     </summary>
+    
+      <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
     
     
       <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
@@ -3657,73 +3698,6 @@
       <category term="生活" scheme="http://wuchong.me/tags/%E7%94%9F%E6%B4%BB/"/>
     
       <category term="面经" scheme="http://wuchong.me/tags/%E9%9D%A2%E7%BB%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何正确地写出单例模式</title>
-    <link href="http://wuchong.me/blog/2014/08/28/how-to-correctly-write-singleton-pattern/"/>
-    <id>http://wuchong.me/blog/2014/08/28/how-to-correctly-write-singleton-pattern/</id>
-    <published>2014-08-28T08:43:39.000Z</published>
-    <updated>2016-03-08T12:12:13.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>单例模式算是设计模式中最容易理解，也是最容易手写代码的模式了吧。但是其中的坑却不少，所以也常作为面试题来考。本文主要对几种单例写法的整理，并分析其优缺点。很多都是一些老生常谈的问题，但如果你不知道如何创建一个线程安全的单例，不知道什么是双检锁，那这篇文章可能会帮助到你。</p>
-<h2 id="懒汉式，线程不安全"><a href="#懒汉式，线程不安全" class="headerlink" title="懒汉式，线程不安全"></a>懒汉式，线程不安全</h2><p>当被问到要实现一个单例模式时，很多人的第一反应是写出如下的代码，包括教科书上也是这样教我们的。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">     <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">         instance = <span class="keyword">new</span> Singleton();</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这段代码简单明了，而且使用了懒加载模式，但是却存在致命的问题。当有多个线程并行调用 getInstance() 的时候，就会创建多个实例。也就是说在多线程下不能正常工作。</p>
-<a id="more"></a>
-<h2 id="懒汉式，线程安全"><a href="#懒汉式，线程安全" class="headerlink" title="懒汉式，线程安全"></a>懒汉式，线程安全</h2><p>为了解决上面的问题，最简单的方法是将整个 getInstance() 方法设为同步（synchronized）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">        instance = <span class="keyword">new</span> Singleton();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> instance;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>虽然做到了线程安全，并且解决了多实例的问题，但是它并不高效。因为在任何时候只能有一个线程调用 getInstance() 方法。但是同步操作只需要在第一次调用时才被需要，即第一次创建单例实例对象时。这就引出了双重检验锁。</p>
-<h2 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h2><p>双重检验锁模式（double checked locking pattern），是一种使用同步块加锁的方法。程序员称其为双重检查锁，因为会有两次检查 <code>instance == null</code>，一次是在同步块外，一次是在同步块内。为什么在同步块内还要再检验一次？因为可能会有多个线程一起进入同步块外的 if，如果在同步块内不进行二次检验的话就会生成多个实例了。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;                         <span class="comment">//Single Checked</span></div><div class="line">        <span class="keyword">synchronized</span> (Singleton.class) &#123;</div><div class="line">            <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;                 <span class="comment">//Double Checked</span></div><div class="line">                instance = <span class="keyword">new</span> Singleton();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> instance ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这段代码看起来很完美，很可惜，它是有问题。主要在于<code>instance = new Singleton()</code>这句，这并非是一个原子操作，事实上在 JVM 中这句话大概做了下面 3 件事情。</p>
-<ol>
-<li>给 instance 分配内存</li>
-<li>调用 Singleton 的构造函数来初始化成员变量</li>
-<li>将instance对象指向分配的内存空间（执行完这步 instance 就为非 null 了）</li>
-</ol>
-<p>但是在 JVM 的即时编译器中存在指令重排序的优化。也就是说上面的第二步和第三步的顺序是不能保证的，最终的执行顺序可能是 1-2-3 也可能是 1-3-2。如果是后者，则在 3 执行完毕、2 未执行之前，被线程二抢占了，这时 instance 已经是非 null 了（但却没有初始化），所以线程二会直接返回 instance，然后使用，然后顺理成章地报错。</p>
-<p>我们只需要将 instance 变量声明成 volatile 就可以了。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton instance; <span class="comment">//声明成 volatile</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;                         </div><div class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</div><div class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;       </div><div class="line">                    instance = <span class="keyword">new</span> Singleton();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>有些人认为使用 volatile 的原因是可见性，也就是可以保证线程在本地不会存有 instance 的副本，每次都是去主内存中读取。但其实是不对的。使用 volatile 的主要原因是其另一个特性：禁止指令重排序优化。也就是说，在 volatile 变量的赋值操作后面会有一个内存屏障（生成的汇编代码上），读操作不会被重排序到内存屏障之前。比如上面的例子，取操作必须在执行完 1-2-3 之后或者 1-3-2 之后，不存在执行到 1-3 然后取到值的情况。从「先行发生原则」的角度理解的话，就是对于一个 volatile 变量的写操作都先行发生于后面对这个变量的读操作（这里的“后面”是时间上的先后顺序）。</p>
-<p>但是特别注意在 Java 5 以前的版本使用了 volatile 的双检锁还是有问题的。其原因是 Java 5 以前的 JMM （Java 内存模型）是存在缺陷的，即时将变量声明成 volatile 也不能完全避免重排序，主要是 volatile 变量前后的代码仍然存在重排序问题。这个 volatile 屏蔽重排序的问题在 Java 5 中才得以修复，所以在这之后才可以放心使用 volatile。</p>
-<p>相信你不会喜欢这种复杂又隐含问题的方式，当然我们有更好的实现线程安全的单例模式的办法。</p>
-<h2 id="饿汉式-static-final-field"><a href="#饿汉式-static-final-field" class="headerlink" title="饿汉式 static final field"></a>饿汉式 static final field</h2><p>这种方法非常简单，因为单例的实例被声明成 static 和 final 变量了，在第一次加载类到内存中时就会初始化，所以创建实例本身是线程安全的。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">    <span class="comment">//类加载时就初始化</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton instance = <span class="keyword">new</span> Singleton();</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种写法如果完美的话，就没必要在啰嗦那么多双检锁的问题了。缺点是它不是一种懒加载模式（lazy initialization），单例会在加载类后一开始就被初始化，即使客户端没有调用 getInstance()方法。饿汉式的创建方式在一些场景中将无法使用：譬如 Singleton 实例的创建是依赖参数或者配置文件的，在 getInstance() 之前必须调用某个方法设置参数给它，那样这种单例写法就无法使用了。 </p>
-<h2 id="静态内部类-static-nested-class"><a href="#静态内部类-static-nested-class" class="headerlink" title="静态内部类 static nested class"></a>静态内部类 static nested class</h2><p>我比较倾向于使用静态内部类的方法，这种方法也是《Effective Java》上所推荐的。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;  </div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> SingletonHolder.INSTANCE; </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种写法仍然使用JVM本身机制保证了线程安全问题；由于 SingletonHolder 是私有的，除了 getInstance() 之外没有办法访问它，因此它是懒汉式的；同时读取实例的时候不会进行同步，没有性能缺陷；也不依赖 JDK 版本。</p>
-<h2 id="枚举-Enum"><a href="#枚举-Enum" class="headerlink" title="枚举 Enum"></a>枚举 Enum</h2><p>用枚举写单例实在太简单了！这也是它最大的优点。下面这段代码就是声明枚举实例的通常做法。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EasySingleton&#123;</div><div class="line">    INSTANCE;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们可以通过EasySingleton.INSTANCE来访问实例，这比调用getInstance()方法简单多了。创建枚举默认就是线程安全的，所以不需要担心double checked locking，而且还能防止反序列化导致重新创建新的对象。但是还是很少看到有人这样写，可能是因为不太熟悉吧。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一般来说，单例模式有五种写法：懒汉、饿汉、双重检验锁、静态内部类、枚举。上述所说都是线程安全的实现，文章开头给出的第一种方法不算正确的写法。</p>
-<p>就我个人而言，一般情况下直接使用饿汉式就好了，如果明确要求要懒加载（lazy initialization）会倾向于使用静态内部类，如果涉及到反序列化创建对象时会试着使用枚举的方式来实现单例。</p>
-<h2 id="Read-More"><a href="#Read-More" class="headerlink" title="Read More"></a>Read More</h2><ul>
-<li><a href="http://javarevisited.blogspot.sg/2014/05/double-checked-locking-on-singleton-in-java.html" target="_blank" rel="external">Double Checked Locking on Singleton Class in Java</a></li>
-<li><a href="http://javarevisited.blogspot.sg/2012/07/why-enum-singleton-are-better-in-java.html" target="_blank" rel="external">Why Enum Singleton are better in Java</a></li>
-<li><a href="http://javarevisited.blogspot.com/2012/12/how-to-create-thread-safe-singleton-in-java-example.html" target="_blank" rel="external">How to create thread safe Singleton in Java</a></li>
-<li><a href="http://javarevisited.blogspot.com/2011/03/10-interview-questions-on-singleton.html" target="_blank" rel="external">10 Singleton Pattern Interview questions in Java</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      单例模式算是设计模式中最容易理解，也是最容易手写代码的模式了吧。但是其中的坑却不少，所以也常作为面试题来考。本文主要对几种单例写法的整理，并分析其优缺点。很多都是一些老生常谈的问题，但如果你不知道如何创建一个线程安全的单例，不知道什么是双检锁，那这篇文章可能会帮助到你。
-    
-    </summary>
-    
-      <category term="程序设计" scheme="http://wuchong.me/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"/>
-    
-    
-      <category term="Singleton" scheme="http://wuchong.me/tags/Singleton/"/>
-    
-      <category term="多线程" scheme="http://wuchong.me/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-      <category term="设计模式" scheme="http://wuchong.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-      <category term="双检锁" scheme="http://wuchong.me/tags/%E5%8F%8C%E6%A3%80%E9%94%81/"/>
     
   </entry>
   
