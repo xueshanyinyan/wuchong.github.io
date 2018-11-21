@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wuchong.me/blog/2018/11/21/flink-tips-how-to-choose-state-backends/</loc>
+    
+    <lastmod>2018-11-21T05:26:24.742Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/blog/2018/11/19/flink-forward-china-2018/</loc>
     
     <lastmod>2018-11-19T15:13:30.646Z</lastmod>
@@ -548,6 +555,13 @@
   </url>
   
   <url>
+    <loc>http://wuchong.me/blog/2014/07/30/ali-bigdata-competition-write-to-the-5-monthes/</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/404.html</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
@@ -569,13 +583,6 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
-    
-    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wuchong.me/search/index.html</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
@@ -583,7 +590,7 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/07/30/ali-bigdata-competition-write-to-the-5-monthes/</loc>
+    <loc>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
