@@ -61,16 +61,12 @@
 
 
 
-<meta name="description" content="原文：https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets作者：Fabian Hueske, Markos Sfikas译者：云邪（Jark）
-
-在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保">
+<meta name="description" content="在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flink 小贴士 (2)：Flink 如何管理 Kafka 消费位点">
 <meta property="og:url" content="http://wuchong.me/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/index.html">
 <meta property="og:site_name" content="Jark's Blog">
-<meta property="og:description" content="原文：https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets作者：Fabian Hueske, Markos Sfikas译者：云邪（Jark）
-
-在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保">
+<meta property="og:description" content="在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1QQ91nhTpK1RjSZR0XXbEwXXa-842-415.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1jBS2nb2pK1RjSZFsXXaNlXXa-842-420.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1ZNS8nkvoK1RjSZFNXXcxMVXa-842-423.png">
@@ -78,12 +74,10 @@
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1EI2XngHqK1RjSZFkXXX.WFXa-842-439.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1huHtnhnaK1RjSZFBXXcW7VXa-842-417.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1o8zXnmzqK1RjSZFjXXblCFXa-842-411.png">
-<meta property="og:updated_time" content="2018-11-08T11:26:28.336Z">
+<meta property="og:updated_time" content="2018-11-25T14:26:06.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink 小贴士 (2)：Flink 如何管理 Kafka 消费位点">
-<meta name="twitter:description" content="原文：https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets作者：Fabian Hueske, Markos Sfikas译者：云邪（Jark）
-
-在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保">
+<meta name="twitter:description" content="在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。">
 <meta name="twitter:image" content="https://img.alicdn.com/tfs/TB1QQ91nhTpK1RjSZR0XXbEwXXa-842-415.png">
 
 
@@ -505,7 +499,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

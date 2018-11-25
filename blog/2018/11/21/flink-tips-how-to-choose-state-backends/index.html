@@ -61,23 +61,17 @@
 
 
 
-<meta name="description" content="原文：https://data-artisans.com/blog/stateful-stream-processing-apache-flink-state-backends作者：Seth Wiesman, Markos Sfikas译者：云邪（Jark）
-
-本文我们将深入探讨有状态的流处理，更确切地说是 Apache Flink 中不同的状态后端（state backend）。在以下部分，我">
+<meta name="description" content="本文我们将深入探讨有状态的流处理，更确切地说是 Apache Flink 中不同的状态后端（state backend）。在以下部分，我们将介绍 Apache Flink 的 3 种状态后端，它们的局限性以及根据具体案例需求选择最合适的状态后端。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flink 小贴士 (4): 如何选择状态后端">
 <meta property="og:url" content="http://wuchong.me/blog/2018/11/21/flink-tips-how-to-choose-state-backends/index.html">
 <meta property="og:site_name" content="Jark's Blog">
-<meta property="og:description" content="原文：https://data-artisans.com/blog/stateful-stream-processing-apache-flink-state-backends作者：Seth Wiesman, Markos Sfikas译者：云邪（Jark）
-
-本文我们将深入探讨有状态的流处理，更确切地说是 Apache Flink 中不同的状态后端（state backend）。在以下部分，我">
+<meta property="og:description" content="本文我们将深入探讨有状态的流处理，更确切地说是 Apache Flink 中不同的状态后端（state backend）。在以下部分，我们将介绍 Apache Flink 的 3 种状态后端，它们的局限性以及根据具体案例需求选择最合适的状态后端。">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB19tVmqwHqK1RjSZFkXXX.WFXa-1158-1112.png">
-<meta property="og:updated_time" content="2018-11-21T05:26:24.742Z">
+<meta property="og:updated_time" content="2018-11-25T14:24:42.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink 小贴士 (4): 如何选择状态后端">
-<meta name="twitter:description" content="原文：https://data-artisans.com/blog/stateful-stream-processing-apache-flink-state-backends作者：Seth Wiesman, Markos Sfikas译者：云邪（Jark）
-
-本文我们将深入探讨有状态的流处理，更确切地说是 Apache Flink 中不同的状态后端（state backend）。在以下部分，我">
+<meta name="twitter:description" content="本文我们将深入探讨有状态的流处理，更确切地说是 Apache Flink 中不同的状态后端（state backend）。在以下部分，我们将介绍 Apache Flink 的 3 种状态后端，它们的局限性以及根据具体案例需求选择最合适的状态后端。">
 <meta name="twitter:image" content="https://img.alicdn.com/tfs/TB19tVmqwHqK1RjSZFkXXX.WFXa-1158-1112.png">
 
 
@@ -457,6 +451,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blog/2018/11/25/flink-tips-differences-between-savepoints-and-checkpoints/" rel="prev" title="Flink 小贴士 (5): Savepoint 和 Checkpoint 的 3 个不同点">
+                Flink 小贴士 (5): Savepoint 和 Checkpoint 的 3 个不同点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -527,7 +525,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wuchong.me/"/>
-  <updated>2018-11-21T05:26:24.742Z</updated>
+  <updated>2018-11-25T14:28:18.295Z</updated>
   <id>http://wuchong.me/</id>
   
   <author>
@@ -16,11 +16,59 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Flink 小贴士 (5): Savepoint 和 Checkpoint 的 3 个不同点</title>
+    <link href="http://wuchong.me/blog/2018/11/25/flink-tips-differences-between-savepoints-and-checkpoints/"/>
+    <id>http://wuchong.me/blog/2018/11/25/flink-tips-differences-between-savepoints-and-checkpoints/</id>
+    <published>2018-11-25T14:21:40.000Z</published>
+    <updated>2018-11-25T14:28:18.295Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>原文：<a href="https://data-artisans.com/blog/differences-between-savepoints-and-checkpoints-in-flink" target="_blank" rel="external">https://data-artisans.com/blog/differences-between-savepoints-and-checkpoints-in-flink</a><br>作者：Stefan Richter, Dawid Wysakowicz, Markos Sfikas<br>译者：云邪（Jark）</p>
+</blockquote>
+<p>在本文中，我们将阐述 Savepoint 和 Checkpoint 是什么，它们主要用在什么时候，以及对比它们的主要区别。</p>
+<h2 id="什么是-Savepoint-和-Checkpoint"><a href="#什么是-Savepoint-和-Checkpoint" class="headerlink" title="什么是 Savepoint 和 Checkpoint"></a>什么是 Savepoint 和 Checkpoint</h2><p>Savepoint 是用来为整个流应用程序在某个“时间点”（point-in-time）的生成快照的功能。该快照包含了输入源的位置信息，数据源读取到的偏移量（offset），以及整个应用的状态。借助 Chandy-Lamport 算法的变体，我们可以无需停止应用程序而得到一致的快照。Savepoint 包含了两个主要元素：</p>
+<ol>
+<li>首先，Savepoint 包含了一个目录，其中包含（通常很大的）二进制文件，这些文件表示了整个流应用在 Checkpoint/Savepoint 时的状态。</li>
+<li>以及一个（相对较小的）元数据文件，包含了指向 Savapoint 各个文件的指针，并存储在所选的分布式文件系统或数据存储中。</li>
+</ol>
+<p>上述有关 Savepoint 的介绍听起来和之前文章中介绍的 Checkpoint 很像。Checkpoint 是 Flink 用来从故障中恢复的机制，快照下了整个应用程序的状态，当然也包括输入源读取到的位点。如果发生故障，Flink 将通过从 Checkpoint 加载应用程序状态并从恢复的读取位点继续应用程序的处理，就像什么事情都没发生一样。</p>
+<p>可以阅读之前 Flink 小贴士的一篇关于 <a href="http://wuchong.me/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/">Flink 如何管理 Kafka 消费位点</a>的文章。</p>
+<h2 id="Savepoint-和-Checkpoint-的-3-个不同点"><a href="#Savepoint-和-Checkpoint-的-3-个不同点" class="headerlink" title="Savepoint 和 Checkpoint 的 3 个不同点"></a>Savepoint 和 Checkpoint 的 3 个不同点</h2><p>Savepoint 和 Checkpoint 是 Apache Flink 作为流处理框架非常独特的两个特性。Savepoint 和 Checkpoint 在实现中看起来也很相似，但是，这两个功能主要有以下3个不同点：</p>
+<p><img src="https://img.alicdn.com/tfs/TB1mvoErMHqK1RjSZFkXXX.WFXa-881-1060.png" alt=""></p>
+<p><strong>目标：</strong>从概念上讲，Flink 的 Savepoint 和 Checkpoint 的不同之处很像传统数据库中备份与恢复日志之间的区别。Checkpoint 的主要目标是充当 Flink 中的恢复机制，确保能从潜在的故障中恢复。相反，Savepoint 的主要目标是充当手动备份、恢复暂停作业的方法。</p>
+<p><strong>实现：</strong>Checkpoint 和 Savepoint 在实现上也有不同。Checkpoint 被设计成轻量和快速的机制。它们可能（但不一定必须）利用底层状态后端的不同功能尽可能快速地恢复数据。例如，基于 RocksDB 状态后端的增量检查点，能够加速 RocksDB 的 checkpoint 过程，这使得 checkpoint 机制变得更加轻量。相反，Savepoint 旨在更多地关注数据的可移植性，并支持对作业做任何更改而状态能保持兼容，这使得生成和恢复的成本更高。</p>
+<p><strong>生命周期：</strong>Checkpoint 是自动和定期的，它们由 Flink 自动地周期性地创建和删除，无需用户的交互。相反，Savepoint 是由用户手动地管理（调度、创建、删除）的。</p>
+<h2 id="何时使用-Savepoint"><a href="#何时使用-Savepoint" class="headerlink" title="何时使用 Savepoint ?"></a>何时使用 Savepoint ?</h2><p>虽然流式应用程序处理的数据是持续地生成的（“运动中”的数据），但是存在着想要重新处理之前已经处理过的数据的情况。Savepoint 可以在以下情况下使用：</p>
+<ul>
+<li>部署流应用的一个新版本，包括新功能、BUG 修复、或者一个更好的机器学习模型</li>
+<li>引入 A/B 测试，使用相同的源数据测试程序的不同版本，从同一时间点开始测试而不牺牲先前的状态</li>
+<li>在需要更多资源时扩容应用程序</li>
+<li>迁移流应用程序到 Flink 的新版本上，或者迁移到另一个集群</li>
+</ul>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>Checkpoint 和 Savepoint 是 Flink 中两个不同的功能，它们满足了不同的需求，以确保一致性、容错性，和满足作业升级、BUG 修复、迁移、A/B测试等。这两个功能相结合，可以确保应用程序的状态在不同的场景和环境中保持不变。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      在本文中，我们将阐述 Savepoint 和 Checkpoint 是什么，它们主要用在什么时候，以及对比它们的主要区别。
+    
+    </summary>
+    
+      <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
+    
+    
+      <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink小贴士" scheme="http://wuchong.me/tags/Flink%E5%B0%8F%E8%B4%B4%E5%A3%AB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Flink 小贴士 (4): 如何选择状态后端</title>
     <link href="http://wuchong.me/blog/2018/11/21/flink-tips-how-to-choose-state-backends/"/>
     <id>http://wuchong.me/blog/2018/11/21/flink-tips-how-to-choose-state-backends/</id>
     <published>2018-11-21T04:35:20.000Z</published>
-    <updated>2018-11-21T05:26:24.742Z</updated>
+    <updated>2018-11-25T14:24:42.659Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文：<a href="https://data-artisans.com/blog/stateful-stream-processing-apache-flink-state-backends" target="_blank" rel="external">https://data-artisans.com/blog/stateful-stream-processing-apache-flink-state-backends</a><br>作者：Seth Wiesman, Markos Sfikas<br>译者：云邪（Jark）</p>
@@ -82,13 +130,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;原文：&lt;a href=&quot;https://data-artisans.com/blog/stateful-stream-processing-apache-flink-state-backends&quot;&gt;https://data-artisans.com/blog/stateful-stream-processing-apache-flink-state-backends&lt;/a&gt;&lt;br&gt;作者：Seth Wiesman, Markos Sfikas&lt;br&gt;译者：云邪（Jark）&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;本文我们将深入探讨有状态的流处理，更确切地说是 Apache Flink 中不同的状态后端（state backend）。在以下部分，我们将介绍 Apache Flink 的 3 种状态后端，它们的局限性以及根据具体案例需求选择最合适的状态后端。&lt;/p&gt;
-&lt;p&gt;在有状态的流处理中，当开发人员启用了 Flink 中的 checkpoint 机制，那么状态将会持久化以防止数据的丢失并确保发生故障时能够完全恢复。选择何种状态后端，将决定状态持久化的方式和位置。&lt;/p&gt;
-&lt;p&gt;Flink 提供了三种可用的状态后端：&lt;code&gt;MemoryStateBackend&lt;/code&gt;，&lt;code&gt;FsStateBackend&lt;/code&gt;，和&lt;code&gt;RocksDBStateBackend&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://img.alicdn.com/tfs/TB19tVmqwHqK1RjSZFkXXX.WFXa-1158-1112.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      本文我们将深入探讨有状态的流处理，更确切地说是 Apache Flink 中不同的状态后端（state backend）。在以下部分，我们将介绍 Apache Flink 的 3 种状态后端，它们的局限性以及根据具体案例需求选择最合适的状态后端。
     
     </summary>
     
@@ -451,7 +493,7 @@
     <link href="http://wuchong.me/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/"/>
     <id>http://wuchong.me/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/</id>
     <published>2018-11-04T13:34:38.000Z</published>
-    <updated>2018-11-08T11:26:28.336Z</updated>
+    <updated>2018-11-25T14:26:06.220Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文：<a href="https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets" target="_blank" rel="external">https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets</a><br>作者：Fabian Hueske, Markos Sfikas<br>译者：云邪（Jark）</p>
@@ -481,13 +523,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;原文：&lt;a href=&quot;https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets&quot;&gt;https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets&lt;/a&gt;&lt;br&gt;作者：Fabian Hueske, Markos Sfikas&lt;br&gt;译者：云邪（Jark）&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。&lt;/p&gt;
-&lt;p&gt;检查点（Checkpoint）是使 Apache Flink 能从故障恢复的一种内部机制。检查点是 Flink 应用状态的一个一致性副本，包括了输入的读取位点。在发生故障时，Flink 通过从检查点加载应用程序状态来恢复，并从恢复的读取位点继续处理，就好像什么事情都没发生一样。你可以把检查点想象成电脑游戏的存档一样。如果你在游戏中发生了什么事情，你可以随时读档重来一次。&lt;/p&gt;
-&lt;p&gt;检查点使得 Apache Flink 具有容错能力，并确保了即时发生故障也能保证流应用程序的语义。检查点是以固定的间隔来触发的，该间隔可以在应用中配置。&lt;/p&gt;
-&lt;p&gt;Apache Flink 中实现的 Kafka 消费者是一个有状态的算子（operator），它集成了 Flink 的检查点机制，它的状态是所有 Kafka 分区的读取偏移量。当一个检查点被触发时，每一个分区的偏移量都被存到了这个检查点中。Flink 的检查点机制保证了所有 operator task 的存储状态都是一致的。这里的“一致的”是什么意思呢？意思是它们存储的状态都是&lt;strong&gt;基于相同的输入数据&lt;/strong&gt;。当所有的 operator task 成功存储了它们的状态，一个检查点才算完成。因此，当从潜在的系统故障中恢复时，系统提供了 excatly-once 的状态更新语义。&lt;/p&gt;
+      在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。
     
     </summary>
     
@@ -2908,7 +2944,7 @@
 <h3 id="配置hosts"><a href="#配置hosts" class="headerlink" title="配置hosts"></a>配置hosts</h3><p>在每台主机上修改host文件<br><figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">vi /etc/hosts</div><div class="line"></div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.107</span>      master</div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.108</span>      slave1</div><div class="line"><span class="number">10.1</span><span class="number">.1</span><span class="number">.109</span>      slave2</div></pre></td></tr></table></figure></p>
 <p>配置之后ping一下用户名看是否生效<br><figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="built_in">ping</span> slave1</div><div class="line"><span class="built_in">ping</span> slave2</div></pre></td></tr></table></figure></p>
 <h3 id="SSH-免密码登录"><a href="#SSH-免密码登录" class="headerlink" title="SSH 免密码登录"></a>SSH 免密码登录</h3><p>安装Openssh server<br><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">sudo apt-get <span class="keyword">install</span> openssh-<span class="keyword">server</span></div></pre></td></tr></table></figure></p>
-<p>在所有机器上都生成私钥和公钥<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">ssh-keygen -t rsa   <span class="comment">#一路回车</span></div></pre></td></tr></table></figure></p>
+<p>在所有机器上都生成私钥和公钥<br><figure class="highlight 1c"><table><tr><td class="code"><pre><div class="line">ssh-keygen -t rsa   <span class="meta">#一路回车</span></div></pre></td></tr></table></figure></p>
 <p>需要让机器间都能相互访问，就把每个机子上的<code>id_rsa.pub</code>发给master节点，传输公钥可以用scp来传输。<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">scp ~/.ssh/id_rsa<span class="selector-class">.pub</span> spark@master:~/.ssh/id_rsa<span class="selector-class">.pub</span><span class="selector-class">.slave1</span></div></pre></td></tr></table></figure></p>
 <p>在master上，将所有公钥加到用于认证的公钥文件<code>authorized_keys</code>中<br><figure class="highlight ruby"><table><tr><td class="code"><pre><div class="line">cat ~<span class="regexp">/.ssh/id</span>_rsa.pub* <span class="meta">&gt;&gt; </span>~<span class="regexp">/.ssh/authorized</span>_keys</div></pre></td></tr></table></figure></p>
 <p>将公钥文件<code>authorized_keys</code>分发给每台slave<br><figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line">scp ~<span class="regexp">/.ssh/authorized</span>_keys spark<span class="variable">@slave1</span><span class="symbol">:~/</span>.ssh/</div></pre></td></tr></table></figure></p>
@@ -3165,7 +3201,7 @@
 <p><strong>(2) Centos 下安装依赖包</strong><br>需要配置 epel 第三方源。下载 epel ：<a href="http://dl.fedoraproject.org/pub/epel/" target="_blank" rel="external">http://dl.fedoraproject.org/pub/epel/</a> 。例如，Centos 7 x64：<br><figure class="highlight awk"><table><tr><td class="code"><pre><div class="line">wget http:<span class="regexp">//</span>dl.fedoraproject.org<span class="regexp">/pub/</span>epel<span class="regexp">/7/</span>x86_64<span class="regexp">/e/</span>epel-release-<span class="number">7</span>-<span class="number">5</span>.noarch.rpm</div><div class="line">rpm -ivh epel-release-<span class="number">7</span>-<span class="number">5</span>.noarch.rpm</div><div class="line">yum repolist</div></pre></td></tr></table></figure></p>
 <p>然后安装依赖包：<br><figure class="highlight cmake"><table><tr><td class="code"><pre><div class="line">yum <span class="keyword">install</span> libnet libpcap libnet-devel libpcap-devel</div></pre></td></tr></table></figure></p>
 <p><strong>(3) 下载官方的 tar.gz 压缩包。解压安装运行：</strong><br><figure class="highlight vim"><table><tr><td class="code"><pre><div class="line">wget http://net-speeder.googlecode.<span class="keyword">com</span>/<span class="keyword">files</span>/net_speeder-v0.<span class="number">1</span>.tar.gz </div><div class="line">tar zxvf net_speeder-v0.<span class="number">1</span>.tar.gz</div><div class="line"><span class="keyword">cd</span> net_speeder</div><div class="line">chmod <span class="number">777</span> *</div><div class="line"><span class="keyword">sh</span> build.<span class="keyword">sh</span> -DCOOKED</div></pre></td></tr></table></figure></p>
-<p>首先你需要知道你的网卡设备名，可以使用 ifconfig 查看。假设是eth0，那么运行方法是:<br><figure class="highlight python"><table><tr><td class="code"><pre><div class="line">./net_speeder eth0 <span class="string">"ip"</span></div></pre></td></tr></table></figure></p>
+<p>首先你需要知道你的网卡设备名，可以使用 ifconfig 查看。假设是eth0，那么运行方法是:<br><figure class="highlight 1c"><table><tr><td class="code"><pre><div class="line">./net_speeder eth0 <span class="string">"ip"</span></div></pre></td></tr></table></figure></p>
 <p>关闭 net-speeder<br><figure class="highlight nginx"><table><tr><td class="code"><pre><div class="line"><span class="attribute">killall</span> net_speeder</div></pre></td></tr></table></figure></p>
 <p>哦，对了，作者已经将 net-speeder 迁移到 <a href="https://github.com/snooda/net-speeder" target="_blank" rel="external">GitHub</a> 了，感兴趣的可以关注、贡献。</p>
 <p>以上几种方法是我用过的几种比较有效的加速方法。有任何错误之处还请在下面留言指出。</p>
@@ -3677,65 +3713,6 @@
       <category term="Java" scheme="http://wuchong.me/tags/Java/"/>
     
       <category term="开源项目" scheme="http://wuchong.me/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DigitalOcean VPS 科学上网体验</title>
-    <link href="http://wuchong.me/blog/2014/10/17/do-vps-ss/"/>
-    <id>http://wuchong.me/blog/2014/10/17/do-vps-ss/</id>
-    <published>2014-10-17T04:31:18.000Z</published>
-    <updated>2016-03-08T12:09:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天 <a href="https://www.glgoo.com/" target="_blank" rel="external">glgoo</a> 暂停服务了，赖以生存的 Google 曲线救国方案没了，GoAgent 又太慢，遂想折腾个 VPS 搭个代理解决科学上网的燃眉之急。</p>
-<p><img src="http://ww2.sinaimg.cn/large/81b78497jw1eldy44qjgcj20hu06b0u4.jpg" alt=""></p>
-<p><a href="https://www.digitalocean.com/?refcode=54668030e22a" target="_blank" rel="external">DigitalOcean</a> 作为一个 VPS 提供商新秀，以其高性价比的优势一直与高富帅的老大哥 Linode 争夺市场。最近更是在 GitHub 针对高校学生的优惠活动「<a href="https://education.github.com/pack/" target="_blank" rel="external">GitHub Student Developer Pack</a>」中推出免费 $100 的优惠服务，如果以最便宜的 $5/月 计算，可以用小两年了。对于长这么大还没玩过VPS的孩子来说，这诱惑太大了。用VPS来科学上网当然有点大材小用了，更多的是想在VPS架一些自己的网站（非博客）、跑些脚本、学点东西。<br><a id="more"></a></p>
-<p>但是对于普通学生来说要拿到这100刀还是比较麻烦的。首先，你得有个 GtiHub 账号，并且验证了你的 edu 邮箱（之前笔者在 GitHub 推出学生免费私人仓库时已经验证过了，再次感谢GitHub）。然后点击<a href="https://education.github.com/pack/" target="_blank" rel="external">GitHub Student Developer Pack</a> 活动页面中「Get your pack」按钮，就可以看到合作产品的优惠活动了，这里包括了来自 NameCheap 的免费 .ME 域名，再次推荐。</p>
-<p><img src="http://ww1.sinaimg.cn/large/81b78497jw1eleh03z0fij20n006g3za.jpg" alt=""></p>
-<p>通过上图的链接和邀请码注册后，就可看到100刀了，但是还需要绑定个人信用卡或者使用 Paypal 支付5刀才能激活。前者可以用财付通的<a href="https://www.tenpay.com/v2/account/interna/index.shtml" target="_blank" rel="external">运通虚拟国际卡</a>，但是目前已经不开放申请了。所以就用Paypal支付5刀吧。Paypal的激活就此略过。这之后就顺利的拿到 $105 了。</p>
-<h2 id="第一个VPS"><a href="#第一个VPS" class="headerlink" title="第一个VPS"></a>第一个VPS</h2><p>接着就能快速创建VPS了，选择 $5/月的足矣，机房最好选在旧金山，DigitalOcean 美国西海岸机房速度还是非常优秀的，比纽约的要好，千万不能选新加坡，因为貌似还没有国内专线所以速度不敢恭维。如果已经创建了你的 Droplet 又想换机房，可以参考<a href="http://www.laozuo.org/3907.html" target="_blank" rel="external">这篇博客</a>。完成后便会收到含有主机 IP、登陆账户、密码的邮件。</p>
-<p>在 Mac/Linux 上可以直接在终端 ssh 到 VPS。Windows 的话我使用的 <a href="http://www.putty.org/" target="_blank" rel="external">PuTTY</a>。接着你就可以操控你的 VPS 了。 </p>
-<h2 id="ShadowSocks-科学上网"><a href="#ShadowSocks-科学上网" class="headerlink" title="ShadowSocks 科学上网"></a>ShadowSocks 科学上网</h2><p>ShadowSocks 说自己是一个「可穿透防火墙的轻量代理」。OK！这正是我想要的，能满足我科学上网的需求就够了。ShadowSocks 的 GitHub Wiki 主页上已经有详细的<a href="https://github.com/clowwindy/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">中文使用说明</a>了。但作为搬运工，还是简要说明下吧。</p>
-<p>1.在服务端安装 shadowsocks 库<br><figure class="highlight cmake"><table><tr><td class="code"><pre><div class="line">apt-get <span class="keyword">install</span> python-pip</div><div class="line">pip <span class="keyword">install</span> shadowsocks</div></pre></td></tr></table></figure></p>
-<p>2.创建配置文件<code>/etc/shadowsocks.json</code>。示例：<br><figure class="highlight json"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"server"</span>:<span class="string">"服务器 IP 地址"</span>,</div><div class="line">    <span class="attr">"server_port"</span>:<span class="number">8388</span>,</div><div class="line">    <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</div><div class="line">    <span class="attr">"local_port"</span>:<span class="number">1080</span>,</div><div class="line">    <span class="attr">"password"</span>:<span class="string">"mypassword"</span>,</div><div class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,</div><div class="line">    <span class="attr">"method"</span>:<span class="string">"aes-256-cfb"</span>,</div><div class="line">    <span class="attr">"fast_open"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"workers"</span>: <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>上述配置，只需要修改<code>server</code>和<code>password</code>，其他默认即可。</p>
-<p>在服务器上运行 <code>ssserver -c /etc/shadowsocks.json</code> 即可。如果要在后台运行， 请使用 <a href="#后台运行">SuperVisor</a>.</p>
-<p>3.在 Mac/Windows 推荐使用客户端 <a href="https://github.com/shadowsocks/shadowsocks-gui" target="_blank" rel="external">Shadowsocks GUI</a> 连接代理。配置也非常简单，注意server ip 和 password 改成自己的。</p>
-<p><img src="http://ww2.sinaimg.cn/mw690/81b78497jw1elejn2ajctj21040rs0vb.jpg" alt=""></p>
-<p>Mac 端的启动后可以自动实现全局科学上网，并根据 GFWList 区分墙内外流量。Windows 端的需要配合浏览器代理一起使用，Chrome 的话推荐 <a href="https://chrome.google.com/webstore/detail/proxy-switchysharp/dpplabbmogkhghncfbfdeeokoefdjegm" target="_blank" rel="external">SwitchySharp</a>切换代理设置。把浏览器代理设为下列参数即可：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><div class="line">协议: <span class="selector-tag">socks5</span></div><div class="line">地址: 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span></div><div class="line">端口: 你填的 <span class="selector-tag">local_port</span></div></pre></td></tr></table></figure>
-<p>如果无法安装 SwitchySharp，可以先用下列参数启动 Chrome，强制它使用代理：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">Chrome<span class="selector-class">.exe</span> --proxy-server=<span class="string">"socks5://127.0.0.1:1080"</span> --host-resolver-rules=<span class="string">"MAP * 0.0.0.0 , EXCLUDE localhost"</span></div></pre></td></tr></table></figure></p>
-<p>移动端也可以参考<a href="https://github.com/clowwindy/shadowsocks/wiki/Ports-and-Clients" target="_blank" rel="external">Ports and Clients</a>下载对应软件。但是只能在其内置浏览器中科学上网，所以移动端上 ShadowSocks 就不如 VPN 方便。</p>
-<p>4.完成</p>
-<h2 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h2><p>如果要在后台运行，请使用 <a href="https://github.com/clowwindy/shadowsocks/wiki/%E7%94%A8-Supervisor-%E8%BF%90%E8%A1%8C-Shadowsocks" target="_blank" rel="external">supervisor</a>。</p>
-<p>执行</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><div class="line">apt-<span class="built_in">get</span> <span class="keyword">update</span></div><div class="line">apt-<span class="built_in">get</span> install <span class="keyword">python</span>-pip <span class="keyword">python</span>-m2crypto supervisor</div><div class="line">pip install shadowsocks</div></pre></td></tr></table></figure>
-<p>编辑 <code>/etc/supervisor/conf.d/shadowsocks.conf</code><br><figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="section">[program:shadowsocks]</span></div><div class="line"><span class="attr">command</span>=ssserver -c /etc/shadowsocks.json</div><div class="line"><span class="attr">autorestart</span>=<span class="literal">true</span></div><div class="line"><span class="attr">user</span>=nobody</div></pre></td></tr></table></figure></p>
-<p>在 <code>/etc/default/supervisor</code> 最后加一行：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">ulimit</span> -n 51200</div></pre></td></tr></table></figure></p>
-<p>执行<br><figure class="highlight crmsh"><table><tr><td class="code"><pre><div class="line">service supervisor <span class="literal">start</span></div><div class="line">supervisorctl reload</div></pre></td></tr></table></figure></p>
-<p>如果遇到问题，可以检查日志：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line">supervisorctl tail -f shadowsocks <span class="built_in">stderr</span></div></pre></td></tr></table></figure></p>
-<p>如果修改了 shadowsocks 配置 <code>/etc/shadowsocks.json</code>， 可以重启 shadowsocks：<br><figure class="highlight ebnf"><table><tr><td class="code"><pre><div class="line"><span class="attribute">supervisorctl restart shadowsocks</span></div></pre></td></tr></table></figure></p>
-<p>如果修改了 Supervisor 的配置文件 /etc/supervisor/*， 可以更新 supervisor 配置：<br><figure class="highlight ebnf"><table><tr><td class="code"><pre><div class="line"><span class="attribute">supervisorctl update</span></div></pre></td></tr></table></figure></p>
-<p>最后看看效果，访问 Google 和 Youtube 的速度如下：</p>
-<p><img src="http://ww1.sinaimg.cn/mw690/81b78497tw1elejwjkbxij216g0x6qdd.jpg" alt=""></p>
-<p>总体很满意，打开 Google 秒开，校园网看 Youtube 1080视频无压力。用来科学上网绝对是没问题了。甩 GoAgent 好几条街了。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>DigitalOcean VPS + ShadowSocks 能基本满足科学上网的需求了。但是我说了用 VPS 来科学上网就大材小用了，如果你只是为了科学上网，或者你不是程序员，看到 VPS 什么的就头大，那最好的办法就是买个 VPN ，方便实惠速度又快。在这里我比较推荐 <a href="http://ugetvpn.com/?r=10ccb0196cc0a49b" target="_blank" rel="external">云梯VPN</a>，算是国内比较出色的一款服务，最低10元/月，基本上国外网站都是秒开，看Youtube视频无压力，配置安装基本都傻瓜一键式，覆盖多平台（我这么做广告，是不是应该给点广告费啊）。唯一要吐槽的就是居然只有包年套餐！</p>
-<p>需要的可以走这里：<a href="http://ugetvpn.com/?r=10ccb0196cc0a49b" target="_blank" rel="external">云梯VPN</a>。线路推荐使用新加坡1号。</p>
-<p>-EOF-</p>
-]]></content>
-    
-    <summary type="html">
-    
-      今天 glgoo 暂停服务了，赖以生存的 Google 曲线救国方案没了，GoAgent 又太慢，遂想折腾个 VPS 搭个代理解决科学上网的燃眉之急。DigitalOcean 作为一个 VPS 提供商新秀，以其高性价比的优势一直与高富帅的老大哥 Linode 争夺市场。最近更是在 GitHub 针对高校学生的优惠活动「GitHub Student Developer Pack」中推出免费 $100 的优惠服务，如果以最便宜的 $5/月 计算，可以用小两年了。对于长这么大还没玩过VPS的孩子来说，这诱惑太大了。用VPS来科学上网当然有点大材小用了，更多的是想在VPS架一些自己的网站（非博客）、跑些脚本、学点东西。
-    
-    </summary>
-    
-      <category term="杂项资源" scheme="http://wuchong.me/categories/%E6%9D%82%E9%A1%B9%E8%B5%84%E6%BA%90/"/>
-    
-    
-      <category term="科学上网" scheme="http://wuchong.me/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
-      <category term="VPS" scheme="http://wuchong.me/tags/VPS/"/>
     
   </entry>
   

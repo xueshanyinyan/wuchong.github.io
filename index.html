@@ -265,6 +265,141 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2018/11/25/flink-tips-differences-between-savepoints-and-checkpoints/" itemprop="url">
+                  Flink 小贴士 (5): Savepoint 和 Checkpoint 的 3 个不同点
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-11-25T22:21:40+08:00" content="2018-11-25">
+              2018-11-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index">
+                    <span itemprop="name">Flink</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2018/11/25/flink-tips-differences-between-savepoints-and-checkpoints/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2018/11/25/flink-tips-differences-between-savepoints-and-checkpoints/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2018/11/25/flink-tips-differences-between-savepoints-and-checkpoints/" class="leancloud_visitors" data-flag-title="Flink 小贴士 (5): Savepoint 和 Checkpoint 的 3 个不同点">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+<!--
+    
+      <div class="post-body">
+    
+    -->
+
+
+    <div class="post-body" itemprop="articleBody">
+    
+
+      
+      
+
+      
+        
+          在本文中，我们将阐述 Savepoint 和 Checkpoint 是什么，它们主要用在什么时候，以及对比它们的主要区别。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2018/11/25/flink-tips-differences-between-savepoints-and-checkpoints/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2018/11/21/flink-tips-how-to-choose-state-backends/" itemprop="url">
                   Flink 小贴士 (4): 如何选择状态后端
                 </a>
@@ -349,15 +484,9 @@
 
       
         
-          <blockquote>
-<p>原文：<a href="https://data-artisans.com/blog/stateful-stream-processing-apache-flink-state-backends">https://data-artisans.com/blog/stateful-stream-processing-apache-flink-state-backends</a><br>作者：Seth Wiesman, Markos Sfikas<br>译者：云邪（Jark）</p>
-</blockquote>
-<p>本文我们将深入探讨有状态的流处理，更确切地说是 Apache Flink 中不同的状态后端（state backend）。在以下部分，我们将介绍 Apache Flink 的 3 种状态后端，它们的局限性以及根据具体案例需求选择最合适的状态后端。</p>
-<p>在有状态的流处理中，当开发人员启用了 Flink 中的 checkpoint 机制，那么状态将会持久化以防止数据的丢失并确保发生故障时能够完全恢复。选择何种状态后端，将决定状态持久化的方式和位置。</p>
-<p>Flink 提供了三种可用的状态后端：<code>MemoryStateBackend</code>，<code>FsStateBackend</code>，和<code>RocksDBStateBackend</code>。</p>
-<p><img src="https://img.alicdn.com/tfs/TB19tVmqwHqK1RjSZFkXXX.WFXa-1158-1112.png" alt=""></p>
+          本文我们将深入探讨有状态的流处理，更确切地说是 Apache Flink 中不同的状态后端（state backend）。在以下部分，我们将介绍 Apache Flink 的 3 种状态后端，它们的局限性以及根据具体案例需求选择最合适的状态后端。
           <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2018/11/21/flink-tips-how-to-choose-state-backends/#more" rel="contents">
+            <a class="btn" href="/blog/2018/11/21/flink-tips-how-to-choose-state-backends/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1158,15 +1287,9 @@
 
       
         
-          <blockquote>
-<p>原文：<a href="https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets">https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets</a><br>作者：Fabian Hueske, Markos Sfikas<br>译者：云邪（Jark）</p>
-</blockquote>
-<p>在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。</p>
-<p>检查点（Checkpoint）是使 Apache Flink 能从故障恢复的一种内部机制。检查点是 Flink 应用状态的一个一致性副本，包括了输入的读取位点。在发生故障时，Flink 通过从检查点加载应用程序状态来恢复，并从恢复的读取位点继续处理，就好像什么事情都没发生一样。你可以把检查点想象成电脑游戏的存档一样。如果你在游戏中发生了什么事情，你可以随时读档重来一次。</p>
-<p>检查点使得 Apache Flink 具有容错能力，并确保了即时发生故障也能保证流应用程序的语义。检查点是以固定的间隔来触发的，该间隔可以在应用中配置。</p>
-<p>Apache Flink 中实现的 Kafka 消费者是一个有状态的算子（operator），它集成了 Flink 的检查点机制，它的状态是所有 Kafka 分区的读取偏移量。当一个检查点被触发时，每一个分区的偏移量都被存到了这个检查点中。Flink 的检查点机制保证了所有 operator task 的存储状态都是一致的。这里的“一致的”是什么意思呢？意思是它们存储的状态都是<strong>基于相同的输入数据</strong>。当所有的 operator task 成功存储了它们的状态，一个检查点才算完成。因此，当从潜在的系统故障中恢复时，系统提供了 excatly-once 的状态更新语义。</p>
+          在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。
           <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/#more" rel="contents">
+            <a class="btn" href="/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1464,142 +1587,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2017/07/16/two-years-in-alibaba/" itemprop="url">
-                  我在阿里的这两年
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-16T20:43:38+08:00" content="2017-07-16">
-              2017-07-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/职场生涯/" itemprop="url" rel="index">
-                    <span itemprop="name">职场生涯</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2017/07/16/two-years-in-alibaba/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2017/07/16/two-years-in-alibaba/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2017/07/16/two-years-in-alibaba/" class="leancloud_visitors" data-flag-title="我在阿里的这两年">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-<!--
-    
-      <div class="post-body">
-    
-    -->
-
-
-    <div class="post-body" itemprop="articleBody">
-    
-
-      
-      
-
-      
-        
-          <p>这两天，团队来了不少新人，有实习生也有刚毕业的大学生。看着他们稚气的面庞，文静而腼腆的样子，跟我两年前刚进公司的时候好像。今天内网提示我这是我在阿里的第732天，两周年快乐。突然觉得，我应该写点什么东西，一方面给自己一个总结，分享一下自己成长的故事。另一方面，希望能帮助刚毕业的大学生们消除一些成长路上的疑惑。</p>
-<p><img src="http://ww1.sinaimg.cn/large/81b78497gy1fhljtdhofaj21ue0s6x6q.jpg" alt=""></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2017/07/16/two-years-in-alibaba/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1646,7 +1633,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
