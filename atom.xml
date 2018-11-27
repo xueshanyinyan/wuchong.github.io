@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wuchong.me/"/>
-  <updated>2018-11-25T14:28:18.295Z</updated>
+  <updated>2018-11-27T13:28:26.844Z</updated>
   <id>http://wuchong.me/</id>
   
   <author>
@@ -14,6 +14,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flink 小贴士 (6): 使用 Broadcast State 的 4 个注意事项</title>
+    <link href="http://wuchong.me/blog/2018/11/28/flink-tips-broadcast-state-pattern-flink-considerations/"/>
+    <id>http://wuchong.me/blog/2018/11/28/flink-tips-broadcast-state-pattern-flink-considerations/</id>
+    <published>2018-11-28T00:21:40.000Z</published>
+    <updated>2018-11-27T13:28:26.844Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>原文：<a href="https://data-artisans.com/blog/broadcast-state-pattern-flink-considerations" target="_blank" rel="external">https://data-artisans.com/blog/broadcast-state-pattern-flink-considerations</a><br>作者：Markos Sfikas<br>译者：云邪（Jark）</p>
+</blockquote>
+<p>在 Apache Flink 1.5.0 中引入了广播状态（Broadcast State）。本文将描述什么是广播状态模式（Broadcast State Pattern），广播状态与其他的 Operator State 有什么区别，最后，我们在 Flink 中使用该功能时需要考虑的一些重要的注意事项。</p>
+<h2 id="什么是广播状态模式"><a href="#什么是广播状态模式" class="headerlink" title="什么是广播状态模式"></a>什么是广播状态模式</h2><p>广播状态模式指的一种流应用程序，其中低吞吐量的事件流（例如，包含一组规则）被广播到某个 operator 的所有并发实例中，然后针对来自另一条原始数据流中的数据（例如金融或信用卡交易）进行计算。 广播状态模式的一些典型应用案例如下：</p>
+<ul>
+<li>动态规则：例如，有一个规则：当某个交易超过100万美元时需要发一个警报。我们将这个规则广播到计算交易的算子的所有并发实例中。</li>
+<li>数据丰富：例如，将用户的详细信息作业广播状态进行广播，对包含用户ID的交易数据流进行数据丰富。</li>
+</ul>
+<p>为了实现这样的应用，关键组件是广播状态，我们将在下文详细描述。</p>
+<h2 id="什么是广播状态？"><a href="#什么是广播状态？" class="headerlink" title="什么是广播状态？"></a>什么是广播状态？</h2><p>广播状态是 Apache Flink 中支持的第三种类型的 operator state。广播状态使得 Flink 用户能够以容错、一致、可扩缩容地将来自广播的低吞吐的事件流数据存储下来。来自另一条数据流的事件可以流经同一 operator 的各个并发实例，并与广播状态中的数据一起处理。有关其他类型的状态，以及如何使用请访问 <a href="https://ci.apache.org/projects/flink/flink-docs-stable/dev/stream/state/state.html" target="_blank" rel="external">Flink 官方文档</a>。</p>
+<p>广播状态与其他 operator state 之间有三个主要区别。与其余的 operator state 相反，广播状态：</p>
+<ul>
+<li>Map 的格式</li>
+<li>有一条广播的输入流</li>
+<li>operator 可以有多个不同名字的广播状态</li>
+</ul>
+<p>可以查阅我们之前的博客文章，探索 <a href="https://data-artisans.com/blog/a-practical-guide-to-broadcast-state-in-apache-flink" target="_blank" rel="external">Apache Flink 中使用广播状态的实践指南</a>。</p>
+<h2 id="重要注意事项"><a href="#重要注意事项" class="headerlink" title="重要注意事项"></a>重要注意事项</h2><p>对于急切开始使用广播状态的 Flink 用户，Apache Flink 官方文档提供了有关 API 的详细指南，以及在应用程序中如何使用该功能。在使用广播状态时要记住以下4个重要事项：</p>
+<ul>
+<li><p>使用广播状态，operator task 之间不会相互通信</p>
+<p>这也是为什么<code>(Keyed)-BroadcastProcessFunction</code>上只有广播的一边可以修改广播状态的内容。用户必须保证所有 operator 并发实例上对广播状态的修改行为都是一致的。或者说，如果不同的并发实例拥有不同的广播状态内容，将导致不一致的结果。</p>
+</li>
+<li><p>广播状态中事件的顺序在各个并发实例中可能不尽相同</p>
+<p>虽然广播流的元素保证了将所有元素（最终）都发给下游所有的并发实例，但是元素的到达的顺序可能在并发实例之间并不相同。因此，对广播状态的修改不能依赖于输入数据的顺序。</p>
+</li>
+<li><p>所有 operator task 都会快照下他们的广播状态</p>
+<p>在 checkpoint 时，所有的 task 都会 checkpoint 下他们的广播状态，并不仅仅是其中一个，即使所有 task 在广播状态中存储的元素是一模一样的。这是一个设计倾向，为了避免在恢复期间从单个文件读取而造成热点。然而，随着并发度的增加，checkpoint 的大小也会随之增加，这里会存在一个并发因子 p 的权衡。Flink 保证了在恢复/扩缩容时不会出现重复数据和少数据。在以相同或更小并行度恢复时，每个 task 会读取其对应的检查点状态。在已更大并行度恢复时，每个 task 读取自己的状态，剩余的 task （p_new-p_old）会以循环方式（round-robin）读取检查点的状态。</p>
+</li>
+<li><p>RocksDB 状态后端目前还不支持广播状态</p>
+<p>广播状态目前在运行时保存在内存中。因为当前，RocksDB 状态后端还不适用于 operator state。Flink 用户应该相应地为其应用程序配置足够的内存。</p>
+</li>
+</ul>
+<p><img src="https://img.alicdn.com/tfs/TB1zqRar5LaK1RjSZFxXXamPFXa-818-579.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      在 Apache Flink 1.5.0 中引入了广播状态（Broadcast State）。本文将描述什么是广播状态模式（Broadcast State Pattern），广播状态与其他的 Operator State 有什么区别，最后，我们在 Flink 中使用该功能时需要考虑的一些重要的注意事项。
+    
+    </summary>
+    
+      <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
+    
+    
+      <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink小贴士" scheme="http://wuchong.me/tags/Flink%E5%B0%8F%E8%B4%B4%E5%A3%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Flink 小贴士 (5): Savepoint 和 Checkpoint 的 3 个不同点</title>
@@ -3668,51 +3726,6 @@
       <category term="Hexo" scheme="http://wuchong.me/tags/Hexo/"/>
     
       <category term="Jacman" scheme="http://wuchong.me/tags/Jacman/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【译】10个你能参与并学习的Java开源项目</title>
-    <link href="http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/"/>
-    <id>http://wuchong.me/blog/2014/10/31/10-interesting-java-projects-you-can-contribute-and-learn/</id>
-    <published>2014-10-31T15:09:18.000Z</published>
-    <updated>2014-12-22T16:18:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>【本文翻译自 Javapapers ,原文链接：<a href="http://javapapers.com/java/10-interesting-java-projects-you-can-contribute-and-learn/" target="_blank" rel="external">http://javapapers.com/java/10-interesting-java-projects-you-can-contribute-and-learn/</a>】</p>
-<p>如果你正在寻找有趣的 Java 项目去参与和贡献，那么请继续阅读这篇文章。这篇博文是 Java 画廊（Java Gallery）中的一部分，在Java画廊栏目下我介绍了一些有趣的Java项目给我们的读者。成为 Java 开发团队中的一员并编写大量代码是一件很棒的事情。</p>
-<p>在学校里我们也许没有机会接触到真正的开发环境。在企业里我们可能做不了最喜欢的项目。在这种情况下，让我们加入可以带给我们欢乐和兴趣的开源项目吧。</p>
-<p><img src="http://ww1.sinaimg.cn/mw690/81b78497jw1eluqwemss2j20go0bpgo8.jpg" alt=""><br><a id="more"></a></p>
-<p>有很多备受关注的初创开源项目，下面列出十个项目是我觉得非常有趣的，涉及到的学习范围也很广。其中有些还在早期阶段，这对我们来说更好。看一看这些项目，选择一个你喜欢的，然后给它的领导者发一封邮件并参加到开发中去。</p>
-<ol>
-<li><a href="https://github.com/codeka/wwmmo" target="_blank" rel="external">War Worlds</a> – 基于策略的游戏 – Java 服务端和 Android 客户端。</li>
-<li><a href="http://www.openworm.org/" target="_blank" rel="external">OpenWorm</a> – 运行于浏览器中的小线虫的神经力学模型，其模拟后端都是用 Java 写的。</li>
-<li><a href="https://github.com/thatJavaNerd/JRAW" target="_blank" rel="external">JRAW</a> – Reddit API 的 Java 包装。</li>
-<li><a href="https://github.com/timmolter/XChart" target="_blank" rel="external">XChart</a> – 用于绘制数据的超轻量 Java 库。</li>
-<li><a href="http://libgdx.badlogicgames.com/" target="_blank" rel="external">libgdx</a> – 用于创建游戏的开源框架。</li>
-<li><a href="https://github.com/justinmeister/PongWithLibgdx" target="_blank" rel="external">Particle Pong</a> – 开源的乒乓类游戏。</li>
-<li><a href="https://github.com/bitcoinj/bitcoinj" target="_blank" rel="external">bitcoinj</a> – Java 实现的比特币协议。</li>
-<li><a href="https://github.com/dustedrob/JStrava" target="_blank" rel="external">JStrava</a> – Strava API 的 Java 包装。</li>
-<li><a href="https://github.com/Progether/JAdventure" target="_blank" rel="external">JAdventure</a> – 基于 Java 的文字冒险游戏。</li>
-<li><a href="https://github.com/Codeusa/aurous-app" target="_blank" rel="external">Aurous</a> – 能方便地从 Youtube 和其他来源的流建立庞大的播放列表和视频转换。</li>
-</ol>
-<p>享受编程和学习的快乐吧！</p>
-<p>————译文完————</p>
-<p>很久以前我在知乎上问过一个问题：<a href="http://www.zhihu.com/question/22263074" target="_blank" rel="external">有哪些适大学生参与的Java开源项目？</a>，也确实收到了很多好回复。也下了 JUnit 源码看了一部分，不过 JUnit 毕竟是很成熟的项目了，从中学习软件设计的艺术是不错，但是想参与进去还是比较困难。所以 Javapapers 推荐的这几个项目很不错，代码量都很短，且都起于初步阶段，有兴趣参与的同学可以关注下。目前我比较感兴趣的是 bitcoinj 项目。</p>
-<p>-EOF-</p>
-]]></content>
-    
-    <summary type="html">
-    
-      如果你正在寻找有趣的 Java 项目去参与和贡献，那么请继续阅读这篇文章。在学校里我们也许没有机会接触到真正的开发环境。在企业里我们可能做不了最喜欢的项目。在这样的情景下，让我们加入可以带给我们欢乐和兴趣的开源项目吧。
-    
-    </summary>
-    
-      <category term="杂项资源" scheme="http://wuchong.me/categories/%E6%9D%82%E9%A1%B9%E8%B5%84%E6%BA%90/"/>
-    
-    
-      <category term="Java" scheme="http://wuchong.me/tags/Java/"/>
-    
-      <category term="开源项目" scheme="http://wuchong.me/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
   </entry>
   
