@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wuchong.me/"/>
-  <updated>2018-12-03T13:37:43.558Z</updated>
+  <updated>2018-12-03T13:42:44.720Z</updated>
   <id>http://wuchong.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://wuchong.me/blog/2018/12/03/flink-tips-4-steps-flink-application-production-ready/"/>
     <id>http://wuchong.me/blog/2018/12/03/flink-tips-4-steps-flink-application-production-ready/</id>
     <published>2018-12-03T13:36:21.000Z</published>
-    <updated>2018-12-03T13:37:43.558Z</updated>
+    <updated>2018-12-03T13:42:44.720Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>原文：<a href="https://data-artisans.com/blog/4-steps-flink-application-production-ready" target="_blank" rel="external">https://data-artisans.com/blog/4-steps-flink-application-production-ready</a><br>作者：Nico Kruber, Markos Sfikas<br>译者：云邪（Jark）</p>
@@ -38,7 +38,7 @@
 <p>关于 Flink 当前支持的三种不同的状态后端类型，可以阅读我们的上一篇文章：<a href="http://wuchong.me/blog/2018/11/21/flink-tips-how-to-choose-state-backends/">《Flink 小贴士 (4): 如何选择状态后端》</a></p>
 <p>对于生产用例来说，强烈建议使用 RocksDB 状态后端，因为这是目前唯一一种支持大型状态和异步操作（如快照过程）的状态后端，异步操作能使 Flink 不阻塞正常数据流的处理的情况下做快照操作。另一方面，使用 RocksDB 状态后端可能存在性能折衷，因为所有状态访问和检索都需要序列化（和反序列化）来跨越 JNI 边界，这与内存状态后端相比可能会影响应用程序的吞吐量。</p>
 <h2 id="4-配置-JobManager-的高可用性（HA）"><a href="#4-配置-JobManager-的高可用性（HA）" class="headerlink" title="4. 配置 JobManager 的高可用性（HA）"></a>4. 配置 JobManager 的高可用性（HA）</h2><p>高可用性（HA）配置确保了 Flink 应用中 JobManager 组件发生潜在故障后的自动恢复，从而将停机时间降到最低。JobManager 的主要职责是协调 Flink 的部署，例如调度和适当的资源分配。</p>
-<p>默认情况下，Flink 为每个集群设置一个 JobManager 实例。这会导致单点故障（SPOF）：如果 JobManager 崩溃了，则无法提交新的作业，而且正在运行的程序也会失败。因此，强烈建议为生产用例配置高可用性（HA）。</p>
+<p>默认情况下，Flink 为每个集群设置一个 JobManager 实例。这会导致单点故障（SPOF）：如果 JobManager 崩溃了，则无法提交新的作业，而且正在运行的程序也会失败。因此，强烈建议为生产用例<a href="https://ci.apache.org/projects/flink/flink-docs-stable/ops/config.html#high-availability-ha" target="_blank" rel="external">配置高可用性（HA）</a>。</p>
 <p>上述 4 个步骤总结自社区的最佳实践，使得 Flink 应用能够保持状态的同时任意地扩缩容，处理更大规模的数据和状态，并提高系统的可用性。我们强烈建议您在将应用投入生产之前，仔细阅读上述步骤。</p>
 ]]></content>
     
