@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wuchong.me/blog/2018/12/03/flink-tips-4-steps-flink-application-production-ready/</loc>
+    
+    <lastmod>2018-12-03T13:37:43.558Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/blog/2018/11/28/flink-tips-broadcast-state-pattern-flink-considerations/</loc>
     
     <lastmod>2018-11-27T13:28:26.844Z</lastmod>
@@ -569,13 +576,6 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
-    
-    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://wuchong.me/blog/2014/07/30/ali-bigdata-competition-write-to-the-5-monthes/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
@@ -591,6 +591,13 @@
   
   <url>
     <loc>http://wuchong.me/blog/2014/01/27/python-spider-gif/</loc>
+    
+    <lastmod>2014-12-22T16:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     

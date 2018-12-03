@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wuchong.me/"/>
-  <updated>2018-11-27T13:28:26.844Z</updated>
+  <updated>2018-12-03T13:37:43.558Z</updated>
   <id>http://wuchong.me/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flink 小贴士 (7): 4个步骤，让 Flink 应用达到生产状态</title>
+    <link href="http://wuchong.me/blog/2018/12/03/flink-tips-4-steps-flink-application-production-ready/"/>
+    <id>http://wuchong.me/blog/2018/12/03/flink-tips-4-steps-flink-application-production-ready/</id>
+    <published>2018-12-03T13:36:21.000Z</published>
+    <updated>2018-12-03T13:37:43.558Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>原文：<a href="https://data-artisans.com/blog/4-steps-flink-application-production-ready" target="_blank" rel="external">https://data-artisans.com/blog/4-steps-flink-application-production-ready</a><br>作者：Nico Kruber, Markos Sfikas<br>译者：云邪（Jark）</p>
+</blockquote>
+<p>本文阐述了使 Flink 应用达到生产就绪状态所需要的一些配置步骤。在以下部分中，我们概述了重要的配置参数，这些参数是技术领导、DevOps、工程师们在将 Flink 应用程序上线生产之前都需要仔细考虑的。Apache Flink 为大多数配置都提供了开箱即用的默认选项，在许多情况下，它们是POC阶段（概念验证）或探索 Flink 不同 API 和抽象的很好的起点。</p>
+<p>然而，将 Flink 应用程序投入生产还需要额外的配置，这些配置可以高效地调整应用的规模，使其达到生产就绪状态，并能与不同系统之间保持兼容，以保证未来迭代升级的需求。</p>
+<p>下面几点是我们收集的需要在 Flink 应用上线前做的检查：</p>
+<p><img src="https://img.alicdn.com/tfs/TB1qClwtNjaK1RjSZFAXXbdLFXa-1168-1125.png" alt=""></p>
+<h2 id="1-明确定义-Flink-算子的最大并发度"><a href="#1-明确定义-Flink-算子的最大并发度" class="headerlink" title="1. 明确定义 Flink 算子的最大并发度"></a>1. 明确定义 Flink 算子的最大并发度</h2><p>Flink 的 keyed state 是由 <a href="https://ci.apache.org/projects/flink/flink-docs-stable/dev/stream/state/state.html#keyed-state" target="_blank" rel="external">key group</a> 进行组织的，并分布在 Flink 算子（operator）的各个并发实例上。Key group 是用来分布和影响 Flink 应用程序可扩展性的最小原子单元，每个算子上的 key group 个数即为最大并发数（maxParallelism），可以手动配置也可以直接使用默认配置。默认值粗略地使用 <code>operatorParallelism * 1.5</code> ，下限 128，上限 32768 。可以通过 <a href="https://ci.apache.org/projects/flink/flink-docs-release-1.6/dev/parallel.html#setting-the-maximum-parallelism" target="_blank" rel="external"><code>setMaxParallelism(int maxParallelism)</code></a> 来手动地设定作业或具体算子的最大并发。</p>
+<p>任何进入生产的作业都应该指定最大并发数。但是，一定要仔细考虑后再决定该值的大小。因为一旦设置了最大并发度（<strong>无论是手动设置，还是默认设置</strong>），之后就无法再对该值做更新。想要改变一个作业的最大并发度，就只能将作业从全新的状态重新开始执行。目前还无法在更改最大并发度后，从上一个 checkpoint 或 savepoint 恢复。</p>
+<p>最大并发度的取值建议设定一个足够高的值以满足应用未来的可扩展性和可用性，同时，又要选一个相对较低的值以避免影响应用程序整体的性能。这是由于一个很高的最大并发度会导致 Flink 需要维护大量的元数据（用于扩缩容），这可能会增加 Flink 应用程序的整体状态大小。</p>
+<h2 id="2-为-Flink-算子指定唯一用户ID（UUID）"><a href="#2-为-Flink-算子指定唯一用户ID（UUID）" class="headerlink" title="2. 为 Flink 算子指定唯一用户ID（UUID）"></a>2. 为 Flink 算子指定唯一用户ID（UUID）</h2><p>对于有状态的 Flink 应用，推荐给每个算子都<a href="https://ci.apache.org/projects/flink/flink-docs-release-1.6/ops/state/savepoints.html#should-i-assign-ids-to-all-operators-in-my-job" target="_blank" rel="external">指定唯一用户ID（UUID）</a>。 严格地说，仅需要给有状态的算子设置就足够了。但是因为 Flink 的某些内置算子（如 window）是有状态的，而有些是无状态的，可能用户不是很清楚哪些内置算子是有状态的，哪些不是。所以从实践经验上来说，我们建议每个算子都指定上 UUID。</p>
+<p>Flink 算子的 UUID 可以通过 <code>uid(String uid)</code> 方法指定。算子 UUID 使得 Flink 有效地将算子的状态从 savepoint 映射到作业修改后（拓扑图可能也有改变）的正确的算子上，这是 <a href="https://data-artisans.com/blog/turning-back-time-savepoints" target="_blank" rel="external">savepoint</a> 在 Flink 应用中正常工作的一个基本要素。</p>
+<h2 id="3-充分考虑-Flink-程序的状态后端"><a href="#3-充分考虑-Flink-程序的状态后端" class="headerlink" title="3. 充分考虑 Flink 程序的状态后端"></a>3. 充分考虑 Flink 程序的状态后端</h2><p>当前 Flink 还不支持状态后端之间的互换功能，也就是当我们用内存状态后端做了一个 savepoint，我们无法把作业改成 RocksDB 状态后端然后恢复。所以，开发人员和工程负责人在将作业投向生产之前要仔细考虑好该 Flink 应用的最合适的状态后端类型。</p>
+<p>关于 Flink 当前支持的三种不同的状态后端类型，可以阅读我们的上一篇文章：<a href="http://wuchong.me/blog/2018/11/21/flink-tips-how-to-choose-state-backends/">《Flink 小贴士 (4): 如何选择状态后端》</a></p>
+<p>对于生产用例来说，强烈建议使用 RocksDB 状态后端，因为这是目前唯一一种支持大型状态和异步操作（如快照过程）的状态后端，异步操作能使 Flink 不阻塞正常数据流的处理的情况下做快照操作。另一方面，使用 RocksDB 状态后端可能存在性能折衷，因为所有状态访问和检索都需要序列化（和反序列化）来跨越 JNI 边界，这与内存状态后端相比可能会影响应用程序的吞吐量。</p>
+<h2 id="4-配置-JobManager-的高可用性（HA）"><a href="#4-配置-JobManager-的高可用性（HA）" class="headerlink" title="4. 配置 JobManager 的高可用性（HA）"></a>4. 配置 JobManager 的高可用性（HA）</h2><p>高可用性（HA）配置确保了 Flink 应用中 JobManager 组件发生潜在故障后的自动恢复，从而将停机时间降到最低。JobManager 的主要职责是协调 Flink 的部署，例如调度和适当的资源分配。</p>
+<p>默认情况下，Flink 为每个集群设置一个 JobManager 实例。这会导致单点故障（SPOF）：如果 JobManager 崩溃了，则无法提交新的作业，而且正在运行的程序也会失败。因此，强烈建议为生产用例配置高可用性（HA）。</p>
+<p>上述 4 个步骤总结自社区的最佳实践，使得 Flink 应用能够保持状态的同时任意地扩缩容，处理更大规模的数据和状态，并提高系统的可用性。我们强烈建议您在将应用投入生产之前，仔细阅读上述步骤。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      本文阐述了使 Flink 应用达到生产就绪状态所需要的一些配置步骤。在以下部分中，我们概述了重要的配置参数，这些参数是技术领导、DevOps、工程师们在将 Flink 应用程序上线生产之前都需要仔细考虑的。Apache Flink 为大多数配置都提供了开箱即用的默认选项，在许多情况下，它们是POC阶段（概念验证）或探索 Flink 不同 API 和抽象的很好的起点。
+    
+    </summary>
+    
+      <category term="Flink" scheme="http://wuchong.me/categories/Flink/"/>
+    
+    
+      <category term="Flink" scheme="http://wuchong.me/tags/Flink/"/>
+    
+      <category term="Flink小贴士" scheme="http://wuchong.me/tags/Flink%E5%B0%8F%E8%B4%B4%E5%A3%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Flink 小贴士 (6): 使用 Broadcast State 的 4 个注意事项</title>
@@ -3581,142 +3623,6 @@
       &lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/81b78497jw1en8b95t5kmj203j00u743.jpg&quot; class=&quot;img-logo&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。&lt;/p&gt;
 &lt;p&gt;然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://wuchong.me/categories/Hexo/"/>
-    
-    
-      <category term="Hexo" scheme="http://wuchong.me/tags/Hexo/"/>
-    
-      <category term="Jacman" scheme="http://wuchong.me/tags/Jacman/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何使用 Jacman 主题</title>
-    <link href="http://wuchong.me/blog/2014/11/20/how-to-use-jacman/"/>
-    <id>http://wuchong.me/blog/2014/11/20/how-to-use-jacman/</id>
-    <published>2014-11-20T01:58:17.000Z</published>
-    <updated>2016-03-08T12:13:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><a href="https://github.com/wuchong/jacman" target="_blank" rel="external">Jacman</a> 是一款扁平化，有着响应式设计的 <a href="http://http://hexo.io/" target="_blank" rel="external">Hexo</a> 主题。本站正式使用了 Jacman 主题。Jacman 基于 <a href="https://github.com/A-limon/pacman" target="_blank" rel="external">Pacman</a> 主题修改而来，目前已有很多特性与原主题不同。你可以前往 <a href="http://wuchong.me">本站</a> 和 <a href="http://wuchong.me/jacman">Demo</a> 预览更多关于本主题的更多效果。如果你有任何问题或意见欢迎到 GitHub 发表 <a href="https://github.com/wuchong/jacman/issues" target="_blank" rel="external">issue</a>。</p>
-<p>距离当初我把 Jacman 开源至今已有半年零一周了，在这半年里也一直保持着对 Jacman 的更新。看到很多人用这款主题，fork&amp;star 数也越来越好看，我也更有动力继续完善 Jacman。Jacman 自然还有很多改进空间，首先是文档问题，有许多人通过博客、微博、QQ 询问我有关主题的问题，我也意识到之前写的帮助手册可读性太差。正好趁着这次 Jacman 大更新，写篇更详尽、readable 的手册。</p>
-<h2 id="安装指南"><a href="#安装指南" class="headerlink" title="安装指南"></a>安装指南</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在博客根目录下执行如下命令。<br><figure class="highlight crmsh"><table><tr><td class="code"><pre><div class="line">$ git <span class="keyword">clone</span> <span class="title">https</span>://github.com/wuchong/jacman.git themes/jacman</div></pre></td></tr></table></figure></p>
-<p>Jacman 需要安装 Hexo 2.7 及以上版本，请先升级您的 Hexo 程序，再启用此主题。</p>
-<h3 id="启用"><a href="#启用" class="headerlink" title="启用"></a>启用</h3><p>修改你的博客根目录下的<code>_config.yml</code>配置文件中的<code>theme</code>属性，将其设置为<code>jacman</code>。同时建议设置<code>stylus</code>属性中的<code>compress</code>值为true，会自动压缩 CSS 文件，hexo默认配置中不包含这一项，建议开启。如下。<br><figure class="highlight yaml"><table><tr><td class="code"><pre><div class="line"><span class="attr">theme:</span> <span class="string">jacman</span></div><div class="line"><span class="attr">stylus:</span></div><div class="line"><span class="attr">  compress:</span> <span class="literal">true</span></div></pre></td></tr></table></figure></p>
-<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">cd</span> themes/jacman</div><div class="line">git pull origin master</div></pre></td></tr></table></figure>
-<p>请先备份您主题目录下的 <code>_config.yml</code> 文件后再升级。</p>
-<a id="more"></a>
-<h2 id="配置指南"><a href="#配置指南" class="headerlink" title="配置指南"></a>配置指南</h2><p>Jacman 主题提供了丰富的配置属性，可以实现您对主题的自定义。配置文件<code>_config.yml</code>位于主题根目录下。本次更新对配置文件进行了较大调整，如您之前就使用了 Jacman，也需要您根据以下指南进行相应的修改。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><div class="line"><span class="comment">##### 菜单</span></div><div class="line"><span class="attr">menu:</span></div><div class="line">  <span class="string">主页:</span> <span class="string">/</span></div><div class="line">  <span class="string">归档:</span> <span class="string">/archives</span></div><div class="line">  <span class="string">关于:</span> <span class="string">/about</span></div><div class="line"></div><div class="line"><span class="comment">#### 控件</span></div><div class="line"><span class="attr">widgets:</span> </div><div class="line"><span class="bullet">-</span> <span class="string">category</span></div><div class="line"><span class="bullet">-</span> <span class="string">tag</span></div><div class="line"><span class="bullet">-</span> <span class="string">links</span></div><div class="line"><span class="bullet">-</span> <span class="string">rss</span></div><div class="line"></div><div class="line"><span class="comment">#### RSS </span></div><div class="line"><span class="attr">rss:</span> <span class="string">/atom.xml</span> </div><div class="line"></div><div class="line"><span class="comment">#### 图片相关</span></div><div class="line"><span class="attr">imglogo:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">true</span>               <span class="comment">## 是否显示网站 logo</span></div><div class="line"><span class="attr">  src:</span> <span class="string">img/logo.png</span>        </div><div class="line"><span class="attr">favicon:</span> <span class="string">img/favicon.ico</span>     <span class="comment">## 网站图标    </span></div><div class="line"><span class="attr">apple_icon:</span> <span class="string">img/jacman.jpg</span>   <span class="comment">## 苹果设备上的图标，背景不要透明</span></div><div class="line"><span class="attr">author_img:</span> <span class="string">img/author.jpg</span>   <span class="comment">## 网站底部的博主头像</span></div><div class="line"><span class="attr">banner_img:</span> <span class="string">img/banner.jpg</span>   <span class="comment">## 博客顶部的图片</span></div><div class="line"></div><div class="line"><span class="comment">### 主题颜色</span></div><div class="line"><span class="attr">theme_color:</span></div><div class="line"><span class="attr">    theme:</span> <span class="string">'#2ca6cb'</span>    <span class="comment">##默认主题颜色为蓝色</span></div><div class="line"></div><div class="line"><span class="attr">close_aside:</span> <span class="literal">false</span>      <span class="comment">##是否在文章页面自动关闭侧边栏</span></div><div class="line"></div><div class="line"><span class="comment">#### 首页相关</span></div><div class="line"><span class="attr">index:</span></div><div class="line"><span class="attr">  expand:</span> <span class="literal">true</span>              <span class="comment">## 首页文章是否展开。默认为展开式，显示 Read More。</span></div><div class="line"><span class="attr">  excerpt_link:</span> <span class="string">Read</span> <span class="string">More</span>    </div><div class="line"></div><div class="line"><span class="comment">#### 作者信息</span></div><div class="line"><span class="attr">author:</span></div><div class="line"><span class="attr">  intro_line1:</span>  <span class="string">"Hello ,I'm Larry Page in Google."</span>    <span class="comment">## 网站底部的个人介绍</span></div><div class="line"><span class="attr">  intro_line2:</span>  <span class="string">"This is my blog,believe it or not."</span>  </div><div class="line"><span class="attr">  weibo_verifier:</span>  <span class="comment">## 微博秀的验证码</span></div><div class="line"><span class="attr">  tsina:</span>           <span class="comment">## 用于微博秀和微博分享</span></div><div class="line"><span class="attr">  weibo:</span>           <span class="comment">## 用于显示网站底部社交按钮，下同</span></div><div class="line"><span class="attr">  douban:</span>         </div><div class="line"><span class="attr">  zhihu:</span>  </div><div class="line"><span class="attr">  email:</span>     </div><div class="line"><span class="attr">  twitter:</span>   </div><div class="line"><span class="attr">  github:</span>     </div><div class="line"><span class="attr">  facebook:</span> </div><div class="line"><span class="attr">  linkedin:</span>   </div><div class="line"><span class="attr">  google_plus:</span>   </div><div class="line"><span class="attr">  stackoverflow:</span>  </div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#### 目录</span></div><div class="line"><span class="attr">toc:</span></div><div class="line"><span class="attr">  article:</span> <span class="literal">true</span>   <span class="comment">## 是否在文章中显示目录</span></div><div class="line"><span class="attr">  aside:</span> <span class="literal">true</span>     <span class="comment">## 是否在侧边栏显示目录</span></div><div class="line"></div><div class="line"><span class="comment">#### 友情链接</span></div><div class="line"><span class="attr">links:</span></div><div class="line">  <span class="string">码农圈:</span> <span class="attr">https://coderq.com,一个面向程序员交流分享的新一代社区</span></div><div class="line">  <span class="string">Jark's</span> <span class="attr">Blog:</span> <span class="attr">http://wuchong.me</span></div><div class="line">  </div><div class="line"><span class="comment">#### 评论</span></div><div class="line"><span class="attr">duoshuo_shortname:</span> </div><div class="line"><span class="attr">disqus_shortname:</span>  </div><div class="line"></div><div class="line"><span class="comment">#### 分享按钮</span></div><div class="line"><span class="attr">jiathis:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">false</span>   <span class="comment">## 默认使用主题内建分享</span></div><div class="line"><span class="attr">  id:</span>    </div><div class="line"><span class="attr">  tsina:</span> </div><div class="line">  </div><div class="line"><span class="comment">#### 网站统计</span></div><div class="line"><span class="attr">google_analytics:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">false</span></div><div class="line"><span class="attr">  id:</span>            <span class="comment">## google analytics ID.</span></div><div class="line"><span class="attr">  site:</span>          <span class="comment">## 网站地址.</span></div><div class="line"><span class="attr">baidu_tongji:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">false</span></div><div class="line"><span class="attr">  sitecode:</span>      <span class="comment">## 百度统计站点特征码</span></div><div class="line"><span class="attr">cnzz_tongji:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">false</span></div><div class="line"><span class="attr">  siteid:</span>        <span class="comment">## CNZZ统计站点ID</span></div><div class="line"></div><div class="line"><span class="comment">#### 杂项</span></div><div class="line"><span class="attr">ShowCustomFont:</span> <span class="literal">true</span>  </div><div class="line"><span class="attr">fancybox:</span> <span class="literal">true</span>        </div><div class="line"><span class="attr">totop:</span> <span class="literal">true</span>           </div><div class="line"></div><div class="line"><span class="comment">#### 自定义搜索</span></div><div class="line"><span class="attr">google_cse:</span> </div><div class="line"><span class="attr">  enable:</span> <span class="literal">false</span></div><div class="line"><span class="attr">  cx:</span>  </div><div class="line"><span class="attr">baidu_search:</span>    </div><div class="line"><span class="attr">  enable:</span> <span class="literal">false</span></div><div class="line"><span class="attr">  id:</span>   </div><div class="line"><span class="attr">  site:</span> <span class="attr">http://zhannei.baidu.com/cse/search</span> </div><div class="line"><span class="attr">tinysou_search:</span>     <span class="comment">## http://tinysou.com/</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">false</span></div><div class="line"><span class="attr">  id:</span> <span class="string">"4ac092ad8d749fdc6293"</span></div></pre></td></tr></table></figure>
-<h3 id="属性功能"><a href="#属性功能" class="headerlink" title="属性功能"></a>属性功能</h3><ul>
-<li><strong>菜单 menu</strong><br>默认没有启用 <code>/tags</code> 和 <code>/categories</code>页面，如果需要启用请在博客目录下的<code>source</code>文件夹中分别建立<code>tags</code> 和 <code>categories</code>文件夹每个文件夹中分别包含一个<code>index.md</code>文件。内容为：</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><div class="line"><span class="attr">layout:</span> <span class="string">tags</span> <span class="string">(或categories)</span></div><div class="line"><span class="attr">title:</span> <span class="string">tags</span> <span class="string">(或categories)</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为主题中已经内置了这两个页面的模板，所以他们会被正确的解析出来。</p>
-<ul>
-<li><p><strong>控件 widgets</strong><br>提供了7种小工具。包括标签、标签云、分类、归档、RSS、友情链接、微博秀。</p>
-<p><strong>友情链接</strong>：友情链接的网址添加可以在<code>links</code>属性下添加。</p>
-<p><strong>微博秀</strong>：需要注意的是，如果要启用微博秀，您必须填上<code>author</code>属性下<code>tsina</code>和<code>weibo_verifier</code>的值，前者是您微博ID，后者是您微博秀的验证码，访问 <a href="http://app.weibo.com/tool/weiboshow" target="_blank" rel="external">http://app.weibo.com/tool/weiboshow</a> 在如下图位置，可以获得您的 verifier，如：我的是<code>b3593ceb</code>。<br><img src="http://ww1.sinaimg.cn/large/81b78497jw1emegd6b0ytj209204pweu.jpg" alt=""></p>
-<p>如果要关闭侧边栏，将<code>close_aside</code>置为<code>true</code>，就会在博文页面自动关闭侧边栏。</p>
-</li>
-<li><p><strong>图片相关 Image</strong><br>本主题可以设置网站相关图片，例如网站图标（<code>favicon</code>）、网站logo（<code>imglogo</code>）、作者头像（<code>author_img</code>）。建议启用网站logo，格式建议为<code>.svg</code>或<code>.png</code>格式。同时建议提供配套的 favicon 以及在苹果设备上的图标<code>apple_icon</code>（背景不要透明）。</p>
-</li>
-<li><p><strong>首页显示模式 Index</strong><br>目前首页的显示模式支持两种，一种是原先的卡片式（前往 <a href="http://wuchong.me/jacman">Demo</a> 预览），另一种是类似官方主题的文章展开式（<a href="http://wuchong.me">本站</a>即采用的这种）。两者各有优劣，前者首页加载速度更快，后者文章内容更能吸引读者。主题默认采用后一种展开式，如需开启第一种卡片式，请设置<code>index</code>属性下的<code>expand: false</code>。</p>
-<p>卡片式的文章摘要是截取文章内容的前140个字，也可以自己总结<code>description</code>并将其放在开头的<code>front-matter</code>中。展开式的文章摘要就是使用<code>&lt;!-- more --&gt;</code>截取了。</p>
-</li>
-<li><p><strong>作者信息 author</strong><br>作者信息，建议尽量填写完整。其中<code>tsina</code>是你的新浪微博ID，不同于用户名或微博主页地址。启用这个属性后，其他用户在微博上分享你文章的同时会自动@你。同时它和<code>weibo_verifier</code>一起作用生成微博秀。<code>intro_line1</code>和<code>intro_line2</code>是网站底部的个人介绍。<code>weibo</code>、<code>twitter</code>、<code>facebook</code>等是用来显示网站右下角的社交按钮的，如下图所示。<br><img src="http://ww4.sinaimg.cn/large/81b78497jw1emgscr3575j2078050jrc.jpg" alt=""></p>
-</li>
-<li><p><strong>目录 toc</strong><br>是否启用在文章中或侧边栏中的目录功能。二者可以都为<code>true</code>或都为<code>false</code>。同时，如果你希望在特定的某一篇文章中关闭目录功能你可以在文章文件开头中的<code>front-matter</code>中加上一行<code>toc: false</code>。如果希望在某一篇文章中关闭目录自动编号功能你可以在文章文件开头的<code>front-matter</code>中加上一行<code>list_number: false</code>。另外 hexo 2.5.2 开始支持中文目录，想获得更好的体验请升级你的 Hexo 版本。</p>
-</li>
-<li><p><strong>评论 comments</strong><br>填写<code>duoshuo_shortname</code><a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>的用户名，启用多说评论系统。在大陆地区更好用的评论系统。</p>
-<p>填写<code>disqus_shortname</code><a href="http://disqus.com/" target="_blank" rel="external">disqus</a> 的用户名，启用 disqus 评论系统。国际上更广泛使用的评论系统。设置博客根目录下的<code>_config.yml</code>文件中的<code>disqus_shortname</code>同样也能开启该功能。</p>
-</li>
-<li><p><strong>加网分享 jiathis</strong><br><a href="http://www.jiathis.com/" target="_blank" rel="external">加网</a>分享系统。默认关闭，因为主题已经内置了原生的分享功能。</p>
-</li>
-<li><p><strong>网站统计 Analytics</strong><br><code>google_analytics</code>：Google Analytics追踪代码。请注意：Google Analytics已经升级到了Universal Analytics。请先前往后台升级你的Google Analytics版本后再启用追踪代码，更多信息请<a href="https://developers.google.com/analytics/devguides/collection/upgrade/?hl=zh_CN" target="_blank" rel="external">点击这里</a>了解。</p>
-<p><code>baidu_tongji</code>：百度统计功能。需要填写站点特征码<code>sitecode</code>，在<a href="http://tongji.baidu.com/web/welcome/login" target="_blank" rel="external">官网</a>注册并配置站点后，获取特征码。特征码可以在「网站中心」-&gt; 「代码获取」中查看，如下图所示的<code>e6d1f421bbc9962127a50488f9ed37d1</code>，注意去掉前面的<code>3F</code>。<br><img src="http://ww4.sinaimg.cn/large/81b78497jw1emf4v6qf91j20kf07sq8v.jpg" alt=""></p>
-<p><code>cnzz_tongji</code>：站长统计功能。需要填写站点ID<code>siteid</code>，同理在<a href="http://www.cnzz.com" target="_blank" rel="external">站长官网</a>注册并配置站点后获得。</p>
-</li>
-<li><p><strong>数学公式 mathjax</strong><br>主题支持写 LaTex 数学公式。只需要在文章文件开头的<code>front-matter</code>中，加上一行<code>mathjax: true</code>，即可在文中写 LaTex 公式。</p>
-</li>
-<li><p><strong>图片浏览 fancybox</strong><br>默认关闭，如果你使用 Hexo 经常发表 Gallery 类型的文章，那么请设置为<code>true</code>。</p>
-</li>
-<li><p><strong>返回顶部 totop</strong><br>右下角<code>返回顶部</code>按钮，默认开启。</p>
-</li>
-<li><p><strong>自定义字体 ShowCustomFont</strong><br>是否启用自定义字体，默认开启，主要用于显示网站底部的字体。如果你有一定前端基础可以修改 font.styl 替换为你喜欢的字体。</p>
-</li>
-<li><p><strong>自定义搜索 Search</strong><br><code>baidu_search</code>：如果开启百度站内搜索需要登录 <a href="http://zn.baidu.com/" target="_blank" rel="external">百度站内搜索</a>，配置好你的站点，并开启站内搜索获取搜索ID，另外<code>site</code>属性可以填默认值，也可以填自己做了CNAME的二级域名，更详细的可以阅读<a href="http://gengbiao.me/hexo/hexo%E6%B7%BB%E5%8A%A0%E7%99%BE%E5%BA%A6%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/" target="_blank" rel="external">这篇博客</a>了解。</p>
-<p><code>google_cse</code>：如果开启谷歌自定义搜索需要先登录 <a href="https://www.google.com/cse/" target="_blank" rel="external">Google CSE</a>，配置好你的站点，并获得此自定义搜索的ID。此外你需要在博客目录下的<code>source</code>文件夹中建立<code>search</code>文件夹并包含一个<code>index.md</code>文件。内容为：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><div class="line"><span class="attr">layout:</span> <span class="string">search</span></div><div class="line"><span class="attr">title:</span> <span class="string">search</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure>
-<p><code>tiny_search</code>: 如果要开启<a href="http://tinysou.com/" target="_blank" rel="external">微搜索</a>，需要先注册一个帐号，配置一个Engine，将Engine的Key填入配置文件中的<code>id</code>即可。</p>
-</li>
-<li><p><strong>主题颜色更改 Theme Color</strong></p>
-</li>
-</ul>
-<p>目前官方还未支持十六进制颜色与String值的转换，所以需要手动添加依赖包，该问题估计不久后会解决。</p>
-<figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="meta">## 在博客的目录下输入下面指令</span></div><div class="line">cd node_modules/hexo-renderer-stylus </div><div class="line">sudo npm install stylus<span class="symbol">@0</span><span class="number">.49</span><span class="number">.2</span>  <span class="meta">#根据系统文件的权限不同，有的不需要加sudo</span></div></pre></td></tr></table></figure>
-<p>然后更改在主题目录下的<code>_config.yml</code>的 <code>theme_color</code> 下 <code>theme</code> 值。<br><figure class="highlight clean"><table><tr><td class="code"><pre><div class="line">### Theme Color </div><div class="line">theme_color:</div><div class="line">    theme: <span class="string">'#2ca6cb'</span>    ##the defaut theme color is blue</div></pre></td></tr></table></figure></p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ul>
-<li><p><strong>Q：图片默认都是居左的，我怎么设置能让图片居中呢？</strong></p>
-<blockquote>
-<p>使用 <code>&lt;img src=&quot;&quot; style=&quot;display:block;margin:auto&quot;/&gt;</code>的HTML标签。</p>
-</blockquote>
-</li>
-<li><p><strong>Q：如何建立一篇图片类文章（Gallery Post）？</strong></p>
-<blockquote>
-<p>使用<code>hexo new photo &quot;your titile&quot;</code>建立图片类文章，或者直接新建一个 Markdown 文件，将其<code>front-matter</code>修改为如下，即可看到主题为图片类文章提供的样式，<a href="http://wuchong.me/jacman/gallery">Demo</a>。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><div class="line"><span class="meta">---</span></div><div class="line"><span class="attr">layout:</span> <span class="string">photo</span></div><div class="line"><span class="attr">title:</span> <span class="string">Gallery</span> <span class="string">Post</span></div><div class="line"><span class="attr">photos:</span></div><div class="line"><span class="attr">- http:</span><span class="string">//i.minus.com/ibobbTlfxZgITW.jpg</span></div><div class="line"><span class="attr">- http:</span><span class="string">//i.minus.com/iedpg90Y0exFS.jpg</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p><strong>Q：我在配置文件中给某一项设置了值，但为什么总是看不到效果啊？</strong></p>
-<blockquote>
-<p><code>_config.yml</code>文件中的每个属性值前面必须留一个空格，建议在 Sublime/Notepad++ 中开启显示所有空格模式。另每篇文章的 <code>front-matter</code> 也要注意这个问题。</p>
-</blockquote>
-</li>
-<li><p><strong>Q：如何建立自我介绍页面（About 页面）？</strong></p>
-<blockquote>
-<p>首先在主目录找到<code>_config.yml</code>，找到url添加<code>about_dir: about</code>到这个板块。然后在<code>/source</code>里面建立about文件夹。在about文件夹里建立index.md。编辑index.md就和发布其他的文章一样，格式都一样。</p>
-</blockquote>
-</li>
-<li><p><strong>Q：怎么提意见和建议？</strong></p>
-<blockquote>
-<p>主题还在不断完善中，欢迎 <a href="https://github.com/wuchong/jacman/issues" target="_blank" rel="external">open issue</a> 来提建议，参与讨论。</p>
-</blockquote>
-</li>
-<li><p><strong>Q：楼主我不喜欢你的配色，怎么换主题的颜色呢？</strong></p>
-<blockquote>
-<p>包括颜色在内的很多变量都在<code>jacman/source/css/_base/variable.styl</code>文件中，可以修改成你喜欢的。</p>
-</blockquote>
-</li>
-<li><p><strong>Q：英语更能突显我的逼格，怎么换成英语？</strong></p>
-<blockquote>
-<p>配置你的博客根目录下的<code>_config.yml</code>，去掉<code>language: zh-CN</code>。</p>
-</blockquote>
-</li>
-<li><p><strong>Q：为什么我修改了配置文件/发表了博文，解析出来的却是乱码呢？ </strong></p>
-<blockquote>
-<p>请将你的配置文件/markdown文件保存成 <code>UTF-8</code> 格式。</p>
-</blockquote>
-</li>
-<li><p><strong>Q：为什么开启了微博秀后，显示是空白的，没有内容展示？ </strong></p>
-<blockquote>
-<p>每次修改参数都会这样，需要多刷新几次或者上传到服务器上就好了。</p>
-</blockquote>
-</li>
-<li><p><strong>Q：博主 Jacman Demo 站点中文章的 md 源文件在哪能看到呢？ </strong></p>
-<blockquote>
-<p>我将 Demo 站点所有源文件放在了 Jacman 的 <a href="https://github.com/wuchong/jacman/tree/site" target="_blank" rel="external">site</a> 分支下。</p>
-</blockquote>
-</li>
-</ul>
-<p><em>PS:有任何关于 Hexo 的问题，欢迎来 <a href="https://coderq.com/c/tech/hexo" target="_blank" rel="external">Hexo 中文社区</a> 咨询。</em></p>
-]]></content>
-    
-    <summary type="html">
-    
-      Jacman 是一款扁平化，有着响应式设计的 Hexo 主题。本站正式使用了 Jacman 主题。Jacman 基于 Pacman 主题修改而来，而今已有很多特性与原主题不同。你可以前往本站和 Demo 预览更多关于本主题的更多效果。如果你有任何问题或意见欢迎到 GitHub 发表 issue。
     
     </summary>
     
