@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,34 +23,38 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="jQuery," />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
+  <meta name="keywords" content="jQuery,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
 
 
 
@@ -62,11 +62,13 @@
 
 
 <meta name="description" content="最近在项目中用到了 jQuery.dataTables，这是一个很强大的 jQuery 表格插件，自带了 string，date，numeric 的排序，但当遇到比较特殊的排序需求时，就得另寻出路了。本文根据官方文档简述了如何用 dataTables 根据具体的列来定制排序方法。">
+<meta name="keywords" content="jQuery">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery.dataTables 自定义排序">
 <meta property="og:url" content="http://wuchong.me/blog/2014/02/25/jquery-datatable-sort-plugin/index.html">
-<meta property="og:site_name" content="Jark's Blog">
+<meta property="og:site_name" content="Jark&#39;s Blog">
 <meta property="og:description" content="最近在项目中用到了 jQuery.dataTables，这是一个很强大的 jQuery 表格插件，自带了 string，date，numeric 的排序，但当遇到比较特殊的排序需求时，就得另寻出路了。本文根据官方文档简述了如何用 dataTables 根据具体的列来定制排序方法。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wuchong.me/img/20140225-1.png">
 <meta property="og:updated_time" content="2016-03-08T12:13:43.000Z">
 <meta name="twitter:card" content="summary">
@@ -93,7 +95,7 @@
   <title> jQuery.dataTables 自定义排序 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -122,12 +124,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -154,7 +156,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -164,7 +166,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -174,7 +176,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -184,7 +186,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -194,7 +196,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -211,7 +213,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -248,7 +250,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -277,14 +279,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/编程语言/" itemprop="url" rel="index">
                     <span itemprop="name">编程语言</span>
                   </a>
@@ -342,23 +344,23 @@
       
         <p>最近在项目中用到了 jQuery.dataTables， 这是一个很强大的 jQuery 插件，调用方便，支持回调对数据进行排序、查询、分页等操作，并且 bootstrap 框架也有对其封装，省了我们界面设计的活。dataTables 自带了string，date，numeric 的排序，但当遇到比较特殊的排序需求时，就得另寻出路了。</p>
 <p>这几天正好碰到了这么个需求，一个统计表格中的有几列的单元格是百分数，而且还带有 html 的标签。需要针对这几列的百分数排序。</p>
-<p>单元格中的 html 代码是这样的。<br><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"label label-important"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon-caret-up"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>&amp;amp;nbsp;&amp;amp;nbsp;100.0%<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>单元格中的 html 代码是这样的。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"label label-important"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon-caret-up"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>&amp;amp;nbsp;&amp;amp;nbsp;100.0%<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>表格大概是长这样的。</p>
 <p><img src="/img/20140225-1.png" alt=""></p>
 <p>而 dataTables 的自带排序会将这一列视为 string 排序。 显然是不满足我们需求的。一开始以为要大动干戈，后来看了API文档后发现，dataTables 的第三方扩展支持还是很灵活的。官方文档中提供了两种方法： (1) Type based column sorting ; (2) Custom data source sorting<br>。我使用的是第一种方法。主要思路就是将单元格内容转成可排序的 float 类型。<br><a id="more"></a></p>
 <ol>
 <li><p>首先创建一个文件叫<code>dataTables.sort.plungin.js</code>，加入以下代码。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">jQuery.extend(jQuery.fn.dataTableExt.oSort, &#123;</div><div class="line">    <span class="string">"html-percent-pre"</span>: <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> x = <span class="built_in">String</span>(a).replace(<span class="regexp">/&lt;[\s\S]*?&gt;/g</span>, <span class="string">""</span>);    <span class="comment">//去除html标记</span></div><div class="line">        x = x.replace(<span class="regexp">/&amp;amp;nbsp;/ig</span>, <span class="string">""</span>);                   <span class="comment">//去除空格</span></div><div class="line">        x = x.replace(<span class="regexp">/%/</span>, <span class="string">""</span>);                          <span class="comment">//去除百分号</span></div><div class="line">        <span class="keyword">return</span> <span class="built_in">parseFloat</span>(x);</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="string">"html-percent-asc"</span>: <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;                <span class="comment">//正序排序引用方法</span></div><div class="line">        <span class="keyword">return</span> ((a &lt; b) ? <span class="number">-1</span> : ((a &gt; b) ? <span class="number">1</span> : <span class="number">0</span>));</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="string">"html-percent-desc"</span>: <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;                <span class="comment">//倒序排序引用方法</span></div><div class="line">        <span class="keyword">return</span> ((a &lt; b) ? <span class="number">1</span> : ((a &gt; b) ? <span class="number">-1</span> : <span class="number">0</span>));</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">jQuery.extend(jQuery.fn.dataTableExt.oSort, &#123;</span><br><span class="line">    <span class="string">"html-percent-pre"</span>: <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> x = <span class="built_in">String</span>(a).replace(<span class="regexp">/&lt;[\s\S]*?&gt;/g</span>, <span class="string">""</span>);    <span class="comment">//去除html标记</span></span><br><span class="line">        x = x.replace(<span class="regexp">/&amp;amp;nbsp;/ig</span>, <span class="string">""</span>);                   <span class="comment">//去除空格</span></span><br><span class="line">        x = x.replace(<span class="regexp">/%/</span>, <span class="string">""</span>);                          <span class="comment">//去除百分号</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">parseFloat</span>(x);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="string">"html-percent-asc"</span>: <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;                <span class="comment">//正序排序引用方法</span></span><br><span class="line">        <span class="keyword">return</span> ((a &lt; b) ? <span class="number">-1</span> : ((a &gt; b) ? <span class="number">1</span> : <span class="number">0</span>));</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="string">"html-percent-desc"</span>: <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;                <span class="comment">//倒序排序引用方法</span></span><br><span class="line">        <span class="keyword">return</span> ((a &lt; b) ? <span class="number">1</span> : ((a &gt; b) ? <span class="number">-1</span> : <span class="number">0</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在前台页面中加入以下的 js 引用。 </p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jquery.dataTables.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"dataTables.numericComma.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">            <span class="keyword">var</span> oTable1 = $(<span class="string">'#table_report'</span>).dataTable(&#123;</div><div class="line">                <span class="string">"aoColumnDefs"</span>: [</div><div class="line">                    &#123; <span class="string">"sType"</span>: <span class="string">"html-percent"</span>, <span class="string">"aTargets"</span>: [<span class="number">8</span>] &#125;,    <span class="comment">//指定列号使用自定义排序</span></div><div class="line">                ],</div><div class="line">                <span class="string">"bLengthChange"</span>: <span class="literal">true</span>, <span class="comment">//开关，是否显示每页大小的下拉框</span></div><div class="line">                <span class="string">"aLengthMenu"</span>: [[<span class="number">5</span>, <span class="number">10</span>, <span class="number">25</span>, <span class="number">-1</span>], [<span class="number">5</span>, <span class="number">10</span>, <span class="number">25</span>, <span class="string">"所有"</span>]],</div><div class="line">                <span class="string">'iDisplayLength'</span>: <span class="number">25</span>, <span class="comment">//每页显示10条记录</span></div><div class="line">                <span class="string">'bFilter'</span>: <span class="literal">true</span>,  <span class="comment">//是否使用内置的过滤功能</span></div><div class="line">                <span class="string">"bInfo"</span>: <span class="literal">true</span>, <span class="comment">//开关，是否显示表格的一些信息</span></div><div class="line">                <span class="string">"bPaginate"</span>: <span class="literal">true</span> <span class="comment">//开关，是否显示分页器</span></div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jquery.dataTables.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"dataTables.numericComma.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> oTable1 = $(<span class="string">'#table_report'</span>).dataTable(&#123;</span></span><br><span class="line"><span class="actionscript">                <span class="string">"aoColumnDefs"</span>: [</span></span><br><span class="line"><span class="actionscript">                    &#123; <span class="string">"sType"</span>: <span class="string">"html-percent"</span>, <span class="string">"aTargets"</span>: [<span class="number">8</span>] &#125;,    <span class="comment">//指定列号使用自定义排序</span></span></span><br><span class="line"><span class="undefined">                ],</span></span><br><span class="line"><span class="actionscript">                <span class="string">"bLengthChange"</span>: <span class="literal">true</span>, <span class="comment">//开关，是否显示每页大小的下拉框</span></span></span><br><span class="line"><span class="actionscript">                <span class="string">"aLengthMenu"</span>: [[<span class="number">5</span>, <span class="number">10</span>, <span class="number">25</span>, <span class="number">-1</span>], [<span class="number">5</span>, <span class="number">10</span>, <span class="number">25</span>, <span class="string">"所有"</span>]],</span></span><br><span class="line"><span class="actionscript">                <span class="string">'iDisplayLength'</span>: <span class="number">25</span>, <span class="comment">//每页显示10条记录</span></span></span><br><span class="line"><span class="actionscript">                <span class="string">'bFilter'</span>: <span class="literal">true</span>,  <span class="comment">//是否使用内置的过滤功能</span></span></span><br><span class="line"><span class="actionscript">                <span class="string">"bInfo"</span>: <span class="literal">true</span>, <span class="comment">//开关，是否显示表格的一些信息</span></span></span><br><span class="line"><span class="actionscript">                <span class="string">"bPaginate"</span>: <span class="literal">true</span> <span class="comment">//开关，是否显示分页器</span></span></span><br><span class="line"><span class="undefined">            &#125;);</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>完成。</p>
 </li>
 </ol>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://www.datatables.net/development/sorting" target="_blank" rel="external">DataTables关于排序的文档</a></li>
-<li><a href="http://datatables.net/plug-ins/sorting#how_to_data_source" target="_blank" rel="external">另一种自定义方法</a></li>
+<li><a href="https://www.datatables.net/development/sorting" target="_blank" rel="noopener">DataTables关于排序的文档</a></li>
+<li><a href="http://datatables.net/plug-ins/sorting#how_to_data_source" target="_blank" rel="noopener">另一种自定义方法</a></li>
 </ul>
 <p>-EOF-</p>
 
@@ -369,7 +371,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -393,7 +395,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -466,7 +468,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -476,12 +478,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -542,7 +542,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -589,10 +589,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

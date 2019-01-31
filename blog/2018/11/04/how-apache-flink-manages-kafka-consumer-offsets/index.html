@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,34 +23,38 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="checkpoint,Kafka,Flink,offset" />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
+  <meta name="keywords" content="checkpoint,Kafka,Flink,offset">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
 
 
 
@@ -62,11 +62,13 @@
 
 
 <meta name="description" content="在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。">
+<meta name="keywords" content="checkpoint,Kafka,Flink,offset">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flink 小贴士 (2)：Flink 如何管理 Kafka 消费位点">
 <meta property="og:url" content="http://wuchong.me/blog/2018/11/04/how-apache-flink-manages-kafka-consumer-offsets/index.html">
-<meta property="og:site_name" content="Jark's Blog">
+<meta property="og:site_name" content="Jark&#39;s Blog">
 <meta property="og:description" content="在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1QQ91nhTpK1RjSZR0XXbEwXXa-842-415.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1jBS2nb2pK1RjSZFsXXaNlXXa-842-420.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1ZNS8nkvoK1RjSZFNXXcxMVXa-842-423.png">
@@ -74,7 +76,7 @@
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1EI2XngHqK1RjSZFkXXX.WFXa-842-439.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1huHtnhnaK1RjSZFBXXcW7VXa-842-417.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1o8zXnmzqK1RjSZFjXXblCFXa-842-411.png">
-<meta property="og:updated_time" content="2018-11-25T14:26:06.220Z">
+<meta property="og:updated_time" content="2018-11-25T14:26:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink 小贴士 (2)：Flink 如何管理 Kafka 消费位点">
 <meta name="twitter:description" content="在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。">
@@ -99,7 +101,7 @@
   <title> Flink 小贴士 (2)：Flink 如何管理 Kafka 消费位点 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -128,12 +130,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -160,7 +162,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -170,7 +172,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -180,7 +182,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -190,7 +192,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -200,7 +202,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -217,7 +219,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -254,7 +256,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -283,14 +285,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Flink/" itemprop="url" rel="index">
                     <span itemprop="name">Flink</span>
                   </a>
@@ -347,7 +349,7 @@
 
       
         <blockquote>
-<p>原文：<a href="https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets" target="_blank" rel="external">https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets</a><br>作者：Fabian Hueske, Markos Sfikas<br>译者：云邪（Jark）</p>
+<p>原文：<a href="https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets" target="_blank" rel="noopener">https://data-artisans.com/blog/how-apache-flink-manages-kafka-consumer-offsets</a><br>作者：Fabian Hueske, Markos Sfikas<br>译者：云邪（Jark）</p>
 </blockquote>
 <p>在本周的《Flink Friday Tip》中，我们将结合例子逐步讲解 Apache Flink 是如何与 Apache Kafka 协同工作并确保来自 Kafka topic 的消息以 exactly-once 的语义被处理。</p>
 <p>检查点（Checkpoint）是使 Apache Flink 能从故障恢复的一种内部机制。检查点是 Flink 应用状态的一个一致性副本，包括了输入的读取位点。在发生故障时，Flink 通过从检查点加载应用程序状态来恢复，并从恢复的读取位点继续处理，就好像什么事情都没发生一样。你可以把检查点想象成电脑游戏的存档一样。如果你在游戏中发生了什么事情，你可以随时读档重来一次。</p>
@@ -369,7 +371,7 @@
 <p><img src="https://img.alicdn.com/tfs/TB1huHtnhnaK1RjSZFBXXcW7VXa-842-417.png" alt=""></p>
 <h3 id="故障恢复"><a href="#故障恢复" class="headerlink" title="故障恢复"></a>故障恢复</h3><p>在发生故障时（比如，某个 worker 挂了），所有的 operator task 会被重启，而他们的状态会被重置到最近一次成功的 checkpoint。Kafka source 分别从 offset 2 和 1 重新开始读取消息（因为这是完成的 checkpoint 中存的 offset）。当作业重启后，我们可以期待正常的系统操作，就好像之前没有发生故障一样。如下图所示：</p>
 <p><img src="https://img.alicdn.com/tfs/TB1o8zXnmzqK1RjSZFjXXblCFXa-842-411.png" alt=""></p>
-<p>如果想了解更多有关如何最佳地使用 Apache Flink 与 Apache Kafka，以及一些常见问题，可以访问我们这篇文章 <a href="https://data-artisans.com/blog/kafka-flink-a-practical-how-to" target="_blank" rel="external">Kafka + Flink: A Practical, How-To Guide</a>。</p>
+<p>如果想了解更多有关如何最佳地使用 Apache Flink 与 Apache Kafka，以及一些常见问题，可以访问我们这篇文章 <a href="https://data-artisans.com/blog/kafka-flink-a-practical-how-to" target="_blank" rel="noopener">Kafka + Flink: A Practical, How-To Guide</a>。</p>
 
       
     </div>
@@ -378,7 +380,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -406,7 +408,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -479,7 +481,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -489,12 +491,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -555,7 +555,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -602,10 +602,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

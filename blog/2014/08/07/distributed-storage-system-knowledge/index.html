@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,34 +23,38 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="分布式,2PC,Paxos,NWR," />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
+  <meta name="keywords" content="分布式,2PC,Paxos,NWR,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
 
 
 
@@ -62,11 +62,13 @@
 
 
 <meta name="description" content="最近看完了杨传辉老师写的《大规模分布式存储系统》一书，发现里面很多知识点和之前看的《大型网站系统与Java中间件》有很多相通之处，也渐渐加深了我对分布式技术的兴趣。但无奈分布式涵盖范围太广了，分布式存储、分布式计算、CAP理论、Paxos算法、什么GFS、Hadoop、Dynamo、BigTable、Spanner等等，不下点功夫还真不能理顺它们之间的内在关系。所以结合两书以及一些优秀博文，总结了">
+<meta name="keywords" content="分布式,2PC,Paxos,NWR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式存储系统 知识体系">
 <meta property="og:url" content="http://wuchong.me/blog/2014/08/07/distributed-storage-system-knowledge/index.html">
-<meta property="og:site_name" content="Jark's Blog">
+<meta property="og:site_name" content="Jark&#39;s Blog">
 <meta property="og:description" content="最近看完了杨传辉老师写的《大规模分布式存储系统》一书，发现里面很多知识点和之前看的《大型网站系统与Java中间件》有很多相通之处，也渐渐加深了我对分布式技术的兴趣。但无奈分布式涵盖范围太广了，分布式存储、分布式计算、CAP理论、Paxos算法、什么GFS、Hadoop、Dynamo、BigTable、Spanner等等，不下点功夫还真不能理顺它们之间的内在关系。所以结合两书以及一些优秀博文，总结了">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww4.sinaimg.cn/mw690/81b78497jw1ej3xmerc23j20ss0cstd8.jpg">
 <meta property="og:updated_time" content="2016-03-08T12:08:44.000Z">
 <meta name="twitter:card" content="summary">
@@ -93,7 +95,7 @@
   <title> 分布式存储系统 知识体系 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -122,12 +124,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -154,7 +156,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -164,7 +166,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -174,7 +176,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -184,7 +186,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -194,7 +196,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -211,7 +213,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -248,7 +250,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -277,14 +279,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/分布式系统/" itemprop="url" rel="index">
                     <span itemprop="name">分布式系统</span>
                   </a>
@@ -343,7 +345,7 @@
         <p>最近看完了杨传辉老师写的《大规模分布式存储系统》一书，发现里面很多知识点和之前看的《大型网站系统与Java中间件》有很多相通之处，也渐渐加深了我对分布式技术的兴趣。但无奈分布式涵盖范围太广了，分布式存储、分布式计算、CAP理论、Paxos算法、什么GFS、Hadoop、Dynamo、BigTable、Spanner等等，不下点功夫还真不能理顺它们之间的内在关系。所以结合两书以及一些优秀博文，总结了分布式存储的知识体系，为以后打下基础而努力。由于初入泥潭，必然有些理解不当的地方，若有大神路过还望不吝指教。</p>
 <p>本文更像是读书笔记，是对知识点的一个梳理，无奈越写越多，部分知识只能点到为止，具体内容可以查看原书或维基百科。</p>
 <h2 id="单机存储引擎"><a href="#单机存储引擎" class="headerlink" title="单机存储引擎"></a>单机存储引擎</h2><h3 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h3><p>哈希存储引擎是哈希表的持久化实现，支持增、删、改，以及随机读取操作，但不支持顺序扫描，对应的存储系统为键值(Key-Value)存储系统，如 Bitcask。它仅支持追加操作，删除也只是通过标识 value 为特殊值，通过定期合并（Compaction）实现垃圾回收。</p>
-<h3 id="B-树"><a href="#B-树" class="headerlink" title="B 树"></a>B 树</h3><p>B 树存储引擎是 B 树的持久化实现，不仅支持单条记录的增、删、读、改操作，还支持顺序扫描，对应的存储系统是关系数据库。关系数据库中通过索引访问数据，在 Mysql InnoDB 中，有一个称为聚集索引的东西，行的数据存于其中，组织成 B+ 树的结构。更多 B 系树的内容可以参考 <a href="http://taop.marchtea.com/03.02.html" target="_blank" rel="external">这里</a> 。</p>
+<h3 id="B-树"><a href="#B-树" class="headerlink" title="B 树"></a>B 树</h3><p>B 树存储引擎是 B 树的持久化实现，不仅支持单条记录的增、删、读、改操作，还支持顺序扫描，对应的存储系统是关系数据库。关系数据库中通过索引访问数据，在 Mysql InnoDB 中，有一个称为聚集索引的东西，行的数据存于其中，组织成 B+ 树的结构。更多 B 系树的内容可以参考 <a href="http://taop.marchtea.com/03.02.html" target="_blank" rel="noopener">这里</a> 。</p>
 <h3 id="LSM-树"><a href="#LSM-树" class="headerlink" title="LSM 树"></a>LSM 树</h3><p>LSM 树(Log Structure Merge Tree)存储引擎采用批量转储技术来避免磁盘随机写入。其思想很朴素，就是将对数据的修改增量保持在内存中，达到指定的大小限制后将这些修改操作批量写入磁盘。它广泛应用于互联网的后台存储系统， 例如 Google BigTable、 以及 Facebook 开源的 Cassandra系统。<br><a id="more"></a></p>
 <h2 id="分布式存储的出现"><a href="#分布式存储的出现" class="headerlink" title="分布式存储的出现"></a>分布式存储的出现</h2><p>单机存储随着业务的增长会遇到<strong>性能</strong>与<strong>单点故障</strong>问题。通常有两种解决方案：</p>
 <ol>
@@ -353,7 +355,7 @@
 <p>这两种方法都能解决性能上的问题，一般结合使用。而对于数据丢失的问题，我们只能通过第二种方法来完成——数据的冗余存储。但是加入更多的机器，会导致事情变得复杂起来，尤其是分布式事务处理，也就是多台服务器之间的数据如何保持一致性，因为原先单机的 ACID 特性在分布式环境下都用不了了。</p>
 <h3 id="数据分布"><a href="#数据分布" class="headerlink" title="数据分布"></a>数据分布</h3><p>数据分布主要有两种方式：一种是哈希分布，如一致性哈希（Dynamo）；另一种是顺序分布（BigTable）。考虑因素包括读写场景， 即随机还是顺序， 包括如何保证负载均衡从而提高性能等</p>
 <p>传统的哈希分布算法简单的将哈希值与服务器个数做除法取模映射。但是当服务器上下线时，数据的重新分布会带来大量的数据迁移。</p>
-<p>因此有了 <strong><a href="http://zh.wikipedia.org/zh-cn/%E4%B8%80%E8%87%B4%E5%93%88%E5%B8%8C" target="_blank" rel="external">一致性哈希算法</a></strong> 。算法思想如下 :给系统中每个节点分配一个随机 token，这些 token 构成一个哈希环。执行数据存放操作时，先计算 Key(主键)的哈希值，然后存放到顺时针方向第一个大于或者等于该哈希值的 token 所在的节点。一致性哈希的优点在于节点加入 / 删除时只会影响到在哈希环中相邻的节点，而对其他节点没影响。增加节点后能很大程度上避免了数据迁移。为了考虑负载均衡，一般还会引入虚拟节点的技术，即一个物理节点会对应着多个虚拟节点（如 Dynamo）。</p>
+<p>因此有了 <strong><a href="http://zh.wikipedia.org/zh-cn/%E4%B8%80%E8%87%B4%E5%93%88%E5%B8%8C" target="_blank" rel="noopener">一致性哈希算法</a></strong> 。算法思想如下 :给系统中每个节点分配一个随机 token，这些 token 构成一个哈希环。执行数据存放操作时，先计算 Key(主键)的哈希值，然后存放到顺时针方向第一个大于或者等于该哈希值的 token 所在的节点。一致性哈希的优点在于节点加入 / 删除时只会影响到在哈希环中相邻的节点，而对其他节点没影响。增加节点后能很大程度上避免了数据迁移。为了考虑负载均衡，一般还会引入虚拟节点的技术，即一个物理节点会对应着多个虚拟节点（如 Dynamo）。</p>
 <h3 id="数据复制"><a href="#数据复制" class="headerlink" title="数据复制"></a>数据复制</h3><p>复制协议有两种：<strong>强同步复制</strong>，<strong>异步复制</strong>。 区别在于用户的写请求是否需要同步到备副本才可以返回成功。</p>
 <p>一致性和可用性是矛盾的。强同步复制协议保证主备副本之间的一致性，但是当备副本出现故障时会影响系统可用性。异步复制协议的可用性较好，但是一致性得不到保障，主副本出现故障时还有数据丢失的可能。</p>
 <p>这两种协议都是将主副本的数据以某种形式（多为操作日志）发送到其他副本，这种复制协议称为基于主副本的复制协议。当然还有基于多个存储节点的复制协议。比如下面会介绍的 Dynamo 系统的 NWR 复制协议。</p>
@@ -370,7 +372,7 @@
 </ol>
 <p>从这三种一致型的模型上来说，我们可以看到，Weak 和 Eventually 一般来说是异步冗余的，而Strong一般来说是同步冗余的，异步的通常意味着更好的性能，但也意味着更复杂的状态控制。同步意味着简单，但也意味着性能下降。</p>
 <h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><p>事务的支持对于业务是非常重要的特性，数据库在单机下的 ACID 事务特性是比较到位的，而一旦进行分库分表后就要面对一致性和可用性的问题了，这就是分布式事务了。</p>
-<h3 id="CAP-原理"><a href="#CAP-原理" class="headerlink" title="CAP 原理"></a>CAP 原理</h3><p>在分布式环境下需要考虑数据的一致性和性能的问题，我们要了解下 <a href="http://zh.wikipedia.org/wiki/CAP%E5%AE%9A%E7%90%86" target="_blank" rel="external">CAP 理论</a>：</p>
+<h3 id="CAP-原理"><a href="#CAP-原理" class="headerlink" title="CAP 原理"></a>CAP 原理</h3><p>在分布式环境下需要考虑数据的一致性和性能的问题，我们要了解下 <a href="http://zh.wikipedia.org/wiki/CAP%E5%AE%9A%E7%90%86" target="_blank" rel="noopener">CAP 理论</a>：</p>
 <ul>
 <li>一致性：所有节点在同一时间具有相同的数据。</li>
 <li>可用性：保证每个请求不管成功或者失败都有响应。我理解的是系统的性能。</li>
@@ -387,16 +389,16 @@
 </ul>
 <h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><p>英文 Two Phase Commit，也叫 2PC。两阶段提交经常用于分布式事务，是强一致性算法。简要的说就是分两阶段：</p>
 <p>第一阶段，主控节点（协调者）询问所有节点（参与者）是否可以提交操作，参与者回应 yes or no。<br>第二阶段，协调者根据收到的响应，如果所有参与者都回应 yes，则向所有参与者发送“正式提交”的命令。参与者完成后恢复“完成”消息，协调者收集齐各节点的回应后结束这个 Global Transaction。如果有一个拒绝则给所有参与者发送“回滚操作”。参与者回滚成功后回应“回滚完成”，协调者收集各结点的“回滚”回应后，取消这个 Global Transaction。</p>
-<p>2PC说白了就是第一阶段做 Vote，第二阶段做决定的一个算法，相对于单库事务来说就是在提交之前多了准备的阶段。但是也存在着问题，其中一个是同步阻塞操作，这个事情必然会非常大地影响性能。另一个主要的问题是在TimeOut上。因此出现了 3PC，主要是将提交过程分为两步，更多描述见 <a href="http://en.wikipedia.org/wiki/Three-phase_commit_protocol" target="_blank" rel="external">Wikipedia</a>。</p>
+<p>2PC说白了就是第一阶段做 Vote，第二阶段做决定的一个算法，相对于单库事务来说就是在提交之前多了准备的阶段。但是也存在着问题，其中一个是同步阻塞操作，这个事情必然会非常大地影响性能。另一个主要的问题是在TimeOut上。因此出现了 3PC，主要是将提交过程分为两步，更多描述见 <a href="http://en.wikipedia.org/wiki/Three-phase_commit_protocol" target="_blank" rel="noopener">Wikipedia</a>。</p>
 <h3 id="Paxos-算法"><a href="#Paxos-算法" class="headerlink" title="Paxos 算法"></a>Paxos 算法</h3><p>Google Chubby 的作者 Mike Burrows 说过，“世上只有一种一致性算法，那就是 Paxos”，所有其他一致性算法都是Paxos算法的残次版本。</p>
-<p>Paxos是一个分布式选举算法， 最大的用途就是保持多个节点数据的一致性。看了好久的 Paxos 算法还是有些迷糊，这里就不给出具体算法了。感兴趣的可以参看 <a href="http://zh.wikipedia.org/zh/Paxos%E7%AE%97%E6%B3%95" target="_blank" rel="external">WikiPedia</a> 以及里面给出的示例。</p>
+<p>Paxos是一个分布式选举算法， 最大的用途就是保持多个节点数据的一致性。看了好久的 Paxos 算法还是有些迷糊，这里就不给出具体算法了。感兴趣的可以参看 <a href="http://zh.wikipedia.org/zh/Paxos%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">WikiPedia</a> 以及里面给出的示例。</p>
 <p>实际上对于一般的开发人员，我们并不需要了解 Paxos 所有细节及如何实现，只需要知道 Paxos 是一个分布式选举算法就够了。当我们以后遇到相似的问题，知道有这样一个技术，可以正确及优雅地解决技术架构上一些难题就够了。</p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>Paxos 协议和 2PC 协议在分布式系统中所起的作用并不相同。Paxos 协议用于保证同一个数据分片的多个副本之间的数据一致性。当这些副本分布到不同的数据中心时，这个需求尤其强烈。2PC 协议用于保证属于多个数据分片上的操作的原子性。这些数据分片可能分布在不同的服务器上，2PC 协议保证多台服务器上的操作要么全部成功，要么全部失败。可见 Paxos 的学术地位不一般。</p>
 <p>Paxos 协议有两种用法:一种用法是用它来实现全局的锁服务或者命名和配置服务，例如 Google Chubby 以及 Apache Zookeeper 还有全局ID。另外一种用法是用它来将用户数据复制到多个数据中心，例如 Google Megastore 以及 Google Spanner。</p>
 <p>2PC 协议最大的缺陷在于无法处理协调者宕机问题。如果协调者宕机，那么，2PC协议中的每个参与者可能都不知道事务应该提交还是回滚，整个协议被阻塞，执行过程中申请的资源都无法释放。因此，常见的做法是将 2PC 和 Paxos 协议结合起来，通过2PC 保证多个数据分片上的操作的原子性，通过 Paxos 协议实现同一个数据分片的多个副本之间的一致性。另外，通过 Paxos 协议解决 2PC 协议中协调者宕机问题。当 2PC协议中的协调者出现故障时，通过 Paxos 协议选举出新的协调者继续提供服务。</p>
-<p>下图是几种策略原理的比较，来源于：Google App Engine的 co-founder Ryan Barrett在2009年的google i/o上的演讲《<a href="http://snarfed.org/transactions_across_datacenters_io.html" target="_blank" rel="external">Transaction Across DataCenter</a>》（<a href="http://www.youtube.com/watch?v=srOgpXECblk" target="_blank" rel="external">视频</a>）</p>
+<p>下图是几种策略原理的比较，来源于：Google App Engine的 co-founder Ryan Barrett在2009年的google i/o上的演讲《<a href="http://snarfed.org/transactions_across_datacenters_io.html" target="_blank" rel="noopener">Transaction Across DataCenter</a>》（<a href="http://www.youtube.com/watch?v=srOgpXECblk" target="_blank" rel="noopener">视频</a>）</p>
 <p><img src="http://ww4.sinaimg.cn/mw690/81b78497jw1ej3xmerc23j20ss0cstd8.jpg" alt=""></p>
-<p>图中 M/S 是 <a href="http://en.wikipedia.org/wiki/Master/slave_(technology" target="_blank" rel="external">Master-Slave</a>) 结构，实现简单，但是存在单点故障和数据丢失的问题。M/M 即 <a href="http://en.wikipedia.org/wiki/Multi-master_replication" target="_blank" rel="external">Multi-Master</a>，解决了单点故障但是一致性的实现较复杂且存在冲突合并的问题（Vector Clock解决）。从上图我们可以看到，我们基本上来说不可以让所有的项都绿起来，也就是之前说到的著名的CAP理论：一致性，可用性，分区容忍性，你只可能要其中的两个。</p>
+<p>图中 M/S 是 <a href="http://en.wikipedia.org/wiki/Master/slave_(technology" target="_blank" rel="noopener">Master-Slave</a>) 结构，实现简单，但是存在单点故障和数据丢失的问题。M/M 即 <a href="http://en.wikipedia.org/wiki/Multi-master_replication" target="_blank" rel="noopener">Multi-Master</a>，解决了单点故障但是一致性的实现较复杂且存在冲突合并的问题（Vector Clock解决）。从上图我们可以看到，我们基本上来说不可以让所有的项都绿起来，也就是之前说到的著名的CAP理论：一致性，可用性，分区容忍性，你只可能要其中的两个。</p>
 <h2 id="分布式系统分类"><a href="#分布式系统分类" class="headerlink" title="分布式系统分类"></a>分布式系统分类</h2><h3 id="分布式文件系统"><a href="#分布式文件系统" class="headerlink" title="分布式文件系统"></a>分布式文件系统</h3><p>分布式文件系统用于存储 Blob 对象，典型的系统有 Facebook Haystack 以及 Taobao File System(TFS)。分布式文件系统是分布式的基石，通常作为上层系统的底层存储。</p>
 <p>总体上看，分布式文件系统存储三种类型的数据 :Blob 对象、定长块以及大文件。在系统实现层面，分布式文件系统内部按照数据块(chunk)来组织数据，每个 chunk 的大小大致相同，每个 chunk 可以包含多个 Blob 对象或者定长块，一个大文件也可以拆分为多个 chunk 。</p>
 <h3 id="分布式键值系统"><a href="#分布式键值系统" class="headerlink" title="分布式键值系统"></a>分布式键值系统</h3><p>分布式键值系统用于存储关系简单的半结构化数据，它只提供基于主键的 CRUD(Create/Read/Update/Delete)功能。</p>
@@ -415,8 +417,8 @@
 </li>
 </ul>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li>杨传辉 :<a href="http://book.douban.com/subject/25723658/" target="_blank" rel="external">大规模分布式存储系统</a></li>
-<li>酷壳：<a href="http://coolshell.cn/articles/10910.html" target="_blank" rel="external">分布式系统的事务处理</a></li>
+<li>杨传辉 :<a href="http://book.douban.com/subject/25723658/" target="_blank" rel="noopener">大规模分布式存储系统</a></li>
+<li>酷壳：<a href="http://coolshell.cn/articles/10910.html" target="_blank" rel="noopener">分布式系统的事务处理</a></li>
 </ul>
 
       
@@ -426,7 +428,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -456,7 +458,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -529,7 +531,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -539,12 +541,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -605,7 +605,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -652,10 +652,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

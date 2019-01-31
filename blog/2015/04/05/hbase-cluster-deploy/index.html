@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,34 +23,38 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="Base,集群,分布式,安装,部署,配置" />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
+  <meta name="keywords" content="Base,集群,分布式,安装,部署,配置">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
 
 
 
@@ -62,11 +62,13 @@
 
 
 <meta name="description" content="HBase 1.0.0 集群安装部署手册指南">
+<meta name="keywords" content="Base,集群,分布式,安装,部署,配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HBase 集群安装部署">
 <meta property="og:url" content="http://wuchong.me/blog/2015/04/05/hbase-cluster-deploy/index.html">
-<meta property="og:site_name" content="Jark's Blog">
+<meta property="og:site_name" content="Jark&#39;s Blog">
 <meta property="og:description" content="HBase 1.0.0 集群安装部署手册指南">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-03-08T12:10:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HBase 集群安装部署">
@@ -91,7 +93,7 @@
   <title> HBase 集群安装部署 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -120,12 +122,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -152,7 +154,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -162,7 +164,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -172,7 +174,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -182,7 +184,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -192,7 +194,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -209,7 +211,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -246,7 +248,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -275,14 +277,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/分布式系统/" itemprop="url" rel="index">
                     <span itemprop="name">分布式系统</span>
                   </a>
@@ -375,23 +377,23 @@
 </table>
 <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>假设你已经安装部署好了 Hadoop 集群和 Java，可以参考 <a href="/blog/2015/04/04/spark-on-yarn-cluster-deploy/">Spark on YARN 集群部署手册</a> 这篇文章。</p>
 <a id="more"></a>
-<h2 id="下载解压"><a href="#下载解压" class="headerlink" title="下载解压"></a>下载解压</h2><p>可以从<a href="http://www.apache.org/dyn/closer.cgi/hbase/" target="_blank" rel="external">官方下载地址</a>下载 HBase 最新版本，推荐 stable 目录下的二进制版本。我下载的是 hbase-1.0.0-bin.tar.gz 。确保你下载的版本与你现存的 Hadoop 版本兼容（<a href="http://hbase.apache.org/book.html#hadoop" target="_blank" rel="external">兼容列表</a>）以及支持的JDK版本（HBase 1.0.x 已经不支持 JDK 6 了）。</p>
-<p>解压缩<br><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">tar</span> <span class="selector-tag">-zxvf</span> <span class="selector-tag">hbase-1</span><span class="selector-class">.0</span><span class="selector-class">.0-bin</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></div><div class="line"><span class="selector-tag">cd</span> <span class="selector-tag">hbase-1</span><span class="selector-class">.0</span><span class="selector-class">.0</span></div></pre></td></tr></table></figure></p>
-<h2 id="配置-HBase"><a href="#配置-HBase" class="headerlink" title="配置 HBase"></a>配置 HBase</h2><p>编辑<code>hbase-env.sh</code>文件，修改 JAVA_HOME 为你的路径。<br><figure class="highlight awk"><table><tr><td class="code"><pre><div class="line"><span class="comment"># The java implementation to use.  Java 1.7+ required.</span></div><div class="line">export JAVA_HOME=<span class="regexp">/home/</span>spark<span class="regexp">/workspace/</span>jdk1.<span class="number">7.0</span>_75</div></pre></td></tr></table></figure></p>
-<p>编辑<code>conf/hbase-site.xml</code>文件：<br><figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>   </div><div class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>master,slave1,slave2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.property.dataDir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/home/spark/workspace/zookeeper/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="下载解压"><a href="#下载解压" class="headerlink" title="下载解压"></a>下载解压</h2><p>可以从<a href="http://www.apache.org/dyn/closer.cgi/hbase/" target="_blank" rel="noopener">官方下载地址</a>下载 HBase 最新版本，推荐 stable 目录下的二进制版本。我下载的是 hbase-1.0.0-bin.tar.gz 。确保你下载的版本与你现存的 Hadoop 版本兼容（<a href="http://hbase.apache.org/book.html#hadoop" target="_blank" rel="noopener">兼容列表</a>）以及支持的JDK版本（HBase 1.0.x 已经不支持 JDK 6 了）。</p>
+<p>解压缩<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">tar</span> <span class="selector-tag">-zxvf</span> <span class="selector-tag">hbase-1</span><span class="selector-class">.0</span><span class="selector-class">.0-bin</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br><span class="line"><span class="selector-tag">cd</span> <span class="selector-tag">hbase-1</span><span class="selector-class">.0</span><span class="selector-class">.0</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="配置-HBase"><a href="#配置-HBase" class="headerlink" title="配置 HBase"></a>配置 HBase</h2><p>编辑<code>hbase-env.sh</code>文件，修改 JAVA_HOME 为你的路径。<br><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="comment"># The java implementation to use.  Java 1.7+ required.</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/home/spark/workspace/jdk1.7.0_75</span><br></pre></td></tr></table></figure></p>
+<p>编辑<code>conf/hbase-site.xml</code>文件：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>   </span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>master,slave1,slave2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.property.dataDir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/home/spark/workspace/zookeeper/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>其中第一个属性指定本机的hbase的存储目录，必须与Hadoop集群的<code>core-site.xml</code>文件配置保持一致；第二个属性指定hbase的运行模式，true代表全分布模式；第三个属性指定 Zookeeper 管理的机器，一般为奇数个；第四个属性是数据存放的路径。这里我使用的默认的 HBase 自带的 Zookeeper。</p>
-<p>配置regionservers，在regionservers文件中添加如下内容：<br><figure class="highlight nginx"><table><tr><td class="code"><pre><div class="line"><span class="attribute">slave1</span></div><div class="line">slave2</div></pre></td></tr></table></figure></p>
+<p>配置regionservers，在regionservers文件中添加如下内容：<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">slave1</span><br><span class="line">slave2</span><br></pre></td></tr></table></figure></p>
 <p><code>regionservers</code>文件列出了所有运行hbase的机器（即HRegionServer)。此文件的配置和Hadoop中的slaves文件十分相似，每行指定一台机器的主机名。当HBase启动的时候，会将此文件中列出的所有机器启动。关闭时亦如此。我们的配置意为在 slave1, slave2, slave3 上都将启动 RegionServer。</p>
-<p>将配置好的 hbase 文件分发给各个 slave<br><figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line">scp -r hbase-<span class="number">1.0</span>.<span class="number">0</span> spark<span class="variable">@slave1</span><span class="symbol">:~/workspace/</span></div><div class="line">scp -r hbase-<span class="number">1.0</span>.<span class="number">0</span> spark<span class="variable">@slave2</span><span class="symbol">:~/workspace/</span></div></pre></td></tr></table></figure></p>
-<h2 id="修改-ulimit-限制"><a href="#修改-ulimit-限制" class="headerlink" title="修改 ulimit 限制"></a>修改 ulimit 限制</h2><p>HBase 会在同一时间打开大量的文件句柄和进程，超过 Linux 的默认限制，导致可能会出现如下错误。<br><figure class="highlight css"><table><tr><td class="code"><pre><div class="line">2010<span class="selector-tag">-04-06</span> 03<span class="selector-pseudo">:04</span><span class="selector-pseudo">:37</span>,542 <span class="selector-tag">INFO</span> <span class="selector-tag">org</span><span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hdfs</span><span class="selector-class">.DFSClient</span>: <span class="selector-tag">Exception</span> <span class="selector-tag">increateBlockOutputStream</span> <span class="selector-tag">java</span><span class="selector-class">.io</span><span class="selector-class">.EOFException</span></div><div class="line">2010<span class="selector-tag">-04-06</span> 03<span class="selector-pseudo">:04</span><span class="selector-pseudo">:37</span>,542 <span class="selector-tag">INFO</span> <span class="selector-tag">org</span><span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hdfs</span><span class="selector-class">.DFSClient</span>: <span class="selector-tag">Abandoning</span> <span class="selector-tag">block</span> <span class="selector-tag">blk_-6935524980745310745_1391901</span></div></pre></td></tr></table></figure></p>
+<p>将配置好的 hbase 文件分发给各个 slave<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">scp -r hbase-<span class="number">1.0</span>.<span class="number">0</span> spark<span class="variable">@slave1</span><span class="symbol">:~/workspace/</span></span><br><span class="line">scp -r hbase-<span class="number">1.0</span>.<span class="number">0</span> spark<span class="variable">@slave2</span><span class="symbol">:~/workspace/</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="修改-ulimit-限制"><a href="#修改-ulimit-限制" class="headerlink" title="修改 ulimit 限制"></a>修改 ulimit 限制</h2><p>HBase 会在同一时间打开大量的文件句柄和进程，超过 Linux 的默认限制，导致可能会出现如下错误。<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">2010<span class="selector-tag">-04-06</span> 03<span class="selector-pseudo">:04</span><span class="selector-pseudo">:37</span>,542 <span class="selector-tag">INFO</span> <span class="selector-tag">org</span><span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hdfs</span><span class="selector-class">.DFSClient</span>: <span class="selector-tag">Exception</span> <span class="selector-tag">increateBlockOutputStream</span> <span class="selector-tag">java</span><span class="selector-class">.io</span><span class="selector-class">.EOFException</span></span><br><span class="line">2010<span class="selector-tag">-04-06</span> 03<span class="selector-pseudo">:04</span><span class="selector-pseudo">:37</span>,542 <span class="selector-tag">INFO</span> <span class="selector-tag">org</span><span class="selector-class">.apache</span><span class="selector-class">.hadoop</span><span class="selector-class">.hdfs</span><span class="selector-class">.DFSClient</span>: <span class="selector-tag">Abandoning</span> <span class="selector-tag">block</span> <span class="selector-tag">blk_-6935524980745310745_1391901</span></span><br></pre></td></tr></table></figure></p>
 <p>所以编辑<code>/etc/security/limits.conf</code>文件，添加以下两行，提高能打开的句柄数量和进程数量。注意将<code>spark</code>改成你运行 HBase 的用户名。</p>
-<figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">spark  -       nofile  <span class="number">32768</span></div><div class="line">spark  -       nproc   <span class="number">32000</span></div></pre></td></tr></table></figure>
-<p>还需要在 <code>/etc/pam.d/common-session</code> 加上这一行:<br><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">session</span> <span class="selector-tag">required</span> <span class="selector-tag">pam_limits</span><span class="selector-class">.so</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">spark  -       nofile  <span class="number">32768</span></span><br><span class="line">spark  -       nproc   <span class="number">32000</span></span><br></pre></td></tr></table></figure>
+<p>还需要在 <code>/etc/pam.d/common-session</code> 加上这一行:<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">session</span> <span class="selector-tag">required</span> <span class="selector-tag">pam_limits</span><span class="selector-class">.so</span></span><br></pre></td></tr></table></figure></p>
 <p>否则在<code>/etc/security/limits.conf</code>上的配置不会生效。</p>
 <p>最后还要注销（<code>logout</code>或者<code>exit</code>）后再登录，这些配置才能生效！使用<code>ulimit -n -u</code>命令查看最大文件和进程数量是否改变了。记得在每台安装 HBase 的机器上运行哦。</p>
-<h2 id="运行-HBase"><a href="#运行-HBase" class="headerlink" title="运行 HBase"></a>运行 HBase</h2><p>在master上运行<br><figure class="highlight dos"><table><tr><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/workspace/hbase-<span class="number">1</span>.<span class="number">0</span>.<span class="number">0</span></div><div class="line">bin/<span class="built_in">start</span>-hbase.sh</div></pre></td></tr></table></figure></p>
+<h2 id="运行-HBase"><a href="#运行-HBase" class="headerlink" title="运行 HBase"></a>运行 HBase</h2><p>在master上运行<br><figure class="highlight dos"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/workspace/hbase-<span class="number">1</span>.<span class="number">0</span>.<span class="number">0</span></span><br><span class="line">bin/<span class="built_in">start</span>-hbase.sh</span><br></pre></td></tr></table></figure></p>
 <h2 id="验证-HBase-成功安装"><a href="#验证-HBase-成功安装" class="headerlink" title="验证 HBase 成功安装"></a>验证 HBase 成功安装</h2><p>在 master 运行 <code>jps</code> 应该会有<code>HMaster</code>进程。在各个 slave 上运行<code>jps</code> 应该会有<code>HQuorumPeer</code>,<code>HRegionServer</code>两个进程。</p>
-<p>在浏览器中输入 <a href="http://master:16010" target="_blank" rel="external">http://master:16010</a> 可以看到 HBase Web UI 。</p>
+<p>在浏览器中输入 <a href="http://master:16010" target="_blank" rel="noopener">http://master:16010</a> 可以看到 HBase Web UI 。</p>
 
       
     </div>
@@ -400,7 +402,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -426,7 +428,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -499,7 +501,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -509,12 +511,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -575,7 +575,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -622,10 +622,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

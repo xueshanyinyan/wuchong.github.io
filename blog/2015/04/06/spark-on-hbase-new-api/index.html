@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,34 +23,38 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="Spark,HBase,新API,操作" />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
+  <meta name="keywords" content="Spark,HBase,新API,操作">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
 
 
 
@@ -62,11 +62,13 @@
 
 
 <meta name="description" content="本文将分两部分介绍，第一部分讲解使用 HBase 新版 API 进行 CRUD 基本操作；第二部分讲解如何将 Spark 内的 RDDs 写入 HBase 的表中，反之，HBase 中的表又是如何以 RDDs 形式加载进 Spark 内的。">
+<meta name="keywords" content="Spark,HBase,新API,操作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark 下操作 HBase（1.0.0 新 API）">
 <meta property="og:url" content="http://wuchong.me/blog/2015/04/06/spark-on-hbase-new-api/index.html">
-<meta property="og:site_name" content="Jark's Blog">
+<meta property="og:site_name" content="Jark&#39;s Blog">
 <meta property="og:description" content="本文将分两部分介绍，第一部分讲解使用 HBase 新版 API 进行 CRUD 基本操作；第二部分讲解如何将 Spark 内的 RDDs 写入 HBase 的表中，反之，HBase 中的表又是如何以 RDDs 形式加载进 Spark 内的。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-03-08T12:18:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark 下操作 HBase（1.0.0 新 API）">
@@ -91,7 +93,7 @@
   <title> Spark 下操作 HBase（1.0.0 新 API） | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -120,12 +122,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -152,7 +154,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -162,7 +164,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -172,7 +174,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -182,7 +184,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -192,7 +194,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -209,7 +211,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -246,7 +248,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -275,14 +277,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/分布式系统/" itemprop="url" rel="index">
                     <span itemprop="name">分布式系统</span>
                   </a>
@@ -342,28 +344,28 @@
 <p>本文将分两部分介绍，第一部分讲解使用 HBase 新版 API 进行 CRUD 基本操作；第二部分讲解如何将 Spark 内的 RDDs 写入 HBase 的表中，反之，HBase 中的表又是如何以 RDDs 形式加载进 Spark 内的。</p>
 <a id="more"></a>
 <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>为了避免版本不一致带来不必要的麻烦，API 和 HBase环境都是 1.0.0 版本。HBase 为单机模式，分布式模式的使用方法类似，只需要修改<code>HBaseConfiguration</code>的配置即可。</p>
-<p>开发环境中使用 SBT 加载依赖项<br><figure class="highlight go"><table><tr><td class="code"><pre><div class="line">name := <span class="string">"SparkLearn"</span></div><div class="line"></div><div class="line">version := <span class="string">"1.0"</span></div><div class="line"></div><div class="line">scalaVersion := <span class="string">"2.10.4"</span></div><div class="line"></div><div class="line">libraryDependencies += <span class="string">"org.apache.spark"</span> %% <span class="string">"spark-core"</span> % <span class="string">"1.3.0"</span></div><div class="line"></div><div class="line">libraryDependencies += <span class="string">"org.apache.hbase"</span> % <span class="string">"hbase-client"</span> % <span class="string">"1.0.0"</span></div><div class="line"></div><div class="line">libraryDependencies += <span class="string">"org.apache.hbase"</span> % <span class="string">"hbase-common"</span> % <span class="string">"1.0.0"</span></div><div class="line"></div><div class="line">libraryDependencies += <span class="string">"org.apache.hbase"</span> % <span class="string">"hbase-server"</span> % <span class="string">"1.0.0"</span></div></pre></td></tr></table></figure></p>
-<h2 id="HBase-的-CRUD-操作"><a href="#HBase-的-CRUD-操作" class="headerlink" title="HBase 的 CRUD 操作"></a>HBase 的 CRUD 操作</h2><p>新版 API 中加入了 <code>Connection</code>，<code>HAdmin</code>成了<code>Admin</code>，<code>HTable</code>成了<code>Table</code>，而<code>Admin</code>和<code>Table</code>只能通过<code>Connection</code>获得。<code>Connection</code>的创建是个重量级的操作，由于<code>Connection</code>是线程安全的，所以推荐使用单例，其工厂方法需要一个<code>HBaseConfiguration</code>。<br><figure class="highlight stata"><table><tr><td class="code"><pre><div class="line">val <span class="keyword">conf</span> = HBaseConfiguration.create()</div><div class="line"><span class="keyword">conf</span>.<span class="keyword">set</span>(<span class="string">"hbase.zookeeper.property.clientPort"</span>, <span class="string">"2181"</span>)</div><div class="line"><span class="keyword">conf</span>.<span class="keyword">set</span>(<span class="string">"hbase.zookeeper.quorum"</span>, <span class="string">"master"</span>)</div><div class="line"></div><div class="line"><span class="comment">//Connection 的创建是个重量级的工作，线程安全，是操作hbase的入口</span></div><div class="line">val conn = ConnectionFactory.createConnection(<span class="keyword">conf</span>)</div></pre></td></tr></table></figure></p>
-<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><p>使用<code>Admin</code>创建和删除表<br><figure class="highlight pf"><table><tr><td class="code"><pre><div class="line">val <span class="keyword">user</span>Table = TableName.valueOf(<span class="string">"user"</span>)</div><div class="line"></div><div class="line">//创建 <span class="keyword">user</span> 表</div><div class="line">val <span class="built_in">table</span>Descr = new HTableDescriptor(<span class="keyword">user</span>Table)</div><div class="line"><span class="built_in">table</span>Descr.addFamily(new HColumnDescriptor(<span class="string">"basic"</span>.getBytes))</div><div class="line">println(<span class="string">"Creating table `user`. "</span>)</div><div class="line">if (admin.<span class="built_in">table</span>Exists(<span class="keyword">user</span>Table)) &#123;</div><div class="line">  admin.disableTable(<span class="keyword">user</span>Table)</div><div class="line">  admin.deleteTable(<span class="keyword">user</span>Table)</div><div class="line">&#125;</div><div class="line">admin.createTable(<span class="built_in">table</span>Descr)</div><div class="line">println(<span class="string">"Done!"</span>)</div></pre></td></tr></table></figure></p>
-<h3 id="插入、查询、扫描、删除操作"><a href="#插入、查询、扫描、删除操作" class="headerlink" title="插入、查询、扫描、删除操作"></a>插入、查询、扫描、删除操作</h3><p>HBase 上的操作都需要先创建一个操作对象<code>Put</code>,<code>Get</code>,<code>Delete</code>等，然后调用<code>Table</code>上的相对应的方法<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">try&#123;</div><div class="line">  <span class="comment">//获取 user 表</span></div><div class="line">  val <span class="selector-tag">table</span> = conn.getTable(userTable)</div><div class="line"></div><div class="line">  try&#123;</div><div class="line">    <span class="comment">//准备插入一条 key 为 id001 的数据</span></div><div class="line">    val <span class="selector-tag">p</span> = new Put(<span class="string">"id001"</span>.getBytes)</div><div class="line">    <span class="comment">//为put操作指定 column 和 value （以前的 put.add 方法被弃用了）</span></div><div class="line">    <span class="selector-tag">p</span>.addColumn(<span class="string">"basic"</span><span class="selector-class">.getBytes</span>,<span class="string">"name"</span><span class="selector-class">.getBytes</span>, <span class="string">"wuchong"</span>.getBytes)</div><div class="line">    <span class="comment">//提交</span></div><div class="line">    <span class="selector-tag">table</span>.put(p)</div><div class="line"></div><div class="line">    <span class="comment">//查询某条数据</span></div><div class="line">    val g = new Get(<span class="string">"id001"</span>.getBytes)</div><div class="line">    val result = <span class="selector-tag">table</span>.get(g)</div><div class="line">    val value = Bytes.toString(result.getValue(<span class="string">"basic"</span><span class="selector-class">.getBytes</span>,<span class="string">"name"</span>.getBytes))</div><div class="line">    println(<span class="string">"GET id001 :"</span>+value)</div><div class="line"></div><div class="line">    <span class="comment">//扫描数据</span></div><div class="line">    val s = new Scan()</div><div class="line">    s.addColumn(<span class="string">"basic"</span><span class="selector-class">.getBytes</span>,<span class="string">"name"</span>.getBytes)</div><div class="line">    val scanner = <span class="selector-tag">table</span>.getScanner(s)</div><div class="line"></div><div class="line">    try&#123;</div><div class="line">      <span class="keyword">for</span>(r &lt;- scanner)&#123;</div><div class="line">        println(<span class="string">"Found row: "</span>+r)</div><div class="line">        println(<span class="string">"Found value: "</span>+Bytes.toString(</div><div class="line">          r.getValue(<span class="string">"basic"</span><span class="selector-class">.getBytes</span>,<span class="string">"name"</span>.getBytes)))</div><div class="line">      &#125;</div><div class="line">    &#125;finally &#123;</div><div class="line">      <span class="comment">//确保scanner关闭</span></div><div class="line">      scanner.close()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//删除某条数据,操作方式与 Put 类似</span></div><div class="line">    val d = new Delete(<span class="string">"id001"</span>.getBytes)</div><div class="line">    d.addColumn(<span class="string">"basic"</span><span class="selector-class">.getBytes</span>,<span class="string">"name"</span>.getBytes)</div><div class="line">    <span class="selector-tag">table</span>.delete(d)</div><div class="line"></div><div class="line">  &#125;finally &#123;</div><div class="line">    <span class="keyword">if</span>(<span class="selector-tag">table</span> != null) <span class="selector-tag">table</span>.close()</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;finally &#123;</div><div class="line">  conn.close()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>开发环境中使用 SBT 加载依赖项<br><figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">name := <span class="string">"SparkLearn"</span></span><br><span class="line"></span><br><span class="line">version := <span class="string">"1.0"</span></span><br><span class="line"></span><br><span class="line">scalaVersion := <span class="string">"2.10.4"</span></span><br><span class="line"></span><br><span class="line">libraryDependencies += <span class="string">"org.apache.spark"</span> %% <span class="string">"spark-core"</span> % <span class="string">"1.3.0"</span></span><br><span class="line"></span><br><span class="line">libraryDependencies += <span class="string">"org.apache.hbase"</span> % <span class="string">"hbase-client"</span> % <span class="string">"1.0.0"</span></span><br><span class="line"></span><br><span class="line">libraryDependencies += <span class="string">"org.apache.hbase"</span> % <span class="string">"hbase-common"</span> % <span class="string">"1.0.0"</span></span><br><span class="line"></span><br><span class="line">libraryDependencies += <span class="string">"org.apache.hbase"</span> % <span class="string">"hbase-server"</span> % <span class="string">"1.0.0"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="HBase-的-CRUD-操作"><a href="#HBase-的-CRUD-操作" class="headerlink" title="HBase 的 CRUD 操作"></a>HBase 的 CRUD 操作</h2><p>新版 API 中加入了 <code>Connection</code>，<code>HAdmin</code>成了<code>Admin</code>，<code>HTable</code>成了<code>Table</code>，而<code>Admin</code>和<code>Table</code>只能通过<code>Connection</code>获得。<code>Connection</code>的创建是个重量级的操作，由于<code>Connection</code>是线程安全的，所以推荐使用单例，其工厂方法需要一个<code>HBaseConfiguration</code>。<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">val <span class="keyword">conf</span> = HBaseConfiguration.create()</span><br><span class="line"><span class="keyword">conf</span>.<span class="keyword">set</span>(<span class="string">"hbase.zookeeper.property.clientPort"</span>, <span class="string">"2181"</span>)</span><br><span class="line"><span class="keyword">conf</span>.<span class="keyword">set</span>(<span class="string">"hbase.zookeeper.quorum"</span>, <span class="string">"master"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Connection 的创建是个重量级的工作，线程安全，是操作hbase的入口</span></span><br><span class="line">val conn = ConnectionFactory.createConnection(<span class="keyword">conf</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><p>使用<code>Admin</code>创建和删除表<br><figure class="highlight pf"><table><tr><td class="code"><pre><span class="line">val <span class="keyword">user</span>Table = TableName.valueOf(<span class="string">"user"</span>)</span><br><span class="line"></span><br><span class="line">//创建 <span class="keyword">user</span> 表</span><br><span class="line">val <span class="built_in">table</span>Descr = new HTableDescriptor(<span class="keyword">user</span>Table)</span><br><span class="line"><span class="built_in">table</span>Descr.addFamily(new HColumnDescriptor(<span class="string">"basic"</span>.getBytes))</span><br><span class="line">println(<span class="string">"Creating table `user`. "</span>)</span><br><span class="line">if (admin.<span class="built_in">table</span>Exists(<span class="keyword">user</span>Table)) &#123;</span><br><span class="line">  admin.disableTable(<span class="keyword">user</span>Table)</span><br><span class="line">  admin.deleteTable(<span class="keyword">user</span>Table)</span><br><span class="line">&#125;</span><br><span class="line">admin.createTable(<span class="built_in">table</span>Descr)</span><br><span class="line">println(<span class="string">"Done!"</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="插入、查询、扫描、删除操作"><a href="#插入、查询、扫描、删除操作" class="headerlink" title="插入、查询、扫描、删除操作"></a>插入、查询、扫描、删除操作</h3><p>HBase 上的操作都需要先创建一个操作对象<code>Put</code>,<code>Get</code>,<code>Delete</code>等，然后调用<code>Table</code>上的相对应的方法<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">  <span class="comment">//获取 user 表</span></span><br><span class="line">  val <span class="selector-tag">table</span> = conn.getTable(userTable)</span><br><span class="line"></span><br><span class="line">  try&#123;</span><br><span class="line">    <span class="comment">//准备插入一条 key 为 id001 的数据</span></span><br><span class="line">    val <span class="selector-tag">p</span> = new Put(<span class="string">"id001"</span>.getBytes)</span><br><span class="line">    <span class="comment">//为put操作指定 column 和 value （以前的 put.add 方法被弃用了）</span></span><br><span class="line">    <span class="selector-tag">p</span>.addColumn(<span class="string">"basic"</span><span class="selector-class">.getBytes</span>,<span class="string">"name"</span><span class="selector-class">.getBytes</span>, <span class="string">"wuchong"</span>.getBytes)</span><br><span class="line">    <span class="comment">//提交</span></span><br><span class="line">    <span class="selector-tag">table</span>.put(p)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查询某条数据</span></span><br><span class="line">    val g = new Get(<span class="string">"id001"</span>.getBytes)</span><br><span class="line">    val result = <span class="selector-tag">table</span>.get(g)</span><br><span class="line">    val value = Bytes.toString(result.getValue(<span class="string">"basic"</span><span class="selector-class">.getBytes</span>,<span class="string">"name"</span>.getBytes))</span><br><span class="line">    println(<span class="string">"GET id001 :"</span>+value)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//扫描数据</span></span><br><span class="line">    val s = new Scan()</span><br><span class="line">    s.addColumn(<span class="string">"basic"</span><span class="selector-class">.getBytes</span>,<span class="string">"name"</span>.getBytes)</span><br><span class="line">    val scanner = <span class="selector-tag">table</span>.getScanner(s)</span><br><span class="line"></span><br><span class="line">    try&#123;</span><br><span class="line">      <span class="keyword">for</span>(r &lt;- scanner)&#123;</span><br><span class="line">        println(<span class="string">"Found row: "</span>+r)</span><br><span class="line">        println(<span class="string">"Found value: "</span>+Bytes.toString(</span><br><span class="line">          r.getValue(<span class="string">"basic"</span><span class="selector-class">.getBytes</span>,<span class="string">"name"</span>.getBytes)))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;finally &#123;</span><br><span class="line">      <span class="comment">//确保scanner关闭</span></span><br><span class="line">      scanner.close()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除某条数据,操作方式与 Put 类似</span></span><br><span class="line">    val d = new Delete(<span class="string">"id001"</span>.getBytes)</span><br><span class="line">    d.addColumn(<span class="string">"basic"</span><span class="selector-class">.getBytes</span>,<span class="string">"name"</span>.getBytes)</span><br><span class="line">    <span class="selector-tag">table</span>.delete(d)</span><br><span class="line"></span><br><span class="line">  &#125;finally &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="selector-tag">table</span> != null) <span class="selector-tag">table</span>.close()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;finally &#123;</span><br><span class="line">  conn.close()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="Spark-操作-HBase"><a href="#Spark-操作-HBase" class="headerlink" title="Spark 操作 HBase"></a>Spark 操作 HBase</h2><h3 id="写入-HBase"><a href="#写入-HBase" class="headerlink" title="写入 HBase"></a>写入 HBase</h3><p>首先要向 HBase 写入数据，我们需要用到<code>PairRDDFunctions.saveAsHadoopDataset</code>。因为 HBase 不是一个文件系统，所以<code>saveAsHadoopFile</code>方法没用。</p>
 <blockquote>
 <p><code>def saveAsHadoopDataset(conf: JobConf): Unit</code><br>Output the RDD to any Hadoop-supported storage system, using a Hadoop JobConf object for that storage system</p>
 </blockquote>
 <p>这个方法需要一个 JobConf 作为参数，类似于一个配置项，主要需要指定输出的格式和输出的表名。</p>
-<p><strong>Step 1：</strong>我们需要先创建一个 JobConf。<br><figure class="highlight kotlin"><table><tr><td class="code"><pre><div class="line"><span class="comment">//定义 HBase 的配置</span></div><div class="line"><span class="keyword">val</span> conf = HBaseConfiguration.create()</div><div class="line">conf.<span class="keyword">set</span>(<span class="string">"hbase.zookeeper.property.clientPort"</span>, <span class="string">"2181"</span>)</div><div class="line">conf.<span class="keyword">set</span>(<span class="string">"hbase.zookeeper.quorum"</span>, <span class="string">"master"</span>)</div><div class="line"></div><div class="line"><span class="comment">//指定输出格式和输出表名</span></div><div class="line"><span class="keyword">val</span> jobConf = new JobConf(conf,<span class="keyword">this</span>.getClass)</div><div class="line">jobConf.setOutputFormat(classOf[TableOutputFormat])</div><div class="line">jobConf.<span class="keyword">set</span>(TableOutputFormat.OUTPUT_TABLE,<span class="string">"user"</span>)</div></pre></td></tr></table></figure></p>
+<p><strong>Step 1：</strong>我们需要先创建一个 JobConf。<br><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义 HBase 的配置</span></span><br><span class="line"><span class="keyword">val</span> conf = HBaseConfiguration.create()</span><br><span class="line">conf.<span class="keyword">set</span>(<span class="string">"hbase.zookeeper.property.clientPort"</span>, <span class="string">"2181"</span>)</span><br><span class="line">conf.<span class="keyword">set</span>(<span class="string">"hbase.zookeeper.quorum"</span>, <span class="string">"master"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//指定输出格式和输出表名</span></span><br><span class="line"><span class="keyword">val</span> jobConf = new JobConf(conf,<span class="keyword">this</span>.getClass)</span><br><span class="line">jobConf.setOutputFormat(classOf[TableOutputFormat])</span><br><span class="line">jobConf.<span class="keyword">set</span>(TableOutputFormat.OUTPUT_TABLE,<span class="string">"user"</span>)</span><br></pre></td></tr></table></figure></p>
 <p><strong>Step 2：</strong> RDD 到表模式的映射<br>在 HBase 中的表 schema 一般是这样的：</p>
 <pre><code>row     cf:col_1    cf:col_2
 </code></pre><p>而在Spark中，我们操作的是RDD元组，比如<code>(1,&quot;lilei&quot;,14)</code>, <code>(2,&quot;hanmei&quot;,18)</code>。我们需要将 <code>RDD[(uid:Int, name:String, age:Int)]</code> 转换成 <code>RDD[(ImmutableBytesWritable, Put)]</code>。所以，我们定义一个 convert 函数做这个转换工作</p>
-<figure class="highlight lasso"><table><tr><td class="code"><pre><div class="line">def convert(triple: (Int, <span class="built_in">String</span>, Int)) = &#123;</div><div class="line">      val p = <span class="literal">new</span> Put(<span class="built_in">Bytes</span>.toBytes(triple._1))</div><div class="line">      p.addColumn(<span class="built_in">Bytes</span>.toBytes(<span class="string">"basic"</span>),<span class="built_in">Bytes</span>.toBytes(<span class="string">"name"</span>),<span class="built_in">Bytes</span>.toBytes(triple._2))</div><div class="line">      p.addColumn(<span class="built_in">Bytes</span>.toBytes(<span class="string">"basic"</span>),<span class="built_in">Bytes</span>.toBytes(<span class="string">"age"</span>),<span class="built_in">Bytes</span>.toBytes(triple._3))</div><div class="line">      (<span class="literal">new</span> ImmutableBytesWritable, p)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>Step 3：</strong> 读取RDD并转换<br><figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line"><span class="comment">//read RDD data from somewhere and convert</span></div><div class="line">val rawData = List((<span class="number">1</span>,<span class="string">"lilei"</span>,<span class="number">14</span>), (<span class="number">2</span>,<span class="string">"hanmei"</span>,<span class="number">18</span>), (<span class="number">3</span>,<span class="string">"someone"</span>,<span class="number">38</span>))</div><div class="line">val localData = sc.parallelize(rawData).map(convert)</div></pre></td></tr></table></figure></p>
-<p><strong>Step 4：</strong> 使用<code>saveAsHadoopDataset</code>方法写入HBase<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">local</span>Data.saveAsHadoopDataset(jobConf)</div></pre></td></tr></table></figure></p>
+<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line">def convert(triple: (Int, <span class="built_in">String</span>, Int)) = &#123;</span><br><span class="line">      val p = <span class="literal">new</span> Put(<span class="built_in">Bytes</span>.toBytes(triple._1))</span><br><span class="line">      p.addColumn(<span class="built_in">Bytes</span>.toBytes(<span class="string">"basic"</span>),<span class="built_in">Bytes</span>.toBytes(<span class="string">"name"</span>),<span class="built_in">Bytes</span>.toBytes(triple._2))</span><br><span class="line">      p.addColumn(<span class="built_in">Bytes</span>.toBytes(<span class="string">"basic"</span>),<span class="built_in">Bytes</span>.toBytes(<span class="string">"age"</span>),<span class="built_in">Bytes</span>.toBytes(triple._3))</span><br><span class="line">      (<span class="literal">new</span> ImmutableBytesWritable, p)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Step 3：</strong> 读取RDD并转换<br><figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line"><span class="comment">//read RDD data from somewhere and convert</span></span><br><span class="line">val rawData = List((<span class="number">1</span>,<span class="string">"lilei"</span>,<span class="number">14</span>), (<span class="number">2</span>,<span class="string">"hanmei"</span>,<span class="number">18</span>), (<span class="number">3</span>,<span class="string">"someone"</span>,<span class="number">38</span>))</span><br><span class="line">val localData = sc.parallelize(rawData).map(convert)</span><br></pre></td></tr></table></figure></p>
+<p><strong>Step 4：</strong> 使用<code>saveAsHadoopDataset</code>方法写入HBase<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">localData</span><span class="selector-class">.saveAsHadoopDataset</span>(<span class="selector-tag">jobConf</span>)</span><br></pre></td></tr></table></figure></p>
 <h3 id="读取-HBase"><a href="#读取-HBase" class="headerlink" title="读取 HBase"></a>读取 HBase</h3><p>Spark读取HBase，我们主要使用<code>SparkContext</code> 提供的<code>newAPIHadoopRDD</code>API将表的内容以 RDDs 的形式加载到 Spark 中。 </p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><div class="line"><span class="keyword">val</span> conf = <span class="type">HBaseConfiguration</span>.create()</div><div class="line">conf.set(<span class="string">"hbase.zookeeper.property.clientPort"</span>, <span class="string">"2181"</span>)</div><div class="line">conf.set(<span class="string">"hbase.zookeeper.quorum"</span>, <span class="string">"master"</span>)</div><div class="line"></div><div class="line"><span class="comment">//设置查询的表名</span></div><div class="line">conf.set(<span class="type">TableInputFormat</span>.<span class="type">INPUT_TABLE</span>, <span class="string">"user"</span>)</div><div class="line"></div><div class="line"><span class="keyword">val</span> usersRDD = sc.newAPIHadoopRDD(conf, classOf[<span class="type">TableInputFormat</span>],</div><div class="line">  classOf[org.apache.hadoop.hbase.io.<span class="type">ImmutableBytesWritable</span>],</div><div class="line">  classOf[org.apache.hadoop.hbase.client.<span class="type">Result</span>])</div><div class="line"></div><div class="line"><span class="keyword">val</span> count = usersRDD.count()</div><div class="line">println(<span class="string">"Users RDD Count:"</span> + count)</div><div class="line">usersRDD.cache()</div><div class="line"></div><div class="line"><span class="comment">//遍历输出</span></div><div class="line">usersRDD.foreach&#123; <span class="keyword">case</span> (_,result) =&gt;</div><div class="line">  <span class="keyword">val</span> key = <span class="type">Bytes</span>.toInt(result.getRow)</div><div class="line">  <span class="keyword">val</span> name = <span class="type">Bytes</span>.toString(result.getValue(<span class="string">"basic"</span>.getBytes,<span class="string">"name"</span>.getBytes))</div><div class="line">  <span class="keyword">val</span> age = <span class="type">Bytes</span>.toInt(result.getValue(<span class="string">"basic"</span>.getBytes,<span class="string">"age"</span>.getBytes))</div><div class="line">  println(<span class="string">"Row key:"</span>+key+<span class="string">" Name:"</span>+name+<span class="string">" Age:"</span>+age)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> conf = <span class="type">HBaseConfiguration</span>.create()</span><br><span class="line">conf.set(<span class="string">"hbase.zookeeper.property.clientPort"</span>, <span class="string">"2181"</span>)</span><br><span class="line">conf.set(<span class="string">"hbase.zookeeper.quorum"</span>, <span class="string">"master"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置查询的表名</span></span><br><span class="line">conf.set(<span class="type">TableInputFormat</span>.<span class="type">INPUT_TABLE</span>, <span class="string">"user"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> usersRDD = sc.newAPIHadoopRDD(conf, classOf[<span class="type">TableInputFormat</span>],</span><br><span class="line">  classOf[org.apache.hadoop.hbase.io.<span class="type">ImmutableBytesWritable</span>],</span><br><span class="line">  classOf[org.apache.hadoop.hbase.client.<span class="type">Result</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> count = usersRDD.count()</span><br><span class="line">println(<span class="string">"Users RDD Count:"</span> + count)</span><br><span class="line">usersRDD.cache()</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历输出</span></span><br><span class="line">usersRDD.foreach&#123; <span class="keyword">case</span> (_,result) =&gt;</span><br><span class="line">  <span class="keyword">val</span> key = <span class="type">Bytes</span>.toInt(result.getRow)</span><br><span class="line">  <span class="keyword">val</span> name = <span class="type">Bytes</span>.toString(result.getValue(<span class="string">"basic"</span>.getBytes,<span class="string">"name"</span>.getBytes))</span><br><span class="line">  <span class="keyword">val</span> age = <span class="type">Bytes</span>.toInt(result.getValue(<span class="string">"basic"</span>.getBytes,<span class="string">"age"</span>.getBytes))</span><br><span class="line">  println(<span class="string">"Row key:"</span>+key+<span class="string">" Name:"</span>+name+<span class="string">" Age:"</span>+age)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>更完整的代码已上传到 Gist 。</p>
 <ul>
-<li><a href="https://gist.github.com/wuchong/95630f80966d07d7453b#file-hbasenewapi-scala" target="_blank" rel="external">HBaseNewAPI.scala</a>  HBase 的 CRUD 操作</li>
-<li><a href="https://gist.github.com/wuchong/95630f80966d07d7453b#file-sparkonhbase-scala" target="_blank" rel="external">SparkOnHBase.scala</a>  Spark 操作 HBase</li>
+<li><a href="https://gist.github.com/wuchong/95630f80966d07d7453b#file-hbasenewapi-scala" target="_blank" rel="noopener">HBaseNewAPI.scala</a>  HBase 的 CRUD 操作</li>
+<li><a href="https://gist.github.com/wuchong/95630f80966d07d7453b#file-sparkonhbase-scala" target="_blank" rel="noopener">SparkOnHBase.scala</a>  Spark 操作 HBase</li>
 </ul>
 
       
@@ -373,7 +375,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -399,7 +401,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -472,7 +474,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -482,12 +484,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -548,7 +548,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -595,10 +595,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

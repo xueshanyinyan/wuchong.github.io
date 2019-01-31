@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,34 +23,38 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="Flink入门,quickstart" />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
+  <meta name="keywords" content="Flink入门,quickstart">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
 
 
 
@@ -62,13 +62,15 @@
 
 
 <meta name="description" content="在本文中，我们将从零开始，教您如何构建第一个 Flink 应用程序。">
+<meta name="keywords" content="Flink入门,quickstart">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5分钟从零构建第一个 Flink 应用">
 <meta property="og:url" content="http://wuchong.me/blog/2018/11/07/5-minutes-build-first-flink-application/index.html">
-<meta property="og:site_name" content="Jark's Blog">
+<meta property="og:site_name" content="Jark&#39;s Blog">
 <meta property="og:description" content="在本文中，我们将从零开始，教您如何构建第一个 Flink 应用程序。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1L_9VnMTqK1RjSZPhXXXfOFXa-1836-682.png">
-<meta property="og:updated_time" content="2018-11-07T02:11:11.878Z">
+<meta property="og:updated_time" content="2018-11-07T02:11:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5分钟从零构建第一个 Flink 应用">
 <meta name="twitter:description" content="在本文中，我们将从零开始，教您如何构建第一个 Flink 应用程序。">
@@ -93,7 +95,7 @@
   <title> 5分钟从零构建第一个 Flink 应用 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -122,12 +124,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -154,7 +156,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -164,7 +166,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -174,7 +176,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -184,7 +186,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -194,7 +196,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -211,7 +213,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -248,7 +250,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -277,14 +279,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Flink/" itemprop="url" rel="index">
                     <span itemprop="name">Flink</span>
                   </a>
@@ -344,37 +346,37 @@
 <a id="more"></a>
 <h2 id="开发环境准备"><a href="#开发环境准备" class="headerlink" title="开发环境准备"></a>开发环境准备</h2><p>Flink 可以运行在 Linux, Max OS X, 或者是 Windows 上。为了开发 Flink 应用程序，在本地机器上需要有 <strong>Java 8.x</strong> 和 <strong>maven</strong> 环境。</p>
 <p>如果有 Java 8 环境，运行下面的命令会输出如下版本信息：</p>
-<figure class="highlight mipsasm"><table><tr><td class="code"><pre><div class="line">$ <span class="keyword">java </span>-version</div><div class="line"><span class="keyword">java </span>version <span class="string">"1.8.0_65"</span></div><div class="line"><span class="keyword">Java(TM) </span>SE Runtime Environment (<span class="keyword">build </span><span class="number">1</span>.<span class="number">8</span>.<span class="number">0</span>_65-<span class="keyword">b17)</span></div><div class="line"><span class="keyword">Java </span>HotSpot(TM) <span class="number">64</span>-<span class="keyword">Bit </span>Server VM (<span class="keyword">build </span><span class="number">25</span>.<span class="number">65</span>-<span class="keyword">b01, </span>mixed mode)</div></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">$ java -version</span><br><span class="line">java version <span class="string">"1.8.0_65"</span></span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_65-b17)</span><br><span class="line">Java HotSpot(TM) 64-Bit<span class="built_in"> Server </span>VM (build 25.65-b01, mixed mode)</span><br></pre></td></tr></table></figure>
 <p>如果有 maven 环境，运行下面的命令会输出如下版本信息：</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">$ mvn -version</div><div class="line">Apache Maven <span class="number">3.5</span><span class="number">.4</span> (<span class="number">1</span>edded0938998edf8bf061f1ceb3cfdeccf443fe; <span class="number">2018</span><span class="number">-06</span><span class="number">-18</span><span class="string">T02:</span><span class="number">33</span>:<span class="number">14</span>+<span class="number">08</span>:<span class="number">00</span>)</div><div class="line">Maven <span class="string">home:</span> <span class="regexp">/Users/</span>wuchong<span class="regexp">/dev/</span>maven</div><div class="line">Java <span class="string">version:</span> <span class="number">1.8</span><span class="number">.0</span>_65, <span class="string">vendor:</span> Oracle Corporation, <span class="string">runtime:</span> <span class="regexp">/Library/</span>Java<span class="regexp">/JavaVirtualMachines/</span>jdk1<span class="number">.8</span><span class="number">.0</span>_65.jdk<span class="regexp">/Contents/</span>Home/jre</div><div class="line">Default <span class="string">locale:</span> zh_CN, platform <span class="string">encoding:</span> UTF<span class="number">-8</span></div><div class="line">OS <span class="string">name:</span> <span class="string">"mac os x"</span>, <span class="string">version:</span> <span class="string">"10.13.6"</span>, <span class="string">arch:</span> <span class="string">"x86_64"</span>, <span class="string">family:</span> <span class="string">"mac"</span></div></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">$ mvn -version</span><br><span class="line">Apache Maven <span class="number">3.5</span><span class="number">.4</span> (<span class="number">1</span>edded0938998edf8bf061f1ceb3cfdeccf443fe; <span class="number">2018</span><span class="number">-06</span><span class="number">-18</span><span class="string">T02:</span><span class="number">33</span>:<span class="number">14</span>+<span class="number">08</span>:<span class="number">00</span>)</span><br><span class="line">Maven <span class="string">home:</span> <span class="regexp">/Users/</span>wuchong<span class="regexp">/dev/</span>maven</span><br><span class="line">Java <span class="string">version:</span> <span class="number">1.8</span><span class="number">.0</span>_65, <span class="string">vendor:</span> Oracle Corporation, <span class="string">runtime:</span> <span class="regexp">/Library/</span>Java<span class="regexp">/JavaVirtualMachines/</span>jdk1<span class="number">.8</span><span class="number">.0</span>_65.jdk<span class="regexp">/Contents/</span>Home/jre</span><br><span class="line">Default <span class="string">locale:</span> zh_CN, platform <span class="string">encoding:</span> UTF<span class="number">-8</span></span><br><span class="line">OS <span class="string">name:</span> <span class="string">"mac os x"</span>, <span class="string">version:</span> <span class="string">"10.13.6"</span>, <span class="string">arch:</span> <span class="string">"x86_64"</span>, <span class="string">family:</span> <span class="string">"mac"</span></span><br></pre></td></tr></table></figure>
 <p>另外我们推荐使用 ItelliJ IDEA （社区免费版已够用）作为 Flink 应用程序的开发 IDE。Eclipse 虽然也可以，但是 Eclipse 在 Scala 和 Java 混合型项目下会有些已知问题，所以不太推荐 Eclipse。下一章节，我们会介绍如何创建一个 Flink 工程并将其导入 ItelliJ IDEA。</p>
 <h2 id="创建-Maven-项目"><a href="#创建-Maven-项目" class="headerlink" title="创建 Maven 项目"></a>创建 Maven 项目</h2><p>我们将使用 Flink Maven Archetype 来创建我们的项目结构和一些初始的默认依赖。在你的工作目录下，运行如下命令来创建项目：</p>
-<figure class="highlight haml"><table><tr><td class="code"><pre><div class="line">mvn archetype:generate \</div><div class="line">    -<span class="ruby">DarchetypeGroupId=org.apache.flink \</span></div><div class="line">    -<span class="ruby">DarchetypeArtifactId=flink-quickstart-java \</span></div><div class="line">    -<span class="ruby">DarchetypeVersion=<span class="number">1.6</span>.<span class="number">1</span> \</span></div><div class="line">    -<span class="ruby">DgroupId=my-flink-project \</span></div><div class="line">    -<span class="ruby">DartifactId=my-flink-project \</span></div><div class="line">    -<span class="ruby">Dversion=<span class="number">0</span>.<span class="number">1</span> \</span></div><div class="line">    -<span class="ruby">Dpackage=myflink \</span></div><div class="line">    -<span class="ruby">DinteractiveMode=<span class="literal">false</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">    <span class="attribute">-DarchetypeGroupId</span>=org.apache.flink \</span><br><span class="line">    <span class="attribute">-DarchetypeArtifactId</span>=flink-quickstart-java \</span><br><span class="line">    <span class="attribute">-DarchetypeVersion</span>=1.6.1 \</span><br><span class="line">    <span class="attribute">-DgroupId</span>=my-flink-project \</span><br><span class="line">    <span class="attribute">-DartifactId</span>=my-flink-project \</span><br><span class="line">    <span class="attribute">-Dversion</span>=0.1 \</span><br><span class="line">    <span class="attribute">-Dpackage</span>=myflink \</span><br><span class="line">    <span class="attribute">-DinteractiveMode</span>=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <p>你可以编辑上面的 groupId, artifactId, package 成你喜欢的路径。使用上面的参数，Maven 将自动为你创建如下所示的项目结构：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">$ tree my-flink-project</div><div class="line">my-flink-project</div><div class="line">├── pom<span class="selector-class">.xml</span></div><div class="line">└── src</div><div class="line">    └── main</div><div class="line">        ├── java</div><div class="line">        │   └── myflink</div><div class="line">        │       ├── BatchJob<span class="selector-class">.java</span></div><div class="line">        │       └── StreamingJob<span class="selector-class">.java</span></div><div class="line">        └── resources</div><div class="line">            └── log4j.properties</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ tree my-flink-project</span><br><span class="line">my-flink-project</span><br><span class="line">├── pom.xml</span><br><span class="line">└── src</span><br><span class="line">    └── main</span><br><span class="line">        ├── java</span><br><span class="line">        │   └── myflink</span><br><span class="line">        │       ├── BatchJob.java</span><br><span class="line">        │       └── StreamingJob.java</span><br><span class="line">        └── resources</span><br><span class="line">            └── log4j.properties</span><br></pre></td></tr></table></figure>
 <p>我们的 pom.xml 文件已经包含了所需的 Flink 依赖，并且在 src/main/java 下有几个示例程序框架。接下来我们将开始编写第一个 Flink 程序。</p>
 <h2 id="编写-Flink-程序"><a href="#编写-Flink-程序" class="headerlink" title="编写 Flink 程序"></a>编写 Flink 程序</h2><p>启动 IntelliJ IDEA，选择 “Import Project”（导入项目），选择 my-flink-project 根目录下的 pom.xml。根据引导，完成项目导入。</p>
 <p>在 src/main/java/myflink 下创建 <code>SocketWindowWordCount.java</code> 文件：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> myflink;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SocketWindowWordCount</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> myflink;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SocketWindowWordCount</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在这程序还很基础，我们会一步步往里面填代码。注意下文中我们不会将 import 语句也写出来，因为 IDE 会自动将他们添加上去。在本节末尾，我会将完整的代码展示出来，如果你想跳过下面的步骤，可以直接将最后的完整代码粘到编辑器中。</p>
 <p>Flink 程序的第一步是创建一个 <code>StreamExecutionEnvironment</code> 。这是一个入口类，可以用来设置参数和创建数据源以及提交任务。所以让我们把它添加到 main 函数中：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">StreamExecutionEnvironment see = StreamExecutionEnvironment.getExecutionEnvironment();</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StreamExecutionEnvironment see = StreamExecutionEnvironment.getExecutionEnvironment();</span><br></pre></td></tr></table></figure>
 <p>下一步我们将创建一个从本地端口号 9000 的 socket 中读取数据的数据源：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">DataStream&lt;String&gt; text = env.socketTextStream(<span class="string">"localhost"</span>, <span class="number">9000</span>, <span class="string">"\n"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">DataStream&lt;String&gt; text = env.socketTextStream(<span class="string">"localhost"</span>, <span class="number">9000</span>, <span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
 <p>这创建了一个字符串类型的 <code>DataStream</code>。<code>DataStream</code> 是 Flink 中做流处理的核心 API，上面定义了非常多常见的操作（如，过滤、转换、聚合、窗口、关联等）。在本示例中，我们感兴趣的是每个单词在特定时间窗口中出现的次数，比如说5秒窗口。为此，我们首先要将字符串数据解析成单词和次数（使用<code>Tuple2&lt;String, Integer&gt;</code>表示），第一个字段是单词，第二个字段是次数，次数初始值都设置成了1。我们实现了一个 <code>flatmap</code> 来做解析的工作，因为一行数据中可能有多个单词。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; wordCounts = text</div><div class="line">        .flatMap(<span class="keyword">new</span> FlatMapFunction&lt;String, Tuple2&lt;String, Integer&gt;&gt;() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatMap</span><span class="params">(String value, Collector&lt;Tuple2&lt;String, Integer&gt;&gt; out)</span> </span>&#123;</div><div class="line">            <span class="keyword">for</span> (String word : value.split(<span class="string">"\\s"</span>)) &#123;</div><div class="line">              out.collect(Tuple2.of(word, <span class="number">1</span>));</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; wordCounts = text</span><br><span class="line">        .flatMap(<span class="keyword">new</span> FlatMapFunction&lt;String, Tuple2&lt;String, Integer&gt;&gt;() &#123;</span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatMap</span><span class="params">(String value, Collector&lt;Tuple2&lt;String, Integer&gt;&gt; out)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (String word : value.split(<span class="string">"\\s"</span>)) &#123;</span><br><span class="line">              out.collect(Tuple2.of(word, <span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
 <p>接着我们将数据流按照单词字段（即0号索引字段）做分组，这里可以简单地使用 <code>keyBy(int index)</code> 方法，得到一个以单词为 key 的<code>Tuple2&lt;String, Integer&gt;</code>数据流。然后我们可以在流上指定想要的窗口，并根据窗口中的数据计算结果。在我们的例子中，我们想要每5秒聚合一次单词数，每个窗口都是从零开始统计的：。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; windowCounts = wordCounts</div><div class="line">        .keyBy(<span class="number">0</span>)</div><div class="line">        .timeWindow(Time.seconds(<span class="number">5</span>))</div><div class="line">        .sum(<span class="number">1</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; windowCounts = wordCounts</span><br><span class="line">        .keyBy(<span class="number">0</span>)</span><br><span class="line">        .timeWindow(Time.seconds(<span class="number">5</span>))</span><br><span class="line">        .sum(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 <p>第二个调用的 <code>.timeWindow()</code> 指定我们想要5秒的翻滚窗口（Tumble）。第三个调用为每个key每个窗口指定了<code>sum</code>聚合函数，在我们的例子中是按照次数字段（即1号索引字段）相加。得到的结果数据流，将每5秒输出一次这5秒内每个单词出现的次数。</p>
 <p>最后一件事就是将数据流打印到控制台，并开始执行：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">windowCounts.print().setParallelism(<span class="number">1</span>);</div><div class="line">env.execute(<span class="string">"Socket Window WordCount"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">windowCounts.print().setParallelism(<span class="number">1</span>);</span><br><span class="line">env.execute(<span class="string">"Socket Window WordCount"</span>);</span><br></pre></td></tr></table></figure>
 <p>最后的 <code>env.execute</code> 调用是启动实际Flink作业所必需的。所有算子操作（例如创建源、聚合、打印）只是构建了内部算子操作的图形。只有在<code>execute()</code>被调用时才会在提交到集群上或本地计算机上执行。</p>
-<p>下面是完整的代码，部分代码经过简化（代码在 <a href="https://github.com/wuchong/my-flink-project/blob/master/src/main/java/myflink/SocketWindowWordCount.java" target="_blank" rel="external">GitHub</a> 上也能访问到）：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> myflink;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.flink.api.common.functions.FlatMapFunction;</div><div class="line"><span class="keyword">import</span> org.apache.flink.api.java.tuple.Tuple2;</div><div class="line"><span class="keyword">import</span> org.apache.flink.streaming.api.datastream.DataStream;</div><div class="line"><span class="keyword">import</span> org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;</div><div class="line"><span class="keyword">import</span> org.apache.flink.streaming.api.windowing.time.Time;</div><div class="line"><span class="keyword">import</span> org.apache.flink.util.Collector;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SocketWindowWordCount</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 创建 execution environment</span></div><div class="line">    <span class="keyword">final</span> StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</div><div class="line"></div><div class="line">    <span class="comment">// 通过连接 socket 获取输入数据，这里连接到本地9000端口，如果9000端口已被占用，请换一个端口</span></div><div class="line">    DataStream&lt;String&gt; text = env.socketTextStream(<span class="string">"localhost"</span>, <span class="number">9000</span>, <span class="string">"\n"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 解析数据，按 word 分组，开窗，聚合</span></div><div class="line">    DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; windowCounts = text</div><div class="line">        .flatMap(<span class="keyword">new</span> FlatMapFunction&lt;String, Tuple2&lt;String, Integer&gt;&gt;() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatMap</span><span class="params">(String value, Collector&lt;Tuple2&lt;String, Integer&gt;&gt; out)</span> </span>&#123;</div><div class="line">            <span class="keyword">for</span> (String word : value.split(<span class="string">"\\s"</span>)) &#123;</div><div class="line">              out.collect(Tuple2.of(word, <span class="number">1</span>));</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125;)</div><div class="line">        .keyBy(<span class="number">0</span>)</div><div class="line">        .timeWindow(Time.seconds(<span class="number">5</span>))</div><div class="line">        .sum(<span class="number">1</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 将结果打印到控制台，注意这里使用的是单线程打印，而非多线程</span></div><div class="line">    windowCounts.print().setParallelism(<span class="number">1</span>);</div><div class="line"></div><div class="line">    env.execute(<span class="string">"Socket Window WordCount"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面是完整的代码，部分代码经过简化（代码在 <a href="https://github.com/wuchong/my-flink-project/blob/master/src/main/java/myflink/SocketWindowWordCount.java" target="_blank" rel="noopener">GitHub</a> 上也能访问到）：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> myflink;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.functions.FlatMapFunction;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.java.tuple.Tuple2;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.streaming.api.datastream.DataStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.streaming.api.windowing.time.Time;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.util.Collector;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SocketWindowWordCount</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建 execution environment</span></span><br><span class="line">    <span class="keyword">final</span> StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过连接 socket 获取输入数据，这里连接到本地9000端口，如果9000端口已被占用，请换一个端口</span></span><br><span class="line">    DataStream&lt;String&gt; text = env.socketTextStream(<span class="string">"localhost"</span>, <span class="number">9000</span>, <span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解析数据，按 word 分组，开窗，聚合</span></span><br><span class="line">    DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; windowCounts = text</span><br><span class="line">        .flatMap(<span class="keyword">new</span> FlatMapFunction&lt;String, Tuple2&lt;String, Integer&gt;&gt;() &#123;</span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatMap</span><span class="params">(String value, Collector&lt;Tuple2&lt;String, Integer&gt;&gt; out)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (String word : value.split(<span class="string">"\\s"</span>)) &#123;</span><br><span class="line">              out.collect(Tuple2.of(word, <span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .keyBy(<span class="number">0</span>)</span><br><span class="line">        .timeWindow(Time.seconds(<span class="number">5</span>))</span><br><span class="line">        .sum(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将结果打印到控制台，注意这里使用的是单线程打印，而非多线程</span></span><br><span class="line">    windowCounts.print().setParallelism(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    env.execute(<span class="string">"Socket Window WordCount"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h2><p>要运行示例程序，首先我们在终端启动 netcat 获得输入流：</p>
-<figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">nc -lk <span class="number">9000</span></div></pre></td></tr></table></figure>
-<p>如果是 Windows 平台，可以通过 <a href="https://nmap.org/ncat/" target="_blank" rel="external">https://nmap.org/ncat/</a> 安装 ncat 然后运行：</p>
-<figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">ncat -lk <span class="number">9000</span></div></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">nc -lk <span class="number">9000</span></span><br></pre></td></tr></table></figure>
+<p>如果是 Windows 平台，可以通过 <a href="https://nmap.org/ncat/" target="_blank" rel="noopener">https://nmap.org/ncat/</a> 安装 ncat 然后运行：</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">ncat -lk <span class="number">9000</span></span><br></pre></td></tr></table></figure>
 <p>然后直接运行<code>SocketWindowWordCount</code>的 main 方法。</p>
 <p>只需要在 netcat 控制台输入单词，就能在 <code>SocketWindowWordCount</code> 的输出控制台看到每个单词的词频统计。如果想看到大于1的计数，请在5秒内反复键入相同的单词。</p>
 <p><img src="https://img.alicdn.com/tfs/TB1L_9VnMTqK1RjSZPhXXXfOFXa-1836-682.png" alt=""></p>
@@ -387,7 +389,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -413,7 +415,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -486,7 +488,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -496,12 +498,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -562,7 +562,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -609,10 +609,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

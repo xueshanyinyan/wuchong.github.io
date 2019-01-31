@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,34 +23,38 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="Flink原理与实现,Flink,chain,SlotSharingGroup" />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
+  <meta name="keywords" content="Flink原理与实现,Flink,chain,SlotSharingGroup">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
 
 
 
@@ -62,11 +62,13 @@
 
 
 <meta name="description" content="本文所讨论的计算资源是指用来执行 Task 的资源，是一个逻辑概念。本文会介绍 Flink 计算资源相关的一些核心概念，如：Slot、SlotSharingGroup、CoLocationGroup、Chain等。并会着重讨论 Flink 如何对计算资源进行管理和隔离，如何将计算资源利用率最大化等等。理解 Flink 中的计算资源对于理解 Job 如何在集群中运行的有很大的帮助，也有利于我们更透彻">
+<meta name="keywords" content="Flink原理与实现,Flink,chain,SlotSharingGroup">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flink 原理与实现：理解 Flink 中的计算资源">
 <meta property="og:url" content="http://wuchong.me/blog/2016/05/09/flink-internals-understanding-execution-resources/index.html">
-<meta property="og:site_name" content="Jark's Blog">
+<meta property="og:site_name" content="Jark&#39;s Blog">
 <meta property="og:description" content="本文所讨论的计算资源是指用来执行 Task 的资源，是一个逻辑概念。本文会介绍 Flink 计算资源相关的一些核心概念，如：Slot、SlotSharingGroup、CoLocationGroup、Chain等。并会着重讨论 Flink 如何对计算资源进行管理和隔离，如何将计算资源利用率最大化等等。理解 Flink 中的计算资源对于理解 Job 如何在集群中运行的有很大的帮助，也有利于我们更透彻">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB18Gv5JFXXXXcDXXXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1cFbJJFXXXXaIXVXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1Q4zUJFXXXXXnXVXXXXXXXXXX">
@@ -98,7 +100,7 @@
   <title> Flink 原理与实现：理解 Flink 中的计算资源 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -127,12 +129,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -159,7 +161,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -169,7 +171,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -179,7 +181,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -189,7 +191,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -199,7 +201,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -216,7 +218,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -253,7 +255,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -282,14 +284,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Flink/" itemprop="url" rel="index">
                     <span itemprop="name">Flink</span>
                   </a>
@@ -365,7 +367,7 @@
 <p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1cFbJJFXXXXaIXVXXXXXXXXXX" alt=""></p>
 <p>如上图所示，Flink内部是通过<code>OperatorChain</code>这个类来将多个operator链在一起形成一个新的operator。<code>OperatorChain</code>形成的框框就像一个黑盒，Flink 无需知道黑盒中有多少个ChainOperator、数据在chain内部是怎么流动的，只需要将input数据交给 HeadOperator 就可以了，这就使得<code>OperatorChain</code>在行为上与普通的operator无差别，上面的OperaotrChain就可以看做是一个入度为1，出度为2的operator。所以在实现中，对外可见的只有HeadOperator，以及与外部连通的实线输出，这些输出对应了JobGraph中的JobEdge，在底层通过<code>RecordWriterOutput</code>来实现。另外，框中的虚线是operator chain内部的数据流，这个流内的数据不会经过序列化/反序列化、网络传输，而是直接将消息对象传递给下游的 ChainOperator 处理，这是性能提升的关键点，在底层是通过 <code>ChainingOutput</code> 实现的，源码如下方所示，</p>
 <p><em>注：HeadOperator和ChainOperator并不是具体的数据结构，前者指代chain中的第一个operator，后者指代chain中其余的operator，它们实际上都是<code>StreamOperator</code>。</em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ChainingOutput</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Output</span>&lt;<span class="title">StreamRecord</span>&lt;<span class="title">T</span>&gt;&gt; </span>&#123;</div><div class="line">  <span class="comment">// 注册的下游operator</span></div><div class="line">  <span class="keyword">protected</span> <span class="keyword">final</span> OneInputStreamOperator&lt;T, ?&gt; operator;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ChainingOutput</span><span class="params">(OneInputStreamOperator&lt;T, ?&gt; operator)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.operator = operator;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="comment">// 发送消息方法的实现，直接将消息对象传递给operator处理，不经过序列化/反序列化、网络传输</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">collect</span><span class="params">(StreamRecord&lt;T&gt; record)</span> </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      operator.setKeyContextElement1(record);</div><div class="line">      <span class="comment">// 下游operator直接处理消息对象</span></div><div class="line">      operator.processElement(record);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> ExceptionInChainedOperatorException(e);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ChainingOutput</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Output</span>&lt;<span class="title">StreamRecord</span>&lt;<span class="title">T</span>&gt;&gt; </span>&#123;</span><br><span class="line">  <span class="comment">// 注册的下游operator</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">final</span> OneInputStreamOperator&lt;T, ?&gt; operator;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ChainingOutput</span><span class="params">(OneInputStreamOperator&lt;T, ?&gt; operator)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.operator = operator;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="comment">// 发送消息方法的实现，直接将消息对象传递给operator处理，不经过序列化/反序列化、网络传输</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">collect</span><span class="params">(StreamRecord&lt;T&gt; record)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      operator.setKeyContextElement1(record);</span><br><span class="line">      <span class="comment">// 下游operator直接处理消息对象</span></span><br><span class="line">      operator.processElement(record);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> ExceptionInChainedOperatorException(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Task-Slot"><a href="#Task-Slot" class="headerlink" title="Task Slot"></a>Task Slot</h2><p>在<a href="http://wuchong.me/blog/2016/05/03/flink-internals-overview/">架构概览</a>中我们介绍了 TaskManager 是一个 JVM 进程，并会以独立的线程来执行一个task或多个subtask。为了控制一个 TaskManager 能接受多少个 task，Flink 提出了 <em>Task Slot</em> 的概念。</p>
 <p>Flink 中的计算资源通过 <em>Task Slot</em> 来定义。每个 task slot 代表了 TaskManager 的一个固定大小的资源子集。例如，一个拥有3个slot的 TaskManager，会将其管理的内存平均分成三分分给各个 slot。将资源 slot 化意味着来自不同job的task不会为了内存而竞争，而是每个task都拥有一定数量的内存储备。需要注意的是，这里不会涉及到CPU的隔离，slot目前仅仅用来隔离task的内存。</p>
 <p>通过调整 task slot 的数量，用户可以定义task之间是如何相互隔离的。每个 TaskManager 有一个slot，也就意味着每个task运行在独立的 JVM 中。每个 TaskManager 有多个slot的话，也就是说多个task运行在同一个JVM中。而在同一个JVM进程中的task，可以共享TCP连接（基于多路复用）和心跳消息，可以减少数据的网络传输。也能共享一些数据结构，一定程度上减少了每个task的消耗。</p>
@@ -379,7 +381,7 @@
 </ol>
 <p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1VTj4JFXXXXX8XFXXXXXXXXXX" alt=""></p>
 <p>我们将 WordCount 的并行度从之前的2个增加到6个（Source并行度仍为1），并开启slot共享（所有operator都在default共享组），将得到如上图所示的slot分布图。首先，我们不用去计算这个job会其多少个task，总之该任务最终会占用6个slots（最高并行度为6）。其次，我们可以看到密集型操作 keyAggregation/sink 被平均地分配到各个 TaskManager。</p>
-<p><code>SlotSharingGroup</code>是Flink中用来实现slot共享的类，它尽可能地让subtasks共享一个slot。相应的，还有一个 <code>CoLocationGroup</code> 类用来强制将 subtasks 放到同一个 slot 中。<code>CoLocationGroup</code>主要用于<a href="https://ci.apache.org/projects/flink/flink-docs-master/apis/streaming/index.html#iterations" target="_blank" rel="external">迭代流</a>中，用来保证迭代头与迭代尾的第i个subtask能被调度到同一个TaskManager上。这里我们不会详细讨论<code>CoLocationGroup</code>的实现细节。</p>
+<p><code>SlotSharingGroup</code>是Flink中用来实现slot共享的类，它尽可能地让subtasks共享一个slot。相应的，还有一个 <code>CoLocationGroup</code> 类用来强制将 subtasks 放到同一个 slot 中。<code>CoLocationGroup</code>主要用于<a href="https://ci.apache.org/projects/flink/flink-docs-master/apis/streaming/index.html#iterations" target="_blank" rel="noopener">迭代流</a>中，用来保证迭代头与迭代尾的第i个subtask能被调度到同一个TaskManager上。这里我们不会详细讨论<code>CoLocationGroup</code>的实现细节。</p>
 <p>怎么判断operator属于哪个 slot 共享组呢？默认情况下，所有的operator都属于默认的共享组<code>default</code>，也就是说默认情况下所有的operator都是可以共享一个slot的。而当所有input operators具有相同的slot共享组时，该operator会继承这个共享组。最后，为了防止不合理的共享，用户也能通过API来强制指定operator的共享组，比如：<code>someStream.filter(...).slotSharingGroup(&quot;group1&quot;);</code>就强制指定了filter的slot共享组为<code>group1</code>。</p>
 <h3 id="原理与实现-1"><a href="#原理与实现-1" class="headerlink" title="原理与实现"></a>原理与实现</h3><p>那么多个tasks（或者说operators）是如何共享slot的呢？</p>
 <p>我们先来看一下用来定义计算资源的slot的类图：</p>
@@ -398,8 +400,8 @@
 <p>最后<code>Source</code>、<code>FlatMap[1]</code>、<code>Key-&gt;Sink[1]</code>这些subtask都会部署到TaskManager1的唯一一个slot中，并启动对应的线程。<code>FlatMap[2]</code>、<code>Key-&gt;Sink[2]</code>这些subtask都会被部署到TaskManager2的唯一一个slot中，并启动对应的线程。从而实现了slot共享。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要介绍了Flink中计算资源的相关概念以及原理实现。最核心的是 Task Slot，每个slot能运行一个或多个task。为了拓扑更高效地运行，Flink提出了Chaining，尽可能地将operators chain在一起作为一个task来处理。为了资源更充分的利用，Flink又提出了SlotSharingGroup，尽可能地让多个task共享一个slot。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://ci.apache.org/projects/flink/flink-docs-master/internals/job_scheduling.html" target="_blank" rel="external">Flink: Jobs and Scheduling</a></li>
-<li><a href="https://ci.apache.org/projects/flink/flink-docs-master/concepts/concepts.html" target="_blank" rel="external">Flink Concepts</a></li>
+<li><a href="https://ci.apache.org/projects/flink/flink-docs-master/internals/job_scheduling.html" target="_blank" rel="noopener">Flink: Jobs and Scheduling</a></li>
+<li><a href="https://ci.apache.org/projects/flink/flink-docs-master/concepts/concepts.html" target="_blank" rel="noopener">Flink Concepts</a></li>
 </ul>
 
       
@@ -409,7 +411,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -435,7 +437,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -508,7 +510,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -518,12 +520,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -584,7 +584,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -631,10 +631,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

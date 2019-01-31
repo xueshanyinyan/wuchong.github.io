@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,48 +23,52 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="Hexo,Jacman," />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <meta name="keywords" content="Hexo,Jacman,">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
 
-<meta name="description" content="为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。
-然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。">
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
+
+
+
+
+
+
+<meta name="description" content="为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。 然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。">
+<meta name="keywords" content="Hexo,Jacman">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为 Hexo 主题添加多种图片样式">
 <meta property="og:url" content="http://wuchong.me/blog/2014/12/13/hexo-theme-creating-image-styles/index.html">
-<meta property="og:site_name" content="Jark's Blog">
-<meta property="og:description" content="为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。
-然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。">
+<meta property="og:site_name" content="Jark&#39;s Blog">
+<meta property="og:description" content="为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。 然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/81b78497jw1en8b95t5kmj203j00u743.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/81b78497jw1en8cj4beb9j20s80b8adb.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/81b78497jw1en8cj55warj20se0avgoh.jpg">
@@ -78,8 +78,7 @@
 <meta property="og:updated_time" content="2016-03-08T12:11:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为 Hexo 主题添加多种图片样式">
-<meta name="twitter:description" content="为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。
-然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。">
+<meta name="twitter:description" content="为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。 然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。">
 <meta name="twitter:image" content="http://ww4.sinaimg.cn/large/81b78497jw1en8b95t5kmj203j00u743.jpg">
 
 
@@ -101,7 +100,7 @@
   <title> 为 Hexo 主题添加多种图片样式 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -130,12 +129,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -162,7 +161,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -172,7 +171,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -182,7 +181,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -192,7 +191,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -202,7 +201,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -219,7 +218,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -256,7 +255,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -285,14 +284,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Hexo/" itemprop="url" rel="index">
                     <span itemprop="name">Hexo</span>
                   </a>
@@ -352,35 +351,35 @@
 <p>为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。</p>
 <p>然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。</p>
 <a id="more"></a>
-<h2 id="主题图片"><a href="#主题图片" class="headerlink" title="主题图片"></a>主题图片</h2><p>我比较喜欢像<a href="http://www.36kr.com/" target="_blank" rel="external">36氪</a>那样，一篇文章带一张相关图片。图片能传达的信息永远比文字丰富。当浏览文章列表时，除了标题最吸引人的自然就属文章主题图片了。</p>
+<h2 id="主题图片"><a href="#主题图片" class="headerlink" title="主题图片"></a>主题图片</h2><p>我比较喜欢像<a href="http://www.36kr.com/" target="_blank" rel="noopener">36氪</a>那样，一篇文章带一张相关图片。图片能传达的信息永远比文字丰富。当浏览文章列表时，除了标题最吸引人的自然就属文章主题图片了。</p>
 <p>所以为了方便使用，我创建了一个图片样式叫<code>img-topic</code>，大概是长这样子的。</p>
-<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/index.styl</span></figcaption><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.img-topic</span></div><div class="line">  <span class="selector-tag">max-width</span>: 300<span class="selector-tag">px</span>;</div><div class="line">  <span class="selector-tag">max-height</span>: 1800<span class="selector-tag">px</span>;</div><div class="line">  <span class="selector-tag">display</span>: <span class="selector-tag">block</span> ;</div><div class="line">  <span class="selector-tag">margin-left</span>: <span class="selector-class">.7em</span>;</div><div class="line">  <span class="selector-tag">margin-right</span>: <span class="selector-class">.7em</span>;</div><div class="line">  <span class="selector-tag">padding</span>: 0;</div><div class="line">  <span class="selector-tag">float</span>: <span class="selector-tag">right</span>;</div><div class="line">  <span class="selector-tag">clear</span>: <span class="selector-tag">right</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/index.styl</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.img-topic</span></span><br><span class="line">  <span class="selector-tag">max-width</span>: 300<span class="selector-tag">px</span>;</span><br><span class="line">  <span class="selector-tag">max-height</span>: 1800<span class="selector-tag">px</span>;</span><br><span class="line">  <span class="selector-tag">display</span>: <span class="selector-tag">block</span> ;</span><br><span class="line">  <span class="selector-tag">margin-left</span>: <span class="selector-class">.7em</span>;</span><br><span class="line">  <span class="selector-tag">margin-right</span>: <span class="selector-class">.7em</span>;</span><br><span class="line">  <span class="selector-tag">padding</span>: 0;</span><br><span class="line">  <span class="selector-tag">float</span>: <span class="selector-tag">right</span>;</span><br><span class="line">  <span class="selector-tag">clear</span>: <span class="selector-tag">right</span>;</span><br></pre></td></tr></table></figure>
 <p>在博客中，我更希望主题图片居右，并且点进文章正文后该图片不会显示。我们可以使用HTML语法插入图片。</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line">&lt;img src=<span class="string">"图片路径"</span> <span class="keyword">class</span>=<span class="string">"img-topic"</span> /&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">&lt;img src=<span class="string">"图片路径"</span> <span class="keyword">class</span>=<span class="string">"img-topic"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p>这儿是一张使用<code>img-topic</code>样式后的效果图。</p>
 <p><img src="http://ww2.sinaimg.cn/large/81b78497jw1en8cj4beb9j20s80b8adb.jpg" alt="img-topic效果图"><span class="caption">img-topic效果图</span></p>
 <h2 id="Logo-图片"><a href="#Logo-图片" class="headerlink" title="Logo 图片"></a>Logo 图片</h2><p>Logo 图片可以快速定义一篇文章的主题。与主题图片非常类似，只不过 Logo  图片放置的是 Logo ，而且一般比主题图片要小。类似的，Logo 图片也是居右，并且在文章正文中不会显示。</p>
 <p>关于<code>img-logo</code>的样式如下</p>
-<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/index.styl</span></figcaption><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.img-logo</span> </div><div class="line">  <span class="selector-tag">max-width</span>: 180<span class="selector-tag">px</span>;</div><div class="line">  <span class="selector-tag">max-height</span>: 96<span class="selector-tag">px</span>;</div><div class="line">  <span class="selector-tag">display</span>: <span class="selector-tag">block</span>;</div><div class="line">  <span class="selector-tag">margin-right</span>: <span class="selector-class">.7em</span>;</div><div class="line">  <span class="selector-tag">margin-left</span>: <span class="selector-class">.7em</span>;</div><div class="line">  <span class="selector-tag">padding</span>: 0;</div><div class="line">  <span class="selector-tag">float</span>: <span class="selector-tag">right</span>;</div><div class="line">  <span class="selector-tag">clear</span>: <span class="selector-tag">right</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/index.styl</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.img-logo</span> </span><br><span class="line">  <span class="selector-tag">max-width</span>: 180<span class="selector-tag">px</span>;</span><br><span class="line">  <span class="selector-tag">max-height</span>: 96<span class="selector-tag">px</span>;</span><br><span class="line">  <span class="selector-tag">display</span>: <span class="selector-tag">block</span>;</span><br><span class="line">  <span class="selector-tag">margin-right</span>: <span class="selector-class">.7em</span>;</span><br><span class="line">  <span class="selector-tag">margin-left</span>: <span class="selector-class">.7em</span>;</span><br><span class="line">  <span class="selector-tag">padding</span>: 0;</span><br><span class="line">  <span class="selector-tag">float</span>: <span class="selector-tag">right</span>;</span><br><span class="line">  <span class="selector-tag">clear</span>: <span class="selector-tag">right</span>;</span><br></pre></td></tr></table></figure>
 <p>使用HTML语法插入图片</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line">&lt;img src=<span class="string">"图片路径"</span> <span class="keyword">class</span>=<span class="string">"img-logo"</span> /&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">&lt;img src=<span class="string">"图片路径"</span> <span class="keyword">class</span>=<span class="string">"img-logo"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p>效果如下图：</p>
 <p><img src="http://ww4.sinaimg.cn/large/81b78497jw1en8cj55warj20se0avgoh.jpg" alt="img-logo效果图"><span class="caption">img-logo效果图</span></p>
 <h2 id="居中图片"><a href="#居中图片" class="headerlink" title="居中图片"></a>居中图片</h2><p>有网友抱怨 Jacman 的图片只能居左，他喜欢让图片居中却不知道该怎么做。为此，我也创建了一个图片样式叫<code>img-center</code>，所需的代码很短。</p>
-<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/article.styl</span></figcaption><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.img-center</span></div><div class="line">  <span class="selector-tag">display</span>: <span class="selector-tag">block</span> ;</div><div class="line">  <span class="selector-tag">margin</span>: <span class="selector-tag">auto</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/article.styl</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.img-center</span></span><br><span class="line">  <span class="selector-tag">display</span>: <span class="selector-tag">block</span> ;</span><br><span class="line">  <span class="selector-tag">margin</span>: <span class="selector-tag">auto</span>;</span><br></pre></td></tr></table></figure>
 <h2 id="阴影图片"><a href="#阴影图片" class="headerlink" title="阴影图片"></a>阴影图片</h2><p>有时候添加的图片可能会与文章背景混淆，使得读者看不清到底哪部分是图片哪部分是文章。使用<code>img-shadow</code>为图片添加边角阴影可以更加凸显图片的位置，也能更美观。</p>
-<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/article.styl</span></figcaption><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.img-shadow</span></div><div class="line">  <span class="selector-tag">box-shadow</span>: 0 0 2<span class="selector-tag">px</span> 3<span class="selector-tag">px</span> <span class="selector-id">#ddd</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/article.styl</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.img-shadow</span></span><br><span class="line">  <span class="selector-tag">box-shadow</span>: 0 0 2<span class="selector-tag">px</span> 3<span class="selector-tag">px</span> <span class="selector-id">#ddd</span>;</span><br></pre></td></tr></table></figure>
 <p>使用HTML语法插入图片</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line">&lt;img src=<span class="string">"http://ww1.sinaimg.cn/large/81b78497jw1enhkcat9mqj20go06g0sy.jpg"</span> <span class="keyword">class</span>=<span class="string">"img-shadow"</span> /&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">&lt;img src=<span class="string">"http://ww1.sinaimg.cn/large/81b78497jw1enhkcat9mqj20go06g0sy.jpg"</span> <span class="keyword">class</span>=<span class="string">"img-shadow"</span> /&gt;</span><br></pre></td></tr></table></figure>
 <p><img src="http://ww1.sinaimg.cn/large/81b78497jw1enhkcat9mqj20go06g0sy.jpg" class="img-shadow"></p>
-<h2 id="画廊图片"><a href="#画廊图片" class="headerlink" title="画廊图片"></a>画廊图片</h2><p>Hexo 中提供了一种文章类别叫<code>photo</code>，Jacman 也为这种文章设计了图片浏览方式。具体效果可以看这篇 <a href="http://wuchong.me/jacman/gallery/">Demo</a> 。<code>photo</code>类文章的写法可以看 <a href="https://raw.githubusercontent.com/wuchong/jacman/site/source/_posts/gallery.md" target="_blank" rel="external">Demo Sample</a>。</p>
+<h2 id="画廊图片"><a href="#画廊图片" class="headerlink" title="画廊图片"></a>画廊图片</h2><p>Hexo 中提供了一种文章类别叫<code>photo</code>，Jacman 也为这种文章设计了图片浏览方式。具体效果可以看这篇 <a href="http://wuchong.me/jacman/gallery/">Demo</a> 。<code>photo</code>类文章的写法可以看 <a href="https://raw.githubusercontent.com/wuchong/jacman/site/source/_posts/gallery.md" target="_blank" rel="noopener">Demo Sample</a>。</p>
 <p><img src="http://ww3.sinaimg.cn/large/81b78497jw1en8cj4r4bij20sl0krn4x.jpg" alt="photo文章效果图"><span class="caption">photo文章效果图</span></p>
 <h2 id="图片备注"><a href="#图片备注" class="headerlink" title="图片备注"></a>图片备注</h2><p>Jacman 中可以方便地为图片提供备注。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><div class="line">![<span class="string">添加你的备注</span>](<span class="link">http://ww1.sinaimg.cn/mw690/81b78497jw1emfgts2pt4j21hc0u0k1c.jpg</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">添加你的备注</span>](<span class="link">http://ww1.sinaimg.cn/mw690/81b78497jw1emfgts2pt4j21hc0u0k1c.jpg</span>)</span><br></pre></td></tr></table></figure>
 <p>效果就如下图，在图片左下方会显示关于图片的描述。</p>
 <p><img src="http://ww1.sinaimg.cn/mw690/81b78497jw1emfgts2pt4j21hc0u0k1c.jpg" alt="添加你的备注"><span class="caption">添加你的备注</span></p>
-<p>OK，就这么多了，希望大家喜欢。如果嫌折腾麻烦，欢迎使用最新版的 <a href="https://github.com/wuchong/jacman" target="_blank" rel="external">Jacman</a>，可以直接使用以上定义的样式！</p>
-<p><em>PS:有任何关于 Hexo 的问题，欢迎来 <a href="https://coderq.com/c/tech/hexo" target="_blank" rel="external">Hexo 中文社区</a> 咨询。</em></p>
+<p>OK，就这么多了，希望大家喜欢。如果嫌折腾麻烦，欢迎使用最新版的 <a href="https://github.com/wuchong/jacman" target="_blank" rel="noopener">Jacman</a>，可以直接使用以上定义的样式！</p>
+<p><em>PS:有任何关于 Hexo 的问题，欢迎来 <a href="https://coderq.com/c/tech/hexo" target="_blank" rel="noopener">Hexo 中文社区</a> 咨询。</em></p>
 
       
     </div>
@@ -389,7 +388,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -415,7 +414,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -488,7 +487,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -498,12 +497,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -564,7 +561,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -611,10 +608,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

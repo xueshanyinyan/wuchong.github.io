@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,34 +23,38 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="阿里推荐大赛,ODPS," />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
+  <meta name="keywords" content="阿里推荐大赛,ODPS,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
 
 
 
@@ -62,11 +62,13 @@
 
 
 <meta name="description" content="上一篇文章介绍了 ODPS SQL 的大概使用方法，几个 tips，和讲到一半的离线评估。现在上来把上次的坑填完。">
+<meta name="keywords" content="阿里推荐大赛,ODPS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阿里推荐大赛：ODPS SQL 构建离线评估">
 <meta property="og:url" content="http://wuchong.me/blog/2014/04/29/odps-sql-build-offline-evaluation/index.html">
-<meta property="og:site_name" content="Jark's Blog">
+<meta property="og:site_name" content="Jark&#39;s Blog">
 <meta property="og:description" content="上一篇文章介绍了 ODPS SQL 的大概使用方法，几个 tips，和讲到一半的离线评估。现在上来把上次的坑填完。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/81b78497jw1efwukhfcz8g207n016a9t.gif">
 <meta property="og:updated_time" content="2016-03-08T12:15:59.000Z">
 <meta name="twitter:card" content="summary">
@@ -93,7 +95,7 @@
   <title> 阿里推荐大赛：ODPS SQL 构建离线评估 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -122,12 +124,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -154,7 +156,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -164,7 +166,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -174,7 +176,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -184,7 +186,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -194,7 +196,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -211,7 +213,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -248,7 +250,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -277,14 +279,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/程序设计/" itemprop="url" rel="index">
                     <span itemprop="name">程序设计</span>
                   </a>
@@ -343,21 +345,21 @@
         <p><a href="http://wuchong.me/blog/2014/04/26/odps-sql-introduction/">上一篇文章</a>介绍了 ODPS SQL 的大概使用方法，几个 tips，和讲到一半的离线评估。现在上来把上次的坑填完。希望对于还没有开始离线调优的团队有点帮助。</p>
 <h2 id="划分训练集、验证集"><a href="#划分训练集、验证集" class="headerlink" title="划分训练集、验证集"></a>划分训练集、验证集</h2><p>回顾训练集、验证集的划分。</p>
 <p>根据时间，可以将前三月划分为训练集：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> train_set <span class="keyword">as</span></div><div class="line"><span class="keyword">select</span> * </div><div class="line"><span class="keyword">from</span> t_alibaba_bigdata_user_brand_total_1</div><div class="line"><span class="keyword">where</span> visit_datetime &lt;= <span class="string">'07-15'</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> train_set <span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> * </span><br><span class="line"><span class="keyword">from</span> t_alibaba_bigdata_user_brand_total_1</span><br><span class="line"><span class="keyword">where</span> visit_datetime &lt;= <span class="string">'07-15'</span>;</span><br></pre></td></tr></table></figure>
 <p>同理，验证集如下，注意去重：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> validate_set <span class="keyword">as</span></div><div class="line"><span class="keyword">select</span></div><div class="line">    user_id,</div><div class="line">    wm_concat(<span class="string">','</span>,brand_id) <span class="keyword">as</span> brand</div><div class="line"><span class="keyword">from</span>(</div><div class="line">    <span class="keyword">select</span> <span class="keyword">distinct</span> user_id,brand_id</div><div class="line">    <span class="keyword">from</span> t_alibaba_bigdata_user_brand_total_1</div><div class="line">    <span class="keyword">where</span> <span class="keyword">type</span> = <span class="string">'1'</span> <span class="keyword">and</span> visit_datetime &gt; <span class="string">'07-15'</span></div><div class="line">)a</div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> user_id;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> validate_set <span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    user_id,</span><br><span class="line">    wm_concat(<span class="string">','</span>,brand_id) <span class="keyword">as</span> brand</span><br><span class="line"><span class="keyword">from</span>(</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">distinct</span> user_id,brand_id</span><br><span class="line">    <span class="keyword">from</span> t_alibaba_bigdata_user_brand_total_1</span><br><span class="line">    <span class="keyword">where</span> <span class="keyword">type</span> = <span class="string">'1'</span> <span class="keyword">and</span> visit_datetime &gt; <span class="string">'07-15'</span></span><br><span class="line">)a</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> user_id;</span><br></pre></td></tr></table></figure>
 <p>这里<code>distinct</code>关键字的作用就是去重，当然也可以用<code>group by</code>实现。两者效果一样，那效率呢？在 MySQL 中（如果没记错的话，天池的底层数据库是基于 MySQL 的），两者的实现原理很相似。区别在于<code>distinct</code>会读取所有的记录，而<code>group by</code>是在分组之后每组只返回一条记录，也就是说后者读取的条数要少很多，效率会更高一些。所以可以用以下代码代替上述的子查询：</p>
-<figure class="highlight oxygene"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> user_id,brand_id</div><div class="line"><span class="keyword">from</span> t_alibaba_bigdata_user_brand_total_1</div><div class="line"><span class="keyword">where</span> <span class="keyword">type</span> = <span class="string">'1'</span> <span class="keyword">and</span> visit_datetime &gt; <span class="string">'07-15'</span></div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> user_id,brand_id</div></pre></td></tr></table></figure>
+<figure class="highlight oxygene"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> user_id,brand_id</span><br><span class="line"><span class="keyword">from</span> t_alibaba_bigdata_user_brand_total_1</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">type</span> = <span class="string">'1'</span> <span class="keyword">and</span> visit_datetime &gt; <span class="string">'07-15'</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> user_id,brand_id</span><br></pre></td></tr></table></figure>
 <p>扯远了… 回来吧。计算推荐集、验证集条数的方法之前也给出了：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(regexp_count(brand,<span class="string">','</span>)+<span class="number">1</span>) <span class="keyword">from</span> t_tmall_add_user_brand_predict_dh;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(regexp_count(brand,<span class="string">','</span>)+<span class="number">1</span>) <span class="keyword">from</span> t_tmall_add_user_brand_predict_dh;</span><br></pre></td></tr></table></figure>
 <p>接下来要计算推荐集和验证集之间的重复条数，这里可以用 UDF 方便地实现。<br><a id="more"></a></p>
 <h2 id="UDF-计算重复条数"><a href="#UDF-计算重复条数" class="headerlink" title="UDF 计算重复条数"></a>UDF 计算重复条数</h2><p>在我们 Eclipse 中的 ODPS 项目下新建 UDF。填入 Package 名称为：<code>jark.udf</code>，和 UDF 类名：<code>CountHits</code>，点击确认。插件会自动帮我们生成<code>jark.udf</code>包用于写 UDF 代码，和<code>test.jark.udf</code>包用于本地测试。</p>
 <p>编辑<code>CountHits.java</code>文件，注意下文的<code>Long</code>不能替换为<code>long</code>类型，否则在ODPS上运行会报<code>Method Not Found</code>错误。：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountHits</span> <span class="keyword">extends</span> <span class="title">UDF</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">evaluate</span> <span class="params">(String a,String b)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(a == <span class="keyword">null</span> || b == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0L</span>;     <span class="comment">//异常值</span></div><div class="line">        Set&lt;String&gt; set1 = <span class="keyword">new</span> HashSet&lt;String&gt;();</div><div class="line">        Set&lt;String&gt; set2 = <span class="keyword">new</span> HashSet&lt;String&gt;();</div><div class="line">        set1.addAll(Arrays.asList(a.split(<span class="string">","</span>)));</div><div class="line">        set2.addAll(Arrays.asList(b.split(<span class="string">","</span>)));</div><div class="line">        Long hits = <span class="number">0L</span>;</div><div class="line">        <span class="keyword">for</span>(String s : set2)&#123;</div><div class="line">            <span class="keyword">if</span>( set1.contains(s) )</div><div class="line">                hits++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> hits;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountHits</span> <span class="keyword">extends</span> <span class="title">UDF</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">evaluate</span> <span class="params">(String a,String b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a == <span class="keyword">null</span> || b == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0L</span>;     <span class="comment">//异常值</span></span><br><span class="line">        Set&lt;String&gt; set1 = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        Set&lt;String&gt; set2 = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        set1.addAll(Arrays.asList(a.split(<span class="string">","</span>)));</span><br><span class="line">        set2.addAll(Arrays.asList(b.split(<span class="string">","</span>)));</span><br><span class="line">        Long hits = <span class="number">0L</span>;</span><br><span class="line">        <span class="keyword">for</span>(String s : set2)&#123;</span><br><span class="line">            <span class="keyword">if</span>( set1.contains(s) )</span><br><span class="line">                hits++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> hits;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>本段函数的主要工作是在<code>a</code>串和<code>b</code>串去重后，计算它们中重复元素的个数。接下来在本地测试下 UDF 。在<code>test.jark.udf</code>包中有两个文件<code>TestCountHits.java</code>和<code>TestUDFBase.java</code>。由于如果 UDF 的输入参数是多个的话，本地测试默认的分隔符是逗号，与我们<code>brand</code>中的逗号冲突了。所以修改下<code>TestUDFBase.java</code>文件的第15行的分隔符为空格（当然也可以其他符号）：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String ODPS_SEPARATOR = <span class="string">" "</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String ODPS_SEPARATOR = <span class="string">" "</span>;</span><br></pre></td></tr></table></figure>
 <p>顺便修改第72行，去掉<code>(String)</code>，原因是<code>Long</code>型不能强制转换成<code>String</code>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">return</span> callMeth.invoke(UDFClass, input_parameter.toArray()) + <span class="string">"\n"</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> callMeth.invoke(UDFClass, input_parameter.toArray()) + <span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
 <p>在<code>TestCountHits.in</code>文件中输入测试输入：</p>
 <pre><code>123456,444,555,666 123456,666,777,888
 888,999 111,222
@@ -367,26 +369,26 @@
 0
 2
 </code></pre><p>测试输入应更为复杂，以上只是示例。在确认 UDF 没有问题后，准备上传。将Package <code>jark.udf</code>打成 jar 包，命名为<code>jark-udf.jar</code>，置于<code>C:/TOOLS</code>下，执行以下命令:</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">create resource jar C:/TOOLS/jark-udf<span class="selector-class">.jar</span></div><div class="line">create function count_hits jark<span class="selector-class">.udf</span><span class="selector-class">.CountHits</span> jark-udf.jar</div></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">create<span class="built_in"> resource </span>jar C:/TOOLS/jark-udf.jar</span><br><span class="line">create function count_hits jark.udf.CountHits jark-udf.jar</span><br></pre></td></tr></table></figure>
 <p>上述命令作用分别是将用户 jar 包上传到 ODPS 和在 ODPS 上注册函数并命名为<code>count_hits</code>。现在使用<code>ls functions</code>命令应该就能看到我们刚刚注册的函数了。</p>
 <p>现在，我们就能像调用一般内建函数一样调用我们自己的<code>count_hits</code>函数了。计算推荐集和验证集中的重复条数，有下面代码：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(count_hits(a.brand,b.brand)) hits <span class="keyword">from</span> t_tmall_add_user_brand_predict_dh a </div><div class="line"><span class="keyword">join</span> validate_set b <span class="keyword">on</span> a.user_id = b.user_id;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(count_hits(a.brand,b.brand)) hits <span class="keyword">from</span> t_tmall_add_user_brand_predict_dh a </span><br><span class="line"><span class="keyword">join</span> validate_set b <span class="keyword">on</span> a.user_id = b.user_id;</span><br></pre></td></tr></table></figure>
 <p>上面演示了一般 UDF 的创建使用过程，其他类似的 UDF 都可以参考以上过程构建。UDF 是 SQL 的一大工具 ，很多规则算法都可以用过 UDF 方便地实现。</p>
 <h2 id="计算评测值"><a href="#计算评测值" class="headerlink" title="计算评测值"></a>计算评测值</h2><p>我们知道准确率的计算公式：$precision = hits / pnums$，为<code>pnums</code>为推荐条数。</p>
 <p>召回率的计算公式有：$recall = hits / vnums$，<code>vnums</code>为验证集条数。</p>
 <p>而 F1 的计算公式有：</p>
 <p><img src="http://ww4.sinaimg.cn/large/81b78497jw1efwukhfcz8g207n016a9t.gif" alt=""></p>
-<p>为了计算方便，我们用<code>full outer join</code>连接验证集和推荐集，并将计算出的 <code>hits</code>、<code>pnums</code>、<code>vnums</code> 放到临时表里。感谢 <a href="http://weibo.com/hadoop" target="_blank" rel="external">@木同学style</a> 的建议。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(count_hits(p.brand,v.brand) hits,</div><div class="line">       <span class="keyword">sum</span>(regexp_count(p.brand,<span class="string">','</span>)+<span class="number">1</span>) pnums,</div><div class="line">       <span class="keyword">sum</span>(regexp_count(v.brand,<span class="string">','</span>)+<span class="number">1</span>) vnums</div><div class="line"><span class="keyword">from</span> t_tmall_add_user_brand_predict_dh p</div><div class="line">     <span class="keyword">full</span> <span class="keyword">outer</span> <span class="keyword">join</span> validate_set v <span class="keyword">on</span> p.user_id = v.user_id</div></pre></td></tr></table></figure>
+<p>为了计算方便，我们用<code>full outer join</code>连接验证集和推荐集，并将计算出的 <code>hits</code>、<code>pnums</code>、<code>vnums</code> 放到临时表里。感谢 <a href="http://weibo.com/hadoop" target="_blank" rel="noopener">@木同学style</a> 的建议。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(count_hits(p.brand,v.brand) hits,</span><br><span class="line">       <span class="keyword">sum</span>(regexp_count(p.brand,<span class="string">','</span>)+<span class="number">1</span>) pnums,</span><br><span class="line">       <span class="keyword">sum</span>(regexp_count(v.brand,<span class="string">','</span>)+<span class="number">1</span>) vnums</span><br><span class="line"><span class="keyword">from</span> t_tmall_add_user_brand_predict_dh p</span><br><span class="line">     <span class="keyword">full</span> <span class="keyword">outer</span> <span class="keyword">join</span> validate_set v <span class="keyword">on</span> p.user_id = v.user_id</span><br></pre></td></tr></table></figure>
 <p>有了这三个值后，就可以用上面的公式轻松计算出评测值了。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> (hits/pnums) <span class="keyword">precision</span>, (hits/vnums) recall,(<span class="number">2</span>*hits/(pnums+vnums)) F1</div><div class="line"><span class="keyword">from</span> (</div><div class="line">    <span class="keyword">select</span> hits , pnums , vnums</div><div class="line">    <span class="keyword">from</span> ...</div><div class="line">)a;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> (hits/pnums) <span class="keyword">precision</span>, (hits/vnums) recall,(<span class="number">2</span>*hits/(pnums+vnums)) F1</span><br><span class="line"><span class="keyword">from</span> (</span><br><span class="line">    <span class="keyword">select</span> hits , pnums , vnums</span><br><span class="line">    <span class="keyword">from</span> ...</span><br><span class="line">)a;</span><br></pre></td></tr></table></figure>
 <p>OK，感觉讲的有点啰嗦了… 整合上面计算评测值的代码后，有如下代码：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> evaluation <span class="keyword">as</span></div><div class="line"><span class="keyword">select</span> (hits/pnums) <span class="keyword">precision</span> , (hits/vnums) recall , (<span class="number">2</span>*hits/(pnums+vnums)) F1 , </div><div class="line">        hits , pnums , vnums , <span class="keyword">getdate</span>() eval_time</div><div class="line"><span class="keyword">from</span> (</div><div class="line">    <span class="keyword">select</span> <span class="keyword">sum</span>(count_hits(p.brand,v.brand) hits,</div><div class="line">           <span class="keyword">sum</span>(regexp_count(p.brand,<span class="string">','</span>)+<span class="number">1</span>) pnums,</div><div class="line">           <span class="keyword">sum</span>(regexp_count(v.brand,<span class="string">','</span>)+<span class="number">1</span>) vnums</div><div class="line">    <span class="keyword">from</span> t_tmall_add_user_brand_predict_dh p</div><div class="line">         <span class="keyword">full</span> <span class="keyword">outer</span> <span class="keyword">join</span> validate_set v <span class="keyword">on</span> p.user_id = v.user_id</div><div class="line">)a;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> evaluation <span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> (hits/pnums) <span class="keyword">precision</span> , (hits/vnums) recall , (<span class="number">2</span>*hits/(pnums+vnums)) F1 , </span><br><span class="line">        hits , pnums , vnums , <span class="keyword">getdate</span>() eval_time</span><br><span class="line"><span class="keyword">from</span> (</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">sum</span>(count_hits(p.brand,v.brand) hits,</span><br><span class="line">           <span class="keyword">sum</span>(regexp_count(p.brand,<span class="string">','</span>)+<span class="number">1</span>) pnums,</span><br><span class="line">           <span class="keyword">sum</span>(regexp_count(v.brand,<span class="string">','</span>)+<span class="number">1</span>) vnums</span><br><span class="line">    <span class="keyword">from</span> t_tmall_add_user_brand_predict_dh p</span><br><span class="line">         <span class="keyword">full</span> <span class="keyword">outer</span> <span class="keyword">join</span> validate_set v <span class="keyword">on</span> p.user_id = v.user_id</span><br><span class="line">)a;</span><br></pre></td></tr></table></figure>
 <p>我们将评测值写到了<code>evaluation</code>表中，可供组员查看分析。运行一次上面代码后，若以后再进行评测，可以将第一行改成<code>insert into/overwrite table evaluation</code>后直接运行，个人喜欢用<code>into</code>，这样可以与上次的结果进行比较。</p>
 <p>现在已有的模型算法就可以在本地测试调优后，再上传到线上进行评估了。</p>
 <h2 id="关于数据集的几点想法"><a href="#关于数据集的几点想法" class="headerlink" title="关于数据集的几点想法"></a>关于数据集的几点想法</h2><p>对于离线评估我也并没有深刻的见解，只是想无责任地说点个人的想法，还望大家一起讨论纠正。</p>
 <ol>
-<li><p>上面的训练集和验证集的划分有一定的局限性。主要是模型可能会高度依赖于训练集和验证集的构成，导致过拟合的问题。要消除这种依赖，可以借鉴<a href="http://zh.wikipedia.org/zh-cn/%E8%87%AA%E5%8A%A9%E6%B3%95" target="_blank" rel="external">自助法</a>，每次训练时从训练集中随机抽取一部分，验证时也随机从验证集中抽取一部分，抽取比例一样，例如抽取63.2%。XLab/XLib 提供了随机采样的接口。</p>
+<li><p>上面的训练集和验证集的划分有一定的局限性。主要是模型可能会高度依赖于训练集和验证集的构成，导致过拟合的问题。要消除这种依赖，可以借鉴<a href="http://zh.wikipedia.org/zh-cn/%E8%87%AA%E5%8A%A9%E6%B3%95" target="_blank" rel="noopener">自助法</a>，每次训练时从训练集中随机抽取一部分，验证时也随机从验证集中抽取一部分，抽取比例一样，例如抽取63.2%。XLab/XLib 提供了随机采样的接口。</p>
 </li>
 <li><p>线上预测我们是用前四个月预测第五个月，时间划分是 4：1 的关系。所以离线划分训练集、验证集时，也按这个比例划分会更合理。即最后24天的数据作为验证集。</p>
 </li>
@@ -404,7 +406,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -430,7 +432,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -503,7 +505,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -513,12 +515,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -579,7 +579,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -626,10 +626,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

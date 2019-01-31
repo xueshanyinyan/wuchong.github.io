@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,54 +23,57 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="Hexo,博客,教程," />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <meta name="keywords" content="Hexo,博客,教程,">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
 
-<meta name="description" content="由于自己平时喜欢刷微博，在刷到底部时习惯点下返回顶部的按钮，方便回到顶部导航栏。而看自己博客时，没有这个功能，总感觉很别扭，遂实现了一个。
-其实在hexo中实现返回顶部相当简单，所有的东西都是模块化的。只要我们写好HTML文件、JS文件，放入相应的目录，然后在对应的网页位置引用就可以了 。这里分享我的代码和实现过程。">
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
+
+
+
+
+
+
+<meta name="description" content="由于自己平时喜欢刷微博，在刷到底部时习惯点下返回顶部的按钮，方便回到顶部导航栏。而看自己博客时，没有这个功能，总感觉很别扭，遂实现了一个。 其实在hexo中实现返回顶部相当简单，所有的东西都是模块化的。只要我们写好HTML文件、JS文件，放入相应的目录，然后在对应的网页位置引用就可以了 。这里分享我的代码和实现过程。">
+<meta name="keywords" content="Hexo,博客,教程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo博客优化：添加返回顶部功能">
 <meta property="og:url" content="http://wuchong.me/blog/2014/01/08/hexo-scrollup/index.html">
-<meta property="og:site_name" content="Jark's Blog">
-<meta property="og:description" content="由于自己平时喜欢刷微博，在刷到底部时习惯点下返回顶部的按钮，方便回到顶部导航栏。而看自己博客时，没有这个功能，总感觉很别扭，遂实现了一个。
-其实在hexo中实现返回顶部相当简单，所有的东西都是模块化的。只要我们写好HTML文件、JS文件，放入相应的目录，然后在对应的网页位置引用就可以了 。这里分享我的代码和实现过程。">
+<meta property="og:site_name" content="Jark&#39;s Blog">
+<meta property="og:description" content="由于自己平时喜欢刷微博，在刷到底部时习惯点下返回顶部的按钮，方便回到顶部导航栏。而看自己博客时，没有这个功能，总感觉很别扭，遂实现了一个。 其实在hexo中实现返回顶部相当简单，所有的东西都是模块化的。只要我们写好HTML文件、JS文件，放入相应的目录，然后在对应的网页位置引用就可以了 。这里分享我的代码和实现过程。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wuchong.me/img/scrollup.png">
 <meta property="og:updated_time" content="2015-01-14T15:05:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客优化：添加返回顶部功能">
-<meta name="twitter:description" content="由于自己平时喜欢刷微博，在刷到底部时习惯点下返回顶部的按钮，方便回到顶部导航栏。而看自己博客时，没有这个功能，总感觉很别扭，遂实现了一个。
-其实在hexo中实现返回顶部相当简单，所有的东西都是模块化的。只要我们写好HTML文件、JS文件，放入相应的目录，然后在对应的网页位置引用就可以了 。这里分享我的代码和实现过程。">
+<meta name="twitter:description" content="由于自己平时喜欢刷微博，在刷到底部时习惯点下返回顶部的按钮，方便回到顶部导航栏。而看自己博客时，没有这个功能，总感觉很别扭，遂实现了一个。 其实在hexo中实现返回顶部相当简单，所有的东西都是模块化的。只要我们写好HTML文件、JS文件，放入相应的目录，然后在对应的网页位置引用就可以了 。这里分享我的代码和实现过程。">
 <meta name="twitter:image" content="http://wuchong.me/img/scrollup.png">
 
 
@@ -96,7 +95,7 @@
   <title> Hexo博客优化：添加返回顶部功能 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -125,12 +124,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -157,7 +156,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -167,7 +166,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -177,7 +176,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -187,7 +186,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -197,7 +196,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -214,7 +213,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -251,7 +250,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -280,14 +279,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Hexo/" itemprop="url" rel="index">
                     <span itemprop="name">Hexo</span>
                   </a>
@@ -347,21 +346,21 @@
 <p>其实在hexo中实现返回顶部相当简单，所有的东西都是模块化的。只要我们写好HTML文件、JS文件，放入相应的目录，然后在对应的网页位置引用就可以了 。这里分享我的代码和实现过程。<br><a id="more"></a></p>
 <ol>
 <li><p>添加HTML代码。新建文件 <code>/themes/light/layout/_partial/totop.ejs</code> ，在文件中加入HTML代码：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"totop"</span> <span class="attr">style</span>=<span class="string">"position:fixed;bottom:150px;right:50px;cursor: pointer;"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">title</span>=<span class="string">"返回顶部"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/imgs/scrollup.png"</span>/&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"totop"</span> <span class="attr">style</span>=<span class="string">"position:fixed;bottom:150px;right:50px;cursor: pointer;"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">title</span>=<span class="string">"返回顶部"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/imgs/scrollup.png"</span>/&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>添加JS代码。新建文件 <code>/themes/light/source/js/totop.js</code>，在文件中添加javascript代码：</p>
- <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123; </div><div class="line">	<span class="comment">// When to show the scroll link</span></div><div class="line">	<span class="comment">// higher number = scroll link appears further down the page   </span></div><div class="line">	<span class="keyword">var</span> upperLimit = <span class="number">1000</span>;</div><div class="line">	</div><div class="line">	<span class="comment">// Our scroll link element</span></div><div class="line">	<span class="keyword">var</span> scrollElem = $(<span class="string">'#totop'</span>);</div><div class="line">   </div><div class="line">	<span class="comment">// Scroll to top speed</span></div><div class="line">	<span class="keyword">var</span> scrollSpeed = <span class="number">500</span>;</div><div class="line">   </div><div class="line">	<span class="comment">// Show and hide the scroll to top link based on scroll position   </span></div><div class="line">	scrollElem.hide();</div><div class="line">	$(<span class="built_in">window</span>).scroll(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;            </div><div class="line">		<span class="keyword">var</span> scrollTop = $(<span class="built_in">document</span>).scrollTop();       </div><div class="line">		<span class="keyword">if</span> ( scrollTop &gt; upperLimit ) &#123;</div><div class="line">			$(scrollElem).stop().fadeTo(<span class="number">300</span>, <span class="number">1</span>); <span class="comment">// fade back in           </span></div><div class="line">		&#125;<span class="keyword">else</span>&#123;       </div><div class="line">			$(scrollElem).stop().fadeTo(<span class="number">300</span>, <span class="number">0</span>); <span class="comment">// fade out</span></div><div class="line">		&#125;</div><div class="line">	&#125;);</div><div class="line"></div><div class="line">	<span class="comment">// Scroll to top animation on click</span></div><div class="line">	$(scrollElem).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		$(<span class="string">'html, body'</span>).animate(&#123;<span class="attr">scrollTop</span>:<span class="number">0</span>&#125;, scrollSpeed); <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	&#125;);</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123; </span><br><span class="line">	<span class="comment">// When to show the scroll link</span></span><br><span class="line">	<span class="comment">// higher number = scroll link appears further down the page   </span></span><br><span class="line">	<span class="keyword">var</span> upperLimit = <span class="number">1000</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Our scroll link element</span></span><br><span class="line">	<span class="keyword">var</span> scrollElem = $(<span class="string">'#totop'</span>);</span><br><span class="line">   </span><br><span class="line">	<span class="comment">// Scroll to top speed</span></span><br><span class="line">	<span class="keyword">var</span> scrollSpeed = <span class="number">500</span>;</span><br><span class="line">   </span><br><span class="line">	<span class="comment">// Show and hide the scroll to top link based on scroll position   </span></span><br><span class="line">	scrollElem.hide();</span><br><span class="line">	$(<span class="built_in">window</span>).scroll(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;            </span><br><span class="line">		<span class="keyword">var</span> scrollTop = $(<span class="built_in">document</span>).scrollTop();       </span><br><span class="line">		<span class="keyword">if</span> ( scrollTop &gt; upperLimit ) &#123;</span><br><span class="line">			$(scrollElem).stop().fadeTo(<span class="number">300</span>, <span class="number">1</span>); <span class="comment">// fade back in           </span></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;       </span><br><span class="line">			$(scrollElem).stop().fadeTo(<span class="number">300</span>, <span class="number">0</span>); <span class="comment">// fade out</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Scroll to top animation on click</span></span><br><span class="line">	$(scrollElem).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">'html, body'</span>).animate(&#123;<span class="attr">scrollTop</span>:<span class="number">0</span>&#125;, scrollSpeed); <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
 <p> 如果对显示位置和回滚速度不太满意，可以修改以上代码的<code>upperLimit</code>和<code>scrollSpeed</code>参数即可。</p>
 </li>
 <li><p>添加对HTML和JS文件的引用。修改<code>themes/light/layout/_partial/after_footer.ejs</code>文件，在文件末尾添加以下两行代码：</p>
- <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">totop</span>') %&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/totop.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+ <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">totop</span>') %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/totop.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>添加按钮图片（盗自人人网）。将下图复制到 <code>/themes/light/source/imgs</code> 目录下，文件名为 <code>scrollup.png</code></p>
 <p> <img src="/img/scrollup.png" alt=""></p>
 </li>
 </ol>
 <p>大功告成！ 赶快 <code>hexo s</code> 看看效果吧。 如果一切顺利的话，看到的效果应该与本页面一样（保证页面够长），在页面右侧就有一个返回顶部的按钮了！</p>
-<p><em>PS:有任何关于 Hexo 的问题，欢迎来 <a href="https://coderq.com/c/tech/hexo" target="_blank" rel="external">Hexo 中文社区</a> 咨询。</em></p>
+<p><em>PS:有任何关于 Hexo 的问题，欢迎来 <a href="https://coderq.com/c/tech/hexo" target="_blank" rel="noopener">Hexo 中文社区</a> 咨询。</em></p>
 
       
     </div>
@@ -370,7 +369,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -398,7 +397,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -471,7 +470,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -481,12 +480,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -547,7 +544,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -594,10 +591,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

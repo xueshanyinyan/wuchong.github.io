@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,34 +23,38 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="爬虫,scrapy,redis,sqlalchemy,pipline,去重,存储" />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
+  <meta name="keywords" content="爬虫,scrapy,redis,sqlalchemy,pipline,去重,存储">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
 
 
 
@@ -62,11 +62,13 @@
 
 
 <meta name="description" content="本文将简要地谈谈如何使用Scrapy的Item Pipline，基于Redis和SQLALchemy将爬取的数据去重并存储到数据库中。">
+<meta name="keywords" content="爬虫,scrapy,redis,sqlalchemy,pipline,去重,存储">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Redis和SQLAlchemy对Scrapy Item去重并存储">
 <meta property="og:url" content="http://wuchong.me/blog/2015/05/22/using-redis-and-sqlalchemy-to-checkd-dup-and-store-scrapy-item/index.html">
-<meta property="og:site_name" content="Jark's Blog">
+<meta property="og:site_name" content="Jark&#39;s Blog">
 <meta property="og:description" content="本文将简要地谈谈如何使用Scrapy的Item Pipline，基于Redis和SQLALchemy将爬取的数据去重并存储到数据库中。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-03-08T12:20:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Redis和SQLAlchemy对Scrapy Item去重并存储">
@@ -91,7 +93,7 @@
   <title> 使用Redis和SQLAlchemy对Scrapy Item去重并存储 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -120,12 +122,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -152,7 +154,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -162,7 +164,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -172,7 +174,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -182,7 +184,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -192,7 +194,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -209,7 +211,7 @@
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -246,7 +248,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -275,14 +277,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/程序设计/" itemprop="url" rel="index">
                     <span itemprop="name">程序设计</span>
                   </a>
@@ -338,24 +340,24 @@
       
 
       
-        <p>在上篇<a href="/blog/2015/05/22/running-scrapy-dynamic-and-configurable">博客</a>中，我们讲解了如何通过维护多个网站的爬取规则来抓取各个网站的数据。本文将简要地谈谈如何使用Scrapy的<a href="https://scrapy-chs.readthedocs.org/zh_CN/0.24/topics/item-pipeline.html" target="_blank" rel="external">Item Pipline</a>将爬取的数据去重并存储到数据库中。</p>
+        <p>在上篇<a href="/blog/2015/05/22/running-scrapy-dynamic-and-configurable">博客</a>中，我们讲解了如何通过维护多个网站的爬取规则来抓取各个网站的数据。本文将简要地谈谈如何使用Scrapy的<a href="https://scrapy-chs.readthedocs.org/zh_CN/0.24/topics/item-pipeline.html" target="_blank" rel="noopener">Item Pipline</a>将爬取的数据去重并存储到数据库中。</p>
 <p>Scrapy框架的高度灵活性得益于其数据管道的架构设计，开发者可以通过简单的配置就能轻松地添加新特性。我们可以通过如下的方式添加一个pipline。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">settings.set(<span class="string">"ITEM_PIPELINES"</span>, &#123;<span class="string">'pipelines.DataBasePipeline'</span>: <span class="number">300</span>&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">settings.set(<span class="string">"ITEM_PIPELINES"</span>, &#123;<span class="string">'pipelines.DataBasePipeline'</span>: <span class="number">300</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p>这里<code>ITEM_PIPELINES</code>是一个Python字典，其中key保存的pipline类在项目中的位置，value为整型值，确定了他们运行的顺序，item按数字从低到高的顺序，通过pipeline，通常将这些数字定义在0-1000范围内。<br><a id="more"></a></p>
-<h2 id="存储到数据库"><a href="#存储到数据库" class="headerlink" title="存储到数据库"></a>存储到数据库</h2><p>在上一篇<a href="/blog/2015/05/22/running-scrapy-dynamic-and-configurable">博客</a>中，我们已经介绍了使用<a href="http://www.sqlalchemy.org/" target="_blank" rel="external">SQLAlchemy</a> 作为我们的ORM。同样的，为了将爬取的文章保存到数据库，我们先要有一个<code>Article</code>模型，包含了 URL，标题，正文等字段。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, String , DateTime, Integer</div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'articles'</span></div><div class="line"></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    title = Column(String)</div><div class="line">    url = Column(String)</div><div class="line">    body = Column(String)</div><div class="line">    publish_time = Column(DateTime)</div><div class="line">    source_site = Column(String)</div></pre></td></tr></table></figure>
+<h2 id="存储到数据库"><a href="#存储到数据库" class="headerlink" title="存储到数据库"></a>存储到数据库</h2><p>在上一篇<a href="/blog/2015/05/22/running-scrapy-dynamic-and-configurable">博客</a>中，我们已经介绍了使用<a href="http://www.sqlalchemy.org/" target="_blank" rel="noopener">SQLAlchemy</a> 作为我们的ORM。同样的，为了将爬取的文章保存到数据库，我们先要有一个<code>Article</code>模型，包含了 URL，标题，正文等字段。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, String , DateTime, Integer</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"></span><br><span class="line">Base = declarative_base()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'articles'</span></span><br><span class="line"></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    title = Column(String)</span><br><span class="line">    url = Column(String)</span><br><span class="line">    body = Column(String)</span><br><span class="line">    publish_time = Column(DateTime)</span><br><span class="line">    source_site = Column(String)</span><br></pre></td></tr></table></figure>
 <p>之后在<code>DataBasePipeline</code>中，我们需要生成<code>Aticle</code>对象，并将item中对应的字段赋给<code>Aticle</code>对象，最后通过SQLAlchemy将文章插入到数据库中。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="keyword">from</span> model.config <span class="keyword">import</span> DBSession</div><div class="line"><span class="keyword">from</span> model.article <span class="keyword">import</span> Article</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataBasePipeline</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open_spider</span><span class="params">(self, spider)</span>:</span></div><div class="line">        self.session = DBSession()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></div><div class="line">        a = Article(title=item[<span class="string">"title"</span>].encode(<span class="string">"utf-8"</span>),</div><div class="line">                    url=item[<span class="string">"url"</span>],</div><div class="line">                    body=item[<span class="string">"body"</span>].encode(<span class="string">"utf-8"</span>),</div><div class="line">                    publish_time=item[<span class="string">"publish_time"</span>].encode(<span class="string">"utf-8"</span>),</div><div class="line">                    source_site=item[<span class="string">"source_site"</span>].encode(<span class="string">"utf-8"</span>))</div><div class="line">        self.session.add(a)</div><div class="line">        self.session.commit()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self,spider)</span>:</span></div><div class="line">        self.session.close()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> model.config <span class="keyword">import</span> DBSession</span><br><span class="line"><span class="keyword">from</span> model.article <span class="keyword">import</span> Article</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataBasePipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        self.session = DBSession()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        a = Article(title=item[<span class="string">"title"</span>].encode(<span class="string">"utf-8"</span>),</span><br><span class="line">                    url=item[<span class="string">"url"</span>],</span><br><span class="line">                    body=item[<span class="string">"body"</span>].encode(<span class="string">"utf-8"</span>),</span><br><span class="line">                    publish_time=item[<span class="string">"publish_time"</span>].encode(<span class="string">"utf-8"</span>),</span><br><span class="line">                    source_site=item[<span class="string">"source_site"</span>].encode(<span class="string">"utf-8"</span>))</span><br><span class="line">        self.session.add(a)</span><br><span class="line">        self.session.commit()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self,spider)</span>:</span></span><br><span class="line">        self.session.close()</span><br></pre></td></tr></table></figure>
 <h2 id="使用Redis去重"><a href="#使用Redis去重" class="headerlink" title="使用Redis去重"></a>使用Redis去重</h2><p>为了防止同一个网页爬取两遍，我们使用Redis来去重，因为 Redis 作为Key/Value数据库在这个场景是非常适合的。我们认为一个URL能唯一代表一个网页。所以使用URL作为键值存储。</p>
 <p>我们希望在存储之前就进行去重操作，所以需要更改下<code>ITEM_PIPELINES</code>的配置。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">settings.set(<span class="string">"ITEM_PIPELINES"</span> , &#123;</div><div class="line">    <span class="string">'pipelines.DuplicatesPipeline'</span>: <span class="number">200</span>,</div><div class="line">    <span class="string">'pipelines.DataBasePipeline'</span>: <span class="number">300</span>,</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">settings.set(<span class="string">"ITEM_PIPELINES"</span> , &#123;</span><br><span class="line">    <span class="string">'pipelines.DuplicatesPipeline'</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="string">'pipelines.DataBasePipeline'</span>: <span class="number">300</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p><code>DuplicatesPipeline</code>长这个样子。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="keyword">from</span> scrapy.exceptions <span class="keyword">import</span> DropItem</div><div class="line"><span class="keyword">from</span> model.config <span class="keyword">import</span> Redis</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DuplicatesPipeline</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></div><div class="line">        <span class="keyword">if</span> Redis.exists(<span class="string">'url:%s'</span> % item[<span class="string">'url'</span>]):</div><div class="line">            <span class="keyword">raise</span> DropItem(<span class="string">"Duplicate item found: %s"</span> % item)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            Redis.set(<span class="string">'url:%s'</span> % item[<span class="string">'url'</span>],<span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> item</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.exceptions <span class="keyword">import</span> DropItem</span><br><span class="line"><span class="keyword">from</span> model.config <span class="keyword">import</span> Redis</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DuplicatesPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> Redis.exists(<span class="string">'url:%s'</span> % item[<span class="string">'url'</span>]):</span><br><span class="line">            <span class="keyword">raise</span> DropItem(<span class="string">"Duplicate item found: %s"</span> % item)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            Redis.set(<span class="string">'url:%s'</span> % item[<span class="string">'url'</span>],<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
 <p>当检测到Item已经存在，会抛出DropItem 异常，被丢弃的item将不会被之后的pipeline组件所处理。</p>
 <p>最后，运行脚本，你能看到我们的程序欢快地跑起来了。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><div class="line">python <span class="keyword">run</span>.<span class="bash">py</span></div></pre></td></tr></table></figure>
-<p>你可以在 <a href="https://github.com/wuchong/scrapy-dynamic-configurable/tree/scrapy-0.24" target="_blank" rel="external">GitHub</a> 上看到本文的完整项目。</p>
-<p><em>注：本文使用的 Scrapy 版本是 0.24，<a href="https://github.com/wuchong/scrapy-dynamic-configurable" target="_blank" rel="external">GitHub</a> 上的master分支已支持 Scrapy 1.0</em></p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">python <span class="keyword">run</span>.<span class="bash">py</span></span><br></pre></td></tr></table></figure>
+<p>你可以在 <a href="https://github.com/wuchong/scrapy-dynamic-configurable/tree/scrapy-0.24" target="_blank" rel="noopener">GitHub</a> 上看到本文的完整项目。</p>
+<p><em>注：本文使用的 Scrapy 版本是 0.24，<a href="https://github.com/wuchong/scrapy-dynamic-configurable" target="_blank" rel="noopener">GitHub</a> 上的master分支已支持 Scrapy 1.0</em></p>
 <p><strong>本系列的三篇文章</strong></p>
 <ol>
 <li><a href="/blog/2015/05/22/running-scrapy-programmatically">编程方式下运行 Scrapy spider</a></li>
@@ -370,7 +372,7 @@
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -398,7 +400,7 @@
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -471,7 +473,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -481,12 +483,10 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -547,7 +547,7 @@
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -594,10 +594,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

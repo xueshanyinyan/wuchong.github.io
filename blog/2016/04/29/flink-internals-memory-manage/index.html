@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,50 +23,52 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="flink,内存管理" />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <meta name="keywords" content="flink,内存管理">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
 
-<meta name="description" content="如今，大数据领域的开源框架（Hadoop，Spark，Storm）都使用的 JVM，当然也包括 Flink。基于 JVM 的数据分析引擎都需要面对将大量数据存到内存中，这就不得不面对 JVM 存在的几个问题：
 
-Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16个字节内存：对象头占了8个，boolean 属性占了1个，对齐填充占了7个。而实际上只需要一个bit（1/8字节）">
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
+
+
+
+
+
+
+<meta name="description" content="如今，大数据领域的开源框架（Hadoop，Spark，Storm）都使用的 JVM，当然也包括 Flink。基于 JVM 的数据分析引擎都需要面对将大量数据存到内存中，这就不得不面对 JVM 存在的几个问题：  Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16个字节内存：对象头占了8个，boolean 属性占了1个，对齐填充占了7个。而实际上只需要一个bit（1/8字节）">
+<meta name="keywords" content="flink,内存管理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flink 原理与实现：内存管理">
 <meta property="og:url" content="http://wuchong.me/blog/2016/04/29/flink-internals-memory-manage/index.html">
-<meta property="og:site_name" content="Jark's Blog">
-<meta property="og:description" content="如今，大数据领域的开源框架（Hadoop，Spark，Storm）都使用的 JVM，当然也包括 Flink。基于 JVM 的数据分析引擎都需要面对将大量数据存到内存中，这就不得不面对 JVM 存在的几个问题：
-
-Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16个字节内存：对象头占了8个，boolean 属性占了1个，对齐填充占了7个。而实际上只需要一个bit（1/8字节）">
+<meta property="og:site_name" content="Jark&#39;s Blog">
+<meta property="og:description" content="如今，大数据领域的开源框架（Hadoop，Spark，Storm）都使用的 JVM，当然也包括 Flink。基于 JVM 的数据分析引擎都需要面对将大量数据存到内存中，这就不得不面对 JVM 存在的几个问题：  Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16个字节内存：对象头占了8个，boolean 属性占了1个，对齐填充占了7个。而实际上只需要一个bit（1/8字节）">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB17qs5JpXXXXXhXpXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1lvdbJFXXXXa9XVXXXXXXXXXX">
 <meta property="og:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB1_hhgJFXXXXc2XFXXXXXXXXXX">
@@ -78,9 +76,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
 <meta property="og:updated_time" content="2016-04-29T07:34:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink 原理与实现：内存管理">
-<meta name="twitter:description" content="如今，大数据领域的开源框架（Hadoop，Spark，Storm）都使用的 JVM，当然也包括 Flink。基于 JVM 的数据分析引擎都需要面对将大量数据存到内存中，这就不得不面对 JVM 存在的几个问题：
-
-Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16个字节内存：对象头占了8个，boolean 属性占了1个，对齐填充占了7个。而实际上只需要一个bit（1/8字节）">
+<meta name="twitter:description" content="如今，大数据领域的开源框架（Hadoop，Spark，Storm）都使用的 JVM，当然也包括 Flink。基于 JVM 的数据分析引擎都需要面对将大量数据存到内存中，这就不得不面对 JVM 存在的几个问题：  Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16个字节内存：对象头占了8个，boolean 属性占了1个，对齐填充占了7个。而实际上只需要一个bit（1/8字节）">
 <meta name="twitter:image" content="http://img3.tbcdn.cn/5476e8b07b923/TB17qs5JpXXXXXhXpXXXXXXXXXX">
 
 
@@ -102,7 +98,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
   <title> Flink 原理与实现：内存管理 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -131,12 +127,12 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -163,7 +159,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -173,7 +169,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -183,7 +179,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -193,7 +189,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -203,7 +199,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -220,7 +216,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -257,7 +253,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -286,14 +282,14 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Flink/" itemprop="url" rel="index">
                     <span itemprop="name">Flink</span>
                   </a>
@@ -385,7 +381,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
 <li><code>PojoTypeInfo</code>: 任意的 POJO (Java or Scala)，例如，Java对象的所有成员变量，要么是 public 修饰符定义，要么有 getter/setter 方法。</li>
 <li><code>GenericTypeInfo</code>: 任意无法匹配之前几种类型的类。</li>
 </ul>
-<p>前六种数据类型基本上可以满足绝大部分的Flink程序，针对前六种类型数据集，Flink皆可以自动生成对应的TypeSerializer，能非常高效地对数据集进行序列化和反序列化。对于最后一种数据类型，Flink会使用Kryo进行序列化和反序列化。每个TypeInformation中，都包含了serializer，类型会自动通过serializer进行序列化，然后用Java Unsafe接口写入MemorySegments。对于可以用作key的数据类型，Flink还同时自动生成TypeComparator，用来辅助直接对序列化后的二进制数据进行compare、hash等操作。对于 Tuple、CaseClass、POJO 等组合类型，其TypeSerializer和TypeComparator也是组合的，序列化和比较时会委托给对应的serializers和comparators。如下图展示 一个内嵌型的Tuple3<integer,double,person> 对象的序列化过程。</integer,double,person></p>
+<p>前六种数据类型基本上可以满足绝大部分的Flink程序，针对前六种类型数据集，Flink皆可以自动生成对应的TypeSerializer，能非常高效地对数据集进行序列化和反序列化。对于最后一种数据类型，Flink会使用Kryo进行序列化和反序列化。每个TypeInformation中，都包含了serializer，类型会自动通过serializer进行序列化，然后用Java Unsafe接口写入MemorySegments。对于可以用作key的数据类型，Flink还同时自动生成TypeComparator，用来辅助直接对序列化后的二进制数据进行compare、hash等操作。对于 Tuple、CaseClass、POJO 等组合类型，其TypeSerializer和TypeComparator也是组合的，序列化和比较时会委托给对应的serializers和comparators。如下图展示 一个内嵌型的Tuple3&lt;Integer,Double,Person&gt; 对象的序列化过程。</p>
 <p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1lvdbJFXXXXa9XVXXXXXXXXXX" alt=""></p>
 <p>可以看出这种序列化方式存储密度是相当紧凑的。其中 int 占4字节，double 占8字节，POJO多个一个字节的header，PojoSerializer只负责将header序列化进去，并委托每个字段对应的serializer对字段进行序列化。</p>
 <p>Flink 的类型系统可以很轻松地扩展出自定义的TypeInformation、Serializer以及Comparator，来提升数据类型在序列化和比较时的性能。</p>
@@ -396,7 +392,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
 <p>将实际的数据和指针加定长key分开存放有两个目的。第一，交换定长块（key+pointer）更高效，不用交换真实的数据也不用移动其他key和pointer。第二，这样做是缓存友好的，因为key都是连续存储在内存中的，可以大大减少 cache miss（后面会详细解释）。</p>
 <p>排序的关键是比大小和交换。Flink 中，会先用 key 比大小，这样就可以直接用二进制的key比较而不需要反序列化出整个对象。因为key是定长的，所以如果key相同（或者没有提供二进制key），那就必须将真实的二进制数据反序列化出来，然后再做比较。之后，只需要交换key+pointer就可以达到排序的效果，真实的数据不用移动。</p>
 <p><img src="http://img3.tbcdn.cn/5476e8b07b923/TB1f6BnJFXXXXbnXFXXXXXXXXXX" alt=""></p>
-<p>最后，访问排序后的数据，可以沿着排好序的key+pointer区域顺序访问，通过pointer找到对应的真实数据，并写到内存或外部（更多细节可以看这篇文章 <a href="http://flink.apache.org/news/2015/03/13/peeking-into-Apache-Flinks-Engine-Room.html" target="_blank" rel="external">Joins in Flink</a>）。</p>
+<p>最后，访问排序后的数据，可以沿着排好序的key+pointer区域顺序访问，通过pointer找到对应的真实数据，并写到内存或外部（更多细节可以看这篇文章 <a href="http://flink.apache.org/news/2015/03/13/peeking-into-Apache-Flinks-Engine-Room.html" target="_blank" rel="noopener">Joins in Flink</a>）。</p>
 <h2 id="缓存友好的数据结构和算法"><a href="#缓存友好的数据结构和算法" class="headerlink" title="缓存友好的数据结构和算法"></a>缓存友好的数据结构和算法</h2><p>随着磁盘IO和网络IO越来越快，CPU逐渐成为了大数据领域的瓶颈。从 L1/L2/L3 缓存读取数据的速度比从主内存读取数据的速度快好几个量级。通过性能分析可以发现，CPU时间中的很大一部分都是浪费在等待数据从主内存过来上。如果这些数据可以从 L1/L2/L3 缓存过来，那么这些等待时间可以极大地降低，并且所有的算法会因此而受益。</p>
 <p>在上面讨论中我们谈到的，Flink 通过定制的序列化框架将算法中需要操作的数据（如sort中的key）连续存储，而完整数据存储在其他地方。因为对于完整的数据来说，key+pointer更容易装进缓存，这大大提高了缓存命中率，从而提高了基础算法的效率。这对于上层应用是完全透明的，可以充分享受缓存友好带来的性能提升。</p>
 <h2 id="走向堆外内存"><a href="#走向堆外内存" class="headerlink" title="走向堆外内存"></a>走向堆外内存</h2><p>Flink 基于堆内存的内存管理机制已经可以解决很多JVM现存问题了，为什么还要引入堆外内存？</p>
@@ -419,16 +415,16 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
 <p>代码中所有的短生命周期和长生命周期的MemorySegment都实例化其中一个子类，另一个子类根本没有实例化过（使用工厂模式来控制）。那么运行一段时间后，JIT 会意识到所有调用的方法都是确定的，然后会做优化。</p>
 <p><strong>方案2：提供一种实现能同时处理堆内存和堆外内存</strong></p>
 <p>这就是 <code>HybridMemorySegment</code> 了，能同时处理堆与堆外内存，这样就不需要子类了。这里 Flink 优雅地实现了一份代码能同时操作堆和堆外内存。这主要归功于 <code>sun.misc.Unsafe</code>提供的一系列方法，如getLong方法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">sun.misc.Unsafe.getLong(Object reference, <span class="keyword">long</span> offset)</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">sun.misc.Unsafe.getLong(Object reference, <span class="keyword">long</span> offset)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>如果reference不为空，则会取该对象的地址，加上后面的offset，从相对地址处取出8字节并得到 long。这对应了堆内存的场景。</li>
 <li>如果reference为空，则offset就是要操作的绝对地址，从该地址处取出数据。这对应了堆外内存的场景。</li>
 </ul>
 <p>这里我们看下 <code>MemorySegment</code> 及其子类的实现。</p>
-<figure class="highlight axapta"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MemorySegment</span> </span>&#123;</div><div class="line">  <span class="comment">// 堆内存引用</span></div><div class="line">  <span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] heapMemory;</div><div class="line">  <span class="comment">// 堆外内存地址</span></div><div class="line">  <span class="keyword">protected</span> <span class="keyword">long</span> address;</div><div class="line">  </div><div class="line">  <span class="comment">//堆内存的初始化</span></div><div class="line">  MemorySegment(<span class="keyword">byte</span>[] buffer, Object owner) &#123;</div><div class="line">    <span class="comment">//一些先验检查</span></div><div class="line">    ...</div><div class="line">    <span class="keyword">this</span>.heapMemory = buffer;</div><div class="line">    <span class="keyword">this</span>.address = BYTE_ARRAY_BASE_OFFSET;</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">//堆外内存的初始化</span></div><div class="line">  MemorySegment(<span class="keyword">long</span> offHeapAddress, <span class="keyword">int</span> size, Object owner) &#123;</div><div class="line">    <span class="comment">//一些先验检查</span></div><div class="line">    ...</div><div class="line">    <span class="keyword">this</span>.heapMemory = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">this</span>.address = offHeapAddress;</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">long</span> getLong(<span class="keyword">int</span> <span class="keyword">index</span>) &#123;</div><div class="line">    <span class="keyword">final</span> <span class="keyword">long</span> pos = address + <span class="keyword">index</span>;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">index</span> &gt;= <span class="number">0</span> &amp;&amp; pos &lt;= addressLimit - <span class="number">8</span>) &#123;</div><div class="line">      <span class="comment">// 这是我们关注的地方，使用 Unsafe 来操作 on-heap &amp; off-heap</span></div><div class="line">      <span class="keyword">return</span> UNSAFE.getLong(heapMemory, pos);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (address &gt; addressLimit) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"segment has been freed"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">      <span class="comment">// index is in fact invalid</span></div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException();</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">HeapMemorySegment</span> <span class="keyword">extends</span> <span class="title">MemorySegment</span> </span>&#123;</div><div class="line">  <span class="comment">// 指向heapMemory的额外引用，用来如数组越界的检查</span></div><div class="line">  <span class="keyword">private</span> <span class="keyword">byte</span>[] memory;</div><div class="line">  <span class="comment">// 只能初始化堆内存</span></div><div class="line">  HeapMemorySegment(<span class="keyword">byte</span>[] memory, Object owner) &#123;</div><div class="line">    <span class="keyword">super</span>(Objects.requireNonNull(memory), owner);</div><div class="line">    <span class="keyword">this</span>.memory = memory;</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">HybridMemorySegment</span> <span class="keyword">extends</span> <span class="title">MemorySegment</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> ByteBuffer offHeapBuffer;</div><div class="line">  </div><div class="line">  <span class="comment">// 堆外内存初始化</span></div><div class="line">  HybridMemorySegment(ByteBuffer buffer, Object owner) &#123;</div><div class="line">    <span class="keyword">super</span>(checkBufferAndGetAddress(buffer), buffer.capacity(), owner);</div><div class="line">    <span class="keyword">this</span>.offHeapBuffer = buffer;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// 堆内存初始化</span></div><div class="line">  HybridMemorySegment(<span class="keyword">byte</span>[] buffer, Object owner) &#123;</div><div class="line">    <span class="keyword">super</span>(buffer, owner);</div><div class="line">    <span class="keyword">this</span>.offHeapBuffer = <span class="keyword">null</span>;</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MemorySegment</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 堆内存引用</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] heapMemory;</span><br><span class="line">  <span class="comment">// 堆外内存地址</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">long</span> address;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//堆内存的初始化</span></span><br><span class="line">  MemorySegment(<span class="keyword">byte</span>[] buffer, Object owner) &#123;</span><br><span class="line">    <span class="comment">//一些先验检查</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">this</span>.heapMemory = buffer;</span><br><span class="line">    <span class="keyword">this</span>.address = BYTE_ARRAY_BASE_OFFSET;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//堆外内存的初始化</span></span><br><span class="line">  MemorySegment(<span class="keyword">long</span> offHeapAddress, <span class="keyword">int</span> size, Object owner) &#123;</span><br><span class="line">    <span class="comment">//一些先验检查</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">this</span>.heapMemory = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.address = offHeapAddress;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">long</span> getLong(<span class="keyword">int</span> <span class="keyword">index</span>) &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">long</span> pos = address + <span class="keyword">index</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">index</span> &gt;= <span class="number">0</span> &amp;&amp; pos &lt;= addressLimit - <span class="number">8</span>) &#123;</span><br><span class="line">      <span class="comment">// 这是我们关注的地方，使用 Unsafe 来操作 on-heap &amp; off-heap</span></span><br><span class="line">      <span class="keyword">return</span> UNSAFE.getLong(heapMemory, pos);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (address &gt; addressLimit) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"segment has been freed"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// index is in fact invalid</span></span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">HeapMemorySegment</span> <span class="keyword">extends</span> <span class="title">MemorySegment</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 指向heapMemory的额外引用，用来如数组越界的检查</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">byte</span>[] memory;</span><br><span class="line">  <span class="comment">// 只能初始化堆内存</span></span><br><span class="line">  HeapMemorySegment(<span class="keyword">byte</span>[] memory, Object owner) &#123;</span><br><span class="line">    <span class="keyword">super</span>(Objects.requireNonNull(memory), owner);</span><br><span class="line">    <span class="keyword">this</span>.memory = memory;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">HybridMemorySegment</span> <span class="keyword">extends</span> <span class="title">MemorySegment</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> ByteBuffer offHeapBuffer;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 堆外内存初始化</span></span><br><span class="line">  HybridMemorySegment(ByteBuffer buffer, Object owner) &#123;</span><br><span class="line">    <span class="keyword">super</span>(checkBufferAndGetAddress(buffer), buffer.capacity(), owner);</span><br><span class="line">    <span class="keyword">this</span>.offHeapBuffer = buffer;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 堆内存初始化</span></span><br><span class="line">  HybridMemorySegment(<span class="keyword">byte</span>[] buffer, Object owner) &#123;</span><br><span class="line">    <span class="keyword">super</span>(buffer, owner);</span><br><span class="line">    <span class="keyword">this</span>.offHeapBuffer = <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以发现，HybridMemorySegment 中的很多方法其实都下沉到了父类去实现。包括堆内堆外内存的初始化。<code>MemorySegment</code> 中的 <code>getXXX</code>/<code>putXXX</code> 方法都是调用了 unsafe 方法，可以说<code>MemorySegment</code>已经具有了些 Hybrid 的意思了。<code>HeapMemorySegment</code>只调用了父类的<code>MemorySegment(byte[] buffer, Object owner)</code>方法，也就只能申请堆内存。另外，阅读代码你会发现，许多方法（大量的 getXXX/putXXX）都被标记成了 final，两个子类也是 final 类型，为的也是优化 JIT 编译器，会提醒 JIT 这个方法是可以被去虚化和内联的。</p>
 <p>对于堆外内存，使用 <code>HybridMemorySegment</code> 能同时用来代表堆和堆外内存。这样只需要一个类就能代表长生命周期的堆外内存和短生命周期的堆内存。既然<code>HybridMemorySegment</code>已经这么全能，为什么还要方案1呢？因为我们需要工厂模式来保证只有一个子类被加载（为了更高的性能），而且HeapMemorySegment比heap模式的HybridMemorySegment要快。</p>
-<p>下方是一些性能测试数据，更详细的数据请参考<a href="http://flink.apache.org/news/2015/09/16/off-heap-memory.html#appendix-detailed-micro-benchmarks" target="_blank" rel="external">这篇文章</a>。</p>
+<p>下方是一些性能测试数据，更详细的数据请参考<a href="http://flink.apache.org/news/2015/09/16/off-heap-memory.html#appendix-detailed-micro-benchmarks" target="_blank" rel="noopener">这篇文章</a>。</p>
 <table>
 <thead>
 <tr>
@@ -465,19 +461,19 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
 </table>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要总结了 Flink 面对 JVM 存在的问题，而在内存管理的道路上越走越深。从自己管理内存，到序列化框架，再到堆外内存。其实纵观大数据生态圈，其实会发现各个开源项目都有同样的趋势。比如最近炒的很火热的 Spark Tungsten 项目，与 Flink 在内存管理上的思想是及其相似的。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://flink.apache.org/news/2015/09/16/off-heap-memory.html" target="_blank" rel="external">Off-heap Memory in Apache Flink and the curious JIT compiler
+<li><a href="https://flink.apache.org/news/2015/09/16/off-heap-memory.html" target="_blank" rel="noopener">Off-heap Memory in Apache Flink and the curious JIT compiler
 </a></li>
-<li><a href="https://flink.apache.org/news/2015/05/11/Juggling-with-Bits-and-Bytes.html" target="_blank" rel="external">Juggling with Bits and Bytes
+<li><a href="https://flink.apache.org/news/2015/05/11/Juggling-with-Bits-and-Bytes.html" target="_blank" rel="noopener">Juggling with Bits and Bytes
 </a></li>
-<li><a href="https://flink.apache.org/news/2015/03/13/peeking-into-Apache-Flinks-Engine-Room.html" target="_blank" rel="external">Peeking into Apache Flink’s Engine Room
+<li><a href="https://flink.apache.org/news/2015/03/13/peeking-into-Apache-Flinks-Engine-Room.html" target="_blank" rel="noopener">Peeking into Apache Flink’s Engine Room
 </a></li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=53741525" target="_blank" rel="external">Flink: Memory Management </a></li>
-<li><a href="http://www.bigsynapse.com/addressing-big-data-performance" target="_blank" rel="external">Big Data Performance Engineering
+<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=53741525" target="_blank" rel="noopener">Flink: Memory Management </a></li>
+<li><a href="http://www.bigsynapse.com/addressing-big-data-performance" target="_blank" rel="noopener">Big Data Performance Engineering
 </a></li>
-<li><a href="http://mishadoff.com/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/" target="_blank" rel="external">sun.misc.misc.Unsafe usage for C style memory management</a></li>
-<li><a href="http://howtodoinjava.com/core-java/related-concepts/usage-of-class-sun-misc-unsafe/" target="_blank" rel="external">sun.misc.misc.Unsafe usage for C style memory management - How to do it.</a></li>
-<li><a href="http://www.javamex.com/tutorials/memory/object_memory_usage.shtml" target="_blank" rel="external">Memory usage of Java objects: general guide</a></li>
-<li><a href="http://www.36dsj.com/archives/33650" target="_blank" rel="external">脱离JVM？ Hadoop生态圈的挣扎与演化</a></li>
+<li><a href="http://mishadoff.com/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/" target="_blank" rel="noopener">sun.misc.misc.Unsafe usage for C style memory management</a></li>
+<li><a href="http://howtodoinjava.com/core-java/related-concepts/usage-of-class-sun-misc-unsafe/" target="_blank" rel="noopener">sun.misc.misc.Unsafe usage for C style memory management - How to do it.</a></li>
+<li><a href="http://www.javamex.com/tutorials/memory/object_memory_usage.shtml" target="_blank" rel="noopener">Memory usage of Java objects: general guide</a></li>
+<li><a href="http://www.36dsj.com/archives/33650" target="_blank" rel="noopener">脱离JVM？ Hadoop生态圈的挣扎与演化</a></li>
 </ul>
 
       
@@ -487,7 +483,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -515,7 +511,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -588,7 +584,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -598,12 +594,10 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -664,7 +658,7 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -711,10 +705,10 @@ Java 对象存储密度低。一个只包含 boolean 属性的对象占用了16�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

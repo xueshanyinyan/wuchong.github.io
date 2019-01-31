@@ -6,19 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,61 +23,61 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-    <meta name="author" content="WuChong" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css">
 
 
-
-  <meta name="keywords" content="Flink,Flink历史" />
+    <meta name="author" content="WuChong">
 
 
 
-
-
-  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <meta name="keywords" content="Flink,Flink历史">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Jark's Blog" type="application/atom+xml">
 
-<meta name="description" content="作者：云邪（Jark）原文链接：http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/
 
-Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数据计算引擎，它同时支持了批处理和流处理，也能用来做一些基于事件的应用。使用官网的一句话来介绍 Flink 就是 “Stateful Com">
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0">
+
+
+
+
+
+
+<meta name="description" content="作者：云邪（Jark）原文链接：http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/  Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数据计算引擎，它同时支持了批处理和流处理，也能用来做一些基于事件的应用。使用官网的一句话来介绍 Flink 就是 “Stateful Com">
+<meta name="keywords" content="Flink,Flink历史">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一文了解 Apache Flink 核心技术">
 <meta property="og:url" content="http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/index.html">
-<meta property="og:site_name" content="Jark's Blog">
-<meta property="og:description" content="作者：云邪（Jark）原文链接：http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/
-
-Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数据计算引擎，它同时支持了批处理和流处理，也能用来做一些基于事件的应用。使用官网的一句话来介绍 Flink 就是 “Stateful Com">
+<meta property="og:site_name" content="Jark&#39;s Blog">
+<meta property="og:description" content="作者：云邪（Jark）原文链接：http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/  Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数据计算引擎，它同时支持了批处理和流处理，也能用来做一些基于事件的应用。使用官网的一句话来介绍 Flink 就是 “Stateful Com">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1Ta88oyLaK1RjSZFxXXamPFXa-1627-845.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1ksgRokvoK1RjSZFNXXcxMVXa-1481-566.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1vZZYohjaK1RjSZFAXXbdLFXa-1470-575.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1xds3ohYaK1RjSZFnXXa80pXa-1470-575.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1T.sRoa6qK1RjSZFmXXX0PFXa-1470-616.png">
-<meta property="og:updated_time" content="2018-11-09T12:47:01.157Z">
+<meta property="og:updated_time" content="2018-11-09T12:47:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一文了解 Apache Flink 核心技术">
-<meta name="twitter:description" content="作者：云邪（Jark）原文链接：http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/
-
-Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数据计算引擎，它同时支持了批处理和流处理，也能用来做一些基于事件的应用。使用官网的一句话来介绍 Flink 就是 “Stateful Com">
+<meta name="twitter:description" content="作者：云邪（Jark）原文链接：http://wuchong.me/blog/2018/11/09/flink-tech-evolution-introduction/  Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数据计算引擎，它同时支持了批处理和流处理，也能用来做一些基于事件的应用。使用官网的一句话来介绍 Flink 就是 “Stateful Com">
 <meta name="twitter:image" content="https://img.alicdn.com/tfs/TB1Ta88oyLaK1RjSZFxXXamPFXa-1627-845.png">
 
 
@@ -103,7 +99,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
   <title> 一文了解 Apache Flink 核心技术 | Jark's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -132,12 +128,12 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Jark's Blog</span>
       <span class="logo-line-after"><i></i></span>
@@ -164,7 +160,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -174,7 +170,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -184,7 +180,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
             
             分类
           </a>
@@ -194,7 +190,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -204,7 +200,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
             
             关于
           </a>
@@ -221,7 +217,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
     <div class="site-search">
       
   <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
 </form>
 
 <script type="text/javascript">
@@ -258,7 +254,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -374,7 +370,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
       
         
         
-<hr/>
+<hr>
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
   <img id="wechat_subscriber_qcode" src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" alt="hoxis wechat" style="width: auto; height:200px; max-width: 100%;">
 </div>
@@ -398,7 +394,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
       <div class="post-spread">
         
           <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async = "async" ></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d648eefec3350b" async="async"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_sharing_toolbox"></div>
         
@@ -471,7 +467,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -481,12 +477,10 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="WuChong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/default_avatar.jpg" alt="WuChong">
           <p class="site-author-name" itemprop="name">WuChong</p>
-          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br/>你就应该静下心来学习。</p>
+          <p class="site-description motion-element" itemprop="description">当你的才华还撑不起你的野心时，<br>你就应该静下心来学习。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -547,7 +541,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
         
           <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
             </a>
           </div>
         
@@ -575,7 +569,7 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-Flink-介绍"><span class="nav-number">1.</span> <span class="nav-text">Apache Flink 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-Flink-基石"><span class="nav-number">2.</span> <span class="nav-text">Apache Flink 基石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-API-历史变迁"><span class="nav-number">3.</span> <span class="nav-text">Flink API 历史变迁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-High-Level-API-历史变迁"><span class="nav-number">4.</span> <span class="nav-text">Flink High-Level API 历史变迁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-Checkpoint-amp-Recovery-历史变迁"><span class="nav-number">5.</span> <span class="nav-text">Flink Checkpoint & Recovery 历史变迁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-Runtime-历史变迁"><span class="nav-number">6.</span> <span class="nav-text">Flink Runtime 历史变迁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-Flink-介绍"><span class="nav-number">1.</span> <span class="nav-text">Apache Flink 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-Flink-基石"><span class="nav-number">2.</span> <span class="nav-text">Apache Flink 基石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-API-历史变迁"><span class="nav-number">3.</span> <span class="nav-text">Flink API 历史变迁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-High-Level-API-历史变迁"><span class="nav-number">4.</span> <span class="nav-text">Flink High-Level API 历史变迁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-Checkpoint-amp-Recovery-历史变迁"><span class="nav-number">5.</span> <span class="nav-text">Flink Checkpoint &amp; Recovery 历史变迁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-Runtime-历史变迁"><span class="nav-number">6.</span> <span class="nav-text">Flink Runtime 历史变迁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -594,10 +588,10 @@ Apache Flink 介绍Apache Flink 是近年来越来越流行的一款开源大数
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2013 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
