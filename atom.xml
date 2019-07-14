@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wuchong.me/"/>
-  <updated>2019-05-20T03:59:55.394Z</updated>
+  <updated>2019-02-28T07:19:24.206Z</updated>
   <id>http://wuchong.me/</id>
   
   <author>
@@ -15,24 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Apache Flink 中文社区网站 Ververica 正式发布</title>
-    <link href="http://wuchong.me/blog/2019/05/20/ververica-china-is-online/"/>
-    <id>http://wuchong.me/blog/2019/05/20/ververica-china-is-online/</id>
-    <published>2019-05-20T03:56:32.000Z</published>
-    <updated>2019-05-20T03:59:55.394Z</updated>
-    
-    <content type="html"><![CDATA[<p>众所周知，Apache Flink 最初是由德国柏林工业大学的几个博士生和研究生从学校开始做起来的项目，2014年，其核心成员开发了 Flink，同时将 Flink 计算的主流方向定位为实时计算并在同年将 Flink 捐赠给 Apache ，后来快速孵化，成为 Apache 的顶级项目。</p><p>Apache Flink 是业界公认的性能优异的大数据实时计算引擎之一，除了社区的参与贡献外，还与其商业公司 Ververica（原名：dataArtisans）密切相关。随着 Flink 在不同行业的多样化场景中落地，用户在遇到问题时会寻求社区的答疑与支持；同时，社区也希望好的经验能够更广泛的传播。</p><p>为此，<strong>Apache Flink 的中文社区网站 <a href="https://zh.ververica.com" target="_blank" rel="noopener">Ververica</a> 与 Apache Flink 社区微信公众号 Ververica 正式发布。</strong></p><p><strong>Apache Flink 中文社区网站：<a href="https://zh.ververica.com" target="_blank" rel="noopener">zh.ververica.com</a></strong></p><p><strong>Apache Flink 社区微信公众号</strong></p><p><img src="https://img.alicdn.com/tfs/TB1ME1YXqSs3KVjSZPiXXcsiVXa-300-300.jpg" alt=""></p><p><img src="https://img.alicdn.com/tfs/TB1z7aQXB1D3KVjSZFyXXbuFpXa-620-264.jpg" alt=""></p><h2 id="Apache-Flink-中文社区网站简介"><a href="#Apache-Flink-中文社区网站简介" class="headerlink" title="Apache Flink 中文社区网站简介"></a>Apache Flink 中文社区网站简介</h2><p>Apache Flink 中文社区网站（zh.ververica.com）是 Ververica (原dataArtisans，Apache Flink 商业母公司）指定的 Apache Flink 中文社区网站，社区网站运营的初衷是希望赋能社区，为 Flink 的爱好者与学习者提供充分的 Flink 技术支持与学习交流的机会，整合社区资源，聚集 Flink 用户，一起打造有活力有深度的 Apache Flink 社区。</p><h2 id="Apache-Flink-中文社区网站能够提供什么？"><a href="#Apache-Flink-中文社区网站能够提供什么？" class="headerlink" title="Apache Flink 中文社区网站能够提供什么？"></a>Apache Flink 中文社区网站能够提供什么？</h2><h4 id="Apache-Flink-线下交流学习的机会"><a href="#Apache-Flink-线下交流学习的机会" class="headerlink" title="Apache Flink 线下交流学习的机会"></a>Apache Flink 线下交流学习的机会</h4><p>Flink China Meetup 由 Apache Flink Community China（以下简称：Flink China） 发起，目前已在杭州、上海、北京、深圳、成都五个城市举办 10 余场，已经有超过 2000 名社区同学参与线下 Meetup 找到 Flink 组织，社区规模在不断扩大，Meetup 版图会延伸到更多城市，更多 Flink Meetup 资讯将会在网站发布。</p><h4 id="全面的开发者资料"><a href="#全面的开发者资料" class="headerlink" title="全面的开发者资料"></a>全面的开发者资料</h4><p>网站从博客分享、开发实践、专业教程与资料中心四个板块为大家提供 Flink 的相关参考资料。</p><ul><li><p><strong>博客分享</strong>：除掌握技术细节外，大家还需要关注 Flink 的未来发展规划与行业应用前景，博客板块涵盖社区 Meetup 与重量级会议精彩的技术分享内容。</p></li><li><p><strong>开发实践</strong>：Flink 应用中如果对某个功能特性存疑，开发实践板块汇聚社区深度开发者对 Flink 核心技术解析，可以为你提供灵感。</p></li><li><p><strong>专业教程</strong>：网站提供基础、进阶、运维、实战的系列 Flink 入门教程，系统地帮你梳理 Flink 的技术 Roadmap ，每周钉钉大群直播，与 Apache Flink 的 Commiter、Contributor 在线互动交流。</p></li></ul><p>除此之外，Flink China 社区 Meetup 的所有嘉宾分享 PPT 以及社区专刊，免费下载，尽在“<strong>资料中心</strong>”。</p><p>Apache Flink 开源至今已经将近五年，社区日益枝繁叶茂，越来越多的企业采用  Flink 作为计算开发引擎解决其实时计算、流计算等问题。我们按照行业、使用场景与应用的深度分类，希望能够为你提供参考与指引。</p><p><img src="https://img.alicdn.com/tfs/TB1bGOPXEuF3KVjSZK9XXbVtXXa-1080-692.jpg" alt=""></p><p>Apache Flink 中文社区网站的建设目标是成为用户参与感强、积极活跃的社区，网站初上线还在不断完善中，欢迎社区同学帮忙测试，提供意见和建议。</p><p><strong>Apache Flink 中文社区网站：<a href="https://zh.ververica.com" target="_blank" rel="noopener">zh.ververica.com</a></strong></p>]]></content>
-    
-    <summary type="html">
-    
-      Apache Flink 的中文社区网站 Ververica 与 Apache Flink 社区微信公众号 Ververica 正式发布。
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>如何从小白成长为 Apache Committer?</title>
@@ -1276,6 +1258,33 @@
     
     
       <category term="面试" scheme="http://wuchong.me/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>托管 Hexo 博客到 Coding</title>
+    <link href="http://wuchong.me/blog/2014/12/18/hexo-blog-to-coding/"/>
+    <id>http://wuchong.me/blog/2014/12/18/hexo-blog-to-coding/</id>
+    <published>2014-12-18T13:47:13.000Z</published>
+    <updated>2016-03-08T12:11:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://ww2.sinaimg.cn/large/81b78497jw1ene69i4dilj20b4036aa7.jpg" class="img-topic"></p><p>前两天收到了 GitCafe 的紧急邮件，大意就是说：由于「有关部门」查水表，我们的 GitCafe Pages 服务需要暂时关闭自定义域名功能。当时就有点想 F*uking XXX，当然不是指 GitCafe，大家都懂。</p><p>根据 GitCafe 的提示，只需要修改 DNS 配置中的 A 记录为 CNAME 到 xxx.gitcafe.io 即可。但是，貌似 GitCafe 有些手忙脚乱 gitcafe.io 还没有上线，导致会跳到 gitcafe 的个人活动页面。这里其实直接用 A 记录指到  207.226.141.135 就可以。不过你会发现，你的域名变成了 xxx.gitcafe.com 。作为强迫症患者，这怎么能忍？</p><p>难道又要迁回水土不服，国内老挂的 GitHub 上吗？这时候 Coding 出现了。（你说Coding君是不是应该给点广告费？）</p><a id="more"></a><h2 id="迁移到-Coding"><a href="#迁移到-Coding" class="headerlink" title="迁移到 Coding"></a>迁移到 Coding</h2><p>“Coding 是一个面向开发者的云端开发平台，目前提供代码托管，运行空间，质量控制，项目管理等功能。”好吧，我们只想用托管功能和最近新出的<a href="https://coding.net/u/panpan/p/Coding-PaaS/topic/10263" target="_blank" rel="noopener">自定义域名·免备案</a>。</p><h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>创建一个博客项目，名称无所谓，然后在项目页面获取 SSH 或 HTTPS 地址。</p><p><img src="http://ww2.sinaimg.cn/large/81b78497jw1ene5wf0vh8j20yz0doq5w.jpg" alt=""></p><h3 id="推送代码"><a href="#推送代码" class="headerlink" title="推送代码"></a>推送代码</h3><p>修改 Hexo 根目录下的配置文件<code>_config.yml</code>，修改最后的 deploy 参数。<br><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: github</span><br><span class="line">  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//coding.net/jark/blog.git  #改成你的项目地址</span></span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure></p><p><em>如果你使用的是 SSH 地址，还需要设置<a href="https://coding.net/user/setting/keys" target="_blank" rel="noopener">SSH公钥</a>。</em></p><p>然后运行<code>hexo d</code>就会推送代码到 Coding 项目上。（最好先<code>hexo clean</code>并删除目录下的<code>.deploy</code>文件夹）</p><h3 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h3><p>在「演示」标签页下，点击“开始检测”（不管提示，强制开启）。</p><p><img src="http://ww1.sinaimg.cn/large/81b78497jw1ene5wa2fkzj20w70he41z.jpg" alt=""> </p><p>在开启功能中，我们选择香港节点（因为只有香港节点提供免费自定义域名服务）。</p><p><img src="http://ww3.sinaimg.cn/large/81b78497jw1ene5wavsc4j20tk07r0tp.jpg" alt=""> </p><p>然后进入控制台，配置部署版本为<code>master</code>分支，运行环境为<code>HTML</code>，选择自定义域名并填写自己的域名。最后点击“一键部署”！ （内存好多，不过懒得改了）</p><p><img src="http://ww2.sinaimg.cn/large/81b78497jw1ene5wcxf84j20qk0hrjug.jpg" alt=""> </p><p>稍等片刻后就可以看到运行中的项目了。 </p><p><img src="http://ww3.sinaimg.cn/large/81b78497jw1ene5wbneo4j20qw0eigns.jpg" alt=""></p><p>资源浪费好多…太任性了…</p><h3 id="更改DNS"><a href="#更改DNS" class="headerlink" title="更改DNS"></a>更改DNS</h3><p>最后一步，官方说法是将域名的 CNAME 记录值指向 api.codingapp.com。但如果你用的是根域名，可能会提示 CNAME 和 MX 记录冲突。这里可以使用 A 记录指向 119.9.72.107 ，效果是一样的。</p><p>在浏览器中输入你的域名，能看到访问正常，并且不会变成恶心的某二级域名。PING 一下，发现速度也还不错。</p><p><img src="http://ww1.sinaimg.cn/large/81b78497jw1ene62w9z3aj216g0vywo7.jpg" alt=""> </p><h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>有些不足的地方是，每当博客需要更新时，不仅要<code>hexo d</code>推送代码上去，还需要去控制台“一键部署”。</p><p>香港节点提供自定义域名，但只免费开放到 2015 年前。不过官方有个福利，如果平均每两个月有一篇原创技术博客产出，就可以向 <a href="https://coding.net/u/coding" target="_blank" rel="noopener">@Coding</a> 提出申请免费使用自定义域名服务。</p><p>不过估计年底前，GitCafe 就该重新开放自定义域名了吧。真的非常感谢 GitCafe 一直以来的努力，非常好的产品。希望 GitCafe 能挺过这一关。</p><p><em>PS:有任何关于 Hexo 的问题，欢迎来 <a href="https://coderq.com/c/tech/hexo" target="_blank" rel="noopener">Hexo 中文社区</a> 咨询。</em></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/81b78497jw1ene69i4dilj20b4036aa7.jpg&quot; class=&quot;img-topic&quot;&gt;&lt;/p&gt;
+&lt;p&gt;前两天收到了 GitCafe 的紧急邮件，大意就是说：由于「有关部门」查水表，我们的 GitCafe Pages 服务需要暂时关闭自定义域名功能。当时就有点想 F*uking XXX，当然不是指 GitCafe，大家都懂。&lt;/p&gt;
+&lt;p&gt;根据 GitCafe 的提示，只需要修改 DNS 配置中的 A 记录为 CNAME 到 xxx.gitcafe.io 即可。但是，貌似 GitCafe 有些手忙脚乱 gitcafe.io 还没有上线，导致会跳到 gitcafe 的个人活动页面。这里其实直接用 A 记录指到  207.226.141.135 就可以。不过你会发现，你的域名变成了 xxx.gitcafe.com 。作为强迫症患者，这怎么能忍？&lt;/p&gt;
+&lt;p&gt;难道又要迁回水土不服，国内老挂的 GitHub 上吗？这时候 Coding 出现了。（你说Coding君是不是应该给点广告费？）&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://wuchong.me/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://wuchong.me/tags/Hexo/"/>
+    
+      <category term="Coding" scheme="http://wuchong.me/tags/Coding/"/>
     
   </entry>
   
