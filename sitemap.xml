@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wuchong.me/blog/2019/09/02/flink-sql-1-9-read-from-kafka-write-into-mysql/</loc>
+    
+    <lastmod>2019-09-02T15:46:38.571Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/blog/2019/08/20/flink-sql-training/</loc>
     
-    <lastmod>2019-08-20T08:17:34.270Z</lastmod>
+    <lastmod>2019-08-20T08:19:40.483Z</lastmod>
     
   </url>
   
@@ -604,14 +611,14 @@
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/01/27/python-spider-gif/</loc>
+    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wuchong.me/blog/2014/03/17/string-to-int/</loc>
+    <loc>http://wuchong.me/blog/2014/01/27/python-spider-gif/</loc>
     
     <lastmod>2014-12-22T16:18:37.000Z</lastmod>
     
