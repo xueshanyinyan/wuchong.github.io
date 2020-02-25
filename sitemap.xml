@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wuchong.me/blog/2020/02/25/demo-building-real-time-application-with-flink-sql/</loc>
+    
+    <lastmod>2020-02-25T09:39:54.295Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wuchong.me/blog/2019/09/02/flink-sql-1-9-read-from-kafka-write-into-mysql/</loc>
     
     <lastmod>2019-09-02T15:46:38.571Z</lastmod>
