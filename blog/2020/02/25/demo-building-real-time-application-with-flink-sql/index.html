@@ -77,7 +77,7 @@
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB19ae.woT1gK0jSZFhXXaAtVXa-2874-1596.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB1xU5.wkY2gK0jSZFgXXc5OFXa-2878-1598.png">
 <meta property="og:image" content="https://img.alicdn.com/tfs/TB13HW9weL2gK0jSZPhXXahvXXa-2874-1596.png">
-<meta property="og:updated_time" content="2020-02-25T09:39:54.295Z">
+<meta property="og:updated_time" content="2020-02-27T10:26:17.158Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Demo：基于 Flink SQL 构建流式应用">
 <meta name="twitter:description" content="上周四在 Flink 中文社区钉钉群中直播分享了《Demo：基于 Flink SQL 构建流式应用》，直播内容偏向实战演示。这篇文章是对直播内容的一个总结，并且改善了部分内容，比如除 Flink 外其他组件全部采用 Docker Compose 安装，简化准备流程。读者也可以结合视频和本文一起学习。完整分享可以观看视频回顾：https://www.bilibili.com/video/av905">
@@ -378,7 +378,7 @@
 <li>下载 Flink 1.10.0 安装包并解压（解压目录 <code>flink-1.10.0</code>）：<a href="https://www.apache.org/dist/flink/flink-1.10.0/flink-1.10.0-bin-scala_2.11.tgz" target="_blank" rel="noopener">https://www.apache.org/dist/flink/flink-1.10.0/flink-1.10.0-bin-scala_2.11.tgz</a></li>
 <li>进入 flink-1.10.0 目录：<code>cd flink-1.10.0</code></li>
 <li><p>通过如下命令下载依赖 jar 包，并拷贝到 <code>lib/</code> 目录下，也可手动下载和拷贝。因为我们运行时需要依赖各个 connector 实现。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -P ./lib/ https://repo1.maven.org/maven2/org/apache/flink/flink-json/1.10.0/flink-json-1.10.0.jar | \</span><br><span class="line">    wget -P ./lib/ https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-kafka_2.11/1.10.0/flink-sql-connector-kafka_2.11-1.10.0.jar | \</span><br><span class="line">    wget -P ./lib/ https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-elasticsearch7_2.11/1.10.0/flink-sql-connector-elasticsearch7_2.11-1.10.0.jar | \</span><br><span class="line">    wget -P ./lib/ https://repo1.maven.org/maven2/org/apache/flink/flink-jdbc_2.11/1.10.0/flink-jdbc_2.11-1.10.0.jar | \</span><br><span class="line">    wget -P ./lib/ https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.48/mysql-connector-java-5.1.48.jar</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -P ./lib/ https://repo1.maven.org/maven2/org/apache/flink/flink-json/1.10.0/flink-json-1.10.0.jar | \</span><br><span class="line">    wget -P ./lib/ https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-kafka_2.11/1.10.0/flink-sql-connector-kafka_2.11-1.10.0.jar | \</span><br><span class="line">    wget -P ./lib/ https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-elasticsearch6_2.11/1.10.0/flink-sql-connector-elasticsearch6_2.11-1.10.0.jar | \</span><br><span class="line">    wget -P ./lib/ https://repo1.maven.org/maven2/org/apache/flink/flink-jdbc_2.11/1.10.0/flink-jdbc_2.11-1.10.0.jar | \</span><br><span class="line">    wget -P ./lib/ https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.48/mysql-connector-java-5.1.48.jar</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将 <code>conf/flink-conf.yaml</code> 中的 <code>taskmanager.numberOfTaskSlots</code> 修改成 10，因为我们会同时运行多个任务。</p>
 </li>
